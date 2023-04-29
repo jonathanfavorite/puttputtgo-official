@@ -1,0 +1,251 @@
+// scss function to return a url
+@function temp-url($path) {
+    @return url('../../../../public/customers/castle-golf/images/gameplay/' + #{$path});
+}
+
+
+
+
+.game-page {
+    height:100vh;
+    max-height:-webkit-fill-available;
+    // if mobile set height to 100%
+    display: flex;
+    flex-direction: column;
+    //background-image: url("../../../../public/customers/castle-golf/images/welcome-background.jpg");
+    background-size: cover;
+
+    
+    .rounds-container {
+        background: #000;
+        height: 10%;
+        display: flex;
+        overflow: hidden;
+        //background-image: temp-url("round-background.jpg");
+        background-size: 100% 100%;
+         border-bottom:3px solid #54afa4;
+        display: flex;
+        .left-cap {
+            width: 7%;
+            //background-image: temp-url("round-left-cap.png");
+            background-size: 100% 100%;
+        }
+        .right-cap {
+            width: 7%;
+            //background-image: temp-url("round-right-cap.png");
+            background-size: 100% 100%;
+        }
+        .center {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            width: 100%;
+            max-width: calc(100% - 14%);
+            .hole-label {
+                padding-left: 10px;
+                height:100%;
+                display: flex;
+                align-items: center;
+                padding-left:20px;
+                font-weight: bold;
+                border-right:1px solid #426e4d;
+                color: #fff;
+                text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+                box-shadow:0px 0px 10px #000 !important;
+                padding-right: 20px;
+                
+            }
+            .hole-items {
+                overflow-x: scroll;
+                white-space: nowrap;
+                position: relative;
+                overflow-y: hidden;
+                display: flex;
+                height:100%;
+                align-items: center;
+                padding-right:10px;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                flex: 1;
+                .hole-item {
+                    position: relative;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #fff;
+                    text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+                    font-size: 2.0rem;
+                    position: relative;
+                    height: 6vh;
+                    flex: 1;
+                    aspect-ratio: 1/1;
+                    //background: temp-url("round-button.png");
+                    background-size: 100% 100%;
+                    margin-right: 20px;
+                    &.active-hole {
+                        color:#fff !important;
+                    }
+                    &:first-child {
+                        margin-left: 20px;
+                    }
+                    &:last-child {
+                       
+                    }
+                   
+                }
+               
+            }
+        }
+    }
+    .game-body {
+        flex: 1;
+        display: flex;
+        box-sizing: border-box;
+        overscroll-behavior: none;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: none !important;
+          }
+       
+        .player-container {
+            flex:1;
+            flex-direction: column;
+            box-sizing: border-box;
+            display: flex;
+            .player {
+                box-sizing: border-box;
+                flex:1;
+                display: flex;
+                align-items: center;
+                padding:20px 0;
+                
+                //background-image: temp-url('player-background.jpg');
+                background-size: cover;
+                opacity: 0.6;
+                .ball-color-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .ball-color {
+                        margin-left:20px;
+                        margin-right:8vw;
+                        aspect-ratio: 1/1;
+                        height: 5vh;
+                        //background: temp-url('player-ball-frame.png');
+                        background-color: black;
+                        background-size: 100% 100%;
+                    }
+                }
+                .player-details {
+                    flex:1;
+                   
+                   
+                    color:black;
+                    .name {
+                        font-size:2rem;
+                        
+                       
+                    }
+                }
+                .player-round-score {
+                    width:15vw;
+                    display: flex;
+                    justify-content: center;
+                   
+                    .round-score {
+                        aspect-ratio: 1/1;
+                        background-size:100% 100%;
+                        height:7vh;
+                        margin-right:20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 3rem;
+                        color: #fff;
+                        text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+                        span {
+                            position: relative;
+                            top:0px;
+                            left:1px;
+                        }
+                    }
+                }
+            }
+            .active-player {
+                box-shadow: 0px 0px 50px #000;
+                z-index: 10;
+                opacity: 1;
+                text-shadow: -1px 1px 1px #000c4e;
+            }
+        }
+    }
+    .footer {
+        background: #b8a674;
+        display: flex;
+        background-color:#31251c;
+        border-top:3px solid #31251c;
+        .footer-content {
+            flex: 1;
+            display: flex;
+        
+        .numbers-wrap {
+            flex:1;
+            display: flex;
+           
+            .numbers {
+                flex:1;
+                display:table;
+
+                .row {
+                    display: table-row;
+                  
+                    .score {
+                        outline: none;
+                        border:none;
+                        width:33.3%;
+                        font-size:3rem;
+                        padding:5px;
+                        color:#4a330d;
+                     
+                        font-weight: bold;
+                        text-shadow: 0px 0px 15px #edd488;;
+                        display: table-cell;
+                        //background-image: temp-url('score-button.jpg');
+                        background-size:100% 100%;
+                        
+                        &:hover {
+                            //opacity: 0.6;
+                        }
+                    }
+                }
+            }
+        }
+        .next-hole {
+            width:35%;
+            //background-image: temp-url('next-hole-button.jpg');
+            background-size: 100% 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding:20px;
+            box-sizing: border-box;
+            color:#feff8b;
+            outline:none;
+            border:none;
+          
+            font-size: 2.0rem;
+            span {
+                font-weight: bold;
+                text-shadow: 0px 0px 10px #4a330d;
+            }
+            &:hover {
+                //opacity: 0.6;
+            }
+        }
+    }
+    }
+}
+
+

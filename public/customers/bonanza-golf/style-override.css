@@ -1,0 +1,16 @@
+/* import Tofino from file */
+@font-face {
+    font-family: 'Tofino';
+    src: url('/customers/bonanza-golf/Tofino.ttf');
+}
+body {
+    font-family: 'Tofino', sans-serif;
+    background-color:#80503c !important;
+}
+.app {
+    font-family: 'Tofino', sans-serif;
+    background-color: #80503c !important;
+}
+.rules-override .logo {
+    max-height:80px;
+}

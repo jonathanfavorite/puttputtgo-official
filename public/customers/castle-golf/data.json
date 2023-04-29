@@ -1,0 +1,190 @@
+{
+  "directoryLocation": "/customers/castle-golf/",
+  "customerID": "castle-golf",
+  "customerName": "Castle Golf",
+  "customerDescription": "Castle Golf is a golf course management company that operates 18 golf courses in Florida. Castle Golf is a subsidiary of the Castle Group, a privately held company that owns and operates golf courses, hotels, and resorts in the United States and the Caribbean.",
+  "courses": [
+    {
+      "ID": 1,
+      "name": "Castle Golf",
+      "description": "",
+      "image": "",
+      "holes": [
+        { "courseID": 1, "number": 1, "par": 2, "optional": false },
+        { "courseID": 1, "number": 2, "par": 2, "optional": false },
+        { "courseID": 1, "number": 3, "par": 2, "optional": false },
+        { "courseID": 1, "number": 4, "par": 3, "optional": false },
+        { "courseID": 1, "number": 5, "par": 2, "optional": false },
+        { "courseID": 1, "number": 6, "par": 2, "optional": false }, 
+        { "courseID": 1, "number": 7, "par": 2, "optional": false },
+        { "courseID": 1, "number": 8, "par": 3, "optional": false },
+        { "courseID": 1, "number": 9, "par": 3, "optional": false },
+        { "courseID": 1, "number": 10, "par": 2, "optional": false },
+        { "courseID": 1, "number": 11, "par": 4, "optional": false },
+        { "courseID": 1, "number": 12, "par": 2, "optional": false },
+        { "courseID": 1, "number": 13, "par": 2, "optional": false },
+        { "courseID": 1, "number": 14, "par": 2, "optional": false },
+        { "courseID": 1, "number": 15, "par": 2, "optional": false },
+        { "courseID": 1, "number": 16, "par": 2, "optional": false },
+        { "courseID": 1, "number": 17, "par": 2, "optional": false },
+        { "courseID": 1, "number": 18, "par": 3, "optional": false }
+      ]
+    }
+  ],
+  "texts": [
+    {
+        "textID": "start-game:choose-players-heading",
+        "locals": [
+            { "locale": "en", "text": "Choose||Your Heros" },
+            { "locale": "es", "text": "Elige a tus Héroes" },
+            { "locale": "fr", "text": "Choisissez vos héros" },
+            { "locale": "de", "text": "Wählen Sie Ihre Helden" },
+            { "locale": "it", "text": "Scegli i tuoi eroi" },
+            { "locale": "pt", "text": "Escolha seus heróis" },
+            { "locale": "ru", "text": "Выберите своих героев" },
+            { "locale": "zh", "text": "选择你的英雄" }
+        ]
+    }
+  ],
+  "assets": [
+    {
+      "assetType": "image",
+      "assetID": "logo",
+      "assetName": "Logo",
+      "assetLocation": "/customers/castle-golf/images/logo.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "welcome-background",
+      "assetName": "Welcome Background",
+      "assetLocation": "/customers/castle-golf/images/welcome-background.jpg"
+    },
+    {
+        "assetType": "image",
+        "assetID": "create-game-background",
+        "assetName": "Create Game Background",
+        "assetLocation": "/customers/castle-golf/images/create-game-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "create-game-button",
+      "assetName": "Create Game Button",
+      "assetLocation": "/customers/castle-golf/images/create-game-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "continue-game-button",
+      "assetName": "Continue Game Button",
+      "assetLocation": "/customers/castle-golf/images/continue-game-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "rules-button",
+      "assetName": "Rules Button",
+      "assetLocation": "/customers/castle-golf/images/rules-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-header-background",
+      "assetName": "Header Background",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-header-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-game-background",
+      "assetName": "Game Background",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-game-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-background",
+      "assetName": "Round Background",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-round-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-left-cap",
+      "assetName": "Round Left Cap",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-round-left-cap.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-right-cap",
+      "assetName": "Round Right Cap",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-round-right-cap.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-button",
+      "assetName": "Round Button",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-round-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-player-background",
+      "assetName": "Player Background",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-player-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-player-ball-frame",
+      "assetName": "Player Ball Frame",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-player-ball-frame.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-player-score-background",
+      "assetName": "Player Ball Frame",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-player-score-background.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-score-button",
+      "assetName": "Score Button",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-score-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-next-hole-button",
+      "assetName": "Next Hole Button",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-next-hole-button.jpg"
+    },
+    {
+        "assetType": "image",
+        "assetID": "start-new-game-button",
+        "assetName": "Start New Game Button",
+        "assetLocation": "/customers/castle-golf/images/create-game/start-game-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "add-player-button",
+      "assetName": "Add Player Button",
+      "assetLocation": "/customers/castle-golf/images/create-game/add-player-button.png"
+  },
+  {
+    "assetType": "image",
+    "assetID": "delete-player-button",
+    "assetName": "Delete Player Button",
+    "assetLocation": "/customers/castle-golf/images/create-game/delete-player-button.png"
+},
+{
+  "assetType": "image",
+  "assetID": "close-create-modal-button",
+  "assetName": "Close Player Create Modal Button",
+  "assetLocation": "/customers/castle-golf/images/create-game/close-create-modal-button.png"
+},
+{
+  "assetType": "image",
+  "assetID": "confirm-player-button",
+  "assetName": "Confirm Player Create Modal Button",
+  "assetLocation": "/customers/castle-golf/images/create-game/confirm-player-button.jpg"
+},
+  
+    {
+        "assetType": "image",
+        "assetID": "back-button-1",
+        "assetName": "Back Button",
+        "assetLocation": "/customers/castle-golf/images/back-button.png"
+    }
+  ]
+}

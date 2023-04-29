@@ -1,0 +1,37 @@
+.text-based-header {
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    //background-image: temp-url("header-background.jpg");
+    background-size: 100% 100%;
+    align-items: center;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.75);
+    .left {
+        width: 20%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        .back-button {
+            max-width:15vw;
+            width:100%;
+            aspect-ratio: 1/1;
+
+        }
+    }
+    .right {
+        width: 20%;
+    }
+    .center {
+        $stroke: 5px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .title {
+            font-size: 2rem;
+            color: #ffd942;
+            text-shadow: 0px 0px 15px #000;
+           
+        }
+    }
+}

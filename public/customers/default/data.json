@@ -1,0 +1,129 @@
+{
+    "directoryLocation": "/customers/default/",
+    "customerID": "default",
+    "customerName": "PuttPuttGo",
+    "customerDescription": "Castle Golf is a golf course management company that operates 18 golf courses in Florida. Castle Golf is a subsidiary of the Castle Group, a privately held company that owns and operates golf courses, hotels, and resorts in the United States and the Caribbean.",
+    "courses": [
+        {
+          "ID": 1,
+          "name": "Castle Golf",
+          "description": "",
+          "image": "",
+          "holes": [
+            { "courseID": 1, "number": 1, "par": 2, "optional": false },
+            { "courseID": 1, "number": 2, "par": 2, "optional": false },
+            { "courseID": 1, "number": 3, "par": 2, "optional": false },
+            { "courseID": 1, "number": 4, "par": 3, "optional": false },
+            { "courseID": 1, "number": 5, "par": 2, "optional": false },
+            { "courseID": 1, "number": 6, "par": 2, "optional": false }, 
+            { "courseID": 1, "number": 7, "par": 2, "optional": false },
+            { "courseID": 1, "number": 8, "par": 3, "optional": false },
+            { "courseID": 1, "number": 9, "par": 3, "optional": false },
+            { "courseID": 1, "number": 10, "par": 2, "optional": false },
+            { "courseID": 1, "number": 11, "par": 4, "optional": false },
+            { "courseID": 1, "number": 12, "par": 2, "optional": false },
+            { "courseID": 1, "number": 13, "par": 2, "optional": false },
+            { "courseID": 1, "number": 14, "par": 2, "optional": false },
+            { "courseID": 1, "number": 15, "par": 2, "optional": false },
+            { "courseID": 1, "number": 16, "par": 2, "optional": false },
+            { "courseID": 1, "number": 17, "par": 2, "optional": false },
+            { "courseID": 1, "number": 18, "par": 3, "optional": false }
+          ]
+        }
+      ],
+      "rulesData": "<h1>Rules</h1>",
+      "assets": [
+        {
+            "assetType": "image",
+            "assetID": "logo",
+            "assetName": "Logo",
+            "assetLocation": "/customers/default/images/logo.png"
+        },
+        {
+            "assetType": "image",
+            "assetID": "welcome-background",
+            "assetName": "Welcome Background",
+            "assetLocation": "/customers/default/images/welcome-background.jpg"
+        },
+        {
+            "assetType": "image",
+            "assetID": "create-game-button",
+            "assetName": "Create Game Button",
+            "assetLocation": "/customers/default/images/create-button.jpg"
+        }
+        ,
+        {
+            "assetType": "image",
+            "assetID": "continue-game-button",
+            "assetName": "Continue Game Button",
+            "assetLocation": "/customers/default/images/continue-button.jpg"
+        }
+        ,
+        {
+            "assetType": "image",
+            "assetID": "rules-button",
+            "assetName": "Rules Button",
+            "assetLocation": "/customers/default/images/rules-button.jpg"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-header-background",
+            "assetName": "Header Background",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-header-background.jpg"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-game-background",
+            "assetName": "Game Background",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-game-background.jpg"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-round-background",
+            "assetName": "Round Background",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-round-background.jpg"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-round-left-cap",
+            "assetName": "Round Left Cap",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-round-left-cap.png"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-round-right-cap",
+            "assetName": "Round Right Cap",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-round-right-cap.png"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-round-button",
+            "assetName": "Round Button",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-round-button.png"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-player-background",
+            "assetName": "Player Background",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-player-background.jpg"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-player-ball-frame",
+            "assetName": "Player Ball Frame",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-player-ball-frame.png"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-score-button",
+            "assetName": "Score Button",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-score-button.jpg"
+        },
+        {
+            "assetType": "image",
+            "assetID": "gameplay-next-hole-button",
+            "assetName": "Next Hole Button",
+            "assetLocation": "/customers/default/images/gameplay/gameplay-next-hole-button.jpg"
+        }
+    ]
+}

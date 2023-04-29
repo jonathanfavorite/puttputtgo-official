@@ -1,0 +1,41 @@
+:root {
+    --vh: 100vh; // Default fallback value
+}
+
+.flexTest {
+    display:flex;
+    flex-direction: column;
+    background:#ccc;
+    max-height: -webkit-fill-available;
+    height: var(--vh); // Use the actual viewport height
+    width:100%;
+    .header {
+        min-height:10vh;
+        background:red;
+    }
+    .body {
+        flex:1;
+        display: flex;
+        flex-direction: column;
+        background: #a4daff;
+        .top {
+            display: flex;
+            height:30vh;
+            background: purple;
+            text-align: center;
+            color:#fff;
+            justify-content: center;
+            align-items: center;
+        }
+        .scrollable {
+          
+            background:green;
+            //max-height: calc(100vh - 30vh); // Limit the maximum height
+            overflow-y: auto; // Add this line to make the area scrollable
+        }
+    }
+    .footer {
+        min-height:10vh;
+        background:yellow;
+    }
+}

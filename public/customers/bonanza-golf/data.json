@@ -1,0 +1,111 @@
+{
+  "directoryLocation": "/customers/bonanza-golf/",
+  "customerID": "bonanza-golf",
+  "customerName": "Bonanza Golf",
+  "customerDescription": "You don't need a time machine to visit the mining towns of the western United States. Our golf course will take you back in time to the Old West. You'll putt through old mines, around cascading waterfalls, and past sandstone cliffs. Just don't hit your ball into the river!",
+  "courses": [
+    {
+      "ID": 1,
+      "name": "Left Side - Bonanza Golf",
+      "description": "theme for the left side",
+      "image": "/customers/bonanza-golf/images/course1.jpg",
+      "holes": [
+        { "courseID": 1, "number": 1, "par": 2, "optional": false },
+        { "courseID": 1, "number": 2, "par": 2, "optional": false },
+        { "courseID": 1, "number": 3, "par": 2, "optional": false },
+        { "courseID": 1, "number": 4, "par": 3, "optional": false },
+        { "courseID": 1, "number": 5, "par": 2, "optional": false },
+        { "courseID": 1, "number": 6, "par": 2, "optional": false }, 
+        { "courseID": 1, "number": 7, "par": 2, "optional": false },
+        { "courseID": 1, "number": 8, "par": 3, "optional": false },
+        { "courseID": 1, "number": 9, "par": 3, "optional": false },
+        { "courseID": 1, "number": 10, "par": 2, "optional": false },
+        { "courseID": 1, "number": 11, "par": 4, "optional": false },
+        { "courseID": 1, "number": 12, "par": 2, "optional": false },
+        { "courseID": 1, "number": 13, "par": 2, "optional": false },
+        { "courseID": 1, "number": 14, "par": 2, "optional": false },
+        { "courseID": 1, "number": 15, "par": 2, "optional": false },
+        { "courseID": 1, "number": 16, "par": 2, "optional": false },
+        { "courseID": 1, "number": 17, "par": 2, "optional": false },
+        { "courseID": 1, "number": 18, "par": 3, "optional": false }
+      ]
+    },
+    {
+        "ID": 2,
+        "name": "Right Side - Bonanza Golf",
+        "description": "theme for the right side",
+        "image": "/customers/bonanza-golf/images/course2.jpg",
+        "holes": [
+          { "courseID": 2, "number": 1, "par": 2, "optional": false },
+          { "courseID": 2, "number": 2, "par": 2, "optional": false },
+          { "courseID": 2, "number": 3, "par": 2, "optional": false },
+          { "courseID": 2, "number": 4, "par": 3, "optional": false },
+          { "courseID": 2, "number": 5, "par": 2, "optional": false },
+          { "courseID": 2, "number": 6, "par": 2, "optional": false },
+          { "courseID": 2, "number": 7, "par": 2, "optional": false },
+          { "courseID": 2, "number": 8, "par": 3, "optional": false },
+          { "courseID": 2, "number": 9, "par": 3, "optional": false },
+          { "courseID": 2, "number": 10, "par": 2, "optional": false },
+          { "courseID": 2, "number": 11, "par": 4, "optional": false },
+          { "courseID": 2, "number": 12, "par": 2, "optional": false },
+          { "courseID": 2, "number": 13, "par": 2, "optional": false },
+          { "courseID": 2, "number": 14, "par": 2, "optional": false },
+          { "courseID": 2, "number": 15, "par": 2, "optional": false },
+          { "courseID": 2, "number": 16, "par": 2, "optional": false },
+          { "courseID": 2, "number": 17, "par": 2, "optional": false },
+          { "courseID": 2, "number": 18, "par": 3, "optional": false }
+        ]
+      }
+  ],
+  "rulesData": "<h1>Howdy partner!</h1> <div><p>Now, gather 'round the campfire, and let me tell y'all 'bout the game of Putt Putt. Ya see, it's a bit like a miniature rodeo for golfin'. The goal is to round up that little golf ball and corral it into the hole with the least number of strokes.</p></div><div> <ol><li><p>First things first: ya need yer trusty putter and a ball, that's your weapon of choice in this wild frontier.</p></li><li><p>Each hole's got a par, which is the number of strokes it should take ya to get that ball into the hole. You'll wanna keep that in mind as you mosey on through the course.</p></li><li><p>Now, to start, ya place the ball in the tee-off area, which we call the 'startin corral'. Take aim with yer putter and give it a good ol' swing. Remember, pardner, slow and steady wins the race.</p></li><li><p>If that lil' varmint ball decides to jump outta bounds, don't go gettin' all riled up. Just bring it back to where it left the course and take a one-stroke penalty. Life out here on the range can be unpredictable, so keep your wits about ya.</p></li><li><p>When you're wranglin' that ball, remember: no horsin' around. Ya can't be movin' or touchin' the ball 'cept when yer swingin' that putter. Breakin' this rule will cost ya a one-stroke penalty.</p></li><li><p>If you find yerself in a tight spot, like when the ball's up against a rock or wedged between the walls, you can move the ball one clubhead length away without any penalties. Just don't go movin' it closer to the hole, or you'll find yourself in a heap of trouble.</p></li><li><p>Once you've put that ball in its rightful place (the hole), tally up the number of strokes it took ya, and mosey on to the next hole.</p></li><li><p>At the end of the trail, after all the holes have been conquered, add up yer total strokes. The cowpoke with the lowest score is the winner and can proudly call themselves the Putt Putt Sheriff of the day!</p></li></ol> </div><div><p>Now that you know the rules, saddle up and show that Putt Putt course who's boss. Good luck out there, partner!</p></div>",
+  "assets": [
+    {
+      "assetType": "image",
+      "assetID": "logo",
+      "assetName": "Logo",
+      "assetLocation": "/customers/bonanza-golf/images/logo.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "welcome-background",
+      "assetName": "Welcome Background",
+      "assetLocation": "/customers/bonanza-golf/images/welcome-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "continue-game-button",
+      "assetName": "Continue Game Button",
+      "assetLocation": "/customers/bonanza-golf/images/continue-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "create-game-button",
+      "assetName": "Create Game Button",
+      "assetLocation": "/customers/bonanza-golf/images/create-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "rules-button",
+      "assetName": "Rules Button",
+      "assetLocation": "/customers/bonanza-golf/images/rules-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "welcome-back-button",
+      "assetName": "Rules Back Button",
+      "assetLocation": "/customers/bonanza-golf/images/welcome-back-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "course-1-button",
+      "assetName": "Course 1 Button",
+      "assetLocation": "/customers/bonanza-golf/images/course1.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "course-2-button",
+      "assetName": "Course 2 Button",
+      "assetLocation": "/customers/bonanza-golf/images/course2.jpg"
+    }
+  ]
+}

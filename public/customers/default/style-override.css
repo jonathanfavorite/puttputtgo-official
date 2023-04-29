@@ -1,0 +1,31 @@
+/* Here is where you custom override based on the details of the customers *//* import Tofino from file */
+/* @font-face {
+    font-family: 'Tofino';
+    src: url('/customers/default/RingBearer.TTF');
+}
+body {
+    font-family: 'Tofino', sans-serif;
+    background-color:#80503c !important;
+}
+.app {
+    font-family: 'Tofino', sans-serif;
+    background-color: #80503c !important;
+} */
+body {
+    font-family: 'Arial', sans-serif;
+}
+.app {
+    font-family: 'Arial', sans-serif;
+}
+.rules-override .logo {
+    max-height:80px;
+}
+.game-page .rounds-container .left-cap {
+    display:none !important;
+}
+.game-page .rounds-container .right-cap {
+    display:none !important;
+}
+.game-page .rounds-container .center {
+    max-width:100% !important;
+}
