@@ -2,8 +2,30 @@ import React, { useContext, useEffect, useState } from 'react';
 import './AssetLoader.scss';
 import { CompanyDataAssetModel } from '../../../models/data/CompanyDataModel';
 import { GameContext } from '../../../contexts/GameContext';
+import '../../../startup/registerServiceWorker';
 
 interface IProps {}
+
+interface Asset {
+  assetType: string;
+  assetID: string;
+  assetName: string;
+  assetLocation: string;
+}
+
+async function fetchAndCacheGolfCourseAssets(customerID: string): Promise<void> {
+  const response = await fetch(`/customers/${customerID}/data.json`);
+  const data = await response.json();
+  const assets = data.assets.map((asset: Asset) => asset.assetLocation);
+  await navigator.serviceWorker.ready;
+  const registration = await navigator.serviceWorker.getRegistration();
+  registration!.active!.postMessage({
+    type: 'CACHE_ASSETS',
+    customerID: customerID,
+    assets: assets,
+  });
+}
+
 
 function AssetLoader(props: IProps) {
   const _gameContext = useContext(GameContext);
@@ -12,6 +34,9 @@ function AssetLoader(props: IProps) {
 
   const [loadedAssetsCount, setLoadedAssetsCount] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
+
+
+  fetchAndCacheGolfCourseAssets('castle-golf');
 
   const preloadAsset = async (asset: CompanyDataAssetModel) => {
     return new Promise((resolve, reject) => {

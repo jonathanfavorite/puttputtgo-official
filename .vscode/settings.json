@@ -1,6 +1,5 @@
 {
   "files.exclude": {
-    "tsconfig.json": true,
     "README.md": true,
     ".gitignore": true,
     "package-lock.json": true,

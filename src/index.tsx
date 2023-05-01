@@ -17,7 +17,6 @@ import {UIContextProvider} from './contexts/UIContext';
 import { CourseContextProvider } from './contexts/CourseContext';
 import FlexTest from './components/pages/tests/flex/flexTest';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 root.render (
     <PlayerContextProvider>
