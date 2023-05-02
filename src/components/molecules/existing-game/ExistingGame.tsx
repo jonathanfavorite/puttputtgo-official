@@ -1,20 +1,26 @@
 import React, { useContext } from 'react'
 import './ExistingGame.scss';
-import { GameContext } from '../../../contexts/GameContext';
+import { GameContext, GameStatus } from '../../../contexts/GameContext';
 import StyleHelper from '../../../helpers/StyleHelper';
 import { useNavigate } from 'react-router-dom';
+import { PlayerContext } from '../../../contexts/PlayerContext';
 
 function ExistingGame() {
+    const _playerContext = useContext(PlayerContext);
     const _gameContext = useContext(GameContext);
     const navigator = useNavigate();
     const handleNewGameButton = () => {
         _gameContext.resetGame();
+        _gameContext.updateGameStatus(GameStatus.NotStarted);
         navigator(`/${_gameContext.companyParam}`);
     };
-    const handleContinueButton = () => {
-        _gameContext.loadFromLocalStorage();
+    const handleContinueButton = async () => {
+        await _gameContext.loadFromLocalStorage();
         const companyParam = _gameContext.companyParam;
+        _gameContext.updateGameStatus(GameStatus.Active);
         _gameContext.didClickContinueGame();
+
+        console.log("HANDLE CONTINUE:", _playerContext.getAllPlayers())
         navigator(`/${companyParam}/game`);
     };
   return (

@@ -78,19 +78,25 @@
       "assetType": "image",
       "assetID": "create-game-button",
       "assetName": "Create Game Button",
-      "assetLocation": "/customers/castle-golf/images/create-game-button.png"
+      "assetLocation": "/customers/castle-golf/images/create-game-button.jpg"
     },
     {
       "assetType": "image",
       "assetID": "continue-game-button",
       "assetName": "Continue Game Button",
-      "assetLocation": "/customers/castle-golf/images/continue-game-button.png"
+      "assetLocation": "/customers/castle-golf/images/continue-game-button.jpg"
     },
     {
       "assetType": "image",
       "assetID": "rules-button",
       "assetName": "Rules Button",
-      "assetLocation": "/customers/castle-golf/images/rules-button.png"
+      "assetLocation": "/customers/castle-golf/images/rules-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "settings-button",
+      "assetName": "Settings Button",
+      "assetLocation": "/customers/castle-golf/images/settings-button.jpg"
     },
     {
       "assetType": "image",

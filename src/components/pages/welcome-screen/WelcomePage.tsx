@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import {GameContext} from '../../../contexts/GameContext';
+import {GameContext, GameStatus} from '../../../contexts/GameContext';
 import CompanyHelper from '../../../helpers/CompanyHelper';
 import WelcomeTemplate from '../../templates/welcome-screen/WelcomeTemplate';
 import DataAssuranceHOC from '../../hocs/DataAssuranceHOC';
@@ -60,16 +60,26 @@ function WelcomePage() {
             <div className='welcome-page'>
                 <div className="welcome-buttons">
                     
+                    {_gameContext.gameStatus === GameStatus.Active && _playerContext.getAllPlayers().length > 0 && (
                     <div className='button continue-game-button' onClick={handleContinueGameClick}>
+                        <span>Continue Game</span>
                         <img src={_gameContext.getAssetByID("continue-game-button")?.assetLocation} />
                     </div>
+                )}
                     <div className='button create-game-button' onClick={handleCreateGameClick}>
+                    <span>New Game</span>
                         <img src={_gameContext.getAssetByID("create-game-button")?.assetLocation} />
                     </div>
                     <div className='button rules-button' onClick={handleRulesClick}>
+                    <span>Rules</span>
                         <img src={_gameContext.getAssetByID("rules-button")?.assetLocation} />
                     </div>
+                    <div className='button rules-button' onClick={handleRulesClick}>
+                    <span>Settings</span>
+                        <img src={_gameContext.getAssetByID("settings-button")?.assetLocation} />
+                    </div>
                     
+                 
                     <div className='button rules-button'>
                         <div onClick={() => handleOtherThemeClick('/')}>PuttPuttGo</div>
                     </div>
@@ -79,7 +89,6 @@ function WelcomePage() {
                     <div className='button rules-button'>
                         <div onClick={() => handleOtherThemeClick('/bonanza-golf/')}>Bonanza Golf Golf</div><br />
                     </div>
-                
                         
                     </div>
             </div>

@@ -87,6 +87,8 @@ function GameContextProvider(props: any) {
     clearLocalStorage();
     setClickedContinueGame(false);
 
+    console.log("RESETTING GAME");
+
     _playerContext.resetPlayers();
     _scoreContext.resetScores();
   };
@@ -112,8 +114,8 @@ function GameContextProvider(props: any) {
     let gameState: LocalStorageGameDataModel = {
       players: _playerContext.getAllPlayers(),
       scores: _scoreContext.getAllScores(),
-      currentHole: 1,
-      currentPlayer: 1,
+      currentHole: _courseContext.getCurrentHole().number,
+      currentPlayer: _playerContext.getCurrentPlayer().id,
       currentCourse: _courseContext.getCurrentCourse(),
       companyID: companyData.customerID,
     };
@@ -153,19 +155,30 @@ function GameContextProvider(props: any) {
   };
 
   const loadFromLocalStorage = async () => {
-    let gameState = localStorage.getItem("gameState");
+    let gameState = await localStorage.getItem("gameState");
     let parsedGameState: LocalStorageGameDataModel = JSON.parse(gameState!);
+
+    console.log(parsedGameState)
     //setCompanyData((old) => parsedGameState.companyData);
+    _playerContext.resetPlayers();
+    console.log(parsedGameState.players);
     _playerContext.addPlayers(parsedGameState.players);
+    
     _courseContext.addHoles(parsedGameState.currentCourse.holes);
+
+    _scoreContext.resetScores();
     _scoreContext.addScores(parsedGameState.scores);
+    
     _courseContext.updateCurrentHole(parsedGameState.currentHole);
     _playerContext.updateCurrentPlayer(parsedGameState.currentPlayer);
   };
 
   useEffect(() => {
     if (localStorage.getItem("gameState")) {
-      saveToLocalStorage();
+      if(_playerContext.getAllPlayers().length > 0)
+      {
+        saveToLocalStorage();
+      }
     }
   }, [_courseContext.toggleNextHole, gameFinished]);
 
@@ -178,7 +191,7 @@ function GameContextProvider(props: any) {
   };
 
   const toggleGameError = (bool: boolean) => {
-    saveToLocalStorage();
+    //saveToLocalStorage();
     setGameError((old) => bool);
   };
 
@@ -325,4 +338,4 @@ function GameContextProvider(props: any) {
   );
 }
 
-export { GameContext, GameContextProvider };
+export { GameContext, GameContextProvider, GameStatus };

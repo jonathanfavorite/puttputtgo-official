@@ -30,6 +30,7 @@ function GamePage() {
   useEffect(() => {
     if(_playerContext.getAllPlayers().length <= 0)
     {
+      console.log("NO PLAYERS");
       navigate(`/${business_name}/create-game`);
     } 
   }, []);
