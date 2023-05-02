@@ -10,10 +10,14 @@ import PlayersContainer from "../../organisms/gameplay/players-container/Players
 import GamePlayFooter from "../../organisms/gameplay/footer/GamePlayFooter";
 import { TransitionContext, TransitionContextProvider } from "../../../contexts/TransitionContext";
 import Transition from "../../molecules/transition/Transition";
+import PlayerRecordHOC from "../../hocs/PlayerRecordHOC";
+import { PlayerContext } from "../../../contexts/PlayerContext";
 function GamePage() {
   const _gameContext = useContext(GameContext);
+  const _playerContext = useContext(PlayerContext);
   const _transitionContext = useContext(TransitionContext);
   const { business_name } = useParams();
+  const navigate = useNavigate();
 
   const gamePageAssets = {
     playerBackground: _gameContext.getAssetByID("gameplay-player-background"),
@@ -23,11 +27,18 @@ function GamePage() {
   };
 
 
+  useEffect(() => {
+    if(_playerContext.getAllPlayers().length <= 0)
+    {
+      navigate(`/${business_name}/create-game`);
+    } 
+  }, []);
 
   
   return (
     <DataAssuranceHOC companyParam={business_name! ? business_name : "default"}>
         <TransitionContextProvider>
+          
       <div
         className="game-page"
         style={{

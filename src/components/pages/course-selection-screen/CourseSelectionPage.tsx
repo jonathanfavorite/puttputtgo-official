@@ -12,7 +12,15 @@ function CourseSelectionPage() {
 
   const handleCourseClick = (courseID: number) => {
     _gameContext.updateSelectedCourseID(courseID);
-    navigate('/create-game');
+    if(business_name)
+    {
+      navigate(`/${business_name}/create-game`);
+    }
+    else
+    {
+      navigate('/create-game');
+    }
+    
   };
 
 

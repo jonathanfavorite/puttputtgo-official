@@ -5,9 +5,11 @@ import CompanyHelper from '../../../helpers/CompanyHelper';
 import WelcomeTemplate from '../../templates/welcome-screen/WelcomeTemplate';
 import DataAssuranceHOC from '../../hocs/DataAssuranceHOC';
 import './WelcomePage.scss';
+import { PlayerContext } from '../../../contexts/PlayerContext';
 
 function WelcomePage() {
     const _gameContext = useContext(GameContext);
+    const _playerContext = useContext(PlayerContext);
     const { business_name } = useParams();
     const [isReady, setIsReady] = useState(false);
     const navigate = useNavigate();
@@ -57,6 +59,7 @@ function WelcomePage() {
         <WelcomeTemplate>
             <div className='welcome-page'>
                 <div className="welcome-buttons">
+                    
                     <div className='button continue-game-button' onClick={handleContinueGameClick}>
                         <img src={_gameContext.getAssetByID("continue-game-button")?.assetLocation} />
                     </div>

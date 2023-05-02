@@ -58,7 +58,11 @@ function CourseContextProvider(props: any) {
     }
     
     const getCurrentHole = () => {
-        return courses[currentCourse].holes[currentHole];
+        if(courses[currentCourse])
+        {
+            return courses[currentCourse].holes[currentHole];
+        }
+        return { courseID: 1,  number: 0, par: 0}
     }
 
     const addCourse = (course: CourseModel) => {

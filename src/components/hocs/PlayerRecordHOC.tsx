@@ -15,7 +15,15 @@ function PlayerRecordHOC(props: IProps) {
 
     const [foundInMemoryData, setFoundInMemoryData] = useState(false);
     const [foundLocalStorageData, setFoundLocalStorageData] = useState(false);
+    
+    useEffect(() => {
 
-    
-    
+    }, []);
+
+    return <>
+    SEARCHING FOR THING
+    </>
 }
+
+
+export default PlayerRecordHOC;

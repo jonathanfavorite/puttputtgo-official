@@ -134,8 +134,7 @@ function CreateGamePage() {
         <div className="body">
           <div className="top" ref={topRef}>
             <div className="heading">
-              <h1>
-                {_gameContext.getTextByID("start-game:choose-players-heading")}
+              <h1 dangerouslySetInnerHTML={_gameContext.getTextByID("start-game:choose-players-heading")}>
               </h1>
             </div>
             <div

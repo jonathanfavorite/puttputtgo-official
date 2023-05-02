@@ -3,6 +3,8 @@ import {GameContext} from '../../contexts/GameContext';
 import GeneralLoadingTemplate from '../templates/general-loading/GeneralLoadingTemplate';
 import AssetLoader from '../loadings/asset-loader/AssetLoader';
 import CompanyHelper from '../../helpers/CompanyHelper';
+import ExistingGame from '../molecules/existing-game/ExistingGame';
+import WelcomeTemplate from '../templates/welcome-screen/WelcomeTemplate';
 
 interface IProps {
     children: any;
@@ -15,11 +17,35 @@ const formatCompanyNameForDirectory = (companyName : string) => {
 
 function DataAssuranceHOC(props : IProps) {
 
+  const [checkingForExistingGame, setCheckingForExistingGame] = React.useState(true);
+  const [existingGameFound, setExistingGameFound] = React.useState(false);
+
+  const [allowContinueGame, setAllowContinueGame] = React.useState(false);
+
     const _gameContext = useContext(GameContext);
 
     useEffect(() => {
         _gameContext.updateCompanyParam(props.companyParam);
     }, []);
+
+    useEffect(() => {
+      let findGame = _gameContext.doesGameStateExistInLocalStorage();
+      if(findGame)
+      {
+        setExistingGameFound(true);
+      }
+      else
+      {
+        setExistingGameFound(false);
+      }
+    }, []);
+
+    useEffect(() => {
+      if(_gameContext.clickedContinueGame)
+      {
+          setAllowContinueGame(true);
+      }
+    }, [_gameContext.clickedContinueGame]);
 
     useEffect(() => {
         if(_gameContext.companyParam != "" && _gameContext.gameLoading){ 
@@ -79,6 +105,11 @@ function DataAssuranceHOC(props : IProps) {
   if(!_gameContext.gameLoading && !_gameContext.preloadedAssets)
   {
     return <GeneralLoadingTemplate><AssetLoader /></GeneralLoadingTemplate>
+  }
+
+  if(!_gameContext.gameLoading && existingGameFound && !_gameContext.clickedContinueGame)
+  {
+    return <WelcomeTemplate><ExistingGame /></WelcomeTemplate>
   }
 
   // Render the children when the context is fully loaded and the arrays are defined

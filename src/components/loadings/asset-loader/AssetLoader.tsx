@@ -34,6 +34,7 @@ function AssetLoader(props: IProps) {
 
   const [loadedAssetsCount, setLoadedAssetsCount] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
+  const [progressArr, setProgressArr] = useState<number[]>([]);
 
 
   fetchAndCacheGolfCourseAssets('castle-golf');
@@ -41,8 +42,10 @@ function AssetLoader(props: IProps) {
   const preloadAsset = async (asset: CompanyDataAssetModel) => {
     return new Promise((resolve, reject) => {
       const img = new Image();
+      setCurrentText(asset.assetName);
       img.src = asset.assetLocation;
       img.onload = () => {
+        
         resolve(null);
       };
       img.onerror = () => {
@@ -84,6 +87,7 @@ function AssetLoader(props: IProps) {
           <h1>
             Loading assets: {getPercentage(loadedAssetsCount,_gameContext.companyData.assets.length)}%
           </h1>
+          <div><small>{currentText}</small></div>
         </div>
       </div>
       <div className="progress-bar">

@@ -57,7 +57,27 @@
         ]
       }
   ],
-  "rulesData": "<h1>Howdy partner!</h1> <div><p>Now, gather 'round the campfire, and let me tell y'all 'bout the game of Putt Putt. Ya see, it's a bit like a miniature rodeo for golfin'. The goal is to round up that little golf ball and corral it into the hole with the least number of strokes.</p></div><div> <ol><li><p>First things first: ya need yer trusty putter and a ball, that's your weapon of choice in this wild frontier.</p></li><li><p>Each hole's got a par, which is the number of strokes it should take ya to get that ball into the hole. You'll wanna keep that in mind as you mosey on through the course.</p></li><li><p>Now, to start, ya place the ball in the tee-off area, which we call the 'startin corral'. Take aim with yer putter and give it a good ol' swing. Remember, pardner, slow and steady wins the race.</p></li><li><p>If that lil' varmint ball decides to jump outta bounds, don't go gettin' all riled up. Just bring it back to where it left the course and take a one-stroke penalty. Life out here on the range can be unpredictable, so keep your wits about ya.</p></li><li><p>When you're wranglin' that ball, remember: no horsin' around. Ya can't be movin' or touchin' the ball 'cept when yer swingin' that putter. Breakin' this rule will cost ya a one-stroke penalty.</p></li><li><p>If you find yerself in a tight spot, like when the ball's up against a rock or wedged between the walls, you can move the ball one clubhead length away without any penalties. Just don't go movin' it closer to the hole, or you'll find yourself in a heap of trouble.</p></li><li><p>Once you've put that ball in its rightful place (the hole), tally up the number of strokes it took ya, and mosey on to the next hole.</p></li><li><p>At the end of the trail, after all the holes have been conquered, add up yer total strokes. The cowpoke with the lowest score is the winner and can proudly call themselves the Putt Putt Sheriff of the day!</p></li></ol> </div><div><p>Now that you know the rules, saddle up and show that Putt Putt course who's boss. Good luck out there, partner!</p></div>",
+  "texts": [
+    {
+        "textID": "start-game:choose-players-heading",
+        "locals": [
+            { "locale": "en", "text": "Pick Yer'|| Partners" },
+            { "locale": "es", "text": "Elige a tus Héroes" },
+            { "locale": "fr", "text": "Choisissez vos héros" },
+            { "locale": "de", "text": "Wählen Sie Ihre Helden" },
+            { "locale": "it", "text": "Scegli i tuoi eroi" },
+            { "locale": "pt", "text": "Escolha seus heróis" },
+            { "locale": "ru", "text": "Выберите своих героев" },
+            { "locale": "zh", "text": "选择你的英雄" }
+        ]
+    },
+    {
+      "textID": "rules:body",
+      "locals": [
+        { "locale": "en", "text": "<h1>Howdy partner!</h1> <div><p>Now, gather 'round the campfire, and let me tell y'all 'bout the game of Putt Putt. Ya see, it's a bit like a miniature rodeo for golfin'. The goal is to round up that little golf ball and corral it into the hole with the least number of strokes.</p></div><div> <ol><li><p>First things first: ya need yer trusty putter and a ball, that's your weapon of choice in this wild frontier.</p></li><li><p>Each hole's got a par, which is the number of strokes it should take ya to get that ball into the hole. You'll wanna keep that in mind as you mosey on through the course.</p></li><li><p>Now, to start, ya place the ball in the tee-off area, which we call the 'startin corral'. Take aim with yer putter and give it a good ol' swing. Remember, pardner, slow and steady wins the race.</p></li><li><p>If that lil' varmint ball decides to jump outta bounds, don't go gettin' all riled up. Just bring it back to where it left the course and take a one-stroke penalty. Life out here on the range can be unpredictable, so keep your wits about ya.</p></li><li><p>When you're wranglin' that ball, remember: no horsin' around. Ya can't be movin' or touchin' the ball 'cept when yer swingin' that putter. Breakin' this rule will cost ya a one-stroke penalty.</p></li><li><p>If you find yerself in a tight spot, like when the ball's up against a rock or wedged between the walls, you can move the ball one clubhead length away without any penalties. Just don't go movin' it closer to the hole, or you'll find yourself in a heap of trouble.</p></li><li><p>Once you've put that ball in its rightful place (the hole), tally up the number of strokes it took ya, and mosey on to the next hole.</p></li><li><p>At the end of the trail, after all the holes have been conquered, add up yer total strokes. The cowpoke with the lowest score is the winner and can proudly call themselves the Putt Putt Sheriff of the day!</p></li></ol> </div><div><p>Now that you know the rules, saddle up and show that Putt Putt course who's boss. Good luck out there, partner!</p></div>" }
+      ]
+    }
+  ],
   "assets": [
     {
       "assetType": "image",

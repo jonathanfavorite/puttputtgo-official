@@ -17,8 +17,8 @@ function RulesPage() {
       <DataAssuranceHOC companyParam={business_name!}>
         <WelcomeTemplate specifiedClass='rules-override'>
             <div className='rules-page'>
-               <div className='rules-body' dangerouslySetInnerHTML={{ __html: _gameContext.companyData.rulesData }}>
-            
+               <div className='rules-body' dangerouslySetInnerHTML={_gameContext.getTextByID("rules:body")}>
+
                 </div>
                <div className='rules-footer'>
                     <img src={_gameContext.getAssetByID("welcome-back-button")?.assetLocation} onClick={() => navigate("/")} />

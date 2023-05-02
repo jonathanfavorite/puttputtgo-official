@@ -7,10 +7,10 @@ import { CompanyDataModel } from "./CompanyDataModel";
 type LocalStorageGameDataModel = {
     currentHole: number,
     currentPlayer: number,
+    currentCourse: CourseModel,
     players: PlayerModel[],
     scores: ScoreModel[],
-    holes: HoleModel[],
-    companyData: CompanyDataModel
+    companyID: string
 }
 
 export default LocalStorageGameDataModel;

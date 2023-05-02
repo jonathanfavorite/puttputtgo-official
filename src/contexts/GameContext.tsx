@@ -10,6 +10,12 @@ const GameContext = createContext<GameContextProps>({} as GameContextProps);
 
 type customerLocation = string;
 
+enum GameStatus {
+  NotStarted,
+  Active,
+  Finished
+}
+
 interface GameContextProps {
   resetGame: () => void;
   loadData: (location: customerLocation) => void;
@@ -26,7 +32,7 @@ interface GameContextProps {
   companyParam: string;
   updateCompanyParam: (param: string) => void;
   getAssetByID: (name: string) => CompanyDataAssetModel | null;
-  getTextByID: (textID: string) => JSX.Element[] | string;
+  getTextByID: (textID: string) => { __html: string};
   updateSelectedCourseID: (id: number) => void;
   selectedCourceID: number;
   customStylesLoaded: boolean;
@@ -34,6 +40,12 @@ interface GameContextProps {
   updateSelectedLanguage: (language: string) => void;
   selectedLanguage: string;
   startNewGameWithExistingPlayers: () => void;
+  doesGameStateExistInLocalStorage: () => boolean;
+  loadFromLocalStorage: () => void;
+  didClickContinueGame: () => void;
+  clickedContinueGame: boolean;
+  gameStatus: GameStatus;
+  updateGameStatus: (status: GameStatus) => void;
 }
 
 function GameContextProvider(props: any) {
@@ -63,15 +75,33 @@ function GameContextProvider(props: any) {
   const [showContinueGamePopup, setShowContinueGamePopup] =
     useState<boolean>(false);
 
+    const [clickedContinueGame, setClickedContinueGame] = useState<boolean>(false);
+
+    const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.NotStarted);
+
+
   const resetGame = () => {
-    setGameLoading(true);
+    setGameLoading(false);
     setGameError(false);
     setGameMessages(old => []);
     clearLocalStorage();
+    setClickedContinueGame(false);
 
     _playerContext.resetPlayers();
     _scoreContext.resetScores();
   };
+
+  const didClickContinueGame = () => {
+    setClickedContinueGame(old => true);
+  }
+
+  const getGameStatus = () => {
+    return gameStatus;
+  }
+
+  const updateGameStatus = (status: GameStatus) => {
+    setGameStatus(old => status);
+  }
 
   const startNewGameWithExistingPlayers = () => {
     _courseContext.updateCurrentHole(1);
@@ -79,17 +109,26 @@ function GameContextProvider(props: any) {
     _scoreContext.resetScores();
   }
   const saveToLocalStorage = () => {
-    // let gameState: LocalStorageGameDataModel = {
-    //   companyData!: companyData,
-    //   players: _playerContext.getAllPlayers(),
-    //   holes: _courseContext.getAllHoles(),
-    //   scores: _scoreContext.getAllScores(),
-    //   currentHole: 1,
-    //   currentPlayer: 1,
-    // };
+    let gameState: LocalStorageGameDataModel = {
+      players: _playerContext.getAllPlayers(),
+      scores: _scoreContext.getAllScores(),
+      currentHole: 1,
+      currentPlayer: 1,
+      currentCourse: _courseContext.getCurrentCourse(),
+      companyID: companyData.customerID,
+    };
     // console.log(gameState);
-    // localStorage.setItem("gameState", JSON.stringify(gameState));
+    localStorage.setItem("gameState", JSON.stringify(gameState));
   };
+
+  useEffect(() => {
+  
+    if(_playerContext.getAllPlayers().length > 0)
+    {
+      saveToLocalStorage();
+    }
+    
+  }, [_courseContext.getCurrentHole()]);
 
   const clearLocalStorage = () => {
     localStorage.removeItem("gameState");
@@ -103,21 +142,22 @@ function GameContextProvider(props: any) {
     setCustomStylesLoaded((old) => bool);
   };
 
-  const doesGameStateExistInLocalStorage = async () => {
+  const doesGameStateExistInLocalStorage = () => {
     let gameState = localStorage.getItem("gameState");
     if (gameState) {
       setHasExistingGame((old) => true);
       return true;
     }
+    setHasExistingGame((old) => false);
     return false;
   };
 
   const loadFromLocalStorage = async () => {
     let gameState = localStorage.getItem("gameState");
     let parsedGameState: LocalStorageGameDataModel = JSON.parse(gameState!);
-    setCompanyData((old) => parsedGameState.companyData);
+    //setCompanyData((old) => parsedGameState.companyData);
     _playerContext.addPlayers(parsedGameState.players);
-    _courseContext.addHoles(parsedGameState.holes);
+    _courseContext.addHoles(parsedGameState.currentCourse.holes);
     _scoreContext.addScores(parsedGameState.scores);
     _courseContext.updateCurrentHole(parsedGameState.currentHole);
     _playerContext.updateCurrentPlayer(parsedGameState.currentPlayer);
@@ -162,25 +202,23 @@ function GameContextProvider(props: any) {
   }
 
   const getTextByID = (textID: string) => {
-    if(!companyData.texts){
-      return textID;
+    if (!companyData.texts) {
+      return { __html: textID };
     }
     let text = companyData.texts.find((text) => text.textID === textID);
     if (text) {
-      let localText = text.locals.find((myText) => myText.locale == selectedLanguage);
-      if(localText){
+      let localText = text.locals.find((myText) => myText.locale === selectedLanguage);
+      if (localText) {
         let parts = localText.text.split('||');
-        return parts.map((part, index) => (
-          <React.Fragment key={index}>
-            {part}
-            {index < parts.length - 1 && <br />}
-          </React.Fragment>
-        ));
+        const joinedParts = parts
+          .map((part, index) => `${part}${index < parts.length - 1 ? '<br>' : ''}`)
+          .join('');
+        return { __html: joinedParts };
       }
     }
-    return textID;
-  }
-
+    return { __html: textID };
+  };
+  
   function setContextData(data: CompanyDataModel) {
     console.log("DATAAA", data);
     console.log("#####" + data.courses);
@@ -271,7 +309,13 @@ function GameContextProvider(props: any) {
     updateCustomStylesLoaded,
     updateSelectedLanguage,
     selectedLanguage,
-    startNewGameWithExistingPlayers
+    startNewGameWithExistingPlayers,
+    doesGameStateExistInLocalStorage,
+    loadFromLocalStorage,
+    didClickContinueGame,
+    clickedContinueGame,
+    updateGameStatus,
+    gameStatus
   };
 
   return (

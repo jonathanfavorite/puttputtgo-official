@@ -16,6 +16,7 @@ import CreateGamePage from './components/pages/create-game/CreateGamePage';
 import {UIContextProvider} from './contexts/UIContext';
 import { CourseContextProvider } from './contexts/CourseContext';
 import FlexTest from './components/pages/tests/flex/flexTest';
+import ResultsPage from './components/pages/results-screen/ResultsPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 root.render (
@@ -36,6 +37,8 @@ root.render (
                                         element={<CreateGamePage/>}/>
                                     <Route path="/rules"
                                         element={<RulesPage/>}/>
+                                    <Route path="/results"
+                                        element={<ResultsPage />}/>
                                     <Route path="/admin"
                                         element={
                                             <h1>Admin</h1>
@@ -51,6 +54,8 @@ root.render (
                                         element={<GamePage/>}/>
                                     <Route path="/:business_name/create-game"
                                         element={<CreateGamePage/>}/>
+                                        <Route path="/:business_name/results"
+                                        element={<ResultsPage />}/>
                                     <Route path="/:business_name/admin"
                                         element={
                                             <h1>Admin</h1>
