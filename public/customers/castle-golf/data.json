@@ -136,6 +136,12 @@
     },
     {
       "assetType": "image",
+      "assetID": "gameplay-round-active-button",
+      "assetName": "Round Active Button",
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-round-active-button.png"
+    },
+    {
+      "assetType": "image",
       "assetID": "gameplay-player-background",
       "assetName": "Player Background",
       "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-player-background.jpg"
@@ -211,6 +217,24 @@
       "assetID": "green-button",
       "assetName": "Green Button",
       "assetLocation": "/customers/castle-golf/images/green-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-background",
+      "assetName": "Results Background",
+      "assetLocation": "/customers/castle-golf/images/results/results-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-gradient",
+      "assetName": "Results Gradient",
+      "assetLocation": "/customers/castle-golf/images/results/results-gradient.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "crown",
+      "assetName": "Crown",
+      "assetLocation": "/customers/castle-golf/images/results/crown.png"
     }
   ]
 }

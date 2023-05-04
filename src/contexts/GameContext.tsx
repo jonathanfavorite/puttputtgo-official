@@ -158,8 +158,6 @@ function GameContextProvider(props: any) {
     let gameState = await localStorage.getItem("gameState");
     let parsedGameState: LocalStorageGameDataModel = JSON.parse(gameState!);
 
-    console.log(parsedGameState)
-    //setCompanyData((old) => parsedGameState.companyData);
     _playerContext.resetPlayers();
     console.log(parsedGameState.players);
     _playerContext.addPlayers(parsedGameState.players);
@@ -233,15 +231,12 @@ function GameContextProvider(props: any) {
   };
   
   function setContextData(data: CompanyDataModel) {
-    console.log("DATAAA", data);
-    console.log("#####" + data.courses);
     _courseContext.addCourses(data.courses);
 
     
   }
 
   const loadDefaultData = () => {
-    console.log("LOADING DEFAULT DATA");
     return fetch("/customers/default/data.json")
       .then((defaultRequest) => defaultRequest.json())
       .then((defaultData) => {
@@ -261,7 +256,7 @@ function GameContextProvider(props: any) {
   const loadData = (location: customerLocation) => {
     addGameErrorMessage("Fetching course data (" + location + ")" + "...");
     let dataFile = "data.json";
-    console.log(location + "/" + dataFile);
+    //console.log(location + "/" + dataFile);
   
     if(location === undefined || location === "")
     {
@@ -273,10 +268,9 @@ function GameContextProvider(props: any) {
       .then((data) => {
         let retrievedCompanyData: CompanyDataModel = data;
         setCompanyData((old) => retrievedCompanyData);
-        console.log("NEWDATA", retrievedCompanyData);
         addGameErrorMessage("Game data loaded successfully:");
         setContextData(retrievedCompanyData);
-        console.log(retrievedCompanyData.courses);
+       // console.log(retrievedCompanyData.courses);
         //console.log(_courseContext.getAllHoles())
       })
       .catch((error) => {

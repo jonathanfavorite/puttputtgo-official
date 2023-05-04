@@ -1,4 +1,6 @@
-import React, {useEffect, createContext, useState, createRef} from 'react';
+import React, {useEffect, createContext, useState, createRef, useContext} from 'react';
+import { GameContext } from './GameContext';
+import { CourseContext } from './CourseContext';
 
 const TransitionContext = createContext<TransitionContextProps>({} as TransitionContextProps);
 interface TransitionContextProps {
@@ -13,12 +15,21 @@ interface TransitionContextProps {
 
 function TransitionContextProvider(props: any) {
 
+    const _gameContext = useContext(GameContext);
+    const _courseContext = useContext(CourseContext);
     const [animating, setAnimating] = useState(true);
     const [transitionHeadingText, setTransitionHeadingText] = useState("Game Starting");
     const [transitionDescText, setTransitionDescText] = useState("Good Luck!");
 
     const transitionRef = createRef<HTMLDivElement>();
     useEffect(() => {
+
+        if(_courseContext.getCurrentHole().number != 1)
+        {
+            setTransitionHeadingText("Hole " + _courseContext.getCurrentHole().number );
+            setTransitionDescText("Good Luck!");
+        }
+      
         handleAnimationToggle();
      // handleAnimationToggle();
   

@@ -51,12 +51,12 @@ function DataAssuranceHOC(props : IProps) {
         if(_gameContext.companyParam != "" && _gameContext.gameLoading){ 
           if(_gameContext.companyParam === undefined)
           {
-            console.log("PARAM IS EMPTY");
+            //console.log("PARAM IS EMPTY");
             _gameContext.loadDefaultData();
           }
           else
           {
-            console.log("PARAM SUPPLIED:", _gameContext.companyParam);
+            //console.log("PARAM SUPPLIED:", _gameContext.companyParam);
             if(CompanyHelper.DoesCompanyExist(_gameContext.companyParam))
             {
               _gameContext.loadData(formatCompanyNameForDirectory(_gameContext.companyParam));
@@ -75,7 +75,7 @@ function DataAssuranceHOC(props : IProps) {
       if (_gameContext.companyData && _gameContext.companyData.directoryLocation && !_gameContext.customStylesLoaded) {
         
           const styleOverridePath = `${process.env.PUBLIC_URL}${_gameContext.companyData.directoryLocation}style-override.css`;
-          console.log(styleOverridePath);
+          //console.log(styleOverridePath);
           const link = document.createElement('link'); 
           link.rel = 'stylesheet';
           link.type = 'text/css';

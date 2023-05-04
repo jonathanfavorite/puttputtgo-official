@@ -89,6 +89,8 @@ function RoundsContainer(props: IProps) {
                 <div className='hole-items' ref={listRef}>
                     {
                         _courseContext.getCurrentCourse().holes.map((hole, index) => {
+                            let isActive = _courseContext.getCurrentHole().number === hole.number;
+                            let properBackground = isActive ? _gameContext.getAssetByID('gameplay-round-active-button') : _gameContext.getAssetByID('gameplay-round-button');
                             return (
                                 <div
                                 ref={itemRef}
@@ -98,11 +100,11 @@ function RoundsContainer(props: IProps) {
                                     onClick={() => handleHoleClickEvent(hole.number)}
                                     style={
                                         {
-                                            backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-round-button'))
+                                            backgroundImage: StyleHelper.format_css_url(properBackground)
                                         }
                                 }>
                                     {
-                                    hole.number
+                                        <span>{hole.number}</span>
                                 }</div>
                             )
                         })

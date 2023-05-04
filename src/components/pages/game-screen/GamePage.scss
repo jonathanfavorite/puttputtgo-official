@@ -83,6 +83,10 @@
                     //background: temp-url("round-button.png");
                     background-size: 100% 100%;
                     margin-right: 20px;
+                    span {
+                        position: relative;
+                        top:-2px;
+                    }
                     &.active-hole {
                         color:#fff !important;
                     }
@@ -122,7 +126,7 @@
                 
                 //background-image: temp-url('player-background.jpg');
                 background-size: cover;
-                opacity: 0.6;
+                opacity: 0.4;
                 .ball-color-container {
                     display: flex;
                     justify-content: center;
