@@ -79,16 +79,42 @@ function ResultsPage() {
 
                     <div className='result-list'>
                         <div className='result-list-header'>
-                            results
+                          <div className='left'></div>
+                          <div className='text'>results</div>
+                          <div className='right'></div>
+                            
                         </div>
-                        <div className='list'>
+                        {
+                          Array.from(Array(4).keys()).map((item, index) => {
+                            let randomRGB = {
+                                r: Math.floor(Math.random() * 255),
+                                g: Math.floor(Math.random() * 255),
+                                b: Math.floor(Math.random() * 255)
+                            }
+                            return <>
+                            <div className='list-item'>
                             <div className='left'>
-                                1st
+                            <div className='ball-color-container'>
+                                    <div className='ball-color'
+                                        style={
+                                            {
+                                                backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
+                                                backgroundColor: formatRGBToCSS(
+                                                  randomRGB,
+                                                    1
+                                                )
+                                            }
+                                    }></div>
+                                </div>
                             </div>
                             <div className='right'>
-                                name
+                                player {index + 1}
                             </div>
                         </div>
+                        </>
+                          })
+                        }
+                        
                     </div>
 
 

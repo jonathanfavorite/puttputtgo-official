@@ -125,13 +125,48 @@
             box-sizing: border-box;
             .result-list-header {
                 font-size: 1.5rem;
-            }
-            .list {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom:20px;
                 .left {
-
+                    flex:1;
+                    height:1px;
+                    background:#fff;
+                }
+                .text {
+                    padding:0px 20px;
                 }
                 .right {
-                    
+                    flex:1;
+                    height:1px;
+                    background:#fff;
+                }
+            }
+            .list-item {
+                display: flex;
+                margin-bottom:20px;
+                .left {
+                    width:15vw;
+                    .ball-color-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .ball-color {
+                          
+                            aspect-ratio: 1/1;
+                            width:100%;
+                            //background: temp-url('player-ball-frame.png');
+                            background-color: black;
+                            background-size: 100% 100%;
+                            transform: rotate(0);
+                        }
+                    }
+                }
+                .right {
+                    align-self: center;
+                    padding-left:5vw;
+                    font-size:1.5rem;
                 }
             }
         }
