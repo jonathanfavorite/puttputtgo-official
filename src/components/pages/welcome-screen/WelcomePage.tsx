@@ -54,6 +54,14 @@ function WelcomePage() {
         window.location.href = place;
     };
     
+
+    const handleViewResultsClick =  () => {
+        goTo('/results');
+    }
+
+    const handleSettingsClick = () => {
+        goTo('/results');
+    }
     return (
       <DataAssuranceHOC companyParam={business_name!}>
         <WelcomeTemplate>
@@ -66,6 +74,12 @@ function WelcomePage() {
                         <img src={_gameContext.getAssetByID("continue-game-button")?.assetLocation} />
                     </div>
                 )}
+                {_gameContext.gameStatus === GameStatus.Finished && (
+                    <div className='button continue-game-button' onClick={handleViewResultsClick}>
+                        <span>View Results</span>
+                        <img src={_gameContext.getAssetByID("continue-game-button")?.assetLocation} />
+                    </div>
+                )}
                     <div className='button create-game-button' onClick={handleCreateGameClick}>
                     <span>New Game</span>
                         <img src={_gameContext.getAssetByID("create-game-button")?.assetLocation} />
@@ -74,7 +88,7 @@ function WelcomePage() {
                     <span>Rules</span>
                         <img src={_gameContext.getAssetByID("rules-button")?.assetLocation} />
                     </div>
-                    <div className='button rules-button' onClick={handleRulesClick}>
+                    <div className='button rules-button' onClick={handleSettingsClick}>
                     <span>Settings</span>
                         <img src={_gameContext.getAssetByID("settings-button")?.assetLocation} />
                     </div>

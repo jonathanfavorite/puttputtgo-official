@@ -1,17 +1,58 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import './ResultsPage.scss';
 import ConfettiCanvas from './confettiCanvas';
 
-import {GameContext} from '../../../contexts/GameContext';
+import {GameContext, GameStatus} from '../../../contexts/GameContext';
 import StyleHelper from '../../../helpers/StyleHelper';
 import DataAssuranceHOC from '../../hocs/DataAssuranceHOC';
 import {useNavigate, useParams} from 'react-router-dom';
-import {formatRGBToCSS} from '../../../contexts/PlayerContext';
+import {PlayerContext, formatRGBToCSS} from '../../../contexts/PlayerContext';
+import { ScoreContext } from '../../../contexts/ScoreContext';
+import LeaderboardModel from '../../../models/score/LeaderboardModel';
 
 function ResultsPage() {
     const _gameContext = useContext(GameContext);
+    const _playerContext = useContext(PlayerContext);
+    const _scoreContext = useContext(ScoreContext);
     const {business_name} = useParams();
     const navigate = useNavigate();
+
+
+    const GetFirstPlacePlayer = () : LeaderboardModel => {
+        return _scoreContext.getAllPlayersScores()[0];
+    }
+
+    useEffect(() => {
+        console.log(_playerContext.getAllPlayers());
+        _gameContext.updateGameStatus(GameStatus.Finished);
+    }, []);
+
+    
+  const textRef = useRef<HTMLDivElement | null>(null);
+
+  function adjustFontSize() {
+    if (textRef.current) {
+        console.log(textRef.current);
+      const textLength = textRef.current.textContent!.length;
+      const baseFontSize = 5;
+      const threshold = 1;
+
+      if (textLength > threshold) {
+        const newFontSize = baseFontSize - (textLength - threshold) * 0.2;
+        textRef.current.style.fontSize = `${newFontSize}rem`;
+      } else {
+        textRef.current.style.fontSize = `${baseFontSize}rem`;
+      }
+    }
+  }
+
+  useEffect(() => {
+    if(textRef.current)
+    {
+        adjustFontSize();
+    }
+    
+  }, [textRef]);
 
     return (
         <DataAssuranceHOC companyParam={
@@ -20,7 +61,7 @@ function ResultsPage() {
             <div className='results-page'>
 
                 <div className='header'>
-                    <div className='left'>menu</div>
+                    <div className='left' onClick={() => navigate("/")}>menu</div>
                     <div className='center'></div>
                     <div className='right'>share</div>
 
@@ -46,11 +87,7 @@ function ResultsPage() {
                                             {
                                                 backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
                                                 backgroundColor: formatRGBToCSS(
-                                                    {
-                                                        r: 255,
-                                                        g: 0,
-                                                        b: 255
-                                                    },
+                                                    GetFirstPlacePlayer().player.color!,
                                                     1
                                                 )
                                             }
@@ -65,8 +102,9 @@ function ResultsPage() {
                                         }
                                         className='crown'/><span>winner</span>
                                 </div>
-                                <div className='name'>Jessica</div>
-                                <div className='score'>Score: 100</div>
+                               
+                                <div className='name' ref={textRef}>{GetFirstPlacePlayer().player.name}</div>
+                                <div className='score'>Score: {GetFirstPlacePlayer().score}</div>
                             </div>
                         </div>
                         <div className='winner-text'>
@@ -85,12 +123,8 @@ function ResultsPage() {
                             
                         </div>
                         {
-                          Array.from(Array(4).keys()).map((item, index) => {
-                            let randomRGB = {
-                                r: Math.floor(Math.random() * 255),
-                                g: Math.floor(Math.random() * 255),
-                                b: Math.floor(Math.random() * 255)
-                            }
+                           _scoreContext.getAllPlayersScores().map((score, index) => {
+
                             return <>
                             <div className='list-item'>
                             <div className='left'>
@@ -100,7 +134,7 @@ function ResultsPage() {
                                             {
                                                 backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
                                                 backgroundColor: formatRGBToCSS(
-                                                  randomRGB,
+                                                 score.player.color!,
                                                     1
                                                 )
                                             }
@@ -108,7 +142,8 @@ function ResultsPage() {
                                 </div>
                             </div>
                             <div className='right'>
-                                player {index + 1}
+                               {score.player.name}<br />
+                               <small>score: {score.score}</small>
                             </div>
                         </div>
                         </>

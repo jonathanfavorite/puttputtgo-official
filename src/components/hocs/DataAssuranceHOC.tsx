@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react'
-import {GameContext} from '../../contexts/GameContext';
+import {GameContext, GameStatus} from '../../contexts/GameContext';
 import GeneralLoadingTemplate from '../templates/general-loading/GeneralLoadingTemplate';
 import AssetLoader from '../loadings/asset-loader/AssetLoader';
 import CompanyHelper from '../../helpers/CompanyHelper';
@@ -107,7 +107,7 @@ function DataAssuranceHOC(props : IProps) {
     return <GeneralLoadingTemplate><AssetLoader /></GeneralLoadingTemplate>
   }
 
-  if(!_gameContext.gameLoading && existingGameFound && !_gameContext.clickedContinueGame)
+  if(!_gameContext.gameLoading && _gameContext.gameStatus == GameStatus.Active && !_gameContext.clickedContinueGame)
   {
     return <WelcomeTemplate><ExistingGame /></WelcomeTemplate>
   }
