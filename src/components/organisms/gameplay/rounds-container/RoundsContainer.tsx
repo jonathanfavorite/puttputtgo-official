@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { Fragment, useContext, useEffect, useRef } from 'react'
 import StyleHelper from '../../../../helpers/StyleHelper'
 import { GameContext } from '../../../../contexts/GameContext';
 import { CourseContext } from '../../../../contexts/CourseContext';
@@ -104,7 +104,10 @@ function RoundsContainer(props: IProps) {
                                         }
                                 }>
                                     {
+                                        <Fragment>
                                         <span>{hole.number}</span>
+                                        <div className='par'>par <b>{hole.par}</b></div>
+                                        </Fragment>
                                 }</div>
                             )
                         })

@@ -24,7 +24,7 @@ input, button, select, textarea {
 .game-page .rounds-container .center .hole-label {
     box-shadow:0px 0px 10px #000 !important;
     border-right:1px solid #000 !important;
-    color: #bf6b2e !important;
+    color: #ffd942 !important;
 }
 .game-page .game-body .player {
     border-top:3px solid #31251c !important;

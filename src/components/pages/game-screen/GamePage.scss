@@ -43,9 +43,13 @@
             max-width: calc(100% - 14%);
             .hole-label {
                 padding-left: 10px;
+              
                 height:100%;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
+                position: relative;
+                justify-content: center;
                 padding-left:20px;
                 font-weight: bold;
                 border-right:1px solid #426e4d;
@@ -53,6 +57,13 @@
                 text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
                 box-shadow:0px 0px 10px #000 !important;
                 padding-right: 20px;
+                span {
+                    position: absolute;
+                    bottom:5px;
+                    color:#fff;
+                    font-weight: 100;
+                    font-size:0.8rem;
+                }
                 
             }
             .hole-items {
@@ -86,6 +97,14 @@
                     span {
                         position: relative;
                         top:-2px;
+                    }
+                    .par {
+                        position: absolute;
+                        font-size:0.8rem;
+                        bottom:-5px;
+                        b {
+                            font-size:1rem;
+                        }
                     }
                     &.active-hole {
                         color:#fff !important;

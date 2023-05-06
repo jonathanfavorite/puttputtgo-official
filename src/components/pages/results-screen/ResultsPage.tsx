@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef} from 'react'
+import React, {Fragment, useContext, useEffect, useRef} from 'react'
 import './ResultsPage.scss';
 import ConfettiCanvas from './confettiCanvas';
 
@@ -9,10 +9,12 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {PlayerContext, formatRGBToCSS} from '../../../contexts/PlayerContext';
 import { ScoreContext } from '../../../contexts/ScoreContext';
 import LeaderboardModel from '../../../models/score/LeaderboardModel';
+import { CourseContext } from '../../../contexts/CourseContext';
 
 function ResultsPage() {
     const _gameContext = useContext(GameContext);
     const _playerContext = useContext(PlayerContext);
+    const _courseContext = useContext(CourseContext);
     const _scoreContext = useContext(ScoreContext);
     const {business_name} = useParams();
     const navigate = useNavigate();
@@ -115,8 +117,8 @@ function ResultsPage() {
 
 
 
-                    <div className='result-list'>
-                        <div className='result-list-header'>
+                    <div className='result-list content'>
+                        <div className='result-list-header results-header'>
                           <div className='left'></div>
                           <div className='text'>results</div>
                           <div className='right'></div>
@@ -151,6 +153,50 @@ function ResultsPage() {
                         }
                         
                     </div>
+                 
+
+                    {/* <div className='scorecard-wrap content'>
+                          <div className='results-header'>
+                            <div className='left'></div>
+                            <div className='text'>Scorecard</div>
+                            <div className='right'></div>                            
+                        </div> */}
+
+                        {/* <div className='scorecard-table'>
+                            <div className='table-header'>
+                            <div className='row'>
+                                    <div className='cell header-cell'>Hole</div>
+                                    {
+                                        Array.from(Array(18).keys()).map((hole, index) => {
+                                            return <div className='cell'>{index + 1}</div>
+                                        })
+                                    }
+                          
+                                </div>
+                            </div>
+                           
+                                {
+                                    _playerContext.getAllPlayers().map((player, index) => {
+                                        return <Fragment>
+                                             <div className='row'>
+                                            <div className='cell header-cell'>{player.name}</div>
+                                            {_courseContext.getAllHoles().map((hole, index) => {
+                                                return <div className='cell'>{_scoreContext.getScoreByHoleAndPlayer(hole.number, player.id)}</div>
+                                            })}
+                                            </div>
+                                            </Fragment>
+
+                                    })
+                                }
+                                    {/* <div className='cell header-cell'>Jon</div>
+                                    {
+                                        Array.from(Array(18).keys()).map((hole, index) => {
+                                            return <div className='cell'>0</div>
+                                        })
+                                    } */}
+                          
+                               
+
 
 
 
