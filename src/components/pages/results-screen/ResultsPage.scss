@@ -120,33 +120,54 @@
                 }
             }
         }
+        .results-content-wrapper{
+            position: relative;
+            top:-10vh;
+        }
         .content {
             padding: 20px;
+            padding-top:0;
             box-sizing: border-box;
-            .results-header {
+          
+            z-index: 999;
+            position: relative;
+
+            .content-header {
                 font-size: 1.5rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
+                aspect-ratio: 65/14;
+                background-size:100% 100%;
+              
+
                 .left {
                     flex: 1;
                     height: 1px;
-                    background: #fff;
+                  
                 }
                 .text {
                     padding: 0px 20px;
+                    font-size:2.5rem;
+                    letter-spacing: 2px;
                 }
                 .right {
                     flex: 1;
                     height: 1px;
-                    background: #fff;
+                 
                 }
             }
 
             .list-item {
                 display: flex;
-                margin-bottom: 20px;
+                border-radius: 5px;
+                background-size: 100% 100%;
+                margin-bottom:5px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                padding:10px 10px;
                 .left {
                     width: 15vw;
                     .ball-color-container {
@@ -164,9 +185,27 @@
                     }
                 }
                 .right {
-                    align-self: center;
+                    display: flex;
+                    width:100%;
+                    align-items: center;
+
                     padding-left: 5vw;
+                   .detail {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    flex:1;
                     font-size: 1.5rem;
+                 
+                    small {
+                        position: relative;
+                        top:-5px;
+                        font-size: 1rem;
+                    }
+                   }
+                   .place {
+                    font-size:1.7rem;
+                   }
                 }
             }
         }

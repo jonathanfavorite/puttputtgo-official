@@ -235,6 +235,24 @@
       "assetID": "crown",
       "assetName": "Crown",
       "assetLocation": "/customers/castle-golf/images/results/crown.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-header",
+      "assetName": "Results Header Background",
+      "assetLocation": "/customers/castle-golf/images/results/results-header.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-player-background",
+      "assetName": "Results Player Background",
+      "assetLocation": "/customers/castle-golf/images/results/results-player-background.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "highlights-background",
+      "assetName": "Highlights Header Background",
+      "assetLocation": "/customers/castle-golf/images/results/highlights-header.png"
     }
   ]
 }

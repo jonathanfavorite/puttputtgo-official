@@ -115,10 +115,12 @@ function ResultsPage() {
 
                     </div>
 
-
+                    <div className='results-content-wrapper'>
 
                     <div className='result-list content'>
-                        <div className='result-list-header results-header'>
+                        <div className='result-list-header content-header' style={{
+                            backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("results-header"))
+                        }}>
                           <div className='left'></div>
                           <div className='text'>results</div>
                           <div className='right'></div>
@@ -128,7 +130,13 @@ function ResultsPage() {
                            _scoreContext.getAllPlayersScores().map((score, index) => {
 
                             return <>
-                            <div className='list-item'>
+                            <div className='list-item' style={{
+                                backgroundColor: formatRGBToCSS(
+                                    score.player.color!,
+                                       1
+                                   ),
+                                backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("results-player-background"))
+                            }}>
                             <div className='left'>
                             <div className='ball-color-container'>
                                     <div className='ball-color'
@@ -144,14 +152,34 @@ function ResultsPage() {
                                 </div>
                             </div>
                             <div className='right'>
-                               {score.player.name}<br />
+                                <div className='detail'>
+                                {score.player.name}
                                <small>score: {score.score}</small>
+                                </div>
+                                <div className='place'>
+                                    #{index + 1}
+                                </div>
+                               
                             </div>
                         </div>
                         </>
                           })
                         }
                         
+                    </div>
+
+                    <div className='highlights-list content'>
+                        <div className='highlights-list-header content-header' style={{
+                            backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("highlights-background"))
+                        }}>
+                          <div className='left'></div>
+                          <div className='text'>results</div>
+                          <div className='right'></div>
+                            
+                        </div>
+
+                    </div>
+
                     </div>
                  
 
