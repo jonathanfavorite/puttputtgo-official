@@ -34,6 +34,8 @@ function CreateGamePage() {
 
   useEffect(() => {
     _gameContext.updateSelectedLanguage("en");
+    _gameContext.updateactivePage("create-game");
+    
     // handleCreateDummyData();
     const updateScrollableHeight = () => {
       if (
@@ -69,9 +71,12 @@ function CreateGamePage() {
   const handleStartGameButton = () => {
     if (_playerContext.getAllPlayers().length > 0) {
       _gameContext.startNewGameWithExistingPlayers();
-      console.log("PLAYERS", _playerContext.getAllPlayers());
-      console.log("COURSE", _courseContext.getCurrentCourse());
+      _courseContext.updateCurrentHole(1);
+      _gameContext.updateGameStatus(GameStatus.Active);
+      _gameContext.didClickContinueGame();
+      _gameContext.saveToLocalStorage();
       navigate(`/${_gameContext.companyParam}/game`);
+      
     } else {
       alert("Please add at least one player to start the game");
     }

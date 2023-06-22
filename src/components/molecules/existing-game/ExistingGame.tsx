@@ -15,12 +15,11 @@ function ExistingGame() {
         navigator(`/${_gameContext.companyParam}`);
     };
     const handleContinueButton = async () => {
-        await _gameContext.loadFromLocalStorage();
+        //await _gameContext.loadFromLocalStorage();
         const companyParam = _gameContext.companyParam;
         _gameContext.updateGameStatus(GameStatus.Active);
         _gameContext.didClickContinueGame();
 
-        console.log("HANDLE CONTINUE:", _playerContext.getAllPlayers())
         navigator(`/${companyParam}/game`);
     };
   return (

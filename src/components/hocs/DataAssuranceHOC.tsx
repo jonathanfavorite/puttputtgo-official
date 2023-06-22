@@ -5,6 +5,8 @@ import AssetLoader from '../loadings/asset-loader/AssetLoader';
 import CompanyHelper from '../../helpers/CompanyHelper';
 import ExistingGame from '../molecules/existing-game/ExistingGame';
 import WelcomeTemplate from '../templates/welcome-screen/WelcomeTemplate';
+import { CourseContext } from '../../contexts/CourseContext';
+import LocalStoragePreloader from '../loadings/local-storage-preloader/LocalStoragePreloader';
 
 interface IProps {
     children: any;
@@ -22,23 +24,16 @@ function DataAssuranceHOC(props : IProps) {
 
   const [allowContinueGame, setAllowContinueGame] = React.useState(false);
 
+  const [finalLoading, setFinalLoading] = React.useState(true);
+
     const _gameContext = useContext(GameContext);
+    const _courseContext = useContext(CourseContext);
 
     useEffect(() => {
-        _gameContext.updateCompanyParam(props.companyParam);
+      _gameContext.updateCompanyParam(props.companyParam);
     }, []);
 
-    useEffect(() => {
-      let findGame = _gameContext.doesGameStateExistInLocalStorage();
-      if(findGame)
-      {
-        setExistingGameFound(true);
-      }
-      else
-      {
-        setExistingGameFound(false);
-      }
-    }, []);
+    
 
     useEffect(() => {
       if(_gameContext.clickedContinueGame)
@@ -107,13 +102,28 @@ function DataAssuranceHOC(props : IProps) {
     return <GeneralLoadingTemplate><AssetLoader /></GeneralLoadingTemplate>
   }
 
-  if(!_gameContext.gameLoading && _gameContext.gameStatus == GameStatus.Active && !_gameContext.clickedContinueGame)
+  if(!_gameContext.preloadedLocalStorage) 
+  {
+    return <GeneralLoadingTemplate><LocalStoragePreloader /></GeneralLoadingTemplate>
+  }
+
+
+  if(!_gameContext.gameLoading && _gameContext.gameStatus == GameStatus.Active  && _gameContext.activePage != "welcome" && !_gameContext.clickedContinueGame)
   {
     return <WelcomeTemplate><ExistingGame /></WelcomeTemplate>
   }
 
+
+
   // Render the children when the context is fully loaded and the arrays are defined
-  return props.children;
+  return <>
+  <div className='debug-wrap'>
+    {/* Current Hole #: {_courseContext.getCurrentHole().number}<br />
+    preloadedLocalStorage: {_gameContext.preloadedLocalStorage ? "true" : "false"}<br />
+    Course Info: {_courseContext.getCurrentCourse() ? 'Has Current Course': 'Does not have'}<br /> */}
+    Current Hole #: {_courseContext.getCurrentHole().number}<br />
+  </div>
+  {props.children}</>
 }
 
 export default DataAssuranceHOC

@@ -3,6 +3,8 @@ import HoleModel from '../models/hole/HoleModel';
 import { PlayerContext } from './PlayerContext';
 import { ScoreContext } from './ScoreContext';
 import CourseModel from '../models/course/CourseModel';
+import ConsoleHelper from '../helpers/ConsoleHelper';
+import { GameContext } from './GameContext';
 
 const CourseContext = createContext<CourseContextProps>({} as CourseContextProps)
 
@@ -24,16 +26,14 @@ interface CourseContextProps {
     holesRemaining: () => number;
     holesCompleted: () => number;
     getTotalParsOfHoles: () => number;
+    addCourseAndHoles: (course: CourseModel, currentHole: number) => void;
 }
 
 function CourseContextProvider(props: any) {
-
-    const _playerContext = useContext(PlayerContext);
-    const _scoreContext = useContext(ScoreContext);
-
+    
     const [courses, setCourses] = useState<CourseModel[]>([]);
     const [currentCourse, setCurrentCourse] = useState<number>(0);
-    const [currentHole, setCurrentHole] = useState<number>(0);
+    const [currentHole, setCurrentHole] = useState<number>(1);
 
     const addHole = (hole: HoleModel) => {
         const _currentCourse = courses[currentCourse];
@@ -43,9 +43,26 @@ function CourseContextProvider(props: any) {
 
     const addHoles = (holes: HoleModel[]) => {
         const _currentCourse = courses[currentCourse];
-        _currentCourse.holes.push(...holes);
-        setCourses(old => [...old, _currentCourse]);
+        if(_currentCourse && _currentCourse.holes)
+        {
+            _currentCourse.holes.push(...holes);
+            setCourses(old => [...old, _currentCourse]);
+        }
+        
     }
+
+    const addCourseAndHoles = (course: CourseModel, currentHole: number) => {
+      
+            addCourse(course);
+            setCurrentCourse(courses.length - 1);
+            setCurrentHole(currentHole);
+            console.log("course", course);
+            console.log("currentHole", currentHole);
+            console.log("holes", course.holes)
+
+      
+    }
+
 
     const removeHole = (holeNumber: holeNumber) => {
         // courses is an array of courses, which contains an array of holes
@@ -58,16 +75,17 @@ function CourseContextProvider(props: any) {
     }
     
     const getCurrentHole = () => {
+        //console.log("courses[currentCourse]", courses[currentCourse])
         if(courses[currentCourse])
         {
-            return courses[currentCourse].holes[currentHole];
+            return courses[currentCourse].holes.filter(hole => hole.number === currentHole)[0];
         }
-        return { courseID: 1,  number: 0, par: 0}
+        return { courseID: 1,  number: 1, par: 0}
     }
 
     const addCourse = (course: CourseModel) => {
+            setCourses(old => [...old, course]);
        
-        setCourses(old => [...old, course]);
     }
 
     const addCourses = (_courses: CourseModel[]) => {
@@ -81,16 +99,33 @@ function CourseContextProvider(props: any) {
 
     const updateCurrentHole = (holeNumber: holeNumber) => {
         const index = getCurrentCourseHoles().findIndex(hole => hole.number === holeNumber);
-        setCurrentHole(index);
+        if(index === -1)
+        {
+            console.log("index bad");
+            setCurrentHole(1);
+            return;
+        }
+        else
+        {
+
+            console.log("INDEX", index + 1);
+            setCurrentHole(holeNumber);
+        }
+        // console.log("holeNumber", holeNumber);
+        // console.log("getCurrentCourseHoles()", getCurrentCourseHoles());
+        // console.log("index", index);
+       
     }
 
     const toggleNextHole = () => {
         if (currentHole < getCurrentCourseHoles().length - 1) {
+            console.log(currentHole + 1)
             setCurrentHole(old => old + 1);
         }
         else
         {
-            console.log("cant toggle next hole");
+            console.log("~~~~~~~~~~~~~~~~~~~~hey");
+            //console.log("cant toggle next hole");
         }
     }
 
@@ -110,7 +145,12 @@ function CourseContextProvider(props: any) {
         return courses[currentCourse];
     }
     const getCurrentCourseHoles = () => {
-        return courses[currentCourse].holes;
+        if(courses[currentCourse] && courses[currentCourse].holes)
+        {
+            return courses[currentCourse].holes;
+        }
+        return [];
+       
     }
 
     const contextValues: CourseContextProps = {
@@ -126,7 +166,8 @@ function CourseContextProvider(props: any) {
         getTotalParsOfHoles,
         getCurrentCourse,
         addCourse,
-        addCourses
+        addCourses,
+        addCourseAndHoles
     }
 
     return <CourseContext.Provider value={contextValues}>

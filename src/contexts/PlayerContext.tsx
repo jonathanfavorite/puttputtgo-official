@@ -70,7 +70,6 @@ function PlayerContextProvider(props: any) {
     }
 
     const updateCurrentPlayer = (playerID: playerID) => {
-        console.log(players);
         const index = players.findIndex(player => player.id === playerID);
         if(index === -1)
         {

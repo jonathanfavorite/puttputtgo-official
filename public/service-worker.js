@@ -16,7 +16,6 @@ async function cacheAssets(customerID, assets) {
 self.addEventListener('message', (event) => {
     if (event.data.type === 'CACHE_ASSETS') {
       cacheAssets(event.data.customerID, event.data.assets);
-      //console.log("caching");
     }
   });
 

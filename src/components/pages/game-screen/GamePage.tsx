@@ -12,8 +12,10 @@ import { TransitionContext, TransitionContextProvider } from "../../../contexts/
 import Transition from "../../molecules/transition/Transition";
 import PlayerRecordHOC from "../../hocs/PlayerRecordHOC";
 import { PlayerContext } from "../../../contexts/PlayerContext";
+import { CourseContext } from "../../../contexts/CourseContext";
 function GamePage() {
   const _gameContext = useContext(GameContext);
+  const _courseContext = useContext(CourseContext);
   const _playerContext = useContext(PlayerContext);
   const _transitionContext = useContext(TransitionContext);
   const { business_name } = useParams();
@@ -30,7 +32,6 @@ function GamePage() {
   useEffect(() => {
     if(_playerContext.getAllPlayers().length <= 0)
     {
-      console.log("NO PLAYERS");
       navigate(`/${business_name}/create-game`);
     } 
   }, []);

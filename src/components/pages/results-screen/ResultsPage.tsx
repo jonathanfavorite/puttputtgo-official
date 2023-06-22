@@ -25,7 +25,6 @@ function ResultsPage() {
     }
 
     useEffect(() => {
-        console.log(_playerContext.getAllPlayers());
         _gameContext.updateGameStatus(GameStatus.Finished);
     }, []);
 
@@ -34,7 +33,6 @@ function ResultsPage() {
 
   function adjustFontSize() {
     if (textRef.current) {
-        console.log(textRef.current);
       const textLength = textRef.current.textContent!.length;
       const baseFontSize = 5;
       const threshold = 1;

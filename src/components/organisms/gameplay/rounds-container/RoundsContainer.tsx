@@ -24,6 +24,9 @@ function RoundsContainer(props: IProps) {
         }
         _playerContext.updateCurrentPlayer(0);
         _courseContext.updateCurrentHole(hole);
+        //_gameContext.saveToLocalStorage();
+
+        console.log(_courseContext.getCurrentHole().number);
 
         nextHoleTransitionTexts(hole);
     };
@@ -55,13 +58,13 @@ function RoundsContainer(props: IProps) {
     useEffect(() => {
             //console.log("THIS IS BEFORE REAL");
             let real = getCorrectChild(_courseContext.getCurrentHole().number);
-           console.log("real?", real);
             let timeout;
             if (real) {
+                console.log("REAL");
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
                         real!.scrollIntoView({
-                            behavior: "smooth",
+                            behavior: "smooth", 
                             block: "center",
                             inline: "center",
                         });
@@ -69,7 +72,7 @@ function RoundsContainer(props: IProps) {
                 });
             }
 
-    }, [_courseContext.getCurrentHole()]);
+    }, [_courseContext.getCurrentHole().number]);
 
     return (
         <div className='rounds-container'

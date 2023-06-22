@@ -6,13 +6,20 @@ import WelcomeTemplate from '../../templates/welcome-screen/WelcomeTemplate';
 import DataAssuranceHOC from '../../hocs/DataAssuranceHOC';
 import './WelcomePage.scss';
 import { PlayerContext } from '../../../contexts/PlayerContext';
+import { CourseContext } from '../../../contexts/CourseContext';
+import ConsoleHelper from '../../../helpers/ConsoleHelper';
 
 function WelcomePage() {
     const _gameContext = useContext(GameContext);
     const _playerContext = useContext(PlayerContext);
+    const _courseContext = useContext(CourseContext);
     const { business_name } = useParams();
     const [isReady, setIsReady] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        _gameContext.updateactivePage("welcome");
+    }, []);
 
     const goTo = (route: string, relative: boolean = true) => {
         if(!relative)
@@ -30,7 +37,18 @@ function WelcomePage() {
         
     }
     
+    const isNull = (value: any) => {
+        return value === undefined || value === null;
+    }
     const handleContinueGameClick = () => {
+      
+        // consoleWithColor("CURRENT_COURSE", _courseContext.getCurrentCourse());
+         //consoleWithColor("CURRENT_HOLE", _courseContext.getCurrentHole());
+         //consoleWithColor("PLAYERS",  _playerContext.getAllPlayers());
+        // //
+        ConsoleHelper.log_value({color: "green", title: "GetCurrentCourse", value: _courseContext.getCurrentCourse()});
+        ConsoleHelper.log_value({color: "green", title: "CurrentHole", value: _courseContext.getCurrentHole()});
+        ConsoleHelper.log_value({color: "green", title: "Players", value: _playerContext.getAllPlayers()});
         goTo('/game');
     };
 

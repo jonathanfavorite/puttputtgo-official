@@ -38,21 +38,20 @@ function GamePlayFooter() {
         else
         {
             let playersWhoHaventGone = _scoreContext.hasEveryPlayerPlayedThisHole(_courseContext.getCurrentHole().number);
-            console.log("not gone total", playersWhoHaventGone.length);
+
             if(playersWhoHaventGone.length <= 0)
             {
+                _courseContext.toggleNextHole();
+                //_gameContext.saveToLocalStorage();
                 nextHoleTransitionTexts();
                 setTimeout(() => {
                     _courseContext.toggleNextHole();
                     _playerContext.updateCurrentPlayer(0);
                 }, 1500);
                 
-                
-               console.log("move on");
             }
             else
             {
-                console.log("not gone");
                 scrollToPlayerWhoHasNotGone(playersWhoHaventGone[0].playerID);
             }
         }
@@ -83,6 +82,7 @@ function GamePlayFooter() {
         }
         else
         {
+            _gameContext.saveToLocalStorage();
             nextHoleTransitionTexts();
             setTimeout(() => {
                 _courseContext.toggleNextHole();
@@ -150,7 +150,7 @@ function GamePlayFooter() {
                 {
                     backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-next-hole-button'))
                 }}>
-                        <span>Next Hole<br/></span>
+                        <span>Next Player<br/></span>
                     </button>
                 </div>
   )
