@@ -37,7 +37,9 @@ function TextBasedHeader(props : IProps) {
                     _gameContext.companyData.customerName
                 }</div>
             </div>
-            <div className='right'></div>
+            <div className='right'>
+                {_gameContext.isSavingToLocalStorage && <div className='saving-box'><span>Saving...</span></div>}
+            </div>
         </div>
 
     )

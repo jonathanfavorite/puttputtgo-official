@@ -27,6 +27,7 @@ interface CourseContextProps {
     holesCompleted: () => number;
     getTotalParsOfHoles: () => number;
     addCourseAndHoles: (course: CourseModel, currentHole: number) => void;
+    getLastHole: () => HoleModel;
 }
 
 function CourseContextProvider(props: any) {
@@ -153,6 +154,10 @@ function CourseContextProvider(props: any) {
        
     }
 
+    const getLastHole = () => {
+        return getCurrentCourseHoles()[getCurrentCourseHoles().length - 1];
+    }
+
     const contextValues: CourseContextProps = {
         addHole,
         addHoles,
@@ -167,7 +172,8 @@ function CourseContextProvider(props: any) {
         getCurrentCourse,
         addCourse,
         addCourses,
-        addCourseAndHoles
+        addCourseAndHoles,
+        getLastHole
     }
 
     return <CourseContext.Provider value={contextValues}>

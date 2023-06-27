@@ -30,6 +30,7 @@ function GamePage() {
 
 
   useEffect(() => {
+    //_gameContext.updateactivePage("game");
     if(_playerContext.getAllPlayers().length <= 0)
     {
       navigate(`/${business_name}/create-game`);

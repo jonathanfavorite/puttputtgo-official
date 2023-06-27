@@ -22,7 +22,13 @@ function LocalStoragePreloader() {
 
          
         }
-        _gameContext.updatePreloadedLocalStorage(true);
+        let timeout = setTimeout(() => {
+          _gameContext.updatePreloadedLocalStorage(true);
+        }, 200);
+        return () => {
+          clearTimeout(timeout);
+        }
+        
       }, []);
 
 

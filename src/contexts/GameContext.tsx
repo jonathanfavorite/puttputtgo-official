@@ -46,7 +46,7 @@ interface GameContextProps {
     doesGameStateExistInLocalStorage: () => boolean;
     loadFromLocalStorage: () => void;
     preloadedLocalStorage: boolean;
-    saveToLocalStorage: () => void;
+    saveToLocalStorageAsync: () => void;
     didClickContinueGame: () => void;
     clickedContinueGame: boolean;
     gameStatus: GameStatus;
@@ -56,6 +56,7 @@ interface GameContextProps {
     activePage: string;
     updateactivePage: (page : string) => void;
     updatePreloadedLocalStorage: (bool : boolean) => void;
+    isSavingToLocalStorage: boolean;
 }
 
 function GameContextProvider(props: any) {
@@ -90,6 +91,8 @@ function GameContextProvider(props: any) {
     const [clickedContinueGame, setClickedContinueGame] = useState < boolean > (false);
 
     const [gameStatus, setGameStatus] = useState < GameStatus > (GameStatus.NotStarted);
+
+    const [isSavingToLocalStorage, setIsSavingToLocalStorage] = useState < boolean > (false);
     
   
     const updatePreloadedLocalStorage = (bool : boolean) => {
@@ -133,7 +136,9 @@ function GameContextProvider(props: any) {
     }
 
     const saveToLocalStorage = () => {
+        console.log("active page: " , activePage)
         if (activePage !== "welcome") {
+            console.log("HEYEYEEYYYEYYYEYEYYEEYEYEYEYYEEY");
             let gameState: LocalStorageGameDataModel = {
                 players: _playerContext.getAllPlayers(),
                 scores: _scoreContext.getAllScores(),
@@ -147,10 +152,38 @@ function GameContextProvider(props: any) {
                 obj: gameState,
             })
 
+            setIsSavingToLocalStorage(true);
+
             ConsoleHelper.log_value({color: "black", title: "currentHole", value: _scoreContext.getAllScores()});
             localStorage.setItem("gameState", JSON.stringify(gameState));
+            console.log("sETTTTTTING");
+            setTimeout(() => {
+                setIsSavingToLocalStorage(false);
+            }, 1000);
+            
           
         }
+    };
+    const completedSaveToLocalStorage = () => {
+        setIsSavingToLocalStorage(false);
+    }
+    const saveToLocalStorageAsync = async () => {
+        setIsSavingToLocalStorage(true);
+        let p = new Promise((resolve, reject) => {
+            let gameState: LocalStorageGameDataModel = {
+                players: _playerContext.getAllPlayers(),
+                scores: _scoreContext.getAllScores(),
+                currentHole: _courseContext.getCurrentHole().number,
+                currentPlayer: _playerContext.getCurrentPlayer().id,
+                currentCourse: _courseContext.getCurrentCourse(),
+                companyID: companyData.customerID
+            };
+            localStorage.setItem("gameState", JSON.stringify(gameState));
+            resolve(null);
+        });
+
+        p.then(completedSaveToLocalStorage);
+
     };
 
     // useEffect(() => {
@@ -162,15 +195,32 @@ function GameContextProvider(props: any) {
 
     // }, [_courseContext.getCurrentHole()]);
 
-    useEffect(() => {
-    if (localStorage.getItem("gameState")) {
-        if(_playerContext.getAllPlayers().length > 0)
-        {
-          console.log("SAVING TO LOCAL STORAGE");
-          saveToLocalStorage();
-        }
-    }
-    }, [_courseContext.toggleNextHole, gameFinished, gameStatus]);
+    // useEffect(() => {
+    // // if (localStorage.getItem("gameState")) {
+    // //     if(_playerContext.getAllPlayers().length > 0)
+    // //     {
+    // //       console.log("SAVING TO LOCAL STORAGE");
+    // //       saveToLocalStorage();
+    // //     }
+    // // }
+    // // else
+    // // {
+        
+    // // }
+    // if(_playerContext.getAllPlayers().length > 0)
+    // {
+    //     if(activePage != "welcome")
+    //     {
+    //         saveToLocalStorage();
+    //     }
+    // }
+    // else
+    // {
+    //    // localStorage.setItem("gameState", "");
+        
+    // }
+
+    // }, [_courseContext.toggleNextHole, gameFinished, gameStatus, _courseContext.getCurrentHole()]);
 
     const clearLocalStorage = () => {
         localStorage.removeItem("gameState");
@@ -194,6 +244,25 @@ function GameContextProvider(props: any) {
         return false;
     };
 
+
+    const [loadedLocalStorageData, setLoadedLocalStorageData] = useState < LocalStorageGameDataModel | null > (null);
+    useEffect(() => {
+        if(loadedLocalStorageData != null)
+        {
+
+            if(_scoreContext.hasEveryPlayerPlayedThisHole(loadedLocalStorageData.currentHole).length <= 0)
+            {
+                console.log("loadedLocalStorageData - YES");
+                _courseContext.updateCurrentHole(loadedLocalStorageData.currentHole + 1);
+            }
+            else
+            {
+                console.log("loadedLocalStorageData - NO", _scoreContext.hasEveryPlayerPlayedThisHole(loadedLocalStorageData.currentHole));
+                _courseContext.updateCurrentHole(loadedLocalStorageData.currentHole);
+            }
+        }
+    }, [loadedLocalStorageData]);
+
     const loadFromLocalStorage = async () => {
         if (!preloadedLocalStorage) {
           
@@ -207,17 +276,19 @@ function GameContextProvider(props: any) {
                 let parsedGameState: LocalStorageGameDataModel = JSON.parse(gameState);
             
                 _courseContext.addCourseAndHoles(parsedGameState.currentCourse, parsedGameState.currentHole);
-            
-                _courseContext.updateCurrentHole(parsedGameState.currentHole);
+
+                _scoreContext.resetScores();
+
+                _scoreContext.addScores(parsedGameState.scores);
+
                 _playerContext.updateCurrentPlayer(parsedGameState.currentPlayer);
             
                 _playerContext.resetPlayers();
                 _playerContext.addPlayers(parsedGameState.players);
+
+                setLoadedLocalStorageData(parsedGameState);
             
-                _scoreContext.resetScores();
-                _scoreContext.addScores(parsedGameState.scores);
                 
-              
                 
               }
             
@@ -367,7 +438,7 @@ function GameContextProvider(props: any) {
         doesGameStateExistInLocalStorage,
         loadFromLocalStorage,
         preloadedLocalStorage,
-        saveToLocalStorage,
+        saveToLocalStorageAsync,
         didClickContinueGame,
         clickedContinueGame,
         updateGameStatus,
@@ -376,7 +447,8 @@ function GameContextProvider(props: any) {
         updateShowGameInProgressPopup,
         activePage,
         updateactivePage,
-        updatePreloadedLocalStorage
+        updatePreloadedLocalStorage,
+        isSavingToLocalStorage
     };
 
     return(< GameContext.Provider value = {

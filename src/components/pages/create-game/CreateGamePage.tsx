@@ -68,13 +68,13 @@ function CreateGamePage() {
     _playerContext.resetPlayers();
   };
 
-  const handleStartGameButton = () => {
+  const handleStartGameButton = async () => {
     if (_playerContext.getAllPlayers().length > 0) {
       _gameContext.startNewGameWithExistingPlayers();
       _courseContext.updateCurrentHole(1);
       _gameContext.updateGameStatus(GameStatus.Active);
       _gameContext.didClickContinueGame();
-      _gameContext.saveToLocalStorage();
+      _gameContext.saveToLocalStorageAsync();
       navigate(`/${_gameContext.companyParam}/game`);
       
     } else {
