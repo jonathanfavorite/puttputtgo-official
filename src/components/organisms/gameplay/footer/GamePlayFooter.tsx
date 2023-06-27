@@ -31,7 +31,7 @@ function GamePlayFooter() {
         _transitionContext.updateDescText(``);
     };
     
-
+    // NEXT PLAYER BUTTON / NEXT HOLE BUTTON
     const handleNextHoleClick = () => {
         if(_courseContext.holesRemaining() <= 1) {
         }
@@ -41,11 +41,13 @@ function GamePlayFooter() {
 
             if(playersWhoHaventGone.length <= 0)
             {
-                _courseContext.toggleNextHole();
+                
                 //_gameContext.saveToLocalStorage();
+                _gameContext.saveToLocalStorageAsync();
+
                 nextHoleTransitionTexts();
                 setTimeout(() => {
-                    _courseContext.toggleNextHole();
+                    
                     _playerContext.updateCurrentPlayer(0);
                 }, 1500);
                 
@@ -55,6 +57,8 @@ function GamePlayFooter() {
                 scrollToPlayerWhoHasNotGone(playersWhoHaventGone[0].playerID);
             }
         }
+
+       // _playerContext.toggleNextPlayer();
         
     }
 
@@ -62,39 +66,57 @@ function GamePlayFooter() {
         _playerContext.updateCurrentPlayer(playerID);
     }
 
+    const [clickedAddScoreButton, setClickedAddScoreButton] = React.useState<ScoreModel | null>(null);
+
+    useEffect(() => {
+        if(clickedAddScoreButton != null)
+        {
+            setClickedAddScoreButton(null);
+
+            let playersWhoHaventGone = _scoreContext.hasEveryPlayerPlayedThisHole(_courseContext.getCurrentHole().number);
+            
+            if(_playerContext.getCurrentPlayer().id == _playerContext.getLastPlayer().id)
+            {
+      
+              if(playersWhoHaventGone.length > 0 && playersWhoHaventGone[0].playerID != _playerContext.getCurrentPlayer().id)
+              {
+                  scrollToPlayerWhoHasNotGone(playersWhoHaventGone[0].playerID);
+              }
+              else
+              {
+               
+                  _gameContext.saveToLocalStorageAsync();
+                  nextHoleTransitionTexts();
+                  setTimeout(() => {
+                    _courseContext.toggleNextHole();
+                      _playerContext.updateCurrentPlayer(0);
+                  }, 300);
+                 
+              }
+            }
+            else
+            {
+              _playerContext.toggleNextPlayer();
+              _gameContext.saveToLocalStorageAsync();
+            }
+
+        }
+    }, [clickedAddScoreButton]);
+
     const handleScoreAddClick = (value: number) => {
+       
         let score : ScoreModel = {
             courseID: _courseContext.getCurrentCourse().ID,
             playerID: _playerContext.getCurrentPlayer().id,
             holeID: _courseContext.getCurrentHole().number,
             score: value
         }
-      _scoreContext.addScore(score);
-
-      let playersWhoHaventGone = _scoreContext.hasEveryPlayerPlayedThisHole(_courseContext.getCurrentHole().number);
+        
       
-      if(_playerContext.getCurrentPlayer().id == _playerContext.getLastPlayer().id)
-      {
+        _scoreContext.addScore(score);
+        setClickedAddScoreButton(score);
 
-        if(playersWhoHaventGone.length > 0 && playersWhoHaventGone[0].playerID != _playerContext.getCurrentPlayer().id)
-        {
-            scrollToPlayerWhoHasNotGone(playersWhoHaventGone[0].playerID);
-        }
-        else
-        {
-            _gameContext.saveToLocalStorage();
-            nextHoleTransitionTexts();
-            setTimeout(() => {
-                _courseContext.toggleNextHole();
-                _playerContext.updateCurrentPlayer(0);
-            }, 300);
-           
-        }
-      }
-      else
-      {
-        _playerContext.toggleNextPlayer();
-      }
+     
        // scrollToActivePlayer();
     }
 
