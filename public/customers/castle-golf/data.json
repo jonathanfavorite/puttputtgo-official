@@ -253,6 +253,18 @@
       "assetID": "highlights-background",
       "assetName": "Highlights Header Background",
       "assetLocation": "/customers/castle-golf/images/results/highlights-header.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "completed-hole",
+      "assetName": "Completed Hole Icon",
+      "assetLocation": "/customers/castle-golf/images/gameplay/completed-hole.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "incomplete-hole",
+      "assetName": "Incompleted Hole Icon",
+      "assetLocation": "/customers/castle-golf/images/gameplay/incomplete-hole.png"
     }
   ]
 }

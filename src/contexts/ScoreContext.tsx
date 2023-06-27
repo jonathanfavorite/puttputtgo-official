@@ -19,6 +19,7 @@ interface ScoreContextProps {
     getPlayerTotalScore: (id: number) => number;
     getAllPlayersScores: () => LeaderboardModel[];
     hasEveryPlayerPlayedThisHole: (hole: holeNumber) => PlayersNotPlayedThisHole[];
+    hasAnyPlayerPlayedThisHole: (hole: holeNumber) => boolean;
 }
 interface PlayersNotPlayedThisHole {
     playerID: number;
@@ -102,6 +103,16 @@ function ScoreContextProvider(props: any) {
 
         return playersNotPlayedThisHole;
     };
+
+    const hasAnyPlayerPlayedThisHole = (hole: holeNumber) => {
+        for (let i = 0; i < _playerContext.getAllPlayers().length; i++) {
+            let player = _playerContext.getAllPlayers()[i];
+            if (getScoreByHoleAndPlayer(hole, player.id) != -10) {
+                return true;
+            }
+        }
+        return false;
+    };
     
 
 
@@ -114,7 +125,8 @@ function ScoreContextProvider(props: any) {
         getScoreByHoleAndPlayer,
         getPlayerTotalScore,
         getAllPlayersScores,
-        hasEveryPlayerPlayedThisHole
+        hasEveryPlayerPlayedThisHole,
+        hasAnyPlayerPlayedThisHole
     }
 
     return <ScoreContext.Provider value={contextValues}>

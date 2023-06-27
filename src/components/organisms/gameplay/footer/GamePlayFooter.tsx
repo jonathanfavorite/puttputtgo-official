@@ -69,9 +69,11 @@ function GamePlayFooter() {
     const [clickedAddScoreButton, setClickedAddScoreButton] = React.useState<ScoreModel | null>(null);
 
     useEffect(() => {
+        let timeout : any;
         if(clickedAddScoreButton != null)
         {
-            setClickedAddScoreButton(null);
+           
+           
 
             let playersWhoHaventGone = _scoreContext.hasEveryPlayerPlayedThisHole(_courseContext.getCurrentHole().number);
             
@@ -97,10 +99,19 @@ function GamePlayFooter() {
             else
             {
               _playerContext.toggleNextPlayer();
-              _gameContext.saveToLocalStorageAsync();
-            }
+              timeout = setTimeout(() => {
+                _gameContext.saveToLocalStorageAsync();
+              }, 300);
 
+             
+              
+            }
+            setClickedAddScoreButton(null);
         }
+
+        return () => {
+            clearTimeout(timeout);
+          }
     }, [clickedAddScoreButton]);
 
     const handleScoreAddClick = (value: number) => {

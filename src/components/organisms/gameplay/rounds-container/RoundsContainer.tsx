@@ -4,6 +4,7 @@ import { GameContext } from '../../../../contexts/GameContext';
 import { CourseContext } from '../../../../contexts/CourseContext';
 import { PlayerContext } from '../../../../contexts/PlayerContext';
 import { TransitionContext } from '../../../../contexts/TransitionContext';
+import { ScoreContext } from '../../../../contexts/ScoreContext';
 
 interface IProps {
     holeClickEvent? : (hole: number) => void;
@@ -14,6 +15,7 @@ function RoundsContainer(props: IProps) {
     const _courseContext = useContext(CourseContext);
     const _playerContext = useContext(PlayerContext);
     const _transitionContext = useContext(TransitionContext);
+    const _scoreContext = useContext(ScoreContext);
 
     const itemRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
@@ -93,7 +95,40 @@ function RoundsContainer(props: IProps) {
                     {
                         _courseContext.getCurrentCourse().holes.map((hole, index) => {
                             let isActive = _courseContext.getCurrentHole().number === hole.number;
+                            let hasAnyoneScoredOnThisHole  = _scoreContext.hasAnyPlayerPlayedThisHole(hole.number);
                             let properBackground = isActive ? _gameContext.getAssetByID('gameplay-round-active-button') : _gameContext.getAssetByID('gameplay-round-button');
+                            let playersReminingWhoHaveNotScored = 0;
+                            let showComplete = false;
+                            let showWarning = false;
+                            let icon = null;
+                            if(hasAnyoneScoredOnThisHole) {
+                                playersReminingWhoHaveNotScored = _scoreContext.hasEveryPlayerPlayedThisHole(hole.number).length;
+                                if(playersReminingWhoHaveNotScored === 0) {
+                                    showComplete = true;
+                                }
+                                else{
+                                    showWarning = true;
+                                }
+                            }
+                            else {
+                                if(_courseContext.getCurrentHole().number === hole.number) {
+                                    showWarning = true;
+                                }
+                            }
+
+
+                            if(showComplete || showWarning) {
+                                if(showComplete) {
+                                    icon = _gameContext.getAssetByID('completed-hole');
+                                }
+                                else{
+                                    icon = _gameContext.getAssetByID('incomplete-hole');
+                                }
+                            }
+                            else {
+                            }
+                            
+
                             return (
                                 <div
                                 ref={itemRef}
@@ -108,6 +143,9 @@ function RoundsContainer(props: IProps) {
                                 }>
                                     {
                                         <Fragment>
+                                            <div className='hole-status' style={{
+                                                backgroundImage: StyleHelper.format_css_url(icon)
+                                            }}></div>
                                         <span>{hole.number}</span>
                                         <div className='par'>par <b>{hole.par}</b></div>
                                         </Fragment>
