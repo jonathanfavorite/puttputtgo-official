@@ -265,6 +265,12 @@
       "assetID": "incomplete-hole",
       "assetName": "Incompleted Hole Icon",
       "assetLocation": "/customers/castle-golf/images/gameplay/incomplete-hole.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "group-comparison-background",
+      "assetName": "Group Comparison Background",
+      "assetLocation": "/customers/castle-golf/images/results/comparison.png"
     }
   ]
 }
