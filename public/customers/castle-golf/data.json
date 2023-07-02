@@ -271,6 +271,12 @@
       "assetID": "group-comparison-background",
       "assetName": "Group Comparison Background",
       "assetLocation": "/customers/castle-golf/images/results/comparison.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "performance-caret",
+      "assetName": "Performance Caret",
+      "assetLocation": "/customers/castle-golf/images/results/performance-caret.png"
     }
   ]
 }

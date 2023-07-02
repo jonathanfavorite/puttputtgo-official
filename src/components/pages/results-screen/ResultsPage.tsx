@@ -11,7 +11,7 @@ import {ScoreContext} from '../../../contexts/ScoreContext';
 import LeaderboardModel from '../../../models/score/LeaderboardModel';
 import {CourseContext} from '../../../contexts/CourseContext';
 import ScoreHelper from '../../../helpers/ScoreHelper';
-import { Line, LineChart, ResponsiveContainer, XAxis } from 'recharts';
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import PlayerModel from '../../../models/player/PlayerModel';
 import ScoreModel from '../../../models/score/ScoreModel';
 
@@ -33,55 +33,64 @@ function ResultsPage() {
         scores: ScoreModel[];
     }
 
-    const [performanceData, setPerformanceData] = useState<PerformanceData[] | null>(null)
+    // const [performanceData, setPerformanceData] = useState<PerformanceData[] | null>(null)
+    // const [flatPerformanceData, setFlatPerformanceData] = useState<any[]>([]);
+
+
     const [flatPerformanceData, setFlatPerformanceData] = useState<any[]>([]);
+    const [playerColors, setPlayerColors] = useState<{ [key: string]: string }>({});
+
+    const [activePerformanceOverview, setActivePerformanceOverview] = useState<PlayerModel | null>(null);
+    const [dropdownActive, setDropdownActive] = useState<boolean>(false);
+
+
+    const handlePlayerPerformanceClicked = (player: PlayerModel | null) => {
+        setActivePerformanceOverview(player);
+        setDropdownActive(false);
+    }
+
+    const handleDropdownClicked = () => {
+        setDropdownActive(!dropdownActive);
+    }
+
+    const MAX_SCORE = 54; 
 
     useEffect(() => {
+
         _gameContext.updateGameStatus(GameStatus.Finished);
 
-        let finalPerformanceData: PerformanceData[] = []
-    
-        let allScores = _scoreContext.getAllScores();
-    
-        // at this point, all players should have scores, so get them here
-        for(let i = 0; i < _playerContext.getAllPlayers().length; i++) {
-            let player = _playerContext.getAllPlayers()[i];
-            let scores = [];
-    
-            for(let scoresIndex = 0; scoresIndex < allScores.length; scoresIndex++) {
-                if(allScores[scoresIndex].playerID == player.id) {
-                    scores.push(allScores[scoresIndex]);
-                }
-            }
-    
-            scores.sort((a, b) => {
-                return a.holeID - b.holeID;
-            })
-    
-            let final : PerformanceData = {
-                player: player,
-                scores: scores
-            }
-    
-            finalPerformanceData.push(final);
-        }
-    
-        const maxHoles = Math.max(...finalPerformanceData.map(data => data.scores.length));
-    
-        const flatData = Array.from({ length: maxHoles }, (_, holeIndex) => {
-            const dataPoint: any = { holeIndex };
-            finalPerformanceData.forEach((data) => {
-                const scoreModel = data.scores.find(score => score.holeID === holeIndex);
-                if (scoreModel) {
-                    dataPoint[`player${data.player.id}`] = scoreModel.score;
-                }
-            });
-            return dataPoint;
+        let flatData: any[] = [];
+    let playerColors: { [key: string]: string } = {}; // To store the color of each player
+
+    const players = _playerContext.getAllPlayers();
+    const holes = _courseContext.getCurrentCourse().holes;
+
+    players.forEach(player => {
+        // Add player's color to playerColors object
+        const rgb = `rgb(${player.color!.r}, ${player.color!.g}, ${player.color!.b})`;
+        playerColors[`player${player.id}`] = rgb;
+    });
+
+    // Get the maximum total score at the end of the game
+    let maxTotalScore = Math.max(...players.map(player => _scoreContext.getRunningScoresByHoleAndPlayer(player.id, holes.length)));
+
+    holes.forEach((hole, index) => {
+        let dataPoint: any = { holeIndex: holes.length - index }; // Subtract the index from the total number of holes to get the reverse order
+
+        players.forEach(player => {
+            // Get the 'flipped' score by subtracting the player's score from the maximum total score
+            let score = maxTotalScore - _scoreContext.getRunningScoresByHoleAndPlayer(player.id, holes.length - index);
+            dataPoint[`player${player.id}`] = score;
         });
 
-        console.log(flatPerformanceData);
-    
-        setFlatPerformanceData(flatData!);
+        // Push data point into array
+        flatData.push(dataPoint);
+    });
+
+
+        console.log(flatData);
+    setFlatPerformanceData(flatData);
+    setPlayerColors(playerColors);
 
     }, []);
 
@@ -293,7 +302,51 @@ function ResultsPage() {
 
 
                         <div className='performance-wrap'>
-                            <div className='title'>performance</div>
+                            <div className='title'>performances</div>
+                            <div className='performance-dropdown'>
+                                <div className='selected-option' onClick={handleDropdownClicked}>
+                                    <div className='display'>
+                                        <div className='icon'></div>
+                                        <div className='text'>{activePerformanceOverview ? activePerformanceOverview.name : 'Overview'}</div>
+                                    </div>
+                                    <div className='close'>
+                                        <div className='icon' onClick={handleDropdownClicked} style={{
+                                            backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('performance-caret')),
+                                            transform: dropdownActive ? 'rotate(180deg)' : 'rotate(0deg)'
+                                        }}></div>
+                                    </div>
+                                </div>
+                                <div className='list' style={{
+                                    display: dropdownActive ? 'block' : 'none'
+                                }}>
+                                    
+                                    {activePerformanceOverview && <div className='item' onClick={() => handlePlayerPerformanceClicked(null)}>
+                                        <div className='icon'></div>
+                                        <div className='text'>Overview</div>
+                                    </div>
+}
+
+                                    {_playerContext.getAllPlayers().map((player, index) => {
+                                        if(activePerformanceOverview) {
+                                            if(activePerformanceOverview.id === player.id) {
+                                                return null;
+                                            }
+                                        }
+                                        return <div className='item' onClick={() => handlePlayerPerformanceClicked(player)}>
+                                        <div className='icon'
+                                        style={
+                                            {
+                                                backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
+                                                backgroundColor: formatRGBToCSS(player.color !, 1)
+                                            }
+                                    }></div>
+                              
+                                        <div className='text'>{player.name}</div>
+                                    </div>
+                                    })}
+                                    
+                                </div>
+                            </div>
                             <div className='performance-chart'>
                             <ResponsiveContainer width={'100%'} height={'100%'}>
     <LineChart margin={{
@@ -301,11 +354,18 @@ function ResultsPage() {
         left:0,
         bottom: 0,
         right: 0
-    }} data={dummyData}>
-        <XAxis dataKey="holeIndex" hide />
-        {_playerContext.getAllPlayers().map((player, index) => { 
-           const rgb = `rgb(${player.color!.r}, ${player.color!.g}, ${player.color!.b})`;
-            return <Line type="monotone" dataKey={`player${player.id}`}  strokeWidth={3} dot={false} stroke={rgb} key={index} />;
+    }} data={flatPerformanceData}>
+
+       {_playerContext.getAllPlayers().map((player, index) => { 
+           const rgb = playerColors[`player${player.id}`];
+           const notActiveRGB = `rgba(129, 104, 104, 0.5)`;
+           let correctedColor = rgb;
+           if(activePerformanceOverview) {
+                if(activePerformanceOverview.id !== player.id) {
+                     correctedColor = notActiveRGB;
+                }
+           }
+            return <Line type="monotone" dataKey={`player${player.id}`} strokeWidth={3} dot={false} stroke={correctedColor} key={index} />;
         })}
     </LineChart>
       {/* <LineChart data={dummyData}>
