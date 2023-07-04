@@ -12,9 +12,9 @@ const GameContext = createContext < GameContextProps > ({} as GameContextProps);
 type customerLocation = string;
 
 enum GameStatus {
-    NotStarted,
-    Active,
-    Finished
+    NotStarted = 0,
+    Active = 1,
+    Finished = 2
 }
 
 interface GameContextProps {
@@ -138,14 +138,15 @@ function GameContextProvider(props: any) {
     const saveToLocalStorage = () => {
         console.log("active page: " , activePage)
         if (activePage !== "welcome") {
-            console.log("HEYEYEEYYYEYYYEYEYYEEYEYEYEYYEEY");
+            //console.log("HEYEYEEYYYEYYYEYEYYEEYEYEYEYYEEY");
             let gameState: LocalStorageGameDataModel = {
                 players: _playerContext.getAllPlayers(),
                 scores: _scoreContext.getAllScores(),
                 currentHole: _courseContext.getCurrentHole().number,
                 currentPlayer: _playerContext.getCurrentPlayer().id,
                 currentCourse: _courseContext.getCurrentCourse(),
-                companyID: companyData.customerID
+                companyID: companyData.customerID,
+                gameState: gameStatus
             };
 
             ConsoleHelper.log({
@@ -176,7 +177,8 @@ function GameContextProvider(props: any) {
                 currentHole: _courseContext.getCurrentHole().number,
                 currentPlayer: _playerContext.getCurrentPlayer().id,
                 currentCourse: _courseContext.getCurrentCourse(),
-                companyID: companyData.customerID
+                companyID: companyData.customerID,
+                gameState: gameStatus
             };
             localStorage.setItem("gameState", JSON.stringify(gameState));
             resolve(null);
@@ -281,12 +283,16 @@ function GameContextProvider(props: any) {
 
                 _scoreContext.addScores(parsedGameState.scores);
 
+                updateGameStatus(parsedGameState.gameState);
+
                 _playerContext.updateCurrentPlayer(parsedGameState.currentPlayer);
             
                 _playerContext.resetPlayers();
                 _playerContext.addPlayers(parsedGameState.players);
 
                 setLoadedLocalStorageData(parsedGameState);
+
+                
             
                 
                 

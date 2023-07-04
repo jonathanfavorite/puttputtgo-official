@@ -14,7 +14,6 @@ import ScoreHelper from '../../../helpers/ScoreHelper';
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import PlayerModel from '../../../models/player/PlayerModel';
 import ScoreModel from '../../../models/score/ScoreModel';
-import LocalStoragePreloader from '../../loadings/local-storage-preloader/LocalStoragePreloader';
 
 function ResultsPage() {
     const _gameContext = useContext(GameContext);
@@ -24,8 +23,6 @@ function ResultsPage() {
     const {business_name} = useParams();
     const navigate = useNavigate();
 
-
-    const [completelyLoaded, setCompletelyLoaded] = useState<boolean>(false);
 
     const GetFirstPlacePlayer = () : LeaderboardModel => {
         return _scoreContext.getAllPlayersScores()[0];
@@ -71,8 +68,6 @@ function ResultsPage() {
 
     useEffect(() => {
 
-        if(_gameContext.preloadedLocalStorage) {
-
         _gameContext.updateactivePage("results");
 
         _gameContext.updateGameStatus(GameStatus.Finished);
@@ -112,8 +107,7 @@ function ResultsPage() {
     setFlatPerformanceData(flatData);
     setPlayerColors(playerColors);
 
-}
-    }, [_gameContext.preloadedLocalStorage]);
+    }, []);
 
 
     const findBestWorstHole = () : BestWorstHole => {
@@ -196,44 +190,16 @@ function ResultsPage() {
         }
     }, [textRef]);
 
-    interface GroupComparisonValue {
-        value: number;
-        color: string;
-        boxColor: string;
-        betterWorse: string;
-    }
-
-    const groupComparisonValue = () : GroupComparisonValue =>  {
-        //let math = -1 * ((50 - 55) / 55) * 100;
-        // Adjusted Percentage Difference = -1 * ((Team Score - Average Group Score) / Average Group Score) * 100
-        let players = _playerContext.getAllPlayers();
-        let totalScore = 0;
-        players.forEach(player => {
-            totalScore += _scoreContext.getPlayerTotalScore(player.id);
-        });
-        totalScore = totalScore / players.length;
-        let averageGroupScore = _courseContext.getCurrentCourse().stats.averageGroupScore;
-        let math = -1 * ((totalScore - averageGroupScore) / averageGroupScore) * 100;
-        let rounded = Math.round(math);
-        return {
-            value: Math.abs(rounded),
-            color: math < 0 ? 'red' : 'green',
-            betterWorse: math < 0 ? 'worse' : 'better',
-            boxColor: math < 0 ? '#eb4141' : '#517b4b'
-        }
-    }
-
     return (
         <DataAssuranceHOC companyParam={
             business_name ! ? business_name : "default"
         }>
-            {!_gameContext.preloadedLocalStorage && !completelyLoaded ? <LocalStoragePreloader /> :
             <div className='results-page'>
 
                 <div className='header'>
                     <div className='left'
                         onClick={
-                            () => navigate(`/${business_name ! ? business_name : ""}`)
+                            () => navigate("/")
                     }>menu</div>
                     <div className='center'></div>
                     <div className='right'>share</div>
@@ -357,17 +323,16 @@ function ResultsPage() {
                             <div className='left'>
                                 <div className='box' style={{
                                     backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('group-comparison-background')),
-                                    backgroundColor: groupComparisonValue().boxColor
+                                    backgroundColor: '#517b4b'
                                 }}>
                                     <div>
-                                    <span className='number'>{groupComparisonValue().value}</span>
+                                    <span className='number'>53</span>
                                     <span className='percent'>%</span>
                                     </div>
                                 </div>
                             </div>
                             <div className='right'>
-                                
-                                <div className='box-content'>your team did<br /><span className={`color ${groupComparisonValue().color}`}>{groupComparisonValue().value}% {groupComparisonValue().betterWorse}</span> than other groups
+                                <div className='box-content'>your team did<br /><span className='color green'>53% better</span> than other groups
                                 </div>
                             </div>
                         </div>
@@ -423,7 +388,7 @@ function ResultsPage() {
                                                 return null;
                                             }
                                         }
-                                        return <div key={index} className='item' onClick={() => handlePlayerPerformanceClicked(player)}>
+                                        return <div className='item' onClick={() => handlePlayerPerformanceClicked(player)}>
                                         <div className='icon'
                                         style={
                                             {
@@ -473,7 +438,6 @@ function ResultsPage() {
                     </div>
                 </div>
             </div>
-            }
         </DataAssuranceHOC>
     )
 }

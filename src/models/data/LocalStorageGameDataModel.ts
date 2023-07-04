@@ -1,3 +1,4 @@
+import { GameStatus } from "../../contexts/GameContext";
 import CourseModel from "../course/CourseModel";
 import HoleModel from "../hole/HoleModel";
 import PlayerModel from "../player/PlayerModel";
@@ -10,7 +11,8 @@ type LocalStorageGameDataModel = {
     currentCourse: CourseModel,
     players: PlayerModel[],
     scores: ScoreModel[],
-    companyID: string
+    companyID: string,
+    gameState: number
 }
 
 export default LocalStorageGameDataModel;

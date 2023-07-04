@@ -35,6 +35,8 @@ function CreateGamePage() {
   useEffect(() => {
     _gameContext.updateSelectedLanguage("en");
     _gameContext.updateactivePage("create-game");
+
+    console.log("LOOOOOOODED");
     
     // handleCreateDummyData();
     const updateScrollableHeight = () => {
@@ -183,7 +185,14 @@ function CreateGamePage() {
     //   }
     // }
     _gameContext.updateGameStatus(GameStatus.Finished);
+    
   };
+
+  useEffect(() => {
+    if(_gameContext.gameStatus === GameStatus.Finished) {
+      _gameContext.saveToLocalStorageAsync();
+    }
+  }, [_gameContext.gameStatus]);
 
   return (
     <DataAssuranceHOC companyParam={business_name!}>

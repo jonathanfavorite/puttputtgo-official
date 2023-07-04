@@ -1,41 +1,38 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react';
 import { CourseContext } from '../../../contexts/CourseContext';
 import { GameContext, GameStatus } from '../../../contexts/GameContext';
-
-
-
-
 
 function LocalStoragePreloader() {
     const _courseContext = useContext(CourseContext);
     const _gameContext = useContext(GameContext);
 
+    useEffect(() => {
+        const checkAndLoadGame = async () => {
+            let findGame = _gameContext.doesGameStateExistInLocalStorage();
+            if(findGame) {
+                console.log("FOUND GAME");
+                _gameContext.updateGameStatus(GameStatus.Active);
+                _gameContext.loadFromLocalStorage();
+                _gameContext.updatePreloadedLocalStorage(true);
+            }
+            else {
+                console.log("NO GAME FOUND");
+                _gameContext.updatePreloadedLocalStorage(true);
+            }
+        };
+        checkAndLoadGame();
+    }, []);
 
     useEffect(() => {
-        
-        let findGame = _gameContext.doesGameStateExistInLocalStorage();
-        if(findGame)
-        {
-          console.log("FOUND GAME");
-          _gameContext.updateGameStatus(GameStatus.Active);
-          _gameContext.loadFromLocalStorage();
-
-         
+        console.log("hmm", _gameContext.preloadedLocalStorage)
+        if(_gameContext.preloadedLocalStorage) {
+            console.log("DONE");
         }
-        let timeout = setTimeout(() => {
-          _gameContext.updatePreloadedLocalStorage(true);
-        }, 200);
-        return () => {
-          clearTimeout(timeout);
-        }
-        
-      }, []);
+    }, [_gameContext.preloadedLocalStorage]);
 
-
-   
-  return (
-    <div>LocalStoragePreloader</div>
-  )
+    return (
+        <div>Loading Local Storage</div>
+    );
 }
 
-export default LocalStoragePreloader
+export default LocalStoragePreloader;
