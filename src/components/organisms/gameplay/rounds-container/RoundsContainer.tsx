@@ -28,7 +28,7 @@ function RoundsContainer(props: IProps) {
         _courseContext.updateCurrentHole(hole);
         //_gameContext.saveToLocalStorage();
 
-        console.log(_courseContext.getCurrentHole().number);
+        //console.log(_courseContext.getCurrentHole().number);
 
         nextHoleTransitionTexts(hole);
     };
@@ -62,7 +62,7 @@ function RoundsContainer(props: IProps) {
             let real = getCorrectChild(_courseContext.getCurrentHole().number);
             let timeout;
             if (real) {
-                console.log("REAL");
+                //console.log("REAL");
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
                         real!.scrollIntoView({
@@ -101,7 +101,7 @@ function RoundsContainer(props: IProps) {
                             let showComplete = false;
                             let showWarning = false;
                             let icon = null;
-                            if(hasAnyoneScoredOnThisHole) {
+                            if(hasAnyoneScoredOnThisHole || _courseContext.getCurrentHole().number > hole.number) {
                                 playersReminingWhoHaveNotScored = _scoreContext.hasEveryPlayerPlayedThisHole(hole.number).length;
                                 if(playersReminingWhoHaveNotScored === 0) {
                                     showComplete = true;
@@ -145,7 +145,9 @@ function RoundsContainer(props: IProps) {
                                         <Fragment>
                                             <div className='hole-status' style={{
                                                 backgroundImage: StyleHelper.format_css_url(icon)
-                                            }}></div>
+                                            }}>
+                                                {/* {hasAnyoneScoredOnThisHole ? "yes" : "no" } {playersReminingWhoHaveNotScored} */}
+                                            </div>
                                         <span>{hole.number}</span>
                                         <div className='par'>par <b>{hole.par}</b></div>
                                         </Fragment>

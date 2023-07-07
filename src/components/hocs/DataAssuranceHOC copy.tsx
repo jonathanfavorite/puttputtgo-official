@@ -31,10 +31,10 @@ const DataAssuranceHOC: React.FC<IProps> = ({ children, companyParam }) => {
     useEffect(() => {
         if(contextCompanyParam && gameLoading){ 
             if(CompanyHelper.DoesCompanyExist(contextCompanyParam)) {
-              console.log("company does exist");
+              //console.log("company does exist");
                 _gameContext.loadData(formatCompanyNameForDirectory(contextCompanyParam));
             } else {
-              console.log("company does not exist");
+              //console.log("company does not exist");
                 _gameContext.loadDefaultData();
             }
         }

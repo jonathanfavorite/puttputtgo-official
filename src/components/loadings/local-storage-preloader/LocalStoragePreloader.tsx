@@ -10,13 +10,13 @@ function LocalStoragePreloader() {
         const checkAndLoadGame = async () => {
             let findGame = _gameContext.doesGameStateExistInLocalStorage();
             if(findGame) {
-                console.log("FOUND GAME");
+                //console.log("FOUND GAME");
                 _gameContext.updateGameStatus(GameStatus.Active);
                 _gameContext.loadFromLocalStorage();
                 _gameContext.updatePreloadedLocalStorage(true);
             }
             else {
-                console.log("NO GAME FOUND");
+                //console.log("NO GAME FOUND");
                 _gameContext.updatePreloadedLocalStorage(true);
             }
         };
@@ -24,9 +24,9 @@ function LocalStoragePreloader() {
     }, []);
 
     useEffect(() => {
-        console.log("hmm", _gameContext.preloadedLocalStorage)
+        //console.log("hmm", _gameContext.preloadedLocalStorage)
         if(_gameContext.preloadedLocalStorage) {
-            console.log("DONE");
+            //console.log("DONE");
         }
     }, [_gameContext.preloadedLocalStorage]);
 

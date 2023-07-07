@@ -57,6 +57,8 @@ interface GameContextProps {
     updateactivePage: (page : string) => void;
     updatePreloadedLocalStorage: (bool : boolean) => void;
     isSavingToLocalStorage: boolean;
+    showFinalGamePopup: boolean;
+    toggleShowFinalGamePopup: (show: boolean) => void;
 }
 
 function GameContextProvider(props: any) {
@@ -93,12 +95,17 @@ function GameContextProvider(props: any) {
     const [gameStatus, setGameStatus] = useState < GameStatus > (GameStatus.NotStarted);
 
     const [isSavingToLocalStorage, setIsSavingToLocalStorage] = useState < boolean > (false);
+
+    const [showFinalGamePopup, setShowFinalGamePopup] = useState < boolean > (false);
     
   
     const updatePreloadedLocalStorage = (bool : boolean) => {
         setPreloadedLocalStorage((old) => bool);    
     }
-
+    const toggleShowFinalGamePopup = (show : boolean) => {
+        console.log("TOGGLING");
+        setShowFinalGamePopup((old) => show);    
+    }
 
     const resetGame = () => {
         setGameLoading(false);
@@ -454,7 +461,9 @@ function GameContextProvider(props: any) {
         activePage,
         updateactivePage,
         updatePreloadedLocalStorage,
-        isSavingToLocalStorage
+        isSavingToLocalStorage,
+        showFinalGamePopup,
+        toggleShowFinalGamePopup
     };
 
     return(< GameContext.Provider value = {

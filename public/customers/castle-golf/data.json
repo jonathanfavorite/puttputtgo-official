@@ -59,6 +59,16 @@
       ]
     }
   ],
+  "colors": [
+    {
+      "colorID": "next-player-button-background",
+      "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      }
+    }
+  ],
   "assets": [
     {
       "assetType": "image",
@@ -172,7 +182,7 @@
       "assetType": "image",
       "assetID": "gameplay-next-hole-button",
       "assetName": "Next Hole Button",
-      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-next-hole-button.jpg"
+      "assetLocation": "/customers/castle-golf/images/gameplay/gameplay-next-hole-button-trans.png"
     },
     {
       "assetType": "image",

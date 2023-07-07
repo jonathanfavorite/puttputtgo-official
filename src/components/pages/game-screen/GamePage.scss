@@ -271,7 +271,12 @@
             box-sizing: border-box;
             color:#feff8b;
             outline:none;
+            background-color:#1d7303;
             border:none;
+
+            &.darken {
+                opacity: 0.5;
+            }
           
             font-size: 2.0rem;
             span {

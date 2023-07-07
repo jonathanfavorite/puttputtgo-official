@@ -13,6 +13,7 @@ import Transition from "../../molecules/transition/Transition";
 import PlayerRecordHOC from "../../hocs/PlayerRecordHOC";
 import { PlayerContext } from "../../../contexts/PlayerContext";
 import { CourseContext } from "../../../contexts/CourseContext";
+import FinishGame from "../../molecules/finish-game/FinishGame";
 function GamePage() {
   const _gameContext = useContext(GameContext);
   const _courseContext = useContext(CourseContext);
@@ -51,6 +52,7 @@ function GamePage() {
         }}
       >
 
+       
         <Transition />
 
         <TextBasedHeader />
@@ -64,6 +66,7 @@ function GamePage() {
         </div>
       </div>
       </TransitionContextProvider>
+      {_gameContext.showFinalGamePopup && <FinishGame />}
     </DataAssuranceHOC>
   );
 }

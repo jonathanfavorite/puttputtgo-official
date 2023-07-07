@@ -1,0 +1,35 @@
+.finish-game-overlay {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    left:0;
+    top:0;
+    padding:10vw;
+    width:100vw;
+    background:rgba($color: #000000, $alpha: 0.7);
+    height:100vh;
+    box-sizing: border-box;
+    color:#fff;
+    z-index: 1999999;
+    $margin-bottom: 2vh;
+    .title {
+        font-size:3rem;
+        margin-bottom:$margin-bottom;
+    }
+    .subtitle {
+        margin-bottom:$margin-bottom;
+    }
+    .finalize-button {
+        aspect-ratio: 50/13;
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size:1.7rem;
+        background-size:100% 100%;
+        margin-bottom:$margin-bottom;
+    }
+}

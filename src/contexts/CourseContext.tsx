@@ -57,9 +57,9 @@ function CourseContextProvider(props: any) {
             addCourse(course);
             setCurrentCourse(courses.length - 1);
             setCurrentHole(currentHole);
-            console.log("course", course);
-            console.log("currentHole", currentHole);
-            console.log("holes", course.holes)
+            //console.log("course", course);
+            //console.log("currentHole", currentHole);
+            //console.log("holes", course.holes)
 
       
     }
@@ -102,14 +102,14 @@ function CourseContextProvider(props: any) {
         const index = getCurrentCourseHoles().findIndex(hole => hole.number === holeNumber);
         if(index === -1)
         {
-            console.log("index bad");
+            //console.log("index bad");
             setCurrentHole(1);
             return;
         }
         else
         {
 
-            console.log("INDEX", index + 1);
+            //console.log("INDEX", index + 1);
             setCurrentHole(holeNumber);
         }
         // console.log("holeNumber", holeNumber);
@@ -120,13 +120,15 @@ function CourseContextProvider(props: any) {
 
     const toggleNextHole = () => {
         if (currentHole < getCurrentCourseHoles().length - 1) {
-            console.log(currentHole + 1)
+            //console.log(currentHole + 1)
             setCurrentHole(old => old + 1);
         }
         else
         {
-            console.log("~~~~~~~~~~~~~~~~~~~~hey");
-            //console.log("cant toggle next hole");
+            let lastHole = getLastHole();
+            setCurrentHole(lastHole.number);
+            console.log("~~ LAST HOLE ~~", lastHole);
+            console.log("cant toggle next hole");
         }
     }
 
