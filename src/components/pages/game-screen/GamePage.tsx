@@ -14,9 +14,13 @@ import PlayerRecordHOC from "../../hocs/PlayerRecordHOC";
 import { PlayerContext } from "../../../contexts/PlayerContext";
 import { CourseContext } from "../../../contexts/CourseContext";
 import FinishGame from "../../molecules/finish-game/FinishGame";
+import GamePlayModalTemplate from "../../templates/gameplay-modal-template/GamePlayModalTemplate";
+import UnfinishedGame from "../../molecules/unfinished-game/UnfinishedGame";
+import { ScoreContext } from "../../../contexts/ScoreContext";
 function GamePage() {
   const _gameContext = useContext(GameContext);
   const _courseContext = useContext(CourseContext);
+  const _scoreContext = useContext(ScoreContext);
   const _playerContext = useContext(PlayerContext);
   const _transitionContext = useContext(TransitionContext);
   const { business_name } = useParams();
@@ -66,7 +70,11 @@ function GamePage() {
         </div>
       </div>
       </TransitionContextProvider>
+
       {_gameContext.showFinalGamePopup && <FinishGame />}
+
+      {_scoreContext.gameSubmissionReport.invalidHoles.length > 0 && <GamePlayModalTemplate><UnfinishedGame /></GamePlayModalTemplate>}
+
     </DataAssuranceHOC>
   );
 }

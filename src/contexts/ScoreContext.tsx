@@ -3,6 +3,7 @@ import ScoreModel from '../models/score/ScoreModel'
 import { PlayerContext } from './PlayerContext';
 import LeaderboardModel from '../models/score/LeaderboardModel';
 import { CourseContext } from './CourseContext';
+import { GameSubmissionReport } from '../models/game/GameSubmissionReportModel';
 
 const ScoreContext = createContext<ScoreContextProps>({} as ScoreContextProps)
 
@@ -21,6 +22,9 @@ interface ScoreContextProps {
     hasEveryPlayerPlayedThisHole: (hole: holeNumber) => PlayersNotPlayedThisHole[];
     hasAnyPlayerPlayedThisHole: (hole: holeNumber) => boolean;
     getRunningScoresByHoleAndPlayer: (playerID: number, holeNumber: number) => number;
+    gameSubmissionReport: GameSubmissionReport;
+    addGameSubmissionReport: (report: GameSubmissionReport) => void;
+    resetGameSubmissionReport: () => void;
 }
 interface PlayersNotPlayedThisHole {
     playerID: number;
@@ -31,6 +35,16 @@ function ScoreContextProvider(props: any) {
 
     const _playerContext = useContext(PlayerContext);
     const [scores, setScores] = useState<ScoreModel[]>([]);
+
+    const [gameSubmissionReport, setGameSubmissionReport] = useState<GameSubmissionReport>({invalidHoles: []});
+
+    const addGameSubmissionReport = (report: GameSubmissionReport) => {
+       setGameSubmissionReport(report)
+    };
+
+    const resetGameSubmissionReport = () => {
+        setGameSubmissionReport({invalidHoles: []});
+    }
 
 
     const resetScores = () => {
@@ -149,7 +163,10 @@ function ScoreContextProvider(props: any) {
         getAllPlayersScores,
         hasEveryPlayerPlayedThisHole,
         hasAnyPlayerPlayedThisHole,
-        getRunningScoresByHoleAndPlayer
+        getRunningScoresByHoleAndPlayer,
+        gameSubmissionReport,
+        addGameSubmissionReport,
+        resetGameSubmissionReport,
     }
 
     return <ScoreContext.Provider value={contextValues}>

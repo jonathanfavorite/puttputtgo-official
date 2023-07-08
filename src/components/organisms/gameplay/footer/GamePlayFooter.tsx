@@ -6,6 +6,8 @@ import { ScoreContext } from '../../../../contexts/ScoreContext';
 import ScoreModel from '../../../../models/score/ScoreModel';
 import { CourseContext } from '../../../../contexts/CourseContext';
 import { TransitionContext } from '../../../../contexts/TransitionContext';
+import HoleModel from '../../../../models/hole/HoleModel';
+import { GameSubmissionReport } from '../../../../models/game/GameSubmissionReportModel';
 
 function GamePlayFooter() {
     const _gameContext = useContext(GameContext);
@@ -58,6 +60,10 @@ function GamePlayFooter() {
             }
             
         }
+        else 
+        {
+            clearInterval(timer);
+        }
         return () => {
             clearInterval(timer);
         }
@@ -71,11 +77,30 @@ function GamePlayFooter() {
 
     if(_courseContext.holesRemaining() <= 1) {
                     
+        console.log("last hole");
         let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1];
         if(_courseContext.getCurrentHole().number == lastHole.number)
         {
-            _gameContext.saveToLocalStorageAsync();
-          _gameContext.toggleShowFinalGamePopup(true);
+            let gameReport = GetGameSubmissionReport();
+            if(gameReport.invalidHoles.length > 0)
+            {
+                // let table = [];
+                // for(let i = 0; i < gameReport.invalidHoles.length; i++)
+                // {
+                //     let currentHole = gameReport.invalidHoles[i];
+                //     table.push([currentHole.hole.number, currentHole.playerIDs.join(", ")]);
+                // }
+                // console.table(table);
+                _scoreContext.addGameSubmissionReport(gameReport);
+
+            }
+            else{
+                _scoreContext.addGameSubmissionReport({invalidHoles: []});
+                _gameContext.toggleShowFinalGamePopup(true);
+                
+            }
+            //_gameContext.saveToLocalStorageAsync();
+          //_gameContext.toggleShowFinalGamePopup(true);
         }
     }
         
@@ -197,6 +222,37 @@ function GamePlayFooter() {
                 });
             });
         }
+    }
+
+
+
+    const GetGameSubmissionReport = () : GameSubmissionReport => {
+        let missingScores : GameSubmissionReport = {
+            invalidHoles: []
+        }
+        _courseContext.getCurrentCourse().holes.forEach(hole => {
+            _playerContext.getAllPlayers().forEach(player => {
+                let score = _scoreContext.getScoreByHoleAndPlayer(hole.number, player.id);
+                if(score == null || score == -10)
+                {
+                    // only add to missingScores.invalidHoles if the hole is not already in the array
+                    if(missingScores.invalidHoles.filter(x => x.hole.number == hole.number).length == 0)
+                    {
+                        //console.log("NOT");
+                        missingScores.invalidHoles.push({
+                            hole: hole,
+                            playerIDs: [player.id]
+                        });
+                    }
+                    else
+                    {
+                        let invalidHole = missingScores.invalidHoles.filter(x => x.hole.number == hole.number)[0];
+                        invalidHole.playerIDs.push(player.id);
+                    }
+                }
+            });
+        });
+        return missingScores;
     }
 
     useEffect(() => {
