@@ -63,15 +63,23 @@ function RoundsContainer(props: IProps) {
             let timeout;
             if (real) {
                 //console.log("REAL");
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        real!.scrollIntoView({
-                            behavior: "smooth", 
-                            block: "center",
-                            inline: "center",
-                        });
+                // requestAnimationFrame(() => {
+                //     requestAnimationFrame(() => {
+                //         real!.scrollIntoView({
+                //             behavior: "smooth", 
+                //             block: "center",
+                //             inline: "center",
+                //         });
+                //     });
+                // });
+
+                setTimeout(() => {
+                    real!.scrollIntoView({
+                        behavior: "smooth", 
+                        block: "center",
+                        inline: "center",
                     });
-                });
+                }, 200); // adjust delay as needed
             }
 
     }, [_courseContext.getCurrentHole().number]);

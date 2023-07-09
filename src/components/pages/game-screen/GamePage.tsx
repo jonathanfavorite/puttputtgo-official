@@ -34,6 +34,13 @@ function GamePage() {
   };
 
 
+  const [viewPortHeight, setViewPortHeight] = useState(0);
+
+  useEffect(() => {
+    setViewPortHeight(window.innerHeight);
+  }, []);
+
+
   useEffect(() => {
     //_gameContext.updateactivePage("game");
     if(_playerContext.getAllPlayers().length <= 0)
@@ -50,6 +57,7 @@ function GamePage() {
       <div
         className="game-page"
         style={{
+          height: viewPortHeight + 'px',
           backgroundImage: StyleHelper.format_css_url(
             _gameContext.getAssetByID("gameplay-game-background")
           ),

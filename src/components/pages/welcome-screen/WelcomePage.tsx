@@ -18,7 +18,11 @@ function WelcomePage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        _gameContext.updateactivePage("welcome");
+        if(_gameContext.activePage != 'donotshow_existing_game')
+        {
+            _gameContext.updateactivePage("welcome");
+        }
+        
     }, []);
 
     const goTo = (route: string, relative: boolean = true) => {
@@ -78,7 +82,7 @@ function WelcomePage() {
     }
 
     const handleSettingsClick = () => {
-        goTo('/results');
+        goTo('/settings');
     }
     return (
       <DataAssuranceHOC companyParam={business_name!}>

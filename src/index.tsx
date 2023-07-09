@@ -17,6 +17,7 @@ import {UIContextProvider} from './contexts/UIContext';
 import { CourseContextProvider } from './contexts/CourseContext';
 import FlexTest from './components/pages/tests/flex/flexTest';
 import ResultsPage from './components/pages/results-screen/ResultsPage';
+import SettingsPage from './components/pages/settings-screen/SettingsPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 root.render (
@@ -62,6 +63,9 @@ root.render (
                                         }/>
                                     <Route path="/:business_name/course-selection"
                                         element={<CourseSelectionPage/>}/>
+
+                                    <Route path="/:business_name/settings"
+                                        element={<SettingsPage/>}/>
 
                                     <Route path="/:business_name/test"
                                         element={<TestCompanyDataPage/>}/>

@@ -92,6 +92,7 @@ function GamePlayFooter() {
                 // }
                 // console.table(table);
                 _scoreContext.addGameSubmissionReport(gameReport);
+                setShowFinishGameButton(false);
 
             }
             else{
@@ -216,11 +217,18 @@ function GamePlayFooter() {
     const scrollToActivePlayer = () => {
         let activePlayer = document.querySelector('.active-player');
         if (activePlayer) {
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                   activePlayer!.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-                });
-            });
+            if(activePlayer.getAttribute('data-id') == '0')
+            {
+                setTimeout(() => {
+                    activePlayer!.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                }, 400); // adjust delay as needed
+            }
+            else{
+                setTimeout(() => {
+                    activePlayer!.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                }, 300); // adjust delay as needed
+            }
+           
         }
     }
 

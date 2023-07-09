@@ -108,7 +108,7 @@ function DataAssuranceHOC(props : IProps) {
   }
 
 
-  if(!_gameContext.gameLoading && _gameContext.gameStatus == GameStatus.Active  && !_gameContext.clickedContinueGame)
+  if(!_gameContext.gameLoading && _gameContext.gameStatus == GameStatus.Active && _gameContext.activePage != 'donotshow_existing_game' && _gameContext.activePage != 'settings'  && !_gameContext.clickedContinueGame)
   {
     return <WelcomeTemplate><ExistingGame /></WelcomeTemplate>
   }

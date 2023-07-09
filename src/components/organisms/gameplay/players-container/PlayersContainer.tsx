@@ -25,6 +25,7 @@ function PlayersContainer() {
                     <div className={
                             `player ${active}`
                         }
+                        data-id={index}
                         onClick={() => handlePlayerClick(player.id)}
                         key={index}
                         style={

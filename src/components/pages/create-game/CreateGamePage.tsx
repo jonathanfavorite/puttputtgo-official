@@ -32,6 +32,12 @@ function CreateGamePage() {
     navigate("/create-game");
   };
 
+  const [viewPortHeight, setViewPortHeight] = useState(0);
+
+  useEffect(() => {
+    setViewPortHeight(window.innerHeight);
+  }, []);
+
   useEffect(() => {
     _gameContext.updateSelectedLanguage("en");
     _gameContext.updateactivePage("create-game");
@@ -226,6 +232,7 @@ function CreateGamePage() {
       <div
         className="create-game-page"
         style={{
+          height: viewPortHeight + "px",
           backgroundImage: `url(${
             _gameContext.getAssetByID("create-game-background")?.assetLocation
           })`,

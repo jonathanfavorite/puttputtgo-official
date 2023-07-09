@@ -1,5 +1,5 @@
 :root {
-    --vh: 100vh; // Default fallback value
+    --vh: 100svh; // Default fallback value
 }
 
 .create-game-page {
@@ -7,7 +7,7 @@
     flex-direction: column;
     background: #ccc;
     max-height: -webkit-fill-available;
-    height: var(--vh); // Use the actual viewport height
+    height: 100svh;
     background-size: 100% 100%;
     background-position: center center;
     color: #fff;
