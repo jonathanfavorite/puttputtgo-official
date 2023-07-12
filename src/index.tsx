@@ -18,7 +18,7 @@ import { CourseContextProvider } from './contexts/CourseContext';
 import FlexTest from './components/pages/tests/flex/flexTest';
 import ResultsPage from './components/pages/results-screen/ResultsPage';
 import SettingsPage from './components/pages/settings-screen/SettingsPage';
-import { HelmetProvider } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 root.render (
@@ -28,6 +28,13 @@ root.render (
                 <GameContextProvider>
                     <UIContextProvider>
                         <HelmetProvider>
+                        <Helmet>
+            <title>Result Page</title>
+                <meta name="description" content={`Game Over!`} />
+                <meta property="og:title" content="Jonathan Test" />
+                <meta property="og:description" content={`Game Over!`} />
+                <meta property="og:image" content={`https://favoritecreative.com/puttputtgo/shareable/saves/castle-golf/YAJ-A59-O9H.jpg`} />
+            </Helmet>
                         <App>
                             <BrowserRouter>
                                 <Routes>
