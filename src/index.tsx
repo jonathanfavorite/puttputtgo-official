@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './startup/index.scss';
-import App from './startup/App';
+import './startup/App.scss';
 import {GameContextProvider} from './contexts/GameContext';
 import {PlayerContextProvider} from './contexts/PlayerContext';
 import {ScoreContextProvider} from './contexts/ScoreContext';
@@ -19,76 +19,84 @@ import FlexTest from './components/pages/tests/flex/flexTest';
 import ResultsPage from './components/pages/results-screen/ResultsPage';
 import SettingsPage from './components/pages/settings-screen/SettingsPage';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { hydrate, render } from 'react-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
-root.render (
-    <PlayerContextProvider>
-        <CourseContextProvider>
-            <ScoreContextProvider>
-                <GameContextProvider>
-                    <UIContextProvider>
-                        <HelmetProvider>
-                        <Helmet>
-            <title>Result Page</title>
-                <meta name="description" content={`Game Over!`} />
-                <meta property="og:title" content="Jonathan Test" />
-                <meta property="og:description" content={`Game Over!`} />
-                <meta property="og:image" content={`https://favoritecreative.com/puttputtgo/shareable/saves/castle-golf/YAJ-A59-O9H.jpg`} />
-            </Helmet>
-                        <App>
-                            <BrowserRouter>
-                                <Routes>
-                                    <Route path="/"
-                                        element={<WelcomePage/>}/>
-
-                                    <Route path="/game"
-                                        element={<GamePage/>}/>
-                                    <Route path="/create-game"
-                                        element={<CreateGamePage/>}/>
-                                    <Route path="/rules"
-                                        element={<RulesPage/>}/>
-                                    <Route path="/results"
-                                        element={<ResultsPage />}/>
-                                    <Route path="/admin"
-                                        element={
-                                            <h1>Admin</h1>
-                                        }/>
-                                    <Route path="/course-selection"
-                                        element={<CourseSelectionPage/>}/>
-
-                                    <Route path="/:business_name"
-                                        element={<WelcomePage/>}/>
-                                    <Route path="/:business_name/rules"
-                                        element={<RulesPage/>}/>
-                                    <Route path="/:business_name/game"
-                                        element={<GamePage/>}/>
-                                    <Route path="/:business_name/create-game"
-                                        element={<CreateGamePage/>}/>
-                                        <Route path="/:business_name/results"
-                                        element={<ResultsPage />}/>
-                                    <Route path="/:business_name/admin"
-                                        element={
-                                            <h1>Admin</h1>
-                                        }/>
-                                    <Route path="/:business_name/course-selection"
-                                        element={<CourseSelectionPage/>}/>
-
-                                    <Route path="/:business_name/settings"
-                                        element={<SettingsPage/>}/>
-
-                                    <Route path="/:business_name/test"
-                                        element={<TestCompanyDataPage/>}/>
-                                        <Route path="/test/flex"
-                                        element={<FlexTest/>}/>
-                                </Routes>
-                            </BrowserRouter>
-                        </App>
-                        </HelmetProvider>
-                    </UIContextProvider>
-                </GameContextProvider>
-            </ScoreContextProvider>
-        </CourseContextProvider>
-    </PlayerContextProvider>
 
 
-);
+
+const App = () => {
+    return <PlayerContextProvider>
+    <CourseContextProvider>
+        <ScoreContextProvider>
+            <GameContextProvider>
+                <UIContextProvider>
+                    <HelmetProvider>
+                    <Helmet>
+        <title>Result Page</title>
+            <meta name="description" content={`Game Over!`} />
+            <meta property="og:title" content="Jonathan Test" />
+            <meta property="og:description" content={`Game Over!`} />
+            <meta property="og:image" content={`https://favoritecreative.com/puttputtgo/shareable/saves/castle-golf/YAJ-A59-O9H.jpg`} />
+        </Helmet>
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path="/"
+                                    element={<WelcomePage/>}/>
+
+                                <Route path="/game"
+                                    element={<GamePage/>}/>
+                                <Route path="/create-game"
+                                    element={<CreateGamePage/>}/>
+                                <Route path="/rules"
+                                    element={<RulesPage/>}/>
+                                <Route path="/results"
+                                    element={<ResultsPage />}/>
+                                <Route path="/admin"
+                                    element={
+                                        <h1>Admin</h1>
+                                    }/>
+                                <Route path="/course-selection"
+                                    element={<CourseSelectionPage/>}/>
+
+                                <Route path="/:business_name"
+                                    element={<WelcomePage/>}/>
+                                <Route path="/:business_name/rules"
+                                    element={<RulesPage/>}/>
+                                <Route path="/:business_name/game"
+                                    element={<GamePage/>}/>
+                                <Route path="/:business_name/create-game"
+                                    element={<CreateGamePage/>}/>
+                                    <Route path="/:business_name/results"
+                                    element={<ResultsPage />}/>
+                                <Route path="/:business_name/admin"
+                                    element={
+                                        <h1>Admin</h1>
+                                    }/>
+                                <Route path="/:business_name/course-selection"
+                                    element={<CourseSelectionPage/>}/>
+
+                                <Route path="/:business_name/settings"
+                                    element={<SettingsPage/>}/>
+
+                                <Route path="/:business_name/test"
+                                    element={<TestCompanyDataPage/>}/>
+                                    <Route path="/test/flex"
+                                    element={<FlexTest/>}/>
+                            </Routes>
+                        </BrowserRouter>
+                    </HelmetProvider>
+                </UIContextProvider>
+            </GameContextProvider>
+        </ScoreContextProvider>
+    </CourseContextProvider>
+</PlayerContextProvider>
+}
+
+
+const rootElement = document.getElementById("root");
+if (rootElement!.hasChildNodes()) {
+    hydrate(<App />, rootElement);
+  } else {
+    render(<App />, rootElement);
+  }
