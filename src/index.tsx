@@ -18,6 +18,7 @@ import { CourseContextProvider } from './contexts/CourseContext';
 import FlexTest from './components/pages/tests/flex/flexTest';
 import ResultsPage from './components/pages/results-screen/ResultsPage';
 import SettingsPage from './components/pages/settings-screen/SettingsPage';
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 root.render (
@@ -26,6 +27,7 @@ root.render (
             <ScoreContextProvider>
                 <GameContextProvider>
                     <UIContextProvider>
+                        <HelmetProvider>
                         <App>
                             <BrowserRouter>
                                 <Routes>
@@ -74,6 +76,7 @@ root.render (
                                 </Routes>
                             </BrowserRouter>
                         </App>
+                        </HelmetProvider>
                     </UIContextProvider>
                 </GameContextProvider>
             </ScoreContextProvider>

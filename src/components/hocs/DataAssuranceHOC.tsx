@@ -7,6 +7,8 @@ import ExistingGame from '../molecules/existing-game/ExistingGame';
 import WelcomeTemplate from '../templates/welcome-screen/WelcomeTemplate';
 import { CourseContext } from '../../contexts/CourseContext';
 import LocalStoragePreloader from '../loadings/local-storage-preloader/LocalStoragePreloader';
+import { useLocation } from 'react-router-dom';
+import RealGameLoader from '../loadings/real-game-loader/RealGameLoader';
 
 interface IProps {
     children: any;
@@ -18,6 +20,10 @@ const formatCompanyNameForDirectory = (companyName : string) => {
 }
 
 function DataAssuranceHOC(props : IProps) {
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const gameID = queryParams.get('gameID');
 
   const [checkingForExistingGame, setCheckingForExistingGame] = React.useState(true);
   const [existingGameFound, setExistingGameFound] = React.useState(false);
@@ -100,6 +106,11 @@ function DataAssuranceHOC(props : IProps) {
   if(!_gameContext.gameLoading && !_gameContext.preloadedAssets)
   {
     return <GeneralLoadingTemplate><AssetLoader /></GeneralLoadingTemplate>
+  }
+
+  if(gameID && !_gameContext.gameLoadingGameFromWeb && _gameContext.allowGameLoadingFromWeb)
+  {
+    return <GeneralLoadingTemplate><RealGameLoader /></GeneralLoadingTemplate>
   }
 
   if(!_gameContext.preloadedLocalStorage) 

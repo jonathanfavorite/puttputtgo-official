@@ -167,6 +167,10 @@ function CreateGamePage() {
     // _scoreContext.addScore({ courseID: currentCourse, holeID: 17, playerID: 2, score: 5});
     // _scoreContext.addScore({ courseID: currentCourse, holeID: 18, playerID: 2, score: 3});
 
+
+    _scoreContext.resetScores();
+    _playerContext.resetPlayers();
+
     function hexToRgb(hex: string) {
       var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
       return result ? {
@@ -176,7 +180,7 @@ function CreateGamePage() {
       } : null;
     }
 
-    let names = ["Jonathan", "Melanie", "Hunter", "Jessica", "Katie"];
+    let names = ["Jonathan", "Melanie"];
     let colors : RGBModel[] = [
      { name: "red", r: 255, g: 0, b: 0 },
         { name: "yellow", r: 255, g: 255, b: 0 },
@@ -217,7 +221,8 @@ function CreateGamePage() {
         });
       }
     }
-    _gameContext.updateGameStatus(GameStatus.Finished);
+    _gameContext.updateGameStatus(GameStatus.Active);
+    _courseContext.updateCurrentHole(18);
     
   };
 

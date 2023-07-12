@@ -15,6 +15,8 @@ import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import PlayerModel from '../../../models/player/PlayerModel';
 import ScoreModel from '../../../models/score/ScoreModel';
 import LocalStoragePreloader from '../../loadings/local-storage-preloader/LocalStoragePreloader';
+import { Helmet } from 'react-helmet-async';
+
 
 function ResultsPage() {
     const _gameContext = useContext(GameContext);
@@ -224,9 +226,19 @@ function ResultsPage() {
     }
 
     return (
+        
         <DataAssuranceHOC companyParam={
             business_name ! ? business_name : "default"
         }>
+
+            <Helmet>
+            <title>Result Page</title>
+                <meta name="description" content={`Game Over! took the lead!`} />
+                <meta property="og:title" content="Result Page" />
+                <meta property="og:description" content={`Game Over!  took the lead!`} />
+                <meta property="og:image" content={`${process.env.REACT_APP_SNAPSHOT_URL}saves/${_gameContext.companyData.customerID}/${_gameContext.gameID}.jpg`} />
+            </Helmet>
+
             {!_gameContext.preloadedLocalStorage && !completelyLoaded ? <LocalStoragePreloader /> :
             <div className='results-page'>
 
@@ -475,6 +487,7 @@ function ResultsPage() {
             </div>
             }
         </DataAssuranceHOC>
+        
     )
 }
 

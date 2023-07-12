@@ -8,6 +8,7 @@ import { CourseContext } from '../../../../contexts/CourseContext';
 import { TransitionContext } from '../../../../contexts/TransitionContext';
 import HoleModel from '../../../../models/hole/HoleModel';
 import { GameSubmissionReport } from '../../../../models/game/GameSubmissionReportModel';
+import PlayerModel from '../../../../models/player/PlayerModel';
 
 function GamePlayFooter() {
     const _gameContext = useContext(GameContext);

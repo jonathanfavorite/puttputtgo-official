@@ -6,6 +6,7 @@ import LocalStorageGameDataModel from "../models/data/LocalStorageGameDataModel"
 import {JsxFragment} from "typescript";
 import {CourseContext} from "./CourseContext";
 import ConsoleHelper from "../helpers/ConsoleHelper";
+import GameHelper from "../helpers/GameHelper";
 
 const GameContext = createContext < GameContextProps > ({} as GameContextProps);
 
@@ -59,6 +60,14 @@ interface GameContextProps {
     isSavingToLocalStorage: boolean;
     showFinalGamePopup: boolean;
     toggleShowFinalGamePopup: (show: boolean) => void;
+    gameID: string;
+    updateGameID: (id: string) => void;
+    gameLoadingGameFromWeb: boolean;
+    updateGameLoadingFromWeb: (bool: boolean) => void;
+    allowGameLoadingFromWeb: boolean;
+    updateAllowGameLoadingFromWeb: (bool: boolean) => void;
+
+
 }
 
 function GameContextProvider(props: any) {
@@ -97,6 +106,24 @@ function GameContextProvider(props: any) {
     const [isSavingToLocalStorage, setIsSavingToLocalStorage] = useState < boolean > (false);
 
     const [showFinalGamePopup, setShowFinalGamePopup] = useState < boolean > (false);
+
+    const [gameID, setGameID] = useState < string > (GameHelper.generateUniqueId());
+
+    const [gameLoadingGameFromWeb, setGameLoadingGameFromWeb] = useState < boolean > (false);
+
+    const [allowGameLoadingFromWeb, setAllowGameLoadingFromWeb] = useState < boolean > (true);
+
+    const updateGameLoadingFromWeb = (bool : boolean) => {
+        setGameLoadingGameFromWeb((old) => bool);
+    }
+
+    const updateGameID = (id : string) => {
+        setGameID((old) => id);
+    }
+
+    const updateAllowGameLoadingFromWeb = (allow: boolean) => {
+        setAllowGameLoadingFromWeb((old) => allow);
+    }
     
   
     const updatePreloadedLocalStorage = (bool : boolean) => {
@@ -463,7 +490,13 @@ function GameContextProvider(props: any) {
         updatePreloadedLocalStorage,
         isSavingToLocalStorage,
         showFinalGamePopup,
-        toggleShowFinalGamePopup
+        toggleShowFinalGamePopup,
+        gameID,
+        updateGameID,
+        gameLoadingGameFromWeb,
+        updateGameLoadingFromWeb,
+        allowGameLoadingFromWeb,
+        updateAllowGameLoadingFromWeb,
     };
 
     return(< GameContext.Provider value = {

@@ -1,7 +1,6 @@
 {
   "files.exclude": {
     "README.md": true,
-    ".gitignore": true,
     "package-lock.json": true,
     "package.json": true
   }
