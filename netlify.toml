@@ -1,4 +1,4 @@
 [build]
+  command = "CI=false npm run build"
   functions = "netlify/functions"
-  command = "npm run build"
   publish = "build"
