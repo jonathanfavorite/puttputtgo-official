@@ -1,3 +1,4 @@
+
 .results-page {
     height: 100vh;
     max-height: -webkit-fill-available;
@@ -7,11 +8,13 @@
     background-position: top;
 
     background-repeat: no-repeat;
+    box-sizing: border-box;
     position: relative;
     color: #fff;
     //background-image: url("../../../../public/customers/castle-golf/images/welcome-background.jpg");
     background-size: 100% auto;
     background-color: #382d2d;
+
 
     .gradient {
         position: absolute;
@@ -36,10 +39,23 @@
         top: 0;
         box-sizing: border-box;
         padding: 20px;
+
         z-index: 19999;
+        background-image: linear-gradient(to bottom, rgba(56,45,45,1), rgba(255,0,0,0));
+        align-items: center;
         .left {
+            flex:1;
+            span {
+                display: flex;
+              
+                align-items: center;
+                aspect-ratio: 190 /49;
+                width:30vw;
+                background-size:100% 100%;
+            }
         }
         .right {
+          
         }
         .center {
             flex: 1;
@@ -97,6 +113,8 @@
                 }
                 .winner-right {
                     padding-right: 5vw;
+                    box-sizing: border-box;
+                    width:100%;
                     .title {
                         display: flex;
                         flex-direction: column;

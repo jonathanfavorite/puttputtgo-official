@@ -1,0 +1,17 @@
+.share-game-wrap {
+    display: flex;
+
+    .icon {
+        width:8vw;
+        margin-right:5vw;
+        &:last-child {
+            margin-right:0;
+        }
+        svg {
+            height:100%;
+            width:100%;
+            aspect-ratio: 1/1;
+            fill: #fff;
+        }
+    }
+}

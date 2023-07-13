@@ -23,22 +23,13 @@ import { hydrate, render } from 'react-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
-
-
-const App = () => {
-    return <PlayerContextProvider>
+root.render(
+    <PlayerContextProvider>
     <CourseContextProvider>
         <ScoreContextProvider>
             <GameContextProvider>
                 <UIContextProvider>
-                    <HelmetProvider>
-                    <Helmet>
-        <title>Result Page</title>
-            <meta name="description" content={`Game Over!`} />
-            <meta property="og:title" content="Jonathan Test" />
-            <meta property="og:description" content={`Game Over!`} />
-            <meta property="og:image" content={`https://favoritecreative.com/puttputtgo/shareable/saves/castle-golf/YAJ-A59-O9H.jpg`} />
-        </Helmet>
+
                         <BrowserRouter>
                             <Routes>
                                 <Route path="/"
@@ -85,18 +76,17 @@ const App = () => {
                                     element={<FlexTest/>}/>
                             </Routes>
                         </BrowserRouter>
-                    </HelmetProvider>
                 </UIContextProvider>
             </GameContextProvider>
         </ScoreContextProvider>
     </CourseContextProvider>
 </PlayerContextProvider>
-}
+);
 
 
-const rootElement = document.getElementById("root");
-if (rootElement!.hasChildNodes()) {
-    hydrate(<App />, rootElement);
-  } else {
-    render(<App />, rootElement);
-  }
+// const rootElement = document.getElementById("root");
+// if (rootElement!.hasChildNodes()) {
+//     hydrate(<App />, rootElement);
+//   } else {
+//     render(<App />, rootElement);
+//   }

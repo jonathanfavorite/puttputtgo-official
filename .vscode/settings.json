@@ -1,6 +1,15 @@
 {
   "files.exclude": {
     "README.md": true,
-    "package-lock.json": true
+    "package-lock.json": true,
+    ".env.development": true,
+    ".env.production": true,
+    ".git": true,
+    ".gitignore": true,
+    ".vscode": true,
+    "build": true,
+    "node_modules": true,
+    "package.json": true,
+    "tsconfig.json": true
   }
 }

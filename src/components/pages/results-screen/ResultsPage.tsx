@@ -16,6 +16,7 @@ import PlayerModel from '../../../models/player/PlayerModel';
 import ScoreModel from '../../../models/score/ScoreModel';
 import LocalStoragePreloader from '../../loadings/local-storage-preloader/LocalStoragePreloader';
 import { Helmet } from 'react-helmet-async';
+import ShareGames from '../../molecules/share-games/ShareGames';
 
 
 function ResultsPage() {
@@ -240,9 +241,16 @@ function ResultsPage() {
                     <div className='left'
                         onClick={
                             () => navigate(`/${business_name ! ? business_name : ""}`)
-                    }>menu</div>
+                    }><span style={{
+                            //backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("results-back-button-background"))
+                    }}>Menu</span></div>
                     <div className='center'></div>
-                    <div className='right'>share</div>
+                    <div className='right'>
+                        
+                        <ShareGames />
+
+
+                    </div>
 
                 </div>
                 <div className='body'>
