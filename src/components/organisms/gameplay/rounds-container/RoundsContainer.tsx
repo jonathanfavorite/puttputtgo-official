@@ -149,6 +149,7 @@ function RoundsContainer(props: IProps) {
                                             backgroundImage: StyleHelper.format_css_url(properBackground)
                                         }
                                 }>
+                                        
                                     {
                                         <Fragment>
                                             <div className='hole-status' style={{

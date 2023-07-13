@@ -180,7 +180,7 @@ function CreateGamePage() {
       } : null;
     }
 
-    let names = ["Jonathan", "Melanie"];
+    let names = ["Jonathan", "Melanie", "Jessica", "Hunter", "Katie"];
     let colors : RGBModel[] = [
      { name: "red", r: 255, g: 0, b: 0 },
         { name: "yellow", r: 255, g: 255, b: 0 },

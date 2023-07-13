@@ -104,6 +104,9 @@ function GamePlayFooter() {
             //_gameContext.saveToLocalStorageAsync();
           //_gameContext.toggleShowFinalGamePopup(true);
         }
+        else{
+           // alert('pressed');
+        }
     }
         
     }
@@ -126,7 +129,7 @@ function GamePlayFooter() {
             
             if(_playerContext.getCurrentPlayer().id == _playerContext.getLastPlayer().id)
             {
-      
+                console.log("last player");
               if(playersWhoHaventGone.length > 0 && playersWhoHaventGone[0].playerID != _playerContext.getCurrentPlayer().id)
               {
                   scrollToPlayerWhoHasNotGone(playersWhoHaventGone[0].playerID);
@@ -174,9 +177,11 @@ function GamePlayFooter() {
             }
             else
             {
+                //console.log("saving");
               _playerContext.toggleNextPlayer();
+              
               timeout = setTimeout(() => {
-                _gameContext.saveToLocalStorageAsync();
+                //_gameContext.saveToLocalStorageAsync();
               }, 300);
 
              

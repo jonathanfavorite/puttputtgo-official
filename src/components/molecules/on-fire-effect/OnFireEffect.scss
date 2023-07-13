@@ -1,0 +1,63 @@
+//$fireColor: rgba(255,80,0, 0.1);
+//$fireColorT: rgba(255,80,0,0);
+// $fireColor: rgba(0, 184, 15, 0.1);
+// $fireColorT: rgba(0, 184, 15,0);
+$dur: 1s;
+$blur: 0.02em;
+$fireRad: 5em;
+$parts: 50;
+$partSize: 8em;
+
+.fire {
+	filter: blur($blur);
+	-webkit-filter: blur($blur);
+	position: absolute;
+    left:0;
+    right:0;
+    width: auto;
+    visibility: hidden;
+    height:5vh;
+    pointer-events: none;
+    
+
+}
+
+.top-fire {
+    top: -2vh; // Position the top fire effect at the top of the player container
+    transform: scaleY(1); // Flip the fire effect so that it appears to go downwards
+}
+.bottom-fire {
+    transform: scaleY(-1);
+    bottom: 0; // Position the bottom fire effect at the bottom of the player container
+}
+.particle {
+	animation: rise $dur ease-in infinite;
+	//background-image: radial-gradient($fireColor 20%,$fireColorT 70%);
+	border-radius: 50%;
+	mix-blend-mode: screen;
+	opacity: 0;
+	position: absolute;
+	bottom: 0;
+	width: $partSize;
+	height: $partSize;
+	// spread particles out in time and x-position to get desired effect
+	@for $p from 1 through $parts {
+		&:nth-of-type(#{$p}) {
+			animation-delay: $dur * random();
+			left: calc((100% - #{$partSize}) * #{($p - 1)/$parts});
+		}
+	}
+}
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(0) scale(1);
+	}
+	25% {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-10em) scale(0);
+	}
+}

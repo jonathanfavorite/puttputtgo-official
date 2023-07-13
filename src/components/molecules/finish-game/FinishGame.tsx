@@ -91,7 +91,7 @@ function FinishGame() {
     return (
         <div className='finish-game-overlay'>
             <div className='title'>game over</div>
-            <div className='subtitle'>you have finished the game. if all scores are correct, please press view results. If not, press 'take me back'.</div>
+            <div className='subtitle'></div>
             <div className='finalize-button'
                 onClick={handleViewResultsClick}
                 style={

@@ -4,6 +4,7 @@ import { GameContext } from '../../../../contexts/GameContext';
 import { PlayerContext, formatRGBToCSS } from '../../../../contexts/PlayerContext';
 import { ScoreContext } from '../../../../contexts/ScoreContext';
 import { CourseContext } from '../../../../contexts/CourseContext';
+import OnFireEffect from '../../../molecules/on-fire-effect/OnFireEffect';
 
 function PlayersContainer() {
 
@@ -21,9 +22,11 @@ function PlayersContainer() {
             {
             _playerContext.getAllPlayers().sort().map((player, index) => {
                 let active = index === _playerContext.getCurrentPlayer().id ? 'active-player' : '';
+                let isLast = index === _playerContext.getAllPlayers().length - 1 ? true : false;
+                let isFirst = index === 0 ? true : false;
                 return (
                     <div className={
-                            `player ${active}`
+                            `player ${active} onfire`
                         }
                         data-id={index}
                         onClick={() => handlePlayerClick(player.id)}
@@ -33,6 +36,8 @@ function PlayersContainer() {
                                 backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-background'))
                             }
                     }>
+                         {active == 'active-player' && <OnFireEffect color={player.color} isFirst={isFirst} isLast={isLast} />}
+                       
                         <div className='ball-color-container'>
                             <div className='ball-color'
                                 style={

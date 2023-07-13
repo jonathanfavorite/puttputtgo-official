@@ -30,9 +30,47 @@ function ResultsPage() {
 
     const [completelyLoaded, setCompletelyLoaded] = useState<boolean>(false);
 
+    enum ResultType {
+        Straight,
+        Tie
+    }
+
+    interface TrueResults {
+        type: ResultType;
+        trueFirstPlace: LeaderboardModel;
+        ties: LeaderboardModel[];
+    }
+
     const GetFirstPlacePlayer = () : LeaderboardModel => {
         return _scoreContext.getAllPlayersScores()[0];
     }
+
+    const GetTrueResults = () : TrueResults => {
+        let ties = GetTies();
+        let results: TrueResults = {
+            trueFirstPlace: _scoreContext.getAllPlayersScores()[0],
+            ties: GetTies(),
+            type: ties.length > 1 ? ResultType.Tie : ResultType.Straight
+        }
+        return results;
+    }
+
+    const GetTies =() : LeaderboardModel[] => {
+        let firstPlayer = _scoreContext.getAllPlayersScores()[0];
+        let tmp: LeaderboardModel[] = [
+            firstPlayer
+        ];
+
+        _scoreContext.getAllPlayersScores().forEach((score, index) => {
+            if (index !== 0) {
+                if (score.score === firstPlayer.score) {
+                    tmp.push(score);
+                }
+            }
+        });
+
+        return tmp;
+    };
 
     interface PerformanceData {
         player: PlayerModel;
