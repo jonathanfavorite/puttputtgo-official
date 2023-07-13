@@ -21,7 +21,7 @@ function ShareGames() {
 
     function handleMessageClick() {
         if (navigator.share) {
-            navigator.share({title: 'Check this out!', text: 'Hello, check out this cool website I found.', url: `https://www.facebook.com/sharer/sharer.php?u=https://www.favoritecreative.com/puttputtgo/sharer.php?customerKey=${
+            navigator.share({title: 'Check this out!', text: 'Hello, check out this cool website I found.', url: `https://www.favoritecreative.com/puttputtgo/sharer.php?customerKey=${
                     _gameContext.companyData.customerID
                 }&gameID=${realGameID}`}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
         } else {
