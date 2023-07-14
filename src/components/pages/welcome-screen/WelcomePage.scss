@@ -47,4 +47,15 @@
         
         
     }
+    .flags {
+        text-align: center;
+        .flag {
+            width:10vw;
+            img {
+                width:100%;
+            }
+            margin:2vw;
+            display: inline-block;
+        }
+    }
 }

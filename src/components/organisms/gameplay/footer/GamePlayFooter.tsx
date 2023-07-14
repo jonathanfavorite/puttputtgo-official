@@ -35,7 +35,7 @@ function GamePlayFooter() {
     };
 
         
-    const [nextHoleButtonText, setNextHoleButtonText] = React.useState<string>('Next Player');
+    const [nextHoleButtonText, setNextHoleButtonText] = React.useState<string>(_gameContext.getPlainTextByID("gameplay:next-player"));
     const [nextHoleButtonBackgroundColor, setNextHoleButtonBackgroundColor] = React.useState<string>('green');
     const [showFinishGameButton, setShowFinishGameButton] = React.useState<boolean>(false);
     const nextHoleButtonRef = useRef<HTMLButtonElement>(null);

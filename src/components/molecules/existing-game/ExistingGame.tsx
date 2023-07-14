@@ -25,8 +25,8 @@ function ExistingGame() {
   return (
     <div className='existing-game-modal'>
         <div className='body'>
-            <h1>Game in progress</h1>
-            <p>Would you like to continue where you left off?</p>
+            <h1>{_gameContext.getPlainTextByID("game-in-progress:game-in-progress")}</h1>
+            <p>{_gameContext.getPlainTextByID("game-in-progress:continue-where-left-off")}</p>
 
             <div className='buttons'>
                 
@@ -34,12 +34,12 @@ function ExistingGame() {
                     backgroundImage: StyleHelper.format_css_url(
                         _gameContext.getAssetByID("red-button")
                       ),
-                }}>New Game</div>
+                }}>{_gameContext.getPlainTextByID("game-in-progress:new-game")}</div>
                 <div className='button yes' onClick={handleContinueButton} style={{
                     backgroundImage: StyleHelper.format_css_url(
                         _gameContext.getAssetByID("green-button")
                       ),
-                }}>Continue</div>
+                }}>{_gameContext.getPlainTextByID("game-in-progress:continue")}</div>
             </div>
         </div>
     </div>

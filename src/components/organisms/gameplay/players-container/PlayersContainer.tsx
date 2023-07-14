@@ -57,7 +57,7 @@ function PlayersContainer() {
                                 {
                                 player.name
                             }</div>
-                            <div className='totalScore'>Score:
+                            <div className='totalScore'>{_gameContext.getPlainTextByID("gameplay:score")}:
                                 <b>{_scoreContext.getPlayerTotalScore(player.id)}</b>
                             </div>
                         </div>

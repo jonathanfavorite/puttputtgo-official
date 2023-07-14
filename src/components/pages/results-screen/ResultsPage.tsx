@@ -273,9 +273,9 @@ function ResultsPage() {
                         }></div>
 
 
-                        {trueResults && trueResults.type == ResultType.Straight && <WinnerStraight results={trueResults} />}
+                        {trueResults && trueResults.type === ResultType.Straight && <WinnerStraight results={trueResults} />}
 
-                        {trueResults && trueResults.type == ResultType.Tie && <WinnerTie results={trueResults} />}
+                        {trueResults && trueResults.type === ResultType.Tie && <WinnerTie results={trueResults} />}
 
                         
 

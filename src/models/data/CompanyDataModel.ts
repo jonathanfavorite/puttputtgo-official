@@ -36,4 +36,4 @@ interface CompanyDataHoleData {
     optional: boolean
 }
 
-export type{ CompanyDataModel, CompanyDataAssetModel, CompanyDataHoleData }
+export type{ CompanyDataModel, CompanyDataAssetModel, CompanyDataHoleData, CompanyDataTextsLocaleModel }

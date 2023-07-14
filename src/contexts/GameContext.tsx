@@ -1,7 +1,7 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
 import {PlayerContext} from "./PlayerContext";
 import {ScoreContext} from "./ScoreContext";
-import {CompanyDataAssetModel, CompanyDataModel} from "../models/data/CompanyDataModel";
+import {CompanyDataAssetModel, CompanyDataModel, CompanyDataTextsLocaleModel} from "../models/data/CompanyDataModel";
 import LocalStorageGameDataModel from "../models/data/LocalStorageGameDataModel";
 import {JsxFragment} from "typescript";
 import {CourseContext} from "./CourseContext";
@@ -37,6 +37,8 @@ interface GameContextProps {
     getTextByID: (textID : string) => {
         __html : string
     };
+    getPlainTextByID: (textID : string) => string;
+    getLocalsByID: (textID : string) => CompanyDataTextsLocaleModel[];
     updateSelectedCourseID: (id : number) => void;
     selectedCourceID: number;
     customStylesLoaded: boolean;
@@ -390,6 +392,32 @@ function GameContextProvider(props: any) {
         return {__html: textID};
     };
 
+    const getLocalsByID = (textID : string) => {
+        if (!companyData.texts) {
+            return [];
+        }
+        let text = companyData.texts.find((text) => text.textID === textID);
+        if (text) {
+            return text.locals;
+        }
+        return [];
+    };
+
+    const getPlainTextByID = (textID : string) => {
+        if (!companyData.texts) {
+            return textID;
+        }
+        let text = companyData.texts.find((text) => text.textID === textID);
+        if (text) {
+            let localText = text.locals.find((myText) => myText.locale === selectedLanguage);
+            if (localText) {
+                return localText.text;
+            }
+        }
+        return textID;
+    };
+
+
     function setContextData(data: CompanyDataModel) {
         _courseContext.addCourses(data.courses);
 
@@ -468,6 +496,8 @@ function GameContextProvider(props: any) {
         updateCompanyParam,
         getAssetByID,
         getTextByID,
+        getPlainTextByID,
+        getLocalsByID,
         selectedCourceID,
         updateSelectedCourseID,
         customStylesLoaded,

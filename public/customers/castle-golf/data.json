@@ -37,6 +37,71 @@
   ],
   "texts": [
     {
+      "textID": "welcome:continue-game",
+      "locals": [
+        { "locale": "en", "text": "Continue Game" },
+        { "locale": "es", "text": "Continua el juego" },
+        { "locale": "fr", "text": "Continuer le jeu" },
+        { "locale": "de", "text": "Weiterspielen" },
+        { "locale": "it", "text": "Continua il gioco" },
+        { "locale": "pt", "text": "Continuar jogo" },
+        { "locale": "ru", "text": "Продолжить игру" },
+        { "locale": "zh", "text": "继续游戏" }
+    ]
+    },
+    {
+      "textID": "welcome:view-results",
+      "locals": [
+        { "locale": "en", "text": "View Results" },
+        { "locale": "es", "text": "Ver resultados" },
+        { "locale": "fr", "text": "Voir les résultats" },
+        { "locale": "de", "text": "Ergebnisse anzeigen" },
+        { "locale": "it", "text": "vedi i risultati" },
+        { "locale": "pt", "text": "Ver resultados" },
+        { "locale": "ru", "text": "Посмотреть Результаты" },
+        { "locale": "zh", "text": "查看结果" }
+    ]
+    },
+    {
+      "textID": "welcome:new-game",
+      "locals": [
+        { "locale": "en", "text": "New Game" },
+        { "locale": "es", "text": "Nuevo juego" },
+        { "locale": "fr", "text": "Nouveau jeu" },
+        { "locale": "de", "text": "Neues Spiel" },
+        { "locale": "it", "text": "Nuovo gioco" },
+        { "locale": "pt", "text": "Novo jogo" },
+        { "locale": "ru", "text": "Новая игра" },
+        { "locale": "zh", "text": "新游戏" }
+    ]
+    },
+    {
+      "textID": "welcome:rules",
+      "locals": [
+        { "locale": "en", "text": "Rules" },
+        { "locale": "es", "text": "Normas" },
+        { "locale": "fr", "text": "Règles" },
+        { "locale": "de", "text": "Regeln" },
+        { "locale": "it", "text": "Regole" },
+        { "locale": "pt", "text": "Regras" },
+        { "locale": "ru", "text": "Правила" },
+        { "locale": "zh", "text": "规则" }
+    ]
+    },
+    {
+      "textID": "welcome:settings",
+      "locals": [
+        { "locale": "en", "text": "Settings" },
+        { "locale": "es", "text": "Ajustes" },
+        { "locale": "fr", "text": "Paramètres" },
+        { "locale": "de", "text": "Einstellungen" },
+        { "locale": "it", "text": "Impostazioni" },
+        { "locale": "pt", "text": "Configurações" },
+        { "locale": "ru", "text": "Настройки" },
+        { "locale": "zh", "text": "设置" }
+    ]
+    },
+    {
       "textID": "start-game:choose-players-heading",
       "locals": [
         { "locale": "en", "text": "Choose||Your Heros" },
@@ -50,7 +115,217 @@
       ]
     },
     {
-      "textID": "rules:heading",
+      "textID": "start-game:add-player",
+      "locals": [
+        { "locale": "en", "text": "Add Player" },
+        { "locale": "es", "text": "Agregar jugador" },
+        { "locale": "fr", "text": "Ajouter un joueur" },
+        { "locale": "de", "text": "Spieler hinzufügen" },
+        { "locale": "it", "text": "Aggiungi giocatore" },
+        { "locale": "pt", "text": "Adicionar jogador" },
+        { "locale": "ru", "text": "Добавить игрока" },
+        { "locale": "zh", "text": "添加玩家" }
+    ]
+    },
+    {
+      "textID": "start-game:start-game",
+      "locals": [
+        { "locale": "en", "text": "Start Game" },
+        { "locale": "es", "text": "Empezar juego" },
+        { "locale": "fr", "text": "Démarrer jeu" },
+        { "locale": "de", "text": "Spiel beginnen" },
+        { "locale": "it", "text": "Inizia il gioco" },
+        { "locale": "pt", "text": "Começar o jogo" },
+        { "locale": "ru", "text": "Начать игру" },
+        { "locale": "zh", "text": "开始游戏" }
+    ]
+    },
+    {
+      "textID": "game-in-progress:game-in-progress",
+      "locals": [
+        { "locale": "en", "text": "Game In Progress" }
+    ]
+    },
+    {
+      "textID": "game-in-progress:continue-where-left-off",
+      "locals": [
+        { "locale": "en", "text": "Would you like to continue where you left off?" }
+    ]
+    },
+    {
+      "textID": "game-in-progress:new-game",
+      "locals": [
+        { "locale": "en", "text": "New Game" },
+        { "locale": "es", "text": "Nuevo juego" },
+        { "locale": "fr", "text": "Nouveau jeu" },
+        { "locale": "de", "text": "Neues Spiel" },
+        { "locale": "it", "text": "Nuovo gioco" },
+        { "locale": "pt", "text": "Novo jogo" },
+        { "locale": "ru", "text": "Новая игра" },
+        { "locale": "zh", "text": "新游戏" }
+    ]
+    },
+    {
+      "textID": "game-in-progress:continue",
+      "locals": [
+        { "locale": "en", "text": "Continue" },
+        { "locale": "es", "text": "Continuar" },
+        { "locale": "fr", "text": "Continuer" },
+        { "locale": "de", "text": "Weitermachen" },
+        { "locale": "it", "text": "Continua" },
+        { "locale": "pt", "text": "Continuar" },
+        { "locale": "ru", "text": "Продолжать" },
+        { "locale": "zh", "text": "继续" }
+    ]
+    },
+    {
+      "textID": "gameplay:hole",
+      "locals": [
+        { "locale": "en", "text": "Hole" },
+        { "locale": "es", "text": "Agujero" },
+        { "locale": "fr", "text": "Trou" },
+        { "locale": "de", "text": "Loch" },
+        { "locale": "it", "text": "Buco" },
+        { "locale": "pt", "text": "Buraco" },
+        { "locale": "ru", "text": "Дыра" },
+        { "locale": "zh", "text": "洞" },
+        { "locale": "ja", "text": "穴" }
+    ]
+    },
+    {
+      "textID": "gameplay:score",
+      "locals": [
+        { "locale": "en", "text": "Score" },
+        { "locale": "es", "text": "Puntaje" },
+        { "locale": "fr", "text": "Score" },
+        { "locale": "de", "text": "Punktzahl" },
+        { "locale": "it", "text": "Punto" },
+        { "locale": "pt", "text": "Pontuação" },
+        { "locale": "ru", "text": "Счет" },
+        { "locale": "zh", "text": "分数" },
+        { "locale": "ja", "text": "スコア" }
+    ]
+    },
+    {
+      "textID": "gameplay:next-player",
+      "locals": [
+        { "locale": "en", "text": "Next Player" },
+        { "locale": "es", "text": "siguiente jugador" },
+        { "locale": "fr", "text": "Joueur suivant" },
+        { "locale": "de", "text": "Nächster Spieler" },
+        { "locale": "it", "text": "Prossimo giocatore" },
+        { "locale": "pt", "text": "próximo jogador" },
+        { "locale": "ru", "text": "Следующий игрок" },
+        { "locale": "zh", "text": "下一个玩家" },
+        { "locale": "ja", "text": "次のプレイヤー" }
+    ]
+    },
+    {
+      "textID": "gameplay:game-starting",
+      "locals": [
+        { "locale": "en", "text": "Game Starting" },
+        { "locale": "es", "text": "Inicio del juego" },
+        { "locale": "fr", "text": "Début du jeu" },
+        { "locale": "de", "text": "Spiel beginnt" },
+        { "locale": "it", "text": "Inizio del gioco" },
+        { "locale": "pt", "text": "Início do jogo" },
+        { "locale": "ru", "text": "Начало игры" },
+        { "locale": "zh", "text": "游戏开始" },
+        { "locale": "ja", "text": "ゲーム開始" }
+    ]
+    },
+    {
+      "textID": "gameplay:good-luck",
+      "locals": [
+        { "locale": "en", "text": "Good Luck!" },
+        { "locale": "es", "text": "¡Buena suerte!" },
+        { "locale": "fr", "text": "Bonne chance!" },
+        { "locale": "de", "text": "Viel Glück!" },
+        { "locale": "it", "text": "Buona fortuna!" },
+        { "locale": "pt", "text": "Boa sorte!" },
+        { "locale": "ru", "text": "Удачи!" },
+        { "locale": "zh", "text": "祝你好运！" },
+        { "locale": "ja", "text": "幸運を！" }
+    ]
+    },
+    {
+      "textID": "gameplay:game-over",
+      "locals": [
+        { "locale": "en", "text": "Game Over" },
+        { "locale": "es", "text": "Juego terminado" },
+        { "locale": "fr", "text": "Jeu terminé" },
+        { "locale": "de", "text": "Spiel ist aus" },
+        { "locale": "it", "text": "Game Over" },
+        { "locale": "pt", "text": "Game Over" },
+        { "locale": "ru", "text": "Игра закончена" },
+        { "locale": "zh", "text": "游戏结束" },
+        { "locale": "ja", "text": "ゲームオーバー" }
+    ]
+    },
+    {
+      "textID": "gameplay:take-me-back",
+      "locals": [
+        { "locale": "en", "text": "Take me back" },
+        { "locale": "es", "text": "Llévame de vuelta" },
+        { "locale": "fr", "text": "Reprends moi" },
+        { "locale": "de", "text": "Nimm mich zurück" },
+        { "locale": "it", "text": "Portami indietro" },
+        { "locale": "pt", "text": "Me leve de volta" },
+        { "locale": "ru", "text": "Верни меня" },
+        { "locale": "zh", "text": "带我回去" },
+        { "locale": "ja", "text": "連れ帰ってください" }
+    ]
+    },
+    {
+      "textID": "gameplay:oops",
+      "locals": [
+        { "locale": "en", "text": "Oops!" },
+        { "locale": "es", "text": "¡Ups!" },
+        { "locale": "fr", "text": "Oops!" },
+        { "locale": "de", "text": "Hoppla!" },
+        { "locale": "it", "text": "Ops!" },
+        { "locale": "pt", "text": "Ops!" },
+        { "locale": "ru", "text": "Ой!" },
+        { "locale": "zh", "text": "哎呀！" },
+        { "locale": "ja", "text": "おっとっと！" }
+    ]
+    },
+    {
+      "textID": "gameplay:missing-scores",
+      "locals": [
+        { "locale": "en", "text": "Some players have missing scores. Please fix the scores for the following holes:" },
+        { "locale": "es", "text": "A algunos jugadores les faltan puntuaciones. Corrija las puntuaciones de los siguientes hoyos:" },
+        { "locale": "fr", "text": "Certains joueurs ont des scores manquants. Veuillez corriger les scores pour les trous suivants :" },
+        { "locale": "de", "text": "Bei einigen Spielern fehlen Punkte. Bitte korrigieren Sie die Ergebnisse für die folgenden Löcher:" },
+        { "locale": "it", "text": "Alcuni giocatori hanno punteggi mancanti. Si prega di correggere i punteggi per le seguenti buche:" },
+        { "locale": "pt", "text": "Alguns jogadores têm pontuações perdidas. Corrija as pontuações para os seguintes buracos:" },
+        { "locale": "ru", "text": "У некоторых игроков отсутствуют очки. Пожалуйста, исправьте оценки для следующих лунок:" },
+        { "locale": "zh", "text": "有些玩家缺少分数。请修正以下洞的分数：" },
+        { "locale": "ja", "text": "スコアが抜けている選手もいます。次のホールのスコアを修正してください。" }
+    ]
+    },
+    {
+      "textID": "gameplay:back",
+      "locals": [
+        { "locale": "en", "text": "Back" },
+        { "locale": "es", "text": "Atrás" },
+        { "locale": "fr", "text": "Dos" },
+        { "locale": "de", "text": "Zurück" },
+        { "locale": "it", "text": "Indietro" },
+        { "locale": "pt", "text": "Voltar" },
+        { "locale": "ru", "text": "Назад" },
+        { "locale": "zh", "text": "后退" },
+        { "locale": "ja", "text": "戻る" }
+    ]
+    },
+    {
+      "textID": "page:id",
+      "locals": [
+        { "locale": "en", "text": "Text Here" }
+    ]
+    },
+    {
+      "textID": "rules:body",
       "locals": [
         {
           "locale": "en",
@@ -59,6 +334,8 @@
       ]
     }
   ],
+  
+
   "colors": [
     {
       "colorID": "next-player-button-background",

@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./CreateGamePage.scss";
 import DataAssuranceHOC from "../../hocs/DataAssuranceHOC";
-import WelcomeTemplate from "../../templates/welcome-screen/WelcomeTemplate";
 import { useNavigate, useParams } from "react-router-dom";
 import { GameContext, GameStatus } from "../../../contexts/GameContext";
 import TextBasedHeader from "../../organisms/gameplay/header/TextBasedHeader";
-import PlayerModel from "../../../models/player/PlayerModel";
 import { PlayerContext, formatRGBToCSS } from "../../../contexts/PlayerContext";
 import StyleHelper from "../../../helpers/StyleHelper";
 import RGBModel from "../../../models/color/RGBModel";
@@ -39,7 +37,7 @@ function CreateGamePage() {
   }, []);
 
   useEffect(() => {
-    _gameContext.updateSelectedLanguage("en");
+    //_gameContext.updateSelectedLanguage("en");
     _gameContext.updateactivePage("create-game");
 
     console.log("LOOOOOOODED");
@@ -264,7 +262,7 @@ function CreateGamePage() {
                 })`,
               }}
             >
-              <span>Add Player</span>
+              <span>{_gameContext.getPlainTextByID("start-game:add-player")}</span>
             </div>
           </div>
           <div className="scrollable" ref={scrollableRef}>
@@ -315,7 +313,7 @@ function CreateGamePage() {
               })`,
             }}
           >
-            Start Game
+            {_gameContext.getPlainTextByID("start-game:start-game")}
           </div>
         </div>
       </div>

@@ -47,8 +47,8 @@ function UnfinishedGame() {
 
     return (
         <div className='unfinished-game'>
-            <div className='title'>Oops!</div>
-            <div className='subtitle'>some players have missing scores.<br/>Please fix the scores for the following holes:</div>
+            <div className='title'>{_gameContext.getPlainTextByID("gameplay:oops")}</div>
+            <div className='subtitle'>{_gameContext.getPlainTextByID("gameplay:missing-scores")}</div>
 
             <div className='holes-container'>
                 {
@@ -80,7 +80,7 @@ function UnfinishedGame() {
 
 <div className='finalize-button' onClick={handleBackButton} style={{
         backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('settings-button'))
-      }}>Back</div>
+      }}>{_gameContext.getPlainTextByID("gameplay:back")}</div>
 
         </div>
     )

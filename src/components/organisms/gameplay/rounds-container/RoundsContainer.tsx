@@ -35,7 +35,7 @@ function RoundsContainer(props: IProps) {
 
     const nextHoleTransitionTexts = (hole: number) => {
         let nextHole = hole;
-        _transitionContext.updateHeadingText(`Round ${nextHole}`);
+        _transitionContext.updateHeadingText(`${_gameContext.getPlainTextByID("gameplay:hole")} ${nextHole}`);
         _transitionContext.updateDescText(``);
     };
 
@@ -98,7 +98,7 @@ function RoundsContainer(props: IProps) {
                     }
             }></div>
             <div className='center'>
-                <div className='hole-label'>Hole</div>
+                <div className='hole-label'>{_gameContext.getPlainTextByID("gameplay:hole")}</div>
                 <div className='hole-items' ref={listRef}>
                     {
                         _courseContext.getCurrentCourse().holes.map((hole, index) => {

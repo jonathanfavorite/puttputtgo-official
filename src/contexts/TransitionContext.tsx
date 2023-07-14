@@ -18,16 +18,16 @@ function TransitionContextProvider(props: any) {
     const _gameContext = useContext(GameContext);
     const _courseContext = useContext(CourseContext);
     const [animating, setAnimating] = useState(true);
-    const [transitionHeadingText, setTransitionHeadingText] = useState("Game Starting");
-    const [transitionDescText, setTransitionDescText] = useState("Good Luck!");
+    const [transitionHeadingText, setTransitionHeadingText] = useState(_gameContext.getPlainTextByID("gameplay:game-starting"));
+    const [transitionDescText, setTransitionDescText] = useState(_gameContext.getPlainTextByID("gameplay:good-luck"));
 
     const transitionRef = createRef<HTMLDivElement>();
     useEffect(() => {
 
         if(_courseContext.getCurrentHole().number != 1)
         {
-            setTransitionHeadingText("Hole " + _courseContext.getCurrentHole().number );
-            setTransitionDescText("Good Luck!");
+            setTransitionHeadingText(_gameContext.getPlainTextByID("gameplay:hole") + ' ' + _courseContext.getCurrentHole().number );
+            setTransitionDescText(_gameContext.getPlainTextByID("gameplay:good-luck"));
         }
       
         handleAnimationToggle();

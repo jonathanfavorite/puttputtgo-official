@@ -92,39 +92,51 @@ function WelcomePage() {
                     
                     {_gameContext.gameStatus === GameStatus.Active && _playerContext.getAllPlayers().length > 0 && (
                     <div className='button continue-game-button' onClick={handleContinueGameClick}>
-                        <span>Continue Game</span>
+                        <span>{_gameContext.getPlainTextByID("welcome:continue-game")}</span>
                         <img src={_gameContext.getAssetByID("continue-game-button")?.assetLocation} />
                     </div>
                 )}
                 {_gameContext.gameStatus === GameStatus.Finished && (
                     <div className='button continue-game-button' onClick={handleViewResultsClick}>
-                        <span>View Results</span>
+                        <span>{_gameContext.getPlainTextByID("welcome:view-results")}</span>
                         <img src={_gameContext.getAssetByID("continue-game-button")?.assetLocation} />
                     </div>
                 )}
                     <div className='button create-game-button' onClick={handleCreateGameClick}>
-                    <span>New Game</span>
+                    <span>{_gameContext.getPlainTextByID("welcome:new-game")}</span>
                         <img src={_gameContext.getAssetByID("create-game-button")?.assetLocation} />
                     </div>
                     <div className='button rules-button' onClick={handleRulesClick}>
-                    <span>Rules</span>
+                    <span>{_gameContext.getPlainTextByID("welcome:rules")}</span>
                         <img src={_gameContext.getAssetByID("rules-button")?.assetLocation} />
                     </div>
                     <div className='button rules-button' onClick={handleSettingsClick}>
-                    <span>Settings</span>
+                    <span>{_gameContext.getPlainTextByID("welcome:settings")}</span>
                         <img src={_gameContext.getAssetByID("settings-button")?.assetLocation} />
                     </div>
                     
-                 
+
+                    <div className='flags'>
+                       
+                        {
+                            // get every local under textID: welcome:new-game
+                            _gameContext.getLocalsByID("welcome:new-game").map((local, index) => {
+                                return <div className='flag' onClick={() => _gameContext.updateSelectedLanguage(local.locale)}>
+                                    <img src={`/global-assets/flags/${local.locale}.png`} />
+                                    </div>
+                            })
+                        }
+                    </div>
+                 {/*
                     <div className='button rules-button'>
                         <div onClick={() => handleOtherThemeClick('/')}>PuttPuttGo</div>
                     </div>
-                    <div className='button rules-button'>
+                     <div className='button rules-button'>
                         <div onClick={() => handleOtherThemeClick('/castle-golf/')}>Castle Golf</div>
                     </div>
                     <div className='button rules-button'>
                         <div onClick={() => handleOtherThemeClick('/bonanza-golf/')}>Bonanza Golf Golf</div><br />
-                    </div>
+                    </div> */}
                         
                     </div>
             </div>
