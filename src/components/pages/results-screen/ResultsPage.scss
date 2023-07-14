@@ -90,53 +90,9 @@
                 font-size: 1.2rem;
                 line-height: 2rem;
             }
-            .winner-content {
-                display: flex;
+            
 
-                .winner-left {
-                    align-self: center;
-                    .ball-color-container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        .ball-color {
-                            margin-left: 20px;
-                            margin-right: 8vw;
-                            aspect-ratio: 1/1;
-                            height: 5vh;
-                            //background: temp-url('player-ball-frame.png');
-                            background-color: black;
-                            background-size: 100% 100%;
-                            transform: rotate(45deg);
-                        }
-                    }
-                }
-                .winner-right {
-                    padding-right: 5vw;
-                    box-sizing: border-box;
-                    width:100%;
-                    .title {
-                        display: flex;
-                        flex-direction: column;
-                        justify-self: center;
-                        letter-spacing: 0.1rem;
-                        font-size: 1.5rem;
-                        img {
-                            margin-bottom: 5px;
-                            width: 40px;
-                        }
-                        span {
-                            display: block;
-                        }
-                    }
-                    .name {
-                        font-size: 4rem;
-                    }
-                    .score {
-                        text-align: right;
-                    }
-                }
-            }
+            
         }
         .results-content-wrapper{
             position: relative;

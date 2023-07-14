@@ -17,6 +17,10 @@ import ScoreModel from '../../../models/score/ScoreModel';
 import LocalStoragePreloader from '../../loadings/local-storage-preloader/LocalStoragePreloader';
 import { Helmet } from 'react-helmet-async';
 import ShareGames from '../../molecules/share-games/ShareGames';
+import { BestWorstHole, TrueResults } from '../../../models/results/ResultModels';
+import ResultType from '../../../models/results/ResultType';
+import WinnerStraight from '../../molecules/results/winner-straight/WinnerStraight';
+import WinnerTie from '../../molecules/results/winner-tie/WinnerTie';
 
 
 function ResultsPage() {
@@ -24,22 +28,14 @@ function ResultsPage() {
     const _playerContext = useContext(PlayerContext);
     const _courseContext = useContext(CourseContext);
     const _scoreContext = useContext(ScoreContext);
+    const [trueResults, setTrueResults] = useState<TrueResults | null>(null);
     const {business_name} = useParams();
     const navigate = useNavigate();
 
 
     const [completelyLoaded, setCompletelyLoaded] = useState<boolean>(false);
 
-    enum ResultType {
-        Straight,
-        Tie
-    }
 
-    interface TrueResults {
-        type: ResultType;
-        trueFirstPlace: LeaderboardModel;
-        ties: LeaderboardModel[];
-    }
 
     const GetFirstPlacePlayer = () : LeaderboardModel => {
         return _scoreContext.getAllPlayersScores()[0];
@@ -72,10 +68,7 @@ function ResultsPage() {
         return tmp;
     };
 
-    interface PerformanceData {
-        player: PlayerModel;
-        scores: ScoreModel[];
-    }
+
 
     // const [performanceData, setPerformanceData] = useState<PerformanceData[] | null>(null)
     // const [flatPerformanceData, setFlatPerformanceData] = useState<any[]>([]);
@@ -97,14 +90,7 @@ function ResultsPage() {
         setDropdownActive(!dropdownActive);
     }
 
-    interface BestWorstHole {
-       bestHole: number;
-       bestPar: number;
-       bestAvg: number;
-       worstHole: number;
-       worstPar: number;
-       worstAvg: number;
-    }
+
 
     const  [bestWorstHole, setBestWorstHole] = useState<BestWorstHole | null>(null);
 
@@ -113,6 +99,8 @@ function ResultsPage() {
     useEffect(() => {
 
         if(_gameContext.preloadedLocalStorage) {
+
+        setTrueResults(GetTrueResults());
 
         _gameContext.updateactivePage("results");
 
@@ -214,28 +202,7 @@ function ResultsPage() {
         
     ];
 
-    const textRef = useRef < HTMLDivElement | null > (null);
 
-    function adjustFontSize() {
-        if (textRef.current) {
-            const textLength = textRef.current.textContent !.length;
-            const baseFontSize = 5;
-            const threshold = 1;
-
-            if (textLength > threshold) {
-                const newFontSize = baseFontSize - (textLength - threshold) * 0.2;
-                textRef.current.style.fontSize = `${newFontSize}rem`;
-            } else {
-                textRef.current.style.fontSize = `${baseFontSize}rem`;
-            }
-        }
-    }
-
-    useEffect(() => {
-        if (textRef.current) {
-            adjustFontSize();
-        }
-    }, [textRef]);
 
     interface GroupComparisonValue {
         value: number;
@@ -305,37 +272,14 @@ function ResultsPage() {
                                 }
                         }></div>
 
-                        <div className='winner-content'>
-                            <div className='winner-left'>
-                                <div className='ball-color-container'>
-                                    <div className='ball-color'
-                                        style={
-                                            {
-                                                backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
-                                                backgroundColor: formatRGBToCSS(GetFirstPlacePlayer().player.color !, 1)
-                                            }
-                                    }></div>
-                                </div>
-                            </div>
-                            <div className='winner-right'>
-                                <ConfettiCanvas/>
 
-                                <div className='title'><img src={
-                                            _gameContext.getAssetByID("crown") ?. assetLocation
-                                        }
-                                        className='crown'/><span>winner</span>
-                                </div>
+                        {trueResults && trueResults.type == ResultType.Straight && <WinnerStraight results={trueResults} />}
 
-                                <div className='name'
-                                    ref={textRef}>
-                                    {
-                                    GetFirstPlacePlayer().player.name
-                                }</div>
-                                <div className='score'>Score: {
-                                    GetFirstPlacePlayer().score
-                                }</div>
-                            </div>
-                        </div>
+                        {trueResults && trueResults.type == ResultType.Tie && <WinnerTie results={trueResults} />}
+
+                        
+
+
                         <div className='winner-text'>
                             Bravo, noble golfer!<br/>You've conquered the treacherous Castle Golf realm and emerged victorious!
                         </div>
