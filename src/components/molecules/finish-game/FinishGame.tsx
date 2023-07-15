@@ -17,13 +17,15 @@ function FinishGame() {
     const handleViewResultsClick = () => {
 
         interface RawGamePayLoad {
+            selectedLanguage?: string;
             players: PlayerModel[];
             scores: ScoreModel[];
         }
 
         let savePayLoad: RawGamePayLoad = {
             players: _playerContext.getAllPlayers(),
-            scores: _scoreContext.getAllScores()
+            scores: _scoreContext.getAllScores(),
+            selectedLanguage: _gameContext.selectedLanguage
         }
 
         let finalPayload = {

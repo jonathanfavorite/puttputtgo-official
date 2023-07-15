@@ -1,0 +1,54 @@
+.group-comparison-wrap {
+    padding:5vw;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    .left {
+        max-width:30vw;
+        width:100vw;
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            aspect-ratio: 1/1;
+            width:100%;
+            background-size:100% 100%;
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .number {
+                    font-size:4.5rem;
+                    letter-spacing: -0.7rem;
+                }
+            }
+            .percent {
+                font-size:2.5rem;
+                padding-left:10px;
+                padding-top:10px;
+               align-self: flex-start;
+            }
+        }
+    }
+    .right {
+        padding-left:5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       .box-content {
+        font-size:1.8rem;
+        .color {
+
+        }
+        .green {
+            color:#91c689;
+        }
+        .red {
+            color:#eb4141;
+
+        }
+       }
+    }
+}

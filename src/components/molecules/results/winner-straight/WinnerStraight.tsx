@@ -59,7 +59,7 @@ function WinnerStraight(props: Props) {
                                 <div className='title'><img src={
                                             _gameContext.getAssetByID("crown") ?. assetLocation
                                         }
-                                        className='crown'/><span>winner</span>
+                                        className='crown'/><span>{_gameContext.getPlainTextByID("results:winner")}</span>
                                 </div>
 
                                 <div className='name'
@@ -67,7 +67,7 @@ function WinnerStraight(props: Props) {
                                     {
                                     props.results.trueFirstPlace.player.name
                                 }</div>
-                                <div className='score'>Score: {
+                                <div className='score'>{_gameContext.getPlainTextByID("gameplay:score")}: {
                                     props.results.trueFirstPlace.score
                                 }</div>
                             </div>

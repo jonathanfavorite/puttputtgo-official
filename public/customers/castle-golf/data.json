@@ -381,8 +381,172 @@
       ]
     },
     {
-      "textID": "page:id",
-      "locals": [{ "locale": "en", "text": "Text Here" }]
+      "textID": "results:winner",
+      "locals": [
+        { "locale": "en", "text": "Winner" },
+        { "locale": "es", "text": "Ganador" },
+        { "locale": "fr", "text": "Gagnant" },
+        { "locale": "de", "text": "Gewinner" },
+        { "locale": "it", "text": "Vincitore" },
+        { "locale": "pt", "text": "Ganhador" },
+        { "locale": "ru", "text": "Победитель" },
+        { "locale": "zh", "text": "优胜者" },
+        { "locale": "ja", "text": "勝者" }
+    ]
+    },
+    {
+      "textID": "results:bravo-golfer",
+      "locals": [
+        { "locale": "en", "text": "Bravo, noble golfer!||You've conquered the treacherous Castle Golf realm and emerged victorious!" },
+        { "locale": "es", "text": "¡Bravo, noble golfista!||¡Has conquistado el traicionero reino de Castle Golf y has salido victorioso!" },
+        { "locale": "fr", "text": "Bravo, noble golfeur !||Vous avez conquis le royaume traître de Castle Golf et en êtes sorti vainqueur !" },
+        { "locale": "de", "text": "Bravo, edler Golfer!||Du hast das tückische Castle-Golf-Reich erobert und bist als Sieger hervorgegangen!" },
+        { "locale": "it", "text": "Bravo, nobile giocatore di golf!||Hai conquistato l&#39;infido reame di Castle Golf e ne sei uscito vittorioso!" },
+        { "locale": "pt", "text": "Bravo, nobre golfista!||Você conquistou o traiçoeiro reino do Castle Golf e saiu vitorioso!" },
+        { "locale": "ru", "text": "Браво, благородный игрок в гольф!||Ты покорил коварное царство Castle Golf и вышел победителем!" },
+        { "locale": "zh", "text": "太棒了，高贵的高尔夫球手！||您已经征服了危险的城堡高尔夫领域并取得了胜利！" },
+        { "locale": "ja", "text": "ブラボー、高貴なゴルファー!||あなたは危険なキャッスル ゴルフ領域を征服し、勝利を収めました!" }
+    ]
+    },
+    {
+      "textID": "results:results",
+      "locals": [
+        { "locale": "en", "text": "Results" },
+        { "locale": "es", "text": "Resultados" },
+        { "locale": "fr", "text": "Résultats" },
+        { "locale": "de", "text": "Ergebnisse" },
+        { "locale": "it", "text": "Risultati" },
+        { "locale": "pt", "text": "Resultados" },
+        { "locale": "ru", "text": "Полученные результаты" },
+        { "locale": "zh", "text": "结果" },
+        { "locale": "ja", "text": "結果" }
+    ]
+    },
+    {
+      "textID": "results:share",
+      "locals": [
+        { "locale": "en", "text": "share" },
+        { "locale": "es", "text": "compartir" },
+        { "locale": "fr", "text": "partager" },
+        { "locale": "de", "text": "Aktie" },
+        { "locale": "it", "text": "condividere" },
+        { "locale": "pt", "text": "compartilhar" },
+        { "locale": "ru", "text": "делиться" },
+        { "locale": "zh", "text": "分享" },
+        { "locale": "ja", "text": "共有" }
+    ]
+    },
+    {
+      "textID": "results:better-than",
+      "locals": [
+        { "locale": "en", "text": "your team did||~NUMX better~ than other groups" },
+        { "locale": "es", "text": "tu equipo lo hizo||~NUMX mejor~ que otros grupos" },
+        { "locale": "fr", "text": "votre équipe a fait||~NUMX mieux~ que les autres groupes" },
+        { "locale": "de", "text": "Ihr Team hat||~NUMX besser~ abgeschnitten als andere Gruppen" },
+        { "locale": "it", "text": "la tua squadra ha fatto||~NUMX meglio~ di altri gruppi" },
+        { "locale": "pt", "text": "sua equipe se saiu||~NUMX melhor~ do que outros grupos" },
+        { "locale": "ru", "text": "ваша команда справилась||~в НАЧАЛО лучше~, чем другие группы" },
+        { "locale": "zh", "text": "你的团队比其他团队做得||~NUMX 好~" },
+        { "locale": "ja", "text": "あなたのチームは他のグループより||~NUMX が優れていました~" }
+    ]
+    },
+    {
+      "textID": "results:worse-than",
+      "locals": [
+        { "locale": "en", "text": "your team did||~NUMX worse~ than other groups" },
+        { "locale": "es", "text": "tu equipo lo hizo||~NUMX peor~ que otros grupos" },
+        { "locale": "fr", "text": "votre équipe a fait||~NUMX pire~ que les autres groupes" },
+        { "locale": "de", "text": "Ihr Team hat||~NUMX schlechter~ abgeschnitten als andere Gruppen" },
+        { "locale": "it", "text": "la tua squadra ha fatto||~NUMX peggio~ di altri gruppi" },
+        { "locale": "pt", "text": "sua equipe foi||~NUMX pior~ do que outros grupos" },
+        { "locale": "ru", "text": "ваша команда справилась||~ЧИСЛО хуже~, чем другие группы" },
+        { "locale": "zh", "text": "你的团队比其他团队做得||~NUMX差~" },
+        { "locale": "ja", "text": "あなたのチームは他のグループより||~NUMXが悪かった~" }
+    ]
+    },
+    {
+      "textID": "results:best-hole",
+      "locals": [
+        { "locale": "en", "text": "best||hole" },
+        { "locale": "es", "text": "mejor||agujero" },
+        { "locale": "fr", "text": "meilleur||trou" },
+        { "locale": "de", "text": "bestes||Loch" },
+        { "locale": "it", "text": "miglior||buco" },
+        { "locale": "pt", "text": "melhor||buraco" },
+        { "locale": "ru", "text": "лучшая||дырка" },
+        { "locale": "zh", "text": "最佳洞" },
+        { "locale": "ja", "text": "最高の穴" }
+    ]
+    },
+    {
+      "textID": "results:worst-hole",
+      "locals": [
+        { "locale": "en", "text": "worst||hole" },
+        { "locale": "es", "text": "peor||agujero" },
+        { "locale": "fr", "text": "pire||trou" },
+        { "locale": "de", "text": "schlimmstes||Loch" },
+        { "locale": "it", "text": "buco||peggiore" },
+        { "locale": "pt", "text": "pior||buraco" },
+        { "locale": "ru", "text": "худшая||дыра" },
+        { "locale": "zh", "text": "最糟糕的洞" },
+        { "locale": "ja", "text": "最悪の穴" }
+    ]
+    },
+    {
+      "textID": "results:group-average",
+      "locals":[
+        { "locale": "en", "text": "average" },
+        { "locale": "es", "text": "promedio" },
+        { "locale": "fr", "text": "moyenne" },
+        { "locale": "de", "text": "Durchschnitt" },
+        { "locale": "it", "text": "media" },
+        { "locale": "pt", "text": "média" },
+        { "locale": "ru", "text": "средний" },
+        { "locale": "zh", "text": "平均的" },
+        { "locale": "ja", "text": "平均" }
+    ]
+    },
+    {
+      "textID": "results:performances",
+      "locals": [
+        { "locale": "en", "text": "performances" },
+        { "locale": "es", "text": "actuaciones" },
+        { "locale": "fr", "text": "les performances" },
+        { "locale": "de", "text": "Aufführungen" },
+        { "locale": "it", "text": "spettacoli" },
+        { "locale": "pt", "text": "apresentações" },
+        { "locale": "ru", "text": "представления" },
+        { "locale": "zh", "text": "表演" },
+        { "locale": "ja", "text": "公演" }
+    ]
+    },
+    {
+      "textID": "results:performance-all",
+      "locals": [
+        { "locale": "en", "text": "overview" },
+        { "locale": "es", "text": "todo" },
+        { "locale": "fr", "text": "tous" },
+        { "locale": "de", "text": "alle" },
+        { "locale": "it", "text": "Tutto" },
+        { "locale": "pt", "text": "todos" },
+        { "locale": "ru", "text": "все" },
+        { "locale": "zh", "text": "全部" },
+        { "locale": "ja", "text": "全て" }
+    ]
+    },
+    {
+      "textID": "results:tie",
+      "locals": [
+        { "locale": "en", "text": "tie" },
+        { "locale": "es", "text": "empate" },
+        { "locale": "fr", "text": "tous" },
+        { "locale": "de", "text": "unentschieden" },
+        { "locale": "it", "text": "pareggio" },
+        { "locale": "pt", "text": "empate" },
+        { "locale": "ru", "text": "все" },
+        { "locale": "zh", "text": "平局" },
+        { "locale": "ja", "text": "引き分け" }
+    ]
     },
     {
       "textID": "rules:body",

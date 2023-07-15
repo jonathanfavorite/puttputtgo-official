@@ -12,7 +12,8 @@ type LocalStorageGameDataModel = {
     players: PlayerModel[],
     scores: ScoreModel[],
     companyID: string,
-    gameState: number
+    gameState: number,
+    selectedLanguage: string,
 }
 
 export default LocalStorageGameDataModel;

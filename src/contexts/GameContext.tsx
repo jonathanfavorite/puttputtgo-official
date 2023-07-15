@@ -182,7 +182,8 @@ function GameContextProvider(props: any) {
                 currentPlayer: _playerContext.getCurrentPlayer().id,
                 currentCourse: _courseContext.getCurrentCourse(),
                 companyID: companyData.customerID,
-                gameState: gameStatus
+                gameState: gameStatus,
+                selectedLanguage: selectedLanguage,
             };
 
             ConsoleHelper.log({
@@ -214,7 +215,8 @@ function GameContextProvider(props: any) {
                 currentPlayer: _playerContext.getCurrentPlayer().id,
                 currentCourse: _courseContext.getCurrentCourse(),
                 companyID: companyData.customerID,
-                gameState: gameStatus
+                gameState: gameStatus,
+                selectedLanguage: selectedLanguage,
             };
             localStorage.setItem("gameState", JSON.stringify(gameState));
             resolve(null);
@@ -318,6 +320,8 @@ function GameContextProvider(props: any) {
                 _scoreContext.resetScores();
 
                 _scoreContext.addScores(parsedGameState.scores);
+
+                setSelectedLanguage((old) => parsedGameState.selectedLanguage);
 
                 updateGameStatus(parsedGameState.gameState);
 

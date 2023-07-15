@@ -55,7 +55,34 @@
             }
         }
         .right {
-          
+            display: flex;
+            align-items: center;
+            .language-dropdown {
+                margin-right:2vw;
+                position: relative;
+                .selected-option {
+                    img {
+                        width:10vw;
+                        display: block;
+                        border: 2px solid black;
+                    }
+                }
+                .list {
+                    padding:2vw;
+                    width:100%;
+                    box-sizing:border-box;
+                    display: flex;
+                    gap: 2vh;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    position: absolute;
+                    background:rgba($color: #000000, $alpha: 0.6);
+                    img {
+                        display:block;
+                    }
+                }
+            }
         }
         .center {
             flex: 1;
@@ -113,6 +140,7 @@
                 align-items: center;
                 margin-bottom: 10px;
                 aspect-ratio: 65/14;
+                text-align: center;
                 background-size:100% 100%;
               
 
@@ -129,7 +157,7 @@
                 .right {
                     flex: 1;
                     height: 1px;
-                 
+                    
                 }
             }
 
@@ -227,105 +255,10 @@
             }
         }
 
-        .group-comparison-wrap {
-            padding:5vw;
-            display: flex;
-            box-sizing: border-box;
-            justify-content: center;
-            align-items: center;
-            .left {
-                max-width:30vw;
-                width:100vw;
-                .box {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    
-                    aspect-ratio: 1/1;
-                    width:100%;
-                    background-size:100% 100%;
-                    div {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        .number {
-                            font-size:4.5rem;
-                            letter-spacing: -0.7rem;
-                        }
-                    }
-                    .percent {
-                        font-size:2.5rem;
-                        padding-left:10px;
-                        padding-top:10px;
-                       align-self: flex-start;
-                    }
-                }
-            }
-            .right {
-                padding-left:5vw;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-               .box-content {
-                font-size:1.8rem;
-                .color {
-
-                }
-                .green {
-                    color:#91c689;
-                }
-                .red {
-                    color:#eb4141;
-
-                }
-               }
-            }
-        }
+        
 
 
-        .best-worst-hole-wrap {
-            padding:5vw;
-            display: flex;
-            align-items: flex-start;
-      
-            margin:0 auto;
-            box-sizing: border-box;
-            gap:5vw;
-
-            .inside-content {
-                
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                .title {
-                    font-size:1.7rem;
-                }
-                .large-number {
-                    font-size:6rem;
-                    line-height:6rem;
-                }
-                .par {
-                    font-size:1.5rem;
-                }
-                .group {
-                    font-size:1.5rem;
-                }
-                .best {
-                    color:#91c689;
-                }
-                .worst {
-                    color:#eb4141;
-                }
-            }
-
-            .left {
-                flex:1;
-            }
-            .right {
-                flex:1;
-            }
-        }
+        
 
         .performance-wrap {
             margin:10vw;

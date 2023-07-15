@@ -1,53 +1,91 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {Link, useLocation, useNavigate, useParams} from 'react-router-dom';
 import {GameContext, GameStatus} from '../../../contexts/GameContext';
 import CompanyHelper from '../../../helpers/CompanyHelper';
 import WelcomeTemplate from '../../templates/welcome-screen/WelcomeTemplate';
 import DataAssuranceHOC from '../../hocs/DataAssuranceHOC';
 import './WelcomePage.scss';
-import { PlayerContext } from '../../../contexts/PlayerContext';
-import { CourseContext } from '../../../contexts/CourseContext';
+import {PlayerContext} from '../../../contexts/PlayerContext';
+import {CourseContext} from '../../../contexts/CourseContext';
 import ConsoleHelper from '../../../helpers/ConsoleHelper';
+import { browserName, browserVersion, deviceType, osName } from 'react-device-detect';
 
 function WelcomePage() {
     const _gameContext = useContext(GameContext);
     const _playerContext = useContext(PlayerContext);
     const _courseContext = useContext(CourseContext);
-    const { business_name } = useParams();
+    const {business_name} = useParams();
     const [isReady, setIsReady] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const scanMethod = queryParams.get('method'); // getting the scan method
 
     useEffect(() => {
-        if(_gameContext.activePage != 'donotshow_existing_game')
-        {
+        if (_gameContext.activePage != 'donotshow_existing_game') {
             _gameContext.updateactivePage("welcome");
         }
-        
+
+
     }, []);
 
-    const goTo = (route: string, relative: boolean = true) => {
+
+    const [hasSendScan, setHasSendScan] = useState(false);
+    useEffect(() => {
+        if (!hasSendScan) {
+            if (_gameContext.companyData.customerID) {
+                if (scanMethod) {
+                    if (scanMethod === 'qr') {
+                        let payload = {
+                            customerKey: _gameContext.companyData.customerID,
+                            gameID: _gameContext.gameID,
+                            browser: browserName,
+                            browserVersion: browserVersion,
+                            device: deviceType,
+                            OS: osName
+                        }
+                        console.log("PAYLOAD", payload)
+                        fetch(`${
+                            process.env.REACT_APP_API_URL 
+                        }/Game/SaveQRScan`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(payload)
+                        }).catch(err => {
+                            console.log(err); 
+                        });
+                        setHasSendScan(true); 
+                    }
+                }
+            }
+        }
+    }, [_gameContext.companyData.customerID]);
+
+    const goTo = (route : string, relative : boolean = true) => {
         console.log(_gameContext.companyData.customerID);
-        if(!relative)
-        {
+        if (!relative) {
             navigate(route);
             return;
         }
-        if(_gameContext.companyData.customerID != 'default')
-        {
+        if (_gameContext.companyData.customerID != 'default') {
 
-            navigate(`/${_gameContext.companyData.customerID}${route}`);
+            navigate(`/${
+                _gameContext.companyData.customerID
+            }${route}`);
             return;
         }
-        
+
         navigate(route);
-        
+
     }
-    
-    const isNull = (value: any) => {
+
+    const isNull = (value : any) => {
         return value === undefined || value === null;
     }
     const handleContinueGameClick = () => {
-    
+
         ConsoleHelper.log_value({color: "green", title: "GetCurrentCourse", value: _courseContext.getCurrentCourse()});
         ConsoleHelper.log_value({color: "green", title: "CurrentHole", value: _courseContext.getCurrentHole()});
         ConsoleHelper.log_value({color: "green", title: "Players", value: _playerContext.getAllPlayers()});
@@ -55,12 +93,9 @@ function WelcomePage() {
     };
 
     const handleCreateGameClick = () => {
-        if(_gameContext.companyData.courses && _gameContext.companyData.courses.length > 1)
-        {
+        if (_gameContext.companyData.courses && _gameContext.companyData.courses.length > 1) {
             goTo('/course-selection');
-        }
-        else
-        {
+        } else {
             goTo('/create-game');
         }
     };
@@ -70,9 +105,7 @@ function WelcomePage() {
     };
 
 
-    
-
-    const handleViewResultsClick =  () => {
+    const handleViewResultsClick = () => {
         goTo('/results');
     }
 
@@ -80,46 +113,74 @@ function WelcomePage() {
         goTo('/settings');
     }
     return (
-      <DataAssuranceHOC companyParam={business_name!}>
-        <WelcomeTemplate>
-            <div className='welcome-page'>
-                <div className="welcome-buttons">
-                    
-                    {_gameContext.gameStatus === GameStatus.Active && _playerContext.getAllPlayers().length > 0 && (
-                    <div className='button continue-game-button' onClick={handleContinueGameClick}>
-                        <span>{_gameContext.getPlainTextByID("welcome:continue-game")}</span>
-                        <img src={_gameContext.getAssetByID("continue-game-button")?.assetLocation} />
-                    </div>
-                )}
-                {_gameContext.gameStatus === GameStatus.Finished && (
-                    <div className='button continue-game-button' onClick={handleViewResultsClick}>
-                        <span>{_gameContext.getPlainTextByID("welcome:view-results")}</span>
-                        <img src={_gameContext.getAssetByID("continue-game-button")?.assetLocation} />
-                    </div>
-                )}
-                    <div className='button create-game-button' onClick={handleCreateGameClick}>
-                    <span>{_gameContext.getPlainTextByID("welcome:new-game")}</span>
-                        <img src={_gameContext.getAssetByID("create-game-button")?.assetLocation} />
-                    </div>
-                    <div className='button rules-button' onClick={handleRulesClick}>
-                    <span>{_gameContext.getPlainTextByID("welcome:rules")}</span>
-                        <img src={_gameContext.getAssetByID("rules-button")?.assetLocation} />
-                    </div>
-                    <div className='button rules-button' onClick={handleSettingsClick}>
-                    <span>{_gameContext.getPlainTextByID("welcome:settings")}</span>
-                        <img src={_gameContext.getAssetByID("settings-button")?.assetLocation} />
-                    </div>
-                    
+        <DataAssuranceHOC companyParam={
+            business_name !
+        }>
+            <WelcomeTemplate>
+                <div className='welcome-page'>
+                    <div className="welcome-buttons">
 
-                   
-                 {/*
-                     */}
-                        
-                    </div>
-            </div>
-        </WelcomeTemplate>
-      </DataAssuranceHOC>
+                        {
+                        _gameContext.gameStatus === GameStatus.Active && _playerContext.getAllPlayers().length > 0 && (
+                            <div className='button continue-game-button'
+                                onClick={handleContinueGameClick}>
+                                <span>{
+                                    _gameContext.getPlainTextByID("welcome:continue-game")
+                                }</span>
+                                <img src={
+                                    _gameContext.getAssetByID("continue-game-button") ?. assetLocation
+                                }/>
+                            </div>
+                        )
+                    }
+                        {
+                        _gameContext.gameStatus === GameStatus.Finished && (
+                            <div className='button continue-game-button'
+                                onClick={handleViewResultsClick}>
+                                <span>{
+                                    _gameContext.getPlainTextByID("welcome:view-results")
+                                }</span>
+                                <img src={
+                                    _gameContext.getAssetByID("continue-game-button") ?. assetLocation
+                                }/>
+                            </div>
+                        )
+                    }
+                        <div className='button create-game-button'
+                            onClick={handleCreateGameClick}>
+                            <span>{
+                                _gameContext.getPlainTextByID("welcome:new-game")
+                            }</span>
+                            <img src={
+                                _gameContext.getAssetByID("create-game-button") ?. assetLocation
+                            }/>
+                        </div>
+                        <div className='button rules-button'
+                            onClick={handleRulesClick}>
+                            <span>{
+                                _gameContext.getPlainTextByID("welcome:rules")
+                            }</span>
+                            <img src={
+                                _gameContext.getAssetByID("rules-button") ?. assetLocation
+                            }/>
+                        </div>
+                        <div className='button rules-button'
+                            onClick={handleSettingsClick}>
+                            <span>{
+                                _gameContext.getPlainTextByID("welcome:settings")
+                            }</span>
+                            <img src={
+                                _gameContext.getAssetByID("settings-button") ?. assetLocation
+                            }/>
+                        </div>
+
+
+                        {/*
+                     */} </div>
+                </div>
+            </WelcomeTemplate>
+        </DataAssuranceHOC>
     );
-  }
+}
 
 export default WelcomePage

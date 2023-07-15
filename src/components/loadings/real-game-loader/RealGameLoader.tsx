@@ -34,6 +34,15 @@ function RealGameLoader() {
                     console.log(gameData.players); 
                     console.log(gameData.scores);
 
+                    if(gameData.selectedLanguage)
+                    {
+                        _gameContext.updateSelectedLanguage(gameData.selectedLanguage);
+                    }
+                    else
+                    {
+                        _gameContext.updateSelectedLanguage('en');
+                    }
+
                     _playerContext.addPlayers(gameData.players);
 
                 
@@ -77,7 +86,7 @@ function RealGameLoader() {
     }, []);
 
     return (
-        <div>RealGameLoader: {existingGameFound ? 'Found' : 'Not Found'}</div>
+        <div>Loading Game...</div>
     )
 }
 

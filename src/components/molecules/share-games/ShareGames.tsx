@@ -30,7 +30,7 @@ function ShareGames() {
     }
     return (
         <div className='share-game-wrap'>
-            <div className='icon facebook'>
+            {/* <div className='icon facebook'>
                 <a href={
                     `https://www.facebook.com/sharer/sharer.php?u=https://www.favoritecreative.com/puttputtgo/sharer.php?customerKey=${
                         _gameContext.companyData.customerID
@@ -39,7 +39,7 @@ function ShareGames() {
                     }`
                 }><Icons.Facebook/></a>
             </div>
-            <div className='icon twitter'><Icons.Twitter/></div>
+            <div className='icon twitter'><Icons.Twitter/></div> */}
             <div className='icon message'
                 onClick={handleMessageClick}><Icons.Message/></div>
         </div>
