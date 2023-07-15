@@ -46,8 +46,9 @@
         { "locale": "it", "text": "Continua il gioco" },
         { "locale": "pt", "text": "Continuar jogo" },
         { "locale": "ru", "text": "Продолжить игру" },
-        { "locale": "zh", "text": "继续游戏" }
-    ]
+        { "locale": "zh", "text": "继续游戏" },
+        { "locale": "ja", "text": "ゲームを続ける" }
+      ]
     },
     {
       "textID": "welcome:view-results",
@@ -59,8 +60,9 @@
         { "locale": "it", "text": "vedi i risultati" },
         { "locale": "pt", "text": "Ver resultados" },
         { "locale": "ru", "text": "Посмотреть Результаты" },
-        { "locale": "zh", "text": "查看结果" }
-    ]
+        { "locale": "zh", "text": "查看结果" },
+        { "locale": "ja", "text": "結果を見る" }
+      ]
     },
     {
       "textID": "welcome:new-game",
@@ -72,8 +74,9 @@
         { "locale": "it", "text": "Nuovo gioco" },
         { "locale": "pt", "text": "Novo jogo" },
         { "locale": "ru", "text": "Новая игра" },
-        { "locale": "zh", "text": "新游戏" }
-    ]
+        { "locale": "zh", "text": "新游戏" },
+        { "locale": "ja", "text": "新しいゲーム" }
+      ]
     },
     {
       "textID": "welcome:rules",
@@ -85,8 +88,9 @@
         { "locale": "it", "text": "Regole" },
         { "locale": "pt", "text": "Regras" },
         { "locale": "ru", "text": "Правила" },
-        { "locale": "zh", "text": "规则" }
-    ]
+        { "locale": "zh", "text": "规则" },
+        { "locale": "ja", "text": "ルール" }
+      ]
     },
     {
       "textID": "welcome:settings",
@@ -98,8 +102,9 @@
         { "locale": "it", "text": "Impostazioni" },
         { "locale": "pt", "text": "Configurações" },
         { "locale": "ru", "text": "Настройки" },
-        { "locale": "zh", "text": "设置" }
-    ]
+        { "locale": "zh", "text": "设置" },
+        { "locale": "ja", "text": "設定" }
+      ]
     },
     {
       "textID": "start-game:choose-players-heading",
@@ -111,7 +116,8 @@
         { "locale": "it", "text": "Scegli i tuoi eroi" },
         { "locale": "pt", "text": "Escolha seus heróis" },
         { "locale": "ru", "text": "Выберите своих героев" },
-        { "locale": "zh", "text": "选择你的英雄" }
+        { "locale": "zh", "text": "选择你的英雄" },
+        { "locale": "ja", "text": "あなたのヒーローを選んでください" }
       ]
     },
     {
@@ -124,8 +130,9 @@
         { "locale": "it", "text": "Aggiungi giocatore" },
         { "locale": "pt", "text": "Adicionar jogador" },
         { "locale": "ru", "text": "Добавить игрока" },
-        { "locale": "zh", "text": "添加玩家" }
-    ]
+        { "locale": "zh", "text": "添加玩家" },
+        { "locale": "ja", "text": "プレーヤーを追加" }
+      ]
     },
     {
       "textID": "start-game:start-game",
@@ -137,20 +144,49 @@
         { "locale": "it", "text": "Inizia il gioco" },
         { "locale": "pt", "text": "Começar o jogo" },
         { "locale": "ru", "text": "Начать игру" },
-        { "locale": "zh", "text": "开始游戏" }
-    ]
+        { "locale": "zh", "text": "开始游戏" },
+        { "locale": "ja", "text": "ゲームをスタート" }
+      ]
     },
     {
       "textID": "game-in-progress:game-in-progress",
       "locals": [
-        { "locale": "en", "text": "Game In Progress" }
-    ]
+        { "locale": "en", "text": "Game In Progress" },
+        { "locale": "es", "text": "Juego en progreso" },
+        { "locale": "fr", "text": "Jeu en cours" },
+        { "locale": "de", "text": "Gerade stattfindendes Spiel" },
+        { "locale": "it", "text": "Partita in corso" },
+        { "locale": "pt", "text": "Jogo em progresso" },
+        { "locale": "ru", "text": "Игра в процессе" },
+        { "locale": "zh", "text": "游戏进行中" },
+        { "locale": "ja", "text": "ゲーム進行中" }
+      ]
     },
     {
       "textID": "game-in-progress:continue-where-left-off",
       "locals": [
-        { "locale": "en", "text": "Would you like to continue where you left off?" }
-    ]
+        {
+          "locale": "en",
+          "text": "Would you like to continue where you left off?"
+        },
+        { "locale": "es", "text": "¿Te gustaría continuar donde lo dejaste?" },
+        {
+          "locale": "fr",
+          "text": "Souhaitez-vous continuer là où vous vous étiez arrêté ?"
+        },
+        {
+          "locale": "de",
+          "text": "Möchten Sie dort weitermachen, wo Sie aufgehört haben?"
+        },
+        { "locale": "it", "text": "Vorresti continuare da dove eri rimasto?" },
+        { "locale": "pt", "text": "Gostaria de continuar de onde parou?" },
+        {
+          "locale": "ru",
+          "text": "Хотите продолжить с того места, на котором остановились?"
+        },
+        { "locale": "zh", "text": "您想从上次中断的地方继续吗？" },
+        { "locale": "ja", "text": "中断したところから続行しますか?" }
+      ]
     },
     {
       "textID": "game-in-progress:new-game",
@@ -162,8 +198,9 @@
         { "locale": "it", "text": "Nuovo gioco" },
         { "locale": "pt", "text": "Novo jogo" },
         { "locale": "ru", "text": "Новая игра" },
-        { "locale": "zh", "text": "新游戏" }
-    ]
+        { "locale": "zh", "text": "新游戏" },
+        { "locale": "ja", "text": "新しいゲーム" }
+      ]
     },
     {
       "textID": "game-in-progress:continue",
@@ -175,8 +212,9 @@
         { "locale": "it", "text": "Continua" },
         { "locale": "pt", "text": "Continuar" },
         { "locale": "ru", "text": "Продолжать" },
-        { "locale": "zh", "text": "继续" }
-    ]
+        { "locale": "zh", "text": "继续" },
+        { "locale": "ja", "text": "続く" }
+      ]
     },
     {
       "textID": "gameplay:hole",
@@ -190,7 +228,7 @@
         { "locale": "ru", "text": "Дыра" },
         { "locale": "zh", "text": "洞" },
         { "locale": "ja", "text": "穴" }
-    ]
+      ]
     },
     {
       "textID": "gameplay:score",
@@ -204,7 +242,7 @@
         { "locale": "ru", "text": "Счет" },
         { "locale": "zh", "text": "分数" },
         { "locale": "ja", "text": "スコア" }
-    ]
+      ]
     },
     {
       "textID": "gameplay:next-player",
@@ -218,7 +256,7 @@
         { "locale": "ru", "text": "Следующий игрок" },
         { "locale": "zh", "text": "下一个玩家" },
         { "locale": "ja", "text": "次のプレイヤー" }
-    ]
+      ]
     },
     {
       "textID": "gameplay:game-starting",
@@ -232,7 +270,7 @@
         { "locale": "ru", "text": "Начало игры" },
         { "locale": "zh", "text": "游戏开始" },
         { "locale": "ja", "text": "ゲーム開始" }
-    ]
+      ]
     },
     {
       "textID": "gameplay:good-luck",
@@ -246,7 +284,7 @@
         { "locale": "ru", "text": "Удачи!" },
         { "locale": "zh", "text": "祝你好运！" },
         { "locale": "ja", "text": "幸運を！" }
-    ]
+      ]
     },
     {
       "textID": "gameplay:game-over",
@@ -260,7 +298,7 @@
         { "locale": "ru", "text": "Игра закончена" },
         { "locale": "zh", "text": "游戏结束" },
         { "locale": "ja", "text": "ゲームオーバー" }
-    ]
+      ]
     },
     {
       "textID": "gameplay:take-me-back",
@@ -274,7 +312,7 @@
         { "locale": "ru", "text": "Верни меня" },
         { "locale": "zh", "text": "带我回去" },
         { "locale": "ja", "text": "連れ帰ってください" }
-    ]
+      ]
     },
     {
       "textID": "gameplay:oops",
@@ -288,21 +326,45 @@
         { "locale": "ru", "text": "Ой!" },
         { "locale": "zh", "text": "哎呀！" },
         { "locale": "ja", "text": "おっとっと！" }
-    ]
+      ]
     },
     {
       "textID": "gameplay:missing-scores",
       "locals": [
-        { "locale": "en", "text": "Some players have missing scores. Please fix the scores for the following holes:" },
-        { "locale": "es", "text": "A algunos jugadores les faltan puntuaciones. Corrija las puntuaciones de los siguientes hoyos:" },
-        { "locale": "fr", "text": "Certains joueurs ont des scores manquants. Veuillez corriger les scores pour les trous suivants :" },
-        { "locale": "de", "text": "Bei einigen Spielern fehlen Punkte. Bitte korrigieren Sie die Ergebnisse für die folgenden Löcher:" },
-        { "locale": "it", "text": "Alcuni giocatori hanno punteggi mancanti. Si prega di correggere i punteggi per le seguenti buche:" },
-        { "locale": "pt", "text": "Alguns jogadores têm pontuações perdidas. Corrija as pontuações para os seguintes buracos:" },
-        { "locale": "ru", "text": "У некоторых игроков отсутствуют очки. Пожалуйста, исправьте оценки для следующих лунок:" },
+        {
+          "locale": "en",
+          "text": "Some players have missing scores. Please fix the scores for the following holes:"
+        },
+        {
+          "locale": "es",
+          "text": "A algunos jugadores les faltan puntuaciones. Corrija las puntuaciones de los siguientes hoyos:"
+        },
+        {
+          "locale": "fr",
+          "text": "Certains joueurs ont des scores manquants. Veuillez corriger les scores pour les trous suivants :"
+        },
+        {
+          "locale": "de",
+          "text": "Bei einigen Spielern fehlen Punkte. Bitte korrigieren Sie die Ergebnisse für die folgenden Löcher:"
+        },
+        {
+          "locale": "it",
+          "text": "Alcuni giocatori hanno punteggi mancanti. Si prega di correggere i punteggi per le seguenti buche:"
+        },
+        {
+          "locale": "pt",
+          "text": "Alguns jogadores têm pontuações perdidas. Corrija as pontuações para os seguintes buracos:"
+        },
+        {
+          "locale": "ru",
+          "text": "У некоторых игроков отсутствуют очки. Пожалуйста, исправьте оценки для следующих лунок:"
+        },
         { "locale": "zh", "text": "有些玩家缺少分数。请修正以下洞的分数：" },
-        { "locale": "ja", "text": "スコアが抜けている選手もいます。次のホールのスコアを修正してください。" }
-    ]
+        {
+          "locale": "ja",
+          "text": "スコアが抜けている選手もいます。次のホールのスコアを修正してください。"
+        }
+      ]
     },
     {
       "textID": "gameplay:back",
@@ -316,25 +378,51 @@
         { "locale": "ru", "text": "Назад" },
         { "locale": "zh", "text": "后退" },
         { "locale": "ja", "text": "戻る" }
-    ]
+      ]
     },
     {
       "textID": "page:id",
-      "locals": [
-        { "locale": "en", "text": "Text Here" }
-    ]
+      "locals": [{ "locale": "en", "text": "Text Here" }]
     },
     {
       "textID": "rules:body",
       "locals": [
         {
           "locale": "en",
-          "text": "<h1>Howdy partner!</h1> <div><p>Now, gather 'round the campfire, and let me tell y'all 'bout the game of Putt Putt. Ya see, it's a bit like a miniature rodeo for golfin'. The goal is to round up that little golf ball and corral it into the hole with the least number of strokes.</p></div><div> <ol><li><p>First things first: ya need yer trusty putter and a ball, that's your weapon of choice in this wild frontier.</p></li><li><p>Each hole's got a par, which is the number of strokes it should take ya to get that ball into the hole. You'll wanna keep that in mind as you mosey on through the course.</p></li><li><p>Now, to start, ya place the ball in the tee-off area, which we call the 'startin corral'. Take aim with yer putter and give it a good ol' swing. Remember, pardner, slow and steady wins the race.</p></li><li><p>If that lil' varmint ball decides to jump outta bounds, don't go gettin' all riled up. Just bring it back to where it left the course and take a one-stroke penalty. Life out here on the range can be unpredictable, so keep your wits about ya.</p></li><li><p>When you're wranglin' that ball, remember: no horsin' around. Ya can't be movin' or touchin' the ball 'cept when yer swingin' that putter. Breakin' this rule will cost ya a one-stroke penalty.</p></li><li><p>If you find yerself in a tight spot, like when the ball's up against a rock or wedged between the walls, you can move the ball one clubhead length away without any penalties. Just don't go movin' it closer to the hole, or you'll find yourself in a heap of trouble.</p></li><li><p>Once you've put that ball in its rightful place (the hole), tally up the number of strokes it took ya, and mosey on to the next hole.</p></li><li><p>At the end of the trail, after all the holes have been conquered, add up yer total strokes. The cowpoke with the lowest score is the winner and can proudly call themselves the Putt Putt Sheriff of the day!</p></li></ol> </div><div><p>Now that you know the rules, saddle up and show that Putt Putt course who's boss. Good luck out there, partner!</p></div>"
-        }
+          "text": "<p>NEVER shall ye stand behind the person putting. NEVER shall ye swing thy putter above thy Knee.</p>\n<p>Five shall be the largest number of players in any group... and that number shall be 5.</p>\n<p>Slower groups shall let others play through. Yet as well, groups shall be courteous in thy haste.</p>\n<p>Each player shall stroke their first putt and shall then advance together as a group. The player who hath then come closet to the cup shall FINISH that hole... and so it goes.</p>\n<p>Six strokes shall be the limit on any hole. Pick up thy ball and scribe seven. Seven shall be the number ye shall scribe... and that number shall be 7.</p>\n<p>A ball hit off the green or into the water shall place one clubhead length in at the point thy ball hath left the green. That player shall accept a penalty of one stoke... and 1 shall be the number of strokes that player shall accept as penalty.</p>\n<p>A ball that does lie against a rail or obstacle shall be moved one clubhead length. The player who hath moved the ball shall accept NO penalty for this action.</p>\n<p>One free game may be won this day. Yet this shall NOT be so if ye are playing, this day, a free game. At the end of thy game ONE player shall spin the Victory Wheel to see which players, in thy group, hath won a free game.</p>"
+        },
+        {
+          "locale": "es",
+          "text": "<p>Nunca se pare detrás de la persona que está pateando. Además, nunca balancee el putter por encima de la rodilla.</p><p>El mayor número de jugadores en un grupo debe ser cinco.</p><p>Si su grupo está jugando lentamente, permita que otros lo alcancen. Sin embargo, también asegúrese de ser cortés y consciente al hacerlo.</p><p>Cada jugador debe hacer su primer tiro y luego avanzar como grupo. El jugador que aterriza su bola más cerca del hoyo debe completar el hoyo primero.</p><p>La máxima cantidad de golpes permitidos por hoyo es seis. Si llega a este límite, recoja su bola y marque siete como su puntaje.</p><p>Si una pelota es golpeada fuera del green o al agua, debe colocarse a la longitud de la cabeza del palo desde donde salió del green. El jugador debe aceptar una penalización de un golpe por esto.</p><p>Si una pelota cae contra una barandilla o un obstáculo, puede moverse una longitud de cabeza de palo sin penalidad.</p><p>Tienes la oportunidad de ganar un juego gratis hoy. Sin embargo, esto no se aplica si ya estás jugando un juego gratuito. Al final del juego, un jugador debe girar la 'Rueda de la victoria' para determinar quién, en su grupo, gana un juego gratis.</p>"
+        },
+        {
+          "locale": "fr",
+          "text": "<p>Ne restez jamais derrière la personne qui met. Aussi, ne balancez jamais votre putter plus haut que votre genou.</p><p>Le plus grand nombre de joueurs dans un groupe devrait être de cinq.</p><p>Si votre groupe joue lentement, laissez les autres vous dépasser. Cependant, assurez-vous également d'être poli et attentif lors de cela.</p><p>Chaque joueur doit tirer son premier coup, puis avancer en groupe. Le joueur qui fait atterrir sa balle le plus près du trou doit terminer le trou en premier.</p><p>Le maximum de coups autorisés par trou est de six. Si vous atteignez cette limite, ramassez votre balle et notez sept comme score.</p><p>Si une balle est frappée hors du green ou dans l'eau, elle doit être placée à une longueur de tête de club à partir de l'endroit où elle a quitté le green. Le joueur doit accepter une pénalité d'un coup pour cela.</p><p>Si une balle atterrit contre une rampe ou un obstacle, elle peut être déplacée d'une longueur de tête de club sans aucune pénalité.</p><p>Vous avez une chance de gagner un jeu gratuit aujourd'hui. Cependant, cela ne s'applique pas si vous jouez déjà un jeu gratuit. À la fin du jeu, un joueur doit faire tourner la 'roue de la victoire' pour déterminer qui, dans votre groupe, remporte une partie gratuite.</p>"
+        },
+        {
+          "locale": "de",
+          "text": "<p>Stehen Sie niemals hinter der Person, die puttet. Schwingen Sie Ihren Putter außerdem niemals höher als Ihr Knie.</p><p>Die größte Anzahl von Spielern in einer Gruppe sollte fünf sein.</p><p>Wenn Ihre Gruppe langsam spielt, lassen Sie andere Sie überholen. Achten Sie jedoch auch darauf, dass Sie dabei höflich und aufmerksam sind.</p><p>Jeder Spieler sollte seinen ersten Schlag machen und dann als Gruppe vorrücken. Der Spieler, der seinen Ball am nächsten zum Loch landet, sollte das Loch zuerst beenden.</p><p>Die maximale Anzahl von Schlägen pro Loch ist sechs. Wenn Sie dieses Limit erreichen, nehmen Sie Ihren Ball und notieren Sie sieben als Score.</p><p>Wenn ein Ball vom Grün oder ins Wasser geschlagen wird, sollte er eine Schlägerkopflänge von der Stelle entfernt platziert werden, an der er das Grün verlassen hat. Der Spieler muss eine Strafe von einem Schlag dafür hinnehmen.</p><p>Wenn ein Ball gegen ein Geländer oder ein Hindernis trifft, kann er eine Schlägerkopflänge ohne Strafe bewegt werden.</p><p>Sie haben heute die Chance, ein kostenloses Spiel zu gewinnen. Dies gilt jedoch nicht, wenn Sie bereits ein kostenloses Spiel spielen. Am Ende des Spiels sollte ein Spieler das 'Siegesrad' drehen, um zu bestimmen, wer in Ihrer Gruppe ein Freispiel gewinnt.</p>"
+        },
+        {
+          "locale": "it",
+          "text": "<p>Non stare mai dietro la persona che sta mettendo. Inoltre, non far oscillare mai il putter più in alto del ginocchio.</p><p> Il maggior numero di giocatori in un gruppo dovrebbe essere cinque.</p><p> Se il tuo gruppo sta suonando lentamente, lascia che gli altri ti sorpassino. Tuttavia, assicurati anche di essere educato e attento quando lo fai.</p><p> Ogni giocatore dovrebbe fare il primo colpo e poi andare avanti come gruppo. Il giocatore che fa atterrare la palla più vicino alla buca dovrebbe completare la buca per primo.</p><p> Il numero massimo di colpi consentiti per buca è sei. Se raggiungi questo limite, raccogli la palla e segna sette come punteggio.</p><p> Se una palla viene colpita fuori dal green o nell&#39;acqua, dovrebbe essere posizionata alla lunghezza di una testa di bastone da dove ha lasciato il green. Il giocatore dovrebbe accettare una penalità di un colpo per questo.</p><p> Se una pallina cade contro una ringhiera o un ostacolo, può essere allontanata di una testa di bastone senza alcuna penalità.</p><p> Hai la possibilità di vincere una partita gratuita oggi. Tuttavia, questo non si applica se stai già giocando a un gioco gratuito. Alla fine del gioco, un giocatore dovrebbe girare la ruota della vittoria per determinare chi, nel tuo gruppo, vince una partita gratuita.</p> un giocatore dovrebbe girare la ruota della vittoria per determinare chi, nel tuo gruppo, vince una partita gratuita.</p> un giocatore dovrebbe girare la ruota della vittoria per determinare chi, nel tuo gruppo, vince una partita gratuita.</p>"
+        },
+        {
+          "locale": "pt",
+          "text": "<p>Nunca fique atrás da pessoa que está colocando. Além disso, nunca balance o taco acima do joelho.</p><p> O maior número de jogadores em um grupo deve ser cinco.</p><p> Se o seu grupo estiver jogando devagar, permita que outros o ultrapassem. No entanto, certifique-se também de ser educado e consciente ao fazê-lo.</p><p> Cada jogador deve dar seu primeiro tiro e depois seguir em frente como um grupo. O jogador que acertar a bola mais perto do buraco deve completar o buraco primeiro.</p><p> O número máximo de tacadas permitidas por buraco é seis. Se você atingir esse limite, pegue sua bola e marque sete como sua pontuação.</p><p> Se uma bola for rebatida para fora do green ou para a água, ela deve ser colocada a uma distância da cabeça do taco de onde saiu do green. O jogador deve aceitar uma penalidade de uma tacada por isso.</p><p> Se uma bola cair contra uma grade ou obstáculo, ela pode ser movida a uma distância da cabeça do taco sem qualquer penalidade.</p><p> Você tem a chance de ganhar um jogo grátis hoje. No entanto, isso não se aplica se você já estiver jogando um jogo gratuito. No final do jogo, um jogador deve girar a Roda da Vitória para determinar quem, em seu grupo, ganha um jogo grátis.</p> um jogador deve girar a Roda da Vitória para determinar quem, em seu grupo, ganha um jogo grátis.</p> um jogador deve girar a Roda da Vitória para determinar quem, em seu grupo, ganha um jogo grátis.</p>"
+        },
+        {
+          "locale": "ru",
+          "text": "<p>Никогда не стойте позади человека, который ставит. Кроме того, никогда не поднимайте клюшку выше колена.</p><p> Максимальное количество игроков в группе должно быть пять.</p><p> Если ваша группа играет медленно, позвольте другим обогнать вас. Тем не менее, также убедитесь, что вы вежливы и внимательны при этом.</p><p> Каждый игрок должен сделать свой первый выстрел, а затем двигаться вперед всей группой. Игрок, который приземлит свой мяч ближе всего к лунке, должен пройти лунку первым.</p><p> Максимальное количество ударов, разрешенных на лунку, равно шести. Если вы достигнете этого предела, возьмите мяч и запишите семь очков.</p><p> Если мяч попадает за пределы грина или в воду, он должен быть помещен на расстоянии одной длины головки клюшки от того места, где он покинул грин. За это игрок должен принять штраф в один удар.</p><p> Если мяч приземляется на перила или препятствие, он может быть перемещен на одну длину головки клюшки без какого-либо штрафа.</p><p> Сегодня у вас есть шанс выиграть одну бесплатную игру. Однако это не применяется, если вы уже играете в бесплатную игру. В конце игры один игрок должен повернуть Колесо Победы, чтобы определить, кто из вашей группы выиграет бесплатную игру.</p> один игрок должен вращать Колесо Победы, чтобы определить, кто из вашей группы выиграет бесплатную игру.</p> один игрок должен вращать Колесо Победы, чтобы определить, кто из вашей группы выиграет бесплатную игру.</p>"
+        },
+        {
+          "locale": "zh",
+          "text": "<p>切勿站在推杆人身后。另外，切勿将推杆挥至高于膝盖的位置。</p><p>一组中最多的玩家人数应为五人。</p><p>如果你的团队玩得很慢，让其他人超过你。但是，还要确保这样做时保持礼貌和细心。</p><p>每个球员都应该进行第一次射门，然后作为一个团队继续前进。球落到离球洞最近的球员应该首先完成该洞。</p><p>每个洞允许的最大击球次数为六次。如果达到此限制，请拿起球并记下 7 作为您的分数。</p><p>如果球被击出果岭或落入水中，则应将其放置在距果岭离开位置一杆头的位置。球员应该为此接受一杆处罚。</p><p>如果球撞到栏杆或障碍物上，它可以被移开一个杆头的长度而不会受到任何处罚。</p><p>今天您有机会赢得一场免费游戏。但是，如果您已经在玩免费游戏，则此规定不适用。游戏结束时，一名玩家应该旋转胜利轮来确定您所在组中的谁赢得免费游戏。</p>一名玩家应该旋转胜利轮来确定您所在组中的谁赢得免费游戏。</p>一名玩家应该旋转胜利轮来确定您所在组中的谁赢得免费游戏。</p>"
+        },
+        { "locale": "ja", "text": "<p>パッティングをしている人の後ろには決して立たないでください。また、パターを膝より高い位置でスイングしないでください。</p><p>グループ内の最大プレイヤー数は 5 人です。</p><p>あなたのグループがゆっくりとプレイしている場合は、他の人があなたを追い越すことを許可してください。ただし、その際には礼儀正しく、注意を払うようにしてください。</p><p>各プレーヤーは最初のショットを打ってから、グループとして前進する必要があります。ボールをホールに最も近い場所に着地させたプレーヤーが、最初にホールを完了する必要があります。</p><p>ホールごとに許可される最大ストローク数は 6 です。この制限に達した場合は、ボールを拾い、スコアとして 7 をマークします。</p><p>ボールがグリーンの外に打たれた場合、または水の中に落ちた場合は、グリーンを離れた場所からクラブヘッド 1 つ分の長さの位置にボールを置く必要があります。この場合、プレーヤーは 1 打ペナルティを受け入れる必要があります。</p><p>ボールがレールや障害物に当たってしまった場合、ペナルティなしでクラブヘッド 1 つ分だけ離れたところにボールを移動させることができます。</p><p>今日は無料ゲームを 1 つ獲得するチャンスがあります。ただし、すでに無料ゲームをプレイしている場合はこの限りではありません。ゲームの終了時に、1 人のプレイヤーが勝利ホイールを回転させて、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p> 1 人のプレイヤーが勝利ホイールを回して、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p> 1 人のプレイヤーが勝利ホイールを回して、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p>" }
       ]
     }
   ],
-  
 
   "colors": [
     {

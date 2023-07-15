@@ -26,14 +26,16 @@ function WelcomePage() {
     }, []);
 
     const goTo = (route: string, relative: boolean = true) => {
+        console.log(_gameContext.companyData.customerID);
         if(!relative)
         {
             navigate(route);
             return;
         }
-        if(business_name)
+        if(_gameContext.companyData.customerID != 'default')
         {
-            navigate(`/${business_name}${route}`);
+
+            navigate(`/${_gameContext.companyData.customerID}${route}`);
             return;
         }
         
@@ -45,11 +47,7 @@ function WelcomePage() {
         return value === undefined || value === null;
     }
     const handleContinueGameClick = () => {
-      
-        // consoleWithColor("CURRENT_COURSE", _courseContext.getCurrentCourse());
-         //consoleWithColor("CURRENT_HOLE", _courseContext.getCurrentHole());
-         //consoleWithColor("PLAYERS",  _playerContext.getAllPlayers());
-        // //
+    
         ConsoleHelper.log_value({color: "green", title: "GetCurrentCourse", value: _courseContext.getCurrentCourse()});
         ConsoleHelper.log_value({color: "green", title: "CurrentHole", value: _courseContext.getCurrentHole()});
         ConsoleHelper.log_value({color: "green", title: "Players", value: _playerContext.getAllPlayers()});
@@ -71,10 +69,7 @@ function WelcomePage() {
         goTo('/rules');
     };
 
-    const handleOtherThemeClick = (place: string) => {
-        _gameContext.updateCompanyParam('');
-        window.location.href = place;
-    };
+
     
 
     const handleViewResultsClick =  () => {
@@ -116,27 +111,9 @@ function WelcomePage() {
                     </div>
                     
 
-                    <div className='flags'>
-                       
-                        {
-                            // get every local under textID: welcome:new-game
-                            _gameContext.getLocalsByID("welcome:new-game").map((local, index) => {
-                                return <div className='flag' onClick={() => _gameContext.updateSelectedLanguage(local.locale)}>
-                                    <img src={`/global-assets/flags/${local.locale}.png`} />
-                                    </div>
-                            })
-                        }
-                    </div>
+                   
                  {/*
-                    <div className='button rules-button'>
-                        <div onClick={() => handleOtherThemeClick('/')}>PuttPuttGo</div>
-                    </div>
-                     <div className='button rules-button'>
-                        <div onClick={() => handleOtherThemeClick('/castle-golf/')}>Castle Golf</div>
-                    </div>
-                    <div className='button rules-button'>
-                        <div onClick={() => handleOtherThemeClick('/bonanza-golf/')}>Bonanza Golf Golf</div><br />
-                    </div> */}
+                     */}
                         
                     </div>
             </div>

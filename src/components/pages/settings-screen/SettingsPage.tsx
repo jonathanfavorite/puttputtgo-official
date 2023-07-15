@@ -26,6 +26,11 @@ function SettingsPage() {
         navigate(`/${business_name}`);
     };
 
+    const handleOtherThemeClick = (place: string) => {
+        _gameContext.updateCompanyParam('');
+        window.location.href = place;
+    };
+
      
     return (
       <DataAssuranceHOC companyParam={business_name!}>
@@ -45,6 +50,21 @@ function SettingsPage() {
                         backgroundColor: _gameContext.gameStatus === 2 ? 'green' : '#fff'
                     }}
                     onClick={() => setGameStatus(2)}>Finished</button>
+
+
+
+
+<div className='button rules-button' style={{
+    marginTop: '20px'
+}}>
+                        <div onClick={() => handleOtherThemeClick('/')}>PuttPuttGo</div>
+                    </div>
+                     <div className='button rules-button'>
+                        <div onClick={() => handleOtherThemeClick('/castle-golf/')}>Castle Golf</div>
+                    </div>
+                    <div className='button rules-button'>
+                        <div onClick={() => handleOtherThemeClick('/bonanza-golf/')}>Bonanza Golf Golf</div><br />
+                    </div>
                     
                 </div>
                <div className='settings-footer'>

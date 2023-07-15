@@ -43,6 +43,8 @@ root.render(
                                     element={<RulesPage/>}/>
                                 <Route path="/results"
                                     element={<ResultsPage />}/>
+                                    <Route path="/settings"
+                                    element={<SettingsPage />}/>
                                 <Route path="/admin"
                                     element={
                                         <h1>Admin</h1>

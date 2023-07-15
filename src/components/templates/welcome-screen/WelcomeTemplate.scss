@@ -3,7 +3,7 @@
     left:0;
     top:0;
     width:100%;
-    height:100vh;
+     height: 100svh;
 
     display:flex;
     flex-direction: column;
@@ -43,6 +43,24 @@
         max-height:10vh;
         display:flex;
         width:100%;
+        padding-bottom:5vh;
+        align-items: end;
  
+        .flags {
+            display: flex;
+            width:100%;
+            justify-content: space-evenly;
+            .flag {
+                opacity: 0.5;
+                img {
+                    width:100%;
+                    display: block;
+                }
+                &.active-flag {
+                    opacity: 1;
+                    box-shadow: 0px 0px 5px 5px rgba($color: #000000, $alpha: 0.6);
+                }
+            }
+        }
     }
 }
