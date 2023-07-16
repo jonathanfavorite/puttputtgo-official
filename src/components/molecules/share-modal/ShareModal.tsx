@@ -37,7 +37,7 @@ function ShareModal(props: IProps) {
 
     function handleGeneralShare() {
         if (navigator.share) {
-            navigator.share({title: 'Check this out!', text: 'Hello, check out this cool website I found.', url: `https://www.favoritecreative.com/puttputtgo/sharer.php?customerKey=${
+            navigator.share({title: '🏰 We have defeated Castle Golf! 🏰', files: [], text: '🏰 We have defeated Castle Golf! Click the link to view the scores! 🏰', url: `https://www.favoritecreative.com/puttputtgo/sharer.php?customerKey=${
                     _gameContext.companyData.customerID
                 }&gameID=${props.gameID}`}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
         } else {
