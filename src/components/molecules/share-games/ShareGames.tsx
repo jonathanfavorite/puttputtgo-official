@@ -48,7 +48,7 @@ function ShareGames() {
             </div>
             <div className='icon twitter'><Icons.Twitter/></div> */}
             <div className='icon share'
-                onClick={() => setShowShareModal(true)}><span>Share</span><Icons.Share /></div>
+                onClick={() => setShowShareModal(true)}><span>{_gameContext.getPlainTextByID("results:share")}</span><Icons.Share /></div>
         </div>
         </>
 
