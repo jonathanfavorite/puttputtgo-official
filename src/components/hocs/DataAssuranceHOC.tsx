@@ -99,8 +99,15 @@ function DataAssuranceHOC(props : IProps) {
   //   return <GeneralLoadingTemplate>Sorry, we couldn't locate this course. It either does not exist or is not activated for play.</GeneralLoadingTemplate>
   // }
   // Show the loading screen while the context is loading
+
+
+  //return <GeneralLoadingTemplate><LocalStoragePreloader /></GeneralLoadingTemplate>
+
+  
+ // return <GeneralLoadingTemplate><RealGameLoader /></GeneralLoadingTemplate>
+
   if (_gameContext.gameLoading) {
-    return <GeneralLoadingTemplate>Game is loading...</GeneralLoadingTemplate>
+    return <GeneralLoadingTemplate>Warming up...</GeneralLoadingTemplate>
   }
 
   if(!_gameContext.gameLoading && !_gameContext.preloadedAssets)
@@ -134,7 +141,8 @@ function DataAssuranceHOC(props : IProps) {
     Course Info: {_courseContext.getCurrentCourse() ? 'Has Current Course': 'Does not have'}<br /> */}
     Current Hole #: {_courseContext.getCurrentHole().number}<br />
   </div>
-  {props.children}</>
+  {props.children}
+  </>
 }
 
 export default DataAssuranceHOC

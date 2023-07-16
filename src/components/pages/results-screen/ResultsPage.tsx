@@ -229,14 +229,14 @@ function ResultsPage() {
                     <div className='right'>
                         
                         <div className='language-dropdown'>
-                            <div className='selected-option' onClick={handleSelectedFlagClicked}> <img src={`/global-assets/flags/${_gameContext.selectedLanguage}.png`} /></div>
+                            <div className='selected-option' onClick={handleSelectedFlagClicked}> <img src={`/global-assets/flags/${_gameContext.selectedLanguage}.jpg`} /></div>
                             <div className='list' style={{
                                 display: showLanguageDropdown ? 'flex' : 'none'
                             }}>
                         {
                            _gameContext.getLocalsByID("welcome:new-game").map((local, index) => {
                                return _gameContext.selectedLanguage != local.locale && <div className={`flag`} key={index} onClick={() => handleNewLanguageClicked(local.locale)}>
-                                   <img src={`/global-assets/flags/${local.locale}.png`} />
+                                   <img src={`/global-assets/flags/${local.locale}.jpg`} />
                                    </div>
                            })
                        }
@@ -342,8 +342,6 @@ function ResultsPage() {
                         <GroupComparison />
 
                         <BestWorseHoles bestWorstHole={bestWorstHole!} />
-                        
-
                         
                         <PerformanceChart flatPerformanceData={flatPerformanceData} playerColors={playerColors} />
 

@@ -142,7 +142,7 @@ function GameContextProvider(props: any) {
         setGameMessages(old => []);
         clearLocalStorage();
         setClickedContinueGame(false);
-
+        setGameStatus(GameStatus.NotStarted);
         console.log("RESETTING GAME");
 
         _playerContext.resetPlayers();

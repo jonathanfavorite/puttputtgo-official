@@ -51,7 +51,7 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
                            // get every local under textID: welcome:new-game
                            _gameContext.getLocalsByID("welcome:new-game").map((local, index) => {
                                return <div className={`flag ${local.locale === _gameContext.selectedLanguage ? 'active-flag' : ''}`} key={index} onClick={() => _gameContext.updateSelectedLanguage(local.locale)}>
-                                   <img src={`/global-assets/flags/${local.locale}.png`} />
+                                   <img src={`/global-assets/flags/${local.locale}.jpg`} />
                                    </div>
                            })
                        }

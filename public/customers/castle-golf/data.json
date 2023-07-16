@@ -259,6 +259,20 @@
       ]
     },
     {
+      "textID": "gameplay:clear",
+      "locals": [
+        { "locale": "en", "text": "clear" },
+        { "locale": "es", "text": "limpiar" },
+        { "locale": "fr", "text": "effacer" },
+        { "locale": "de", "text": "löschen" },
+        { "locale": "it", "text": "cancellare" },
+        { "locale": "pt", "text": "limpar" },
+        { "locale": "ru", "text": "очистить" },
+        { "locale": "zh", "text": "清除" },
+        { "locale": "ja", "text": "クリア" }
+    ]
+    },
+    {
       "textID": "gameplay:game-starting",
       "locals": [
         { "locale": "en", "text": "Game Starting" },
@@ -428,13 +442,13 @@
         { "locale": "en", "text": "share" },
         { "locale": "es", "text": "compartir" },
         { "locale": "fr", "text": "partager" },
-        { "locale": "de", "text": "Aktie" },
+        { "locale": "de", "text": "teilen" },
         { "locale": "it", "text": "condividere" },
         { "locale": "pt", "text": "compartilhar" },
         { "locale": "ru", "text": "делиться" },
         { "locale": "zh", "text": "分享" },
-        { "locale": "ja", "text": "共有" }
-    ]
+        { "locale": "ja", "text": "共有する" }
+    ]    
     },
     {
       "textID": "results:better-than",
@@ -585,6 +599,62 @@
         },
         { "locale": "ja", "text": "<p>パッティングをしている人の後ろには決して立たないでください。また、パターを膝より高い位置でスイングしないでください。</p><p>グループ内の最大プレイヤー数は 5 人です。</p><p>あなたのグループがゆっくりとプレイしている場合は、他の人があなたを追い越すことを許可してください。ただし、その際には礼儀正しく、注意を払うようにしてください。</p><p>各プレーヤーは最初のショットを打ってから、グループとして前進する必要があります。ボールをホールに最も近い場所に着地させたプレーヤーが、最初にホールを完了する必要があります。</p><p>ホールごとに許可される最大ストローク数は 6 です。この制限に達した場合は、ボールを拾い、スコアとして 7 をマークします。</p><p>ボールがグリーンの外に打たれた場合、または水の中に落ちた場合は、グリーンを離れた場所からクラブヘッド 1 つ分の長さの位置にボールを置く必要があります。この場合、プレーヤーは 1 打ペナルティを受け入れる必要があります。</p><p>ボールがレールや障害物に当たってしまった場合、ペナルティなしでクラブヘッド 1 つ分だけ離れたところにボールを移動させることができます。</p><p>今日は無料ゲームを 1 つ獲得するチャンスがあります。ただし、すでに無料ゲームをプレイしている場合はこの限りではありません。ゲームの終了時に、1 人のプレイヤーが勝利ホイールを回転させて、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p> 1 人のプレイヤーが勝利ホイールを回して、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p> 1 人のプレイヤーが勝利ホイールを回して、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p>" }
       ]
+    },
+    {
+      "textID": "add-player:title",
+      "locals": [
+        { "locale": "en", "text": "add hero" },
+        { "locale": "es", "text": "añadir héroe" },
+        { "locale": "fr", "text": "ajouter un héros" },
+        { "locale": "de", "text": "Held hinzufügen" },
+        { "locale": "it", "text": "aggiungi eroe" },
+        { "locale": "pt", "text": "adicionar herói" },
+        { "locale": "ru", "text": "добавить героя" },
+        { "locale": "zh", "text": "添加英雄" },
+        { "locale": "ja", "text": "ヒーローを追加" }
+    ]
+    },
+    {
+      "textID": "add-player:input",
+      "locals": [
+        { "locale": "en", "text": "enter your name" },
+        { "locale": "es", "text": "introduzca su nombre" },
+        { "locale": "fr", "text": "entrez votre nom" },
+        { "locale": "de", "text": "gib deinen Namen ein" },
+        { "locale": "it", "text": "Inserisci il tuo nome" },
+        { "locale": "pt", "text": "digite seu nome" },
+        { "locale": "ru", "text": "введите ваше имя" },
+        { "locale": "zh", "text": "输入你的名字" },
+        { "locale": "ja", "text": "あなたの名前を入力してください" }
+    ]
+    },
+    {
+      "textID": "add-player:choose-color",
+      "locals": [
+        { "locale": "en", "text": "choose a color" },
+        { "locale": "es", "text": "elige un color" },
+        { "locale": "fr", "text": "choisir une couleur" },
+        { "locale": "de", "text": "wähle eine Farbe" },
+        { "locale": "it", "text": "scegli un colore" },
+        { "locale": "pt", "text": "escolha uma cor" },
+        { "locale": "ru", "text": "выбрать цвет" },
+        { "locale": "zh", "text": "选择一种颜色" },
+        { "locale": "ja", "text": "色を選ぶ" }
+    ]
+    },
+    {
+      "textID": "add-player:confirm",
+      "locals": [
+        { "locale": "en", "text": "confirm" },
+        { "locale": "es", "text": "confirmar" },
+        { "locale": "fr", "text": "confirmer" },
+        { "locale": "de", "text": "bestätigen" },
+        { "locale": "it", "text": "Confermare" },
+        { "locale": "pt", "text": "confirme" },
+        { "locale": "ru", "text": "подтверждать" },
+        { "locale": "zh", "text": "确认" },
+        { "locale": "ja", "text": "確認" }
+    ]
     }
   ],
 

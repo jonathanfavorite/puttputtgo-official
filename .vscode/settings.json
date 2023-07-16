@@ -2,8 +2,6 @@
   "files.exclude": {
     "README.md": true,
     "package-lock.json": true,
-    ".env.development": true,
-    ".env.production": true,
     ".git": true,
     ".gitignore": true,
     ".vscode": true,

@@ -2,16 +2,29 @@
     display: flex;
 
     .icon {
-        width:8vw;
+   
         margin-right:5vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        box-sizing: border-box;
+        span {
+            margin-right:2vw;
+        }
         &:last-child {
             margin-right:0;
         }
         svg {
-            height:100%;
-            width:100%;
+            display: block;
+            width: 7vw;
+            height:7vw;
             aspect-ratio: 1/1;
             fill: #fff;
         }
+    }
+    .share {
+        padding:10px;
+        background:rgba(#000, 0.1);
     }
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GameContext } from '../../../contexts/GameContext';
 import { ScoreContext } from '../../../contexts/ScoreContext';
 import { PlayerContext } from '../../../contexts/PlayerContext';
@@ -11,12 +11,16 @@ function RealGameLoader() {
     const _scoreContext = useContext(ScoreContext);
     const _playerContext = useContext(PlayerContext);
 
+    const navigate = useNavigate();
+
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const gameID = queryParams.get('gameID');
 
     const [checkingForExistingGame, setCheckingForExistingGame] = React.useState(true);
-    const [existingGameFound, setExistingGameFound] = React.useState(false);
+    const [existingGameFound, setExistingGameFound] = React.useState<boolean | null>(null);
+    const [statusText, setStatusText] = React.useState('');
+    const [error, setError] = React.useState(false);
 
     const getData = async () => {
         let response = fetch(`${process.env.REACT_APP_API_URL}/Game/GetGameData/${gameID}`, {
@@ -30,6 +34,8 @@ function RealGameLoader() {
                 console.log(data);
                 if(data.success)
                 {
+                    setError(false);
+                    setStatusText('Found Game!');
                     let gameData = JSON.parse(data.gameData);
                     console.log(gameData.players); 
                     console.log(gameData.scores);
@@ -58,14 +64,17 @@ function RealGameLoader() {
                 }
                 else
                 {
+                    setError(true);
+                    setStatusText('Game not found');
                     setCheckingForExistingGame(false);
-                    setExistingGameFound(false);
+                    setExistingGameFound(true);
                 }
                 
                 //console.log(data); 
             })
             .catch(err => {
-                console.log(err);
+                setCheckingForExistingGame(false);
+            setError(true);
             });
     };
 
@@ -78,6 +87,8 @@ function RealGameLoader() {
     }
 
     useEffect(() => {
+
+
        
         // async run getData
         getData();
@@ -86,8 +97,54 @@ function RealGameLoader() {
     }, []);
 
     return (
-        <div>Loading Game...</div>
-    )
+        <>
+          {error ? (
+            <div><>
+            <div
+              style={{
+                marginTop: '1rem',
+                color: 'red',
+              }}
+            >
+              Game Not Found
+            </div>
+            <div
+              style={{
+                marginTop: '1rem',
+                fontSize: '1rem',
+              }}
+              onClick={() => navigate(`/${_gameContext.companyData.customerID}/`)}
+            >
+              Back
+            </div>
+          </></div>
+          ) : checkingForExistingGame ? (
+            <div>Talking with game server...</div>
+          ) : existingGameFound ? (
+            'Found Game!'
+          ) : (
+            <>
+              <div
+                style={{
+                  marginTop: '1rem',
+                  color: 'red',
+                }}
+              >
+                Game Not Found
+              </div>
+              <div
+                style={{
+                  marginTop: '1rem',
+                  fontSize: '1rem',
+                }}
+                onClick={() => navigate(`/${_gameContext.companyData.customerID}/`)}
+              >
+                Back
+              </div>
+            </>
+          )}
+        </>
+      );
 }
 
 export default RealGameLoader

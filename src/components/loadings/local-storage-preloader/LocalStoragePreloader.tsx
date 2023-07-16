@@ -31,7 +31,7 @@ function LocalStoragePreloader() {
     }, [_gameContext.preloadedLocalStorage]);
 
     return (
-        <div>Loading Local Storage</div>
+        <div>Loading from local storage...</div>
     );
 }
 

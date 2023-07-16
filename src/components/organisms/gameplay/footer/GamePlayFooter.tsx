@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useRef } from 'react'
-import { GameContext } from '../../../../contexts/GameContext';
+import React, {useContext, useEffect, useRef} from 'react'
+import {GameContext} from '../../../../contexts/GameContext';
 import StyleHelper from '../../../../helpers/StyleHelper';
-import { PlayerContext } from '../../../../contexts/PlayerContext';
-import { ScoreContext } from '../../../../contexts/ScoreContext';
+import {PlayerContext} from '../../../../contexts/PlayerContext';
+import {ScoreContext} from '../../../../contexts/ScoreContext';
 import ScoreModel from '../../../../models/score/ScoreModel';
-import { CourseContext } from '../../../../contexts/CourseContext';
-import { TransitionContext } from '../../../../contexts/TransitionContext';
+import {CourseContext} from '../../../../contexts/CourseContext';
+import {TransitionContext} from '../../../../contexts/TransitionContext';
 import HoleModel from '../../../../models/hole/HoleModel';
-import { GameSubmissionReport } from '../../../../models/game/GameSubmissionReportModel';
+import {GameSubmissionReport} from '../../../../models/game/GameSubmissionReportModel';
 import PlayerModel from '../../../../models/player/PlayerModel';
 
 function GamePlayFooter() {
@@ -34,187 +34,227 @@ function GamePlayFooter() {
         _transitionContext.updateDescText(``);
     };
 
-        
-    const [nextHoleButtonText, setNextHoleButtonText] = React.useState<string>(_gameContext.getPlainTextByID("gameplay:next-player"));
-    const [nextHoleButtonBackgroundColor, setNextHoleButtonBackgroundColor] = React.useState<string>('green');
-    const [showFinishGameButton, setShowFinishGameButton] = React.useState<boolean>(false);
-    const nextHoleButtonRef = useRef<HTMLButtonElement>(null);
+
+    const [nextHoleButtonText, setNextHoleButtonText] = React.useState < string > (_gameContext.getPlainTextByID("gameplay:clear"));
+    const [nextHoleButtonBackgroundColor, setNextHoleButtonBackgroundColor] = React.useState < string > ('green');
+    const [showFinishGameButton, setShowFinishGameButton] = React.useState < boolean > (false);
+    const nextHoleButtonRef = useRef < HTMLButtonElement > (null);
+
+    const defaultHoleTextSize = '2.3rem';
+    const smallTextHoleSize = '1.5rem';
+    const [nextHoleTextSize, setNextHoleTextSize] = React.useState < string > (defaultHoleTextSize);
     useEffect(() => {
-        let timer : any;
-        if(showFinishGameButton)
-        {
-            if(nextHoleButtonRef.current != null)
-            {
+        if (nextHoleButtonRef.current) {
+            console.log("triggering", nextHoleButtonRef.current.querySelector('span')!.innerText.length);
+            if (nextHoleButtonRef.current.querySelector('span')!.innerText.length >= 10) {
+                setNextHoleTextSize('1.3rem');
+            } else if (nextHoleButtonRef.current.querySelector('span')!.innerText.length >= 8) {
+                setNextHoleTextSize(smallTextHoleSize);
+            } else {
+                setNextHoleTextSize(defaultHoleTextSize);
+            }
+            console.log("size", nextHoleTextSize);
+
+        }
+    }, [nextHoleButtonRef]);
+
+    useEffect(() => {
+        let timer: any;
+        if (showFinishGameButton) {
+            if (nextHoleButtonRef.current != null) {
                 let i = 0;
                 timer = setInterval(() => {
-                    
-                    if(i % 2 == 0)
-                    {
-                        nextHoleButtonRef.current?.classList.remove('darken');
+
+                    if (i % 2 == 0) {
+                        nextHoleButtonRef.current ?. classList.remove('darken');
+                    } else {
+                        nextHoleButtonRef.current ?. classList.add('darken');
                     }
-                    else{
-                        nextHoleButtonRef.current?.classList.add('darken');
-                    }
-                    //setNextHoleButtonBackgroundColor()
-                    ++i;
-                },500);
+                    // setNextHoleButtonBackgroundColor()
+                    ++ i;
+                }, 500);
             }
-            
-        }
-        else 
-        {
+
+        } else {
             clearInterval(timer);
         }
-        return () => {
+        return() => {
             clearInterval(timer);
         }
 
     }, [showFinishGameButton]);
 
 
-
-    // NEXT PLAYER BUTTON / NEXT HOLE BUTTON
+    // CLEAR / NEXT PLAYER BUTTON / NEXT HOLE BUTTON
     const handleNextHoleClick = () => {
 
-    if(_courseContext.holesRemaining() <= 1) {
-                    
-        console.log("last hole");
-        let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1];
-        if(_courseContext.getCurrentHole().number == lastHole.number)
-        {
-            let gameReport = GetGameSubmissionReport();
-            if(gameReport.invalidHoles.length > 0)
-            {
-                // let table = [];
-                // for(let i = 0; i < gameReport.invalidHoles.length; i++)
-                // {
-                //     let currentHole = gameReport.invalidHoles[i];
-                //     table.push([currentHole.hole.number, currentHole.playerIDs.join(", ")]);
-                // }
-                // console.table(table);
-                _scoreContext.addGameSubmissionReport(gameReport);
-                setShowFinishGameButton(false);
-
-            }
-            else{
-                _scoreContext.addGameSubmissionReport({invalidHoles: []});
-                _gameContext.toggleShowFinalGamePopup(true);
-                
-            }
-            //_gameContext.saveToLocalStorageAsync();
-          //_gameContext.toggleShowFinalGamePopup(true);
-        }
-        else{
-           // alert('pressed');
-        }
-    }
         
+        let removeMe = {
+            courseID: _courseContext.getCurrentCourse().ID,
+            playerID: _playerContext.getCurrentPlayer().id,
+            holeID: _courseContext.getCurrentHole().number,
+            score: -10
+        }
+
+        let holesRemaining = _courseContext.holesRemaining();
+
+        console.log("holes remaining", holesRemaining)
+        if (holesRemaining <= 1) { // last hole
+            let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1];
+            if (_courseContext.getCurrentHole().number == lastHole.number) {
+                console.log("1");
+                let gameReport = GetGameSubmissionReport();
+                if (gameReport.invalidHoles.length > 0) {
+                    _scoreContext.addGameSubmissionReport(gameReport);
+                    setNextHoleButtonText(_gameContext.getPlainTextByID("gameplay:clear"));
+                    setShowFinishGameButton(false);
+                    console.log("2");
+
+                } else {
+
+                    _scoreContext.addGameSubmissionReport({invalidHoles: []});
+                    _gameContext.toggleShowFinalGamePopup(true);
+                    console.log("3");
+                }
+            }
+            else
+            {
+                console.log("4");
+                _scoreContext.removeScore(removeMe);
+            }
+        } else { // they are not on final hole
+            console.log("5");
+            _scoreContext.removeScore(removeMe);
+            console.log("removing score 2", removeMe);
+        }
+
+
+        // if (_courseContext.holesRemaining() <= 1) {
+
+        //     console.log("last hole");
+        //     let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1];
+        //     if (_courseContext.getCurrentHole().number == lastHole.number) {
+        //         let gameReport = GetGameSubmissionReport();
+        //         if (gameReport.invalidHoles.length > 0) {
+        //             _scoreContext.addGameSubmissionReport(gameReport);
+        //             setShowFinishGameButton(false);
+
+        //         } else {
+
+        //             let removeMe = {
+        //                 courseID: _courseContext.getCurrentCourse().ID,
+        //                 playerID: _playerContext.getCurrentPlayer().id,
+        //                 holeID: _courseContext.getCurrentHole().number,
+        //                 score: -10
+
+        //             }
+        //             console.log("removing score 1", removeMe);
+        //             _scoreContext.removeScore(removeMe)
+        //             _scoreContext.addGameSubmissionReport({invalidHoles: []});
+        //             _gameContext.toggleShowFinalGamePopup(true);
+
+        //         }
+        //     } else {
+        //     }
+        // } else {
+        //     console.log("removing score 2");
+        //     _scoreContext.removeScore({
+        //         courseID: _courseContext.getCurrentCourse().ID,
+        //         playerID: _playerContext.getCurrentPlayer().id,
+        //         holeID: _courseContext.getCurrentHole().number,
+        //         score: -10
+
+        //     })
+        // }
+
     }
 
-    const scrollToPlayerWhoHasNotGone = (playerID: number) => {
+    const scrollToPlayerWhoHasNotGone = (playerID : number) => {
         _playerContext.updateCurrentPlayer(playerID);
     }
 
-    const [clickedAddScoreButton, setClickedAddScoreButton] = React.useState<ScoreModel | null>(null);
-    const [movingToNextPlayer, setMovingToNextPlayer] = React.useState<boolean>(false);
+    const [clickedAddScoreButton, setClickedAddScoreButton] = React.useState < ScoreModel | null > (null);
+    const [movingToNextPlayer, setMovingToNextPlayer] = React.useState < boolean > (false);
 
     useEffect(() => {
-        let timeout : any;
-        if(clickedAddScoreButton != null)
-        {
-           
-           
+        let timeout: any;
+        if (clickedAddScoreButton != null) {
+
 
             let playersWhoHaventGone = _scoreContext.hasEveryPlayerPlayedThisHole(_courseContext.getCurrentHole().number);
-            
-            if(_playerContext.getCurrentPlayer().id == _playerContext.getLastPlayer().id)
-            {
+
+            if (_playerContext.getCurrentPlayer().id == _playerContext.getLastPlayer().id) {
                 console.log("last player");
-              if(playersWhoHaventGone.length > 0 && playersWhoHaventGone[0].playerID != _playerContext.getCurrentPlayer().id)
-              {
-                  scrollToPlayerWhoHasNotGone(playersWhoHaventGone[0].playerID);
-              }
-              else
-              {
-               
+                if (playersWhoHaventGone.length > 0 && playersWhoHaventGone[0].playerID != _playerContext.getCurrentPlayer().id) {
+                    scrollToPlayerWhoHasNotGone(playersWhoHaventGone[0].playerID);
+                } else {
+
                     _gameContext.saveToLocalStorageAsync();
-                    
-                    if(_courseContext.holesRemaining() <= 1) {
-                    
+
+                    if (_courseContext.holesRemaining() <= 1) {
+
                         let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1];
-                        if(_courseContext.getCurrentHole().number == lastHole.number)
-                        {
-                          //_gameContext.toggleShowFinalGamePopup(true);
+                        if (_courseContext.getCurrentHole().number == lastHole.number) { // _gameContext.toggleShowFinalGamePopup(true);
                             setNextHoleButtonText("finish game");
-                            //setNextHoleButtonBackgroundColor("red");
+                            // setNextHoleButtonBackgroundColor("red");
                             setShowFinishGameButton(true);
-                        }
-                        else
-                        {
+                        } else {
                             _transitionContext.updateHeadingText(`final round`);
                             _transitionContext.updateDescText(`prepare yourself`);
-                            //nextHoleTransitionTexts();
+                            // nextHoleTransitionTexts();
                             setMovingToNextPlayer(true);
 
                             setTimeout(() => {
                                 _courseContext.toggleNextHole();
-                                  _playerContext.updateCurrentPlayer(0);
-                              }, 300);
+                                _playerContext.updateCurrentPlayer(0);
+                            }, 300);
                         }
-                    }
-                    else {
+                    } else {
                         nextHoleTransitionTexts();
                         setMovingToNextPlayer(true);
                         setTimeout(() => {
                             _courseContext.toggleNextHole();
-                              _playerContext.updateCurrentPlayer(0);
-                          }, 300);
+                            _playerContext.updateCurrentPlayer(0);
+                        }, 300);
                     }
 
-                  
-                 
-              }
-            }
-            else
-            {
-                //console.log("saving");
-              _playerContext.toggleNextPlayer();
-              
-              timeout = setTimeout(() => {
-                //_gameContext.saveToLocalStorageAsync();
-              }, 300);
 
-             
-              
+                }
+            } else { // console.log("saving");
+                _playerContext.toggleNextPlayer();
+                setNextHoleButtonText(_gameContext.getPlainTextByID("gameplay:clear"));
+                timeout = setTimeout(() => { // _gameContext.saveToLocalStorageAsync();
+                }, 300);
+
+
             }
             setClickedAddScoreButton(null);
         }
 
-        return () => {
+        return() => {
             clearTimeout(timeout);
-          }
+        }
     }, [clickedAddScoreButton]);
 
-    const handleScoreAddClick = (value: number) => {
-       
-        let score : ScoreModel = {
+    const handleScoreAddClick = (value : number) => {
+
+        let score: ScoreModel = {
             courseID: _courseContext.getCurrentCourse().ID,
             playerID: _playerContext.getCurrentPlayer().id,
             holeID: _courseContext.getCurrentHole().number,
             score: value
         }
-        
-      
+
+
         _scoreContext.addScore(score);
         setClickedAddScoreButton(score);
 
-     
-       // scrollToActivePlayer();
+
+        // scrollToActivePlayer();
     }
 
     useEffect(() => {
-        if(movingToNextPlayer)
-        {
+        if (movingToNextPlayer) {
             _transitionContext.handleAnimationToggle();
             setMovingToNextPlayer(false);
         }
@@ -223,43 +263,34 @@ function GamePlayFooter() {
     const scrollToActivePlayer = () => {
         let activePlayer = document.querySelector('.active-player');
         if (activePlayer) {
-            if(activePlayer.getAttribute('data-id') == '0')
-            {
+            if (activePlayer.getAttribute('data-id') == '0') {
                 setTimeout(() => {
-                    activePlayer!.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                    activePlayer !.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
                 }, 400); // adjust delay as needed
-            }
-            else{
+            } else {
                 setTimeout(() => {
-                    activePlayer!.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                    activePlayer !.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
                 }, 300); // adjust delay as needed
             }
-           
+
         }
     }
 
 
-
     const GetGameSubmissionReport = () : GameSubmissionReport => {
-        let missingScores : GameSubmissionReport = {
+        let missingScores: GameSubmissionReport = {
             invalidHoles: []
         }
         _courseContext.getCurrentCourse().holes.forEach(hole => {
             _playerContext.getAllPlayers().forEach(player => {
                 let score = _scoreContext.getScoreByHoleAndPlayer(hole.number, player.id);
-                if(score == null || score == -10)
-                {
-                    // only add to missingScores.invalidHoles if the hole is not already in the array
-                    if(missingScores.invalidHoles.filter(x => x.hole.number == hole.number).length == 0)
-                    {
-                        //console.log("NOT");
+                if (score == null || score == -10) { // only add to missingScores.invalidHoles if the hole is not already in the array
+                    if (missingScores.invalidHoles.filter(x => x.hole.number == hole.number).length == 0) { // console.log("NOT");
                         missingScores.invalidHoles.push({
                             hole: hole,
                             playerIDs: [player.id]
                         });
-                    }
-                    else
-                    {
+                    } else {
                         let invalidHole = missingScores.invalidHoles.filter(x => x.hole.number == hole.number)[0];
                         invalidHole.playerIDs.push(player.id);
                     }
@@ -272,46 +303,50 @@ function GamePlayFooter() {
     useEffect(() => {
         scrollToActivePlayer();
     }, [_playerContext.getCurrentPlayer()]);
-  return (
-    <div className='footer-content'>
-                    <div className='numbers-wrap'>
-                        <div className='numbers'>
-                            {
-                            scores_layout.map((row, index) => {
-                                return (
-                                    <div 
-                                    className='row'
-                                        key={index}>
-                                        {
-                                        row.map((score, index) => {
-                                            return (
-                                                <button 
-                                                onClick={() => handleScoreAddClick(score)}
-                                                className='score'
-                                                    key={index}  style={
-                                                      {
-                                                          backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-score-button'))
-                                                      }}>
-                                                    {score}</button>
-                                            )
-                                        })
-                                    } </div>
-                                )
-                            })
-                        } </div>
-                    </div>
-                    <button
-                    ref={nextHoleButtonRef}
-                    onClick={handleNextHoleClick}
-                    className='next-hole' style={
-                {
-                    backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-next-hole-button')),
-                    backgroundColor: nextHoleButtonBackgroundColor
-                }}>
-                        <span>{nextHoleButtonText}<br/></span>
-                    </button>
-                </div>
-  )
+    return (
+        <div className='footer-content'>
+            <div className='numbers-wrap'>
+                <div className='numbers'>
+                    {
+                    scores_layout.map((row, index) => {
+                        return (
+                            <div className='row'
+                                key={index}>
+                                {
+                                row.map((score, index) => {
+                                    return (
+                                        <button onClick={
+                                                () => handleScoreAddClick(score)
+                                            }
+                                            className='score'
+                                            key={index}
+                                            style={
+                                                {
+                                                    backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-score-button'))
+                                                }
+                                        }>
+                                            {score}</button>
+                                    )
+                                })
+                            } </div>
+                        )
+                    })
+                } </div>
+            </div>
+            <button ref={nextHoleButtonRef}
+                onClick={handleNextHoleClick}
+                className='next-hole'
+                style={
+                    {
+                        fontSize: nextHoleTextSize,
+                        backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-next-hole-button')),
+                        backgroundColor: nextHoleButtonBackgroundColor
+                    }
+            }>
+                <span>{nextHoleButtonText}<br/></span>
+            </button>
+        </div>
+    )
 }
 
 export default GamePlayFooter

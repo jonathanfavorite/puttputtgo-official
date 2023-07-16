@@ -120,7 +120,7 @@ function RoundsContainer(props: IProps) {
                             }
                             else {
                                 if(_courseContext.getCurrentHole().number === hole.number) {
-                                    showWarning = true;
+                                    //showWarning = true;
                                 }
                             }
 

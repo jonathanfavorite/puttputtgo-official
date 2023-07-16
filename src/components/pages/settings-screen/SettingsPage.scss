@@ -6,6 +6,14 @@
     flex-direction: column;
     .settings-body {
         flex:1;
+        .admin-mode-wrap {
+            .title {
+                margin-bottom:20px;
+            }
+            .admin-mode-hidden {
+                display: none;
+            }
+        }
     }
     .settings-footer {
         height:10vh;

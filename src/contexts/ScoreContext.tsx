@@ -66,7 +66,13 @@ function ScoreContextProvider(props: any) {
     }
 
     const removeScore = (score: ScoreModel) => {
-        setScores(old => old.filter(s => s !== score));
+        let newScores = [...scores];
+        for(let i = 0; i < newScores.length; i++) {
+            if (newScores[i].holeID == score.holeID && newScores[i].playerID == score.playerID) {
+                newScores.splice(i, 1);
+            }
+        }
+        setScores(old => newScores);
     }
 
     const getScoreByHoleAndPlayer = (holeNumber: number, playerID: number) => {

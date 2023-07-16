@@ -74,13 +74,13 @@ function CreatePlayerModal(props: IProps) {
               </div>
 
               <div className="heading">
-                  Add hero
+                  {_gameContext.getPlainTextByID("add-player:title")}
               </div>
               <div className="name-input">
-                  <input type="text" value={newName} onChange={handleNewNameChange} placeholder="Enter your name" />
+                  <input type="text" value={newName} onChange={handleNewNameChange} placeholder={_gameContext.getPlainTextByID("add-player:input")} />
               </div>
               <div className="heading">
-                  Choose your color
+              {_gameContext.getPlainTextByID("add-player:choose-color")}
               </div>
 
               <div className="color-picker">
@@ -100,7 +100,7 @@ function CreatePlayerModal(props: IProps) {
                   ?.assetLocation
               })`,
             }}>
-                  Confirm
+                   {_gameContext.getPlainTextByID("add-player:confirm")}
               </div>
 
             </div>
