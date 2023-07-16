@@ -25,7 +25,14 @@ function ShareModal(props: IProps) {
        
     };
 
-    
+    const getRandomString = (length: number) => {
+        var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '';
+        for (var i = 0; i < length; i++) {
+            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
+        return result;
+    };
 
     useEffect(() => {
         if (showCopied) {
@@ -39,7 +46,7 @@ function ShareModal(props: IProps) {
         if (navigator.share) {
             navigator.share({title: '🏰 We have defeated Castle Golf! 🏰', files: [], text: '🏰 We have defeated Castle Golf! Click the link to view the scores! 🏰', url: `https://www.favoritecreative.com/puttputtgo/sharer.php?customerKey=${
                     _gameContext.companyData.customerID
-                }&gameID=${props.gameID}`}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
+                }&gameID=${props.gameID}&query=${getRandomString(10)}`}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
         } else {
             console.log('Share not supported on this browser, do it the old way.');
         }
