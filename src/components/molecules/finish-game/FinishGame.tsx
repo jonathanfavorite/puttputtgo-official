@@ -51,9 +51,9 @@ function FinishGame() {
         console.log("SNAPSHOT", snapshotPayload);
         // console.log(JSON.stringify(savePayLoad));
 
-        console.log("TEST", process.env.REACT_APP_SNAPSHOT_URL);
+        console.log("TEST", process.env.REACT_APP_IMAGEGEN_URL);
 
-        let response = fetch(`${process.env.REACT_APP_SNAPSHOT_URL}`, {
+        let response = fetch(`${process.env.REACT_APP_IMAGEGEN_URL}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

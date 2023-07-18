@@ -46,7 +46,7 @@ function ShareModal(props: IProps) {
         return `${process.env.REACT_APP_URL}/${_gameContext.companyData.customerID}/results?gameID=${props.gameID}`;
     }
     const getCorrectSharerUrl = () : string => {
-        return `${process.env.REACT_APP_SNAPSHOT_URL}${_gameContext.companyData.customerID}/results?gameID=${props.gameID}`;
+        return `${process.env.REACT_APP_SHARE_URl}/sharer.php?customerKey=${_gameContext.companyData.customerID}&gameID=${props.gameID}`;
     }
 
     function handleGeneralShare() {
