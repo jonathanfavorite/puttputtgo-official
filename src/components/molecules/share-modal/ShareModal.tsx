@@ -51,7 +51,7 @@ function ShareModal(props: IProps) {
 
     function handleGeneralShare() {
         if (navigator.share) {
-            navigator.share({title: '🏰 We have defeated Castle Golf! 🏰', files: [], text: '🏰 We have defeated Castle Golf! Click the link to view the scores! 🏰', url: getCorrectSharerUrl()}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
+            navigator.share({title: '', files: [], text: '🏰 We have defeated Castle Golf! Click the link to view the scores! 🏰', url: getCorrectSharerUrl()}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
         } else {
             console.log('Share not supported on this browser, do it the old way.');
         }
