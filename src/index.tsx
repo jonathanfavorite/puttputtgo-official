@@ -20,6 +20,7 @@ import ResultsPage from './components/pages/results-screen/ResultsPage';
 import SettingsPage from './components/pages/settings-screen/SettingsPage';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { hydrate, render } from 'react-dom';
+import HomeScreen from './components/pages/website/home/HomeScreen';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
@@ -32,18 +33,19 @@ root.render(
 
                         <BrowserRouter>
                             <Routes>
-                                <Route path="/"
+                                <Route path="/" element={<HomeScreen/>}/>
+                                <Route path="/demo/"
                                     element={<WelcomePage/>}/>
 
-                                <Route path="/game"
+                                <Route path="/demo/game"
                                     element={<GamePage/>}/>
-                                <Route path="/create-game"
+                                <Route path="/demo/create-game"
                                     element={<CreateGamePage/>}/>
-                                <Route path="/rules"
+                                <Route path="/demo/rules"
                                     element={<RulesPage/>}/>
-                                <Route path="/results"
+                                <Route path="/demo/results"
                                     element={<ResultsPage />}/>
-                                    <Route path="/settings"
+                                    <Route path="/demo/settings"
                                     element={<SettingsPage />}/>
                                 <Route path="/admin"
                                     element={
@@ -76,6 +78,7 @@ root.render(
                                     element={<TestCompanyDataPage/>}/>
                                     <Route path="/test/flex"
                                     element={<FlexTest/>}/>
+                                <Route path="*" element={<h1>Not Found</h1>}/>
                             </Routes>
                         </BrowserRouter>
                 </UIContextProvider>
