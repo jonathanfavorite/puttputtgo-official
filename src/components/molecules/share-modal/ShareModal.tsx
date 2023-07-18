@@ -42,11 +42,16 @@ function ShareModal(props: IProps) {
         }
     }, [showCopied]);
 
+    const getActualUrl = () : string => {
+        return `${process.env.REACT_APP_URL}/${_gameContext.companyData.customerID}/results?gameID=${props.gameID}`;
+    }
+    const getCorrectSharerUrl = () : string => {
+        return `${process.env.REACT_APP_SNAPSHOT_URL}${_gameContext.companyData.customerID}/results?gameID=${props.gameID}`;
+    }
+
     function handleGeneralShare() {
         if (navigator.share) {
-            navigator.share({title: '🏰 We have defeated Castle Golf! 🏰', files: [], text: '🏰 We have defeated Castle Golf! Click the link to view the scores! 🏰', url: `https://www.ppg.social/sharer.php?customerKey=${
-                    _gameContext.companyData.customerID
-                }&gameID=${props.gameID}&query=${getRandomString(10)}`}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
+            navigator.share({title: '🏰 We have defeated Castle Golf! 🏰', files: [], text: '🏰 We have defeated Castle Golf! Click the link to view the scores! 🏰', url: getCorrectSharerUrl()}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
         } else {
             console.log('Share not supported on this browser, do it the old way.');
         }
@@ -56,11 +61,11 @@ function ShareModal(props: IProps) {
     <div className='share-modal-wrap'>
         <div className='share-modal'>
             <div className='qr-wrap'>
-                <QRCode value={`${process.env.REACT_APP_URL}/${_gameContext.companyData.customerID}/results?gameID=${props.gameID}`} />
+                <QRCode value={getActualUrl()} />
             </div>
             <div className='share-link'>
-                <div className='share-url'><span>{process.env.REACT_APP_URL}/{_gameContext.companyData.customerID}/results?gameID={props.gameID}</span></div>
-                <div className='copy-button'  onClick={() => copyToClipboard(`${process.env.REACT_APP_URL}/${_gameContext.companyData.customerID}/results?gameID=${props.gameID}`)}><span style={{
+                <div className='share-url'><span>{getCorrectSharerUrl()}</span></div>
+                <div className='copy-button'  onClick={() => copyToClipboard(getCorrectSharerUrl())}><span style={{
                     opacity: showCopied ? 1 : 0
                 }}>Copied!</span><Icons.Copy /></div>
             </div>
