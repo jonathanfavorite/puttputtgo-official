@@ -20,6 +20,7 @@ function WelcomePage() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const scanMethod = queryParams.get('method'); // getting the scan method
+    
 
     useEffect(() => {
         if (_gameContext.activePage != 'donotshow_existing_game') {
@@ -36,28 +37,34 @@ function WelcomePage() {
             if (_gameContext.companyData.customerID) {
                 if (scanMethod) {
                     if (scanMethod === 'qr') {
-                        let payload = {
-                            customerKey: _gameContext.companyData.customerID,
-                            gameID: _gameContext.gameID,
-                            browser: browserName,
-                            browserVersion: browserVersion,
-                            device: deviceType,
-                            OS: osName
-                        }
-                        console.log("PAYLOAD", payload)
-                        fetch(`${
-                            process.env.REACT_APP_API_URL 
-                        }/Game/SaveQRScan`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(payload)
-                        }).catch(err => {
-                            console.log(err); 
-                        });
-                        setHasSendScan(true); 
+                       
                     }
+                    else if(scanMethod == "qr_card")
+                    {
+
+                    }
+                    let payload = {
+                        customerKey: _gameContext.companyData.customerID,
+                        gameID: _gameContext.gameID,
+                        browser: browserName,
+                        browserVersion: browserVersion,
+                        device: deviceType,
+                        OS: osName,
+                        method: scanMethod
+                    }
+                    console.log("PAYLOAD", payload)
+                    fetch(`${
+                        process.env.REACT_APP_API_URL 
+                    }/Game/SaveQRScan`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    }).catch(err => {
+                        console.log(err); 
+                    });
+                    setHasSendScan(true); 
                 }
             }
         }
