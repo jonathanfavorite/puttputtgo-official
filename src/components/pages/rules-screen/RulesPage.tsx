@@ -35,6 +35,10 @@ function RulesPage() {
         window.addEventListener('resize', handleResize);
     }, []);
 
+    const handleRulesBackButton = () => {
+        navigate(`/${business_name}/`);
+    }
+
     function handleResize() {
       setViewPortHeight(window.innerHeight);
     }
@@ -50,7 +54,7 @@ function RulesPage() {
                 </div>
                <div ref={footerRef} className='rules-footer'>
                     <div className='back-button'>
-                    <img src={_gameContext.getAssetByID("settings-button")?.assetLocation} onClick={() => navigate("/")} />
+                    <img src={_gameContext.getAssetByID("settings-button")?.assetLocation} onClick={handleRulesBackButton} />
                     <span>{_gameContext.getPlainTextByID("gameplay:back")}</span>
                     </div>
                     
