@@ -19,12 +19,12 @@ function OnFireEffect(props: FireProps) {
     let isFirst = false;
 
     if(props.isFirst) {
-        console.log("yes"); 
+        //console.log("yes"); 
         isFirst = props.isFirst;
     }
     
     if(props.isLast) {
-        console.log("yes");
+        //console.log("yes");
         isLast = props.isLast;
     }
     if(props.color) {

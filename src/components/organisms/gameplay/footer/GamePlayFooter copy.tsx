@@ -76,7 +76,6 @@ function GamePlayFooter() {
             }
 
         } else {
-            nextHoleButtonRef.current ?. classList.remove('darken');
             clearInterval(timer);
         }
         return() => {
@@ -89,7 +88,7 @@ function GamePlayFooter() {
     // CLEAR / NEXT PLAYER BUTTON / NEXT HOLE BUTTON
     const handleNextHoleClick = () => {
 
-
+        
         let removeMe = {
             courseID: _courseContext.getCurrentCourse().ID,
             playerID: _playerContext.getCurrentPlayer().id,
@@ -117,7 +116,9 @@ function GamePlayFooter() {
                     _gameContext.toggleShowFinalGamePopup(true);
                     console.log("3");
                 }
-            } else {
+            }
+            else
+            {
                 console.log("4");
                 _scoreContext.removeScore(removeMe);
             }
@@ -135,104 +136,76 @@ function GamePlayFooter() {
     const [clickedAddScoreButton, setClickedAddScoreButton] = React.useState < ScoreModel | null > (null);
     const [movingToNextPlayer, setMovingToNextPlayer] = React.useState < boolean > (false);
 
+
     useEffect(() => {
-        let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1].number;
-        let isLastHole = _courseContext.getCurrentHole().number == lastHole;
-        if(isLastHole)
-        {
-            let playersRemaining = _scoreContext.hasEveryPlayerPlayedThisHole(lastHole);
-            if(playersRemaining.length <= 0)
-            {
-                setNextHoleButtonText("finish game");
-                setShowFinishGameButton(true);
-            }
-            else
-            {
-                setNextHoleButtonText("Clear");
-                                setShowFinishGameButton(false);
-            }
+        let playersNotGone = _scoreContext.hasEveryPlayerPlayedThisHole(_courseContext.getCurrentHole().number);
+        if (playersNotGone.length > 0) {
+            console.log("moving to next player");
         }
         else
         {
-            setNextHoleButtonText("Clear");
-                                setShowFinishGameButton(false);
+            console.log("move");
         }
-    }, [_courseContext.getCurrentHole().number]);
+    }, [_scoreContext.getAllScores]);
 
     useEffect(() => {
-
-      
-    
-      
-
+        let timeout: any;
         if (clickedAddScoreButton != null) {
-            let playersRemaining = _scoreContext.hasEveryPlayerPlayedThisHole(_courseContext.getCurrentHole().number);
-            let doesNextHoleHaveScores = _scoreContext.hasAnyPlayerPlayedThisHole(_courseContext.getCurrentHole().number + 1);
-            // console.table({
-            //     playersRemaining, 
-            //     doesNextHoleHaveScores 
-            // });
-            //console.log("score was added, acting accordingly");
-            _playerContext.toggleNextPlayer();
-            if (playersRemaining.length <= 0) {
-                console.log("%c no players need scores", 'background: pink; color: black;');
-                if (doesNextHoleHaveScores) { 
-                    // do not move to next hole, this person is obviously editing their previous scores
-                    // console log with background color
-                   // console.log("%c next hole does have scores", 'background: yellow; color: black;');
-                } 
-                else { 
-                   
-                    // no players need scores, move to next hole
-                    let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1].number;
-                    let secondHoleFromLastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 2].number;
-                    let currentHole = _courseContext.getCurrentHole().number;
-                    if(secondHoleFromLastHole == currentHole || lastHole == currentHole)
-                    {
-                        if(lastHole == currentHole)
-                        {
-                            if(playersRemaining.length <= 0)
-                            {
-                                setNextHoleButtonText("finish game");
-                                setShowFinishGameButton(true);
-                            }
-                            else
-                            {
-                                //console.log("%c this is the last hole", 'background: red; color: black;');
-                                _gameContext.saveToLocalStorageAsync();
-                                setTimeout(() => {
-                                    _courseContext.toggleNextHole();
-                                    _playerContext.updateCurrentPlayer(0);
-                                }, 300);
-                            }    
-                        }
-                        else
-                        {
-                           // console.log("%c this is the second to last hole", 'background: green; color: white;');
+
+
+            let playersWhoHaventGone = _scoreContext.hasEveryPlayerPlayedThisHole(_courseContext.getCurrentHole().number);
+
+            console.log("players who havent gone", playersWhoHaventGone);
+
+            if (_playerContext.getCurrentPlayer().id == _playerContext.getLastPlayer().id) {
+                console.log("last player");
+                if (playersWhoHaventGone.length > 0 && playersWhoHaventGone[0].playerID != _playerContext.getCurrentPlayer().id) {
+                    scrollToPlayerWhoHasNotGone(playersWhoHaventGone[0].playerID);
+                } else {
+
+                    _gameContext.saveToLocalStorageAsync();
+
+                    if (_courseContext.holesRemaining() <= 1) {
+
+                        let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1];
+                        if (_courseContext.getCurrentHole().number == lastHole.number) { // _gameContext.toggleShowFinalGamePopup(true);
+                            setNextHoleButtonText("finish game");
+                            setShowFinishGameButton(true);
+                        } else {
                             _transitionContext.updateHeadingText(`final round`);
                             _transitionContext.updateDescText(`prepare yourself`);
+                            // nextHoleTransitionTexts();
                             setMovingToNextPlayer(true);
-                            _gameContext.saveToLocalStorageAsync();
+
                             setTimeout(() => {
                                 _courseContext.toggleNextHole();
                                 _playerContext.updateCurrentPlayer(0);
                             }, 300);
                         }
-                       
-                    }
-                    else
-                    {
-                        //console.log("%c moving to next player", 'background: gray; color: black;');
+                    } else {
                         nextHoleTransitionTexts();
                         setMovingToNextPlayer(true);
-                        _gameContext.saveToLocalStorageAsync();
                         setTimeout(() => {
                             _courseContext.toggleNextHole();
                             _playerContext.updateCurrentPlayer(0);
                         }, 300);
                     }
+
+
                 }
+            } else { // console.log("saving");
+                _playerContext.toggleNextPlayer();
+                setNextHoleButtonText(_gameContext.getPlainTextByID("gameplay:clear"));
+                timeout = setTimeout(() => { // _gameContext.saveToLocalStorageAsync();
+                }, 300);
+
+
             }
+            setClickedAddScoreButton(null);
+        }
+
+        return() => {
+            clearTimeout(timeout);
         }
     }, [clickedAddScoreButton]);
 
@@ -245,8 +218,12 @@ function GamePlayFooter() {
             score: value
         }
 
+
         _scoreContext.addScore(score);
         setClickedAddScoreButton(score);
+
+
+        // scrollToActivePlayer();
     }
 
     useEffect(() => {

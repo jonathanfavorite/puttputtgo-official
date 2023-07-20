@@ -147,13 +147,14 @@ function ScoreContextProvider(props: any) {
     };
 
     const hasAnyPlayerPlayedThisHole = (hole: holeNumber) => {
-        for (let i = 0; i < _playerContext.getAllPlayers().length; i++) {
-            let player = _playerContext.getAllPlayers()[i];
-            if (getScoreByHoleAndPlayer(hole, player.id) != -10) {
+
+        for(let scoreIndex = 0; scoreIndex < scores.length; scoreIndex++) {
+            if(scores[scoreIndex].holeID == hole) {
                 return true;
             }
         }
         return false;
+
     };
     
 
