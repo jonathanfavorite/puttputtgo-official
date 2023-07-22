@@ -1,6 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './HomeScreen.scss';
+import { browserName, browserVersion, deviceType, osName } from 'react-device-detect';
+import { useLocation } from 'react-router-dom';
 function HomeScreen() {
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  const scanMethod = queryParams.get('method'); // getting the scan method
+  const [hasSendScan, setHasSendScan] = useState(false);
+
+  useEffect(() => {
+    if (!hasSendScan) {
+          if (scanMethod) {
+              let payload = {
+                  customerKey: "PPG-Website",
+                  gameID: "",
+                  browser: browserName,
+                  browserVersion: browserVersion,
+                  device: deviceType,
+                  OS: osName,
+                  method: scanMethod
+              }
+              //console.log("PAYLOAD", payload)
+              fetch(`${
+                  process.env.REACT_APP_API_URL 
+              }/Game/SaveQRScan`, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(payload)
+              }).catch(err => {
+                  console.log(err); 
+              });
+              setHasSendScan(true); 
+          }
+  }
+  }, []);
+
   return (
     <div id='home-screen'>
       <div id='hero' style={{

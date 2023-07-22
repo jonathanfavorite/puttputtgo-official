@@ -163,7 +163,7 @@ function WelcomePage() {
                             }/>
                         </div>
                         <div className='button rules-button'
-                            onClick={handleRulesClick}>
+                            onClick={handleRulesClick}>  
                             <span>{
                                 _gameContext.getPlainTextByID("welcome:rules")
                             }</span>
@@ -172,7 +172,7 @@ function WelcomePage() {
                             }/>
                         </div>
                         <div className='button rules-button'
-                            onClick={handleSettingsClick}>
+                            onClick={handleSettingsClick}> 
                             <span>{
                                 _gameContext.getPlainTextByID("welcome:settings")
                             }</span>
