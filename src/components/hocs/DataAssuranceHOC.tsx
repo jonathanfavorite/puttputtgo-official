@@ -21,7 +21,7 @@ const formatCompanyNameForDirectory = (companyName : string) => {
 
 function DataAssuranceHOC(props : IProps) {
 
-  const functionalityOff = true;
+  const functionalityOff = false;
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
