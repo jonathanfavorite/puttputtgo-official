@@ -231,6 +231,9 @@ function ResultsPage() {
         }
     };
 
+
+    let showHoldInOnes = false;
+
     return (
         
         <DataAssuranceHOC companyParam={
@@ -366,6 +369,8 @@ function ResultsPage() {
 
                         <GroupComparison />
 
+                        {showHoldInOnes && 
+
                         <div className='hole-in-one-wrapper'>
                             <div className='title'>Hole in Ones</div>
                             <div className='hole-table'>
@@ -400,6 +405,7 @@ function ResultsPage() {
 
                             </div>
                         </div>
+}
 
                         <BestWorseHoles bestWorstHole={bestWorstHole!} />
                         
