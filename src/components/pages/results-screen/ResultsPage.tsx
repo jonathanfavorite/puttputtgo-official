@@ -209,16 +209,21 @@ function ResultsPage() {
 
 
     interface HoleInOneData {
-        holeInOnes: { hole: number; player: PlayerModel }[];
+        holeInOnes: { hole: number; players: PlayerModel[] }[];
     }
     
     const getHoleInOnes = (): HoleInOneData => {
-        let holeInOnes: { hole: number; player: PlayerModel }[] = [];
+        let holeInOnes: { hole: number; players: PlayerModel[] }[] = [];
     
         _playerContext.getAllPlayers().forEach(player => {
             _courseContext.getCurrentCourse().holes.forEach(hole => {
                 if (_scoreContext.getScoreByHoleAndPlayer(hole.number, player.id) === 1) {
-                    holeInOnes.push({ hole: hole.number, player: player });
+                    let holeInOne = holeInOnes.find(hio => hio.hole === hole.number);
+                    if (holeInOne) {
+                        holeInOne.players.push(player);
+                    } else {
+                        holeInOnes.push({ hole: hole.number, players: [player] });
+                    }
                 }
             });
         });
@@ -232,7 +237,9 @@ function ResultsPage() {
     };
 
 
-    let showHoldInOnes = false;
+    
+
+    let showHoldInOnes = true;
 
     return (
         
@@ -379,21 +386,20 @@ function ResultsPage() {
     getHoleInOnes().holeInOnes
         .sort((a, b) => a.hole - b.hole) // Ensure we're sorted by hole number
         .map((holeInOne, index) => {
-            const { hole, player } = holeInOne;
+            const { hole, players } = holeInOne;
             return (
                 <div key={index} className='hole-row'>
                     <div className='hole-number'>Hole {hole}</div>
                     <div className='hole-players'>
-                        <div className='hole-player'>
-                            <div className='hole-player-ball' style={{
-                                backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
-                                backgroundColor: formatRGBToCSS(player.color !, 1)
-                            }}></div>
-                            <div className='player-name'>{player.name}</div>
-                        </div>
-
-                        
-                       
+                        {players.map((player, playerIndex) =>
+                            <div key={playerIndex} className='hole-player'>
+                                <div className='hole-player-ball' style={{
+                                    backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
+                                    backgroundColor: formatRGBToCSS(player.color !, 1)
+                                }}></div>
+                                <div className='player-name'>{player.name}</div>
+                            </div>
+                        )}
                     </div>
                     <br />
                 </div>

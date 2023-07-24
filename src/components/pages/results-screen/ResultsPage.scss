@@ -397,18 +397,19 @@
                    &:first-child {
                     margin-top:0;
                    }
-                    margin-top:1vh;
+                    margin-top:2vh;
                     .hole-player-ball {
                         display: inline-block;
                         width:5vw;
                         aspect-ratio: 1/1;
                         vertical-align: middle;
+                        transform: rotate(-45deg);
          
                         background-size:100%;
                     }
                     .player-name {
                         vertical-align: middle;
-                        margin-left:2vw;
+                        margin-left:3vw;
                         display: inline-block;
                     
                     }
