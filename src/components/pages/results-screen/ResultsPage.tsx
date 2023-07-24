@@ -207,6 +207,30 @@ function ResultsPage() {
         setShowLanguageDropdown(false);
     }
 
+
+    interface HoleInOneData {
+        holeInOnes: { hole: number; player: PlayerModel }[];
+    }
+    
+    const getHoleInOnes = (): HoleInOneData => {
+        let holeInOnes: { hole: number; player: PlayerModel }[] = [];
+    
+        _playerContext.getAllPlayers().forEach(player => {
+            _courseContext.getCurrentCourse().holes.forEach(hole => {
+                if (_scoreContext.getScoreByHoleAndPlayer(hole.number, player.id) === 1) {
+                    holeInOnes.push({ hole: hole.number, player: player });
+                }
+            });
+        });
+    
+        // Order the hole-in-ones
+        holeInOnes.sort((a, b) => a.hole - b.hole);
+    
+        return {
+            holeInOnes
+        }
+    };
+
     return (
         
         <DataAssuranceHOC companyParam={
@@ -326,6 +350,7 @@ function ResultsPage() {
                                             <span>{ _gameContext.selectedLanguage != 'en' ? "#" : null
                                                 }</span>
                                                 {
+                                                   
                                                 index + 1
                                             }
                                                 <span>{ _gameContext.selectedLanguage === 'en' ? ScoreHelper.getOrdinalSuffix(index + 1) : null
@@ -340,6 +365,41 @@ function ResultsPage() {
 
 
                         <GroupComparison />
+
+                        <div className='hole-in-one-wrapper'>
+                            <div className='title'>Hole in Ones</div>
+                            <div className='hole-table'>
+
+                            {
+    getHoleInOnes().holeInOnes
+        .sort((a, b) => a.hole - b.hole) // Ensure we're sorted by hole number
+        .map((holeInOne, index) => {
+            const { hole, player } = holeInOne;
+            return (
+                <div key={index} className='hole-row'>
+                    <div className='hole-number'>Hole {hole}</div>
+                    <div className='hole-players'>
+                        <div className='hole-player'>
+                            <div className='hole-player-ball' style={{
+                                backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
+                                backgroundColor: formatRGBToCSS(player.color !, 1)
+                            }}></div>
+                            <div className='player-name'>{player.name}</div>
+                        </div>
+
+                        
+                       
+                    </div>
+                    <br />
+                </div>
+            )
+        })
+}
+
+                                
+
+                            </div>
+                        </div>
 
                         <BestWorseHoles bestWorstHole={bestWorstHole!} />
                         

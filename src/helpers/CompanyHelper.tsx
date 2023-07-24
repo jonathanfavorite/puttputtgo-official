@@ -1,5 +1,6 @@
 export default class CompanyHelper {
     static ListOfBusinesses = [
+        "ppg",
         "castle-golf",
         "bonanza-golf"
     ];

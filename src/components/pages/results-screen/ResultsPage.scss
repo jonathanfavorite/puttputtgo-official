@@ -346,3 +346,74 @@
 
     }
 }
+
+
+.hole-in-one-wrapper {
+    padding-top:5vh;
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size:2rem;
+    }
+    $border: 2px solid #332929;
+    .hole-table {
+        display: table;
+        background:#514141;
+        box-sizing: border-box;
+        border-top: $border;
+        border-bottom: $border;
+        margin-bottom:5vh;
+        width:100%;
+        margin-top:5vh;
+        .hole-row {
+            display: table-row;
+            &:last-child {
+                .hole-number {
+                    border-bottom:0;
+                } 
+                .hole-players {
+                    border-bottom:0;
+                }
+            }
+            .hole-number {
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
+                align-items: center;
+                padding:5vw;
+                width:20vw;
+                border-bottom: 2px solid #443737;
+                border-right:2px solid #443737;
+            }
+            .hole-players {
+                display: table-cell;
+                padding:3vh 3vh;
+                border-bottom: 2px solid #443737;;
+             
+                .hole-player {
+                    vertical-align: middle;
+                   &:first-child {
+                    margin-top:0;
+                   }
+                    margin-top:1vh;
+                    .hole-player-ball {
+                        display: inline-block;
+                        width:5vw;
+                        aspect-ratio: 1/1;
+                        vertical-align: middle;
+         
+                        background-size:100%;
+                    }
+                    .player-name {
+                        vertical-align: middle;
+                        margin-left:2vw;
+                        display: inline-block;
+                    
+                    }
+                }
+            }
+        }
+    }
+}

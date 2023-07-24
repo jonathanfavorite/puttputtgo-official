@@ -1,31 +1,111 @@
-/* Here is where you custom override based on the details of the customers *//* import Tofino from file */
-/* @font-face {
-    font-family: 'Tofino';
-    src: url('/customers/default/RingBearer.TTF');
-}
+/* Here is where you custom override based on the details of the customers */
+
 body {
-    font-family: 'Tofino', sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color:#80503c !important;
 }
+input, button, select, textarea {
+    font-family: 'Arial', sans-serif;
+}
 .app {
-    font-family: 'Tofino', sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #80503c !important;
+}
+
+
+
+/* ############################################## */
+/* ############################################## */
+/* ############################################## */
+/* SPECIFIC TEXTS FOR WELCOME SCREEN */
+/* ############################################## */
+/* ############################################## */
+/* ############################################## */
+
+.welcome-buttons .button span {
+    font-size:2rem !important;
+}
+.welcome-buttons .button span {
+    color: #000 !important;
+    text-shadow: none !important;
+}
+.welcome-buttons .create-game-button span {
+    color:#000 !important;
+}
+.welcome-template .middle-section {
+    align-items: center;
+    justify-content: center;
+}
+
+/* ############################################## */
+/* ############################################## */
+/* SPECIFIC TEXTS FOR GAME SCREEN */
+/* ############################################## */
+/* ############################################## */
+
+.text-based-header .center .title {
+    font-size:0.8rem !important;
+}
+
+/* ROUNDS CONTAINER */
+/* .rounds-container .center .hole-label {
+    font-size:0.7rem !important;
+}
+.rounds-container .center .hole-items .hole-item span{
+    font-size:0.9rem !important;
+}
+.rounds-container .center .hole-items .hole-item .par{
+    font-size:0.5rem !important;
+}
+.rounds-container .center .hole-items .hole-item .par b{
+    font-size:0.5rem !important;
 } */
-body {
-    font-family: 'Arial', sans-serif;
+
+/* PLAYER CONTAINER */
+/* .player-container .player .player-details .name {
+    font-size:1rem !important;
 }
-.app {
-    font-family: 'Arial', sans-serif;
+.player-container .player .player-details .totalScore {
+    font-size:0.5rem !important;
 }
-.rules-override .logo {
-    max-height:80px;
+.player-container .player .player-details .totalScore b {
+    font-size:0.5rem !important;
 }
-.game-page .rounds-container .left-cap {
-    display:none !important;
+.player-container .player .player-round-score .round-score span {
+    font-size:1.1rem !important;
+} */
+
+/* SCORE BUTTONS CONTAINER */
+/* .footer-content .numbers-wrap .numbers .score {
+    font-size:1.5rem !important;
 }
-.game-page .rounds-container .right-cap {
-    display:none !important;
+
+.footer-content .next-hole span {
+    font-size:1.2rem !important;
+} */
+
+
+
+/* GAME PAGE */
+/* .game-page .header .title {
+    color:#bf6b2e !important;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 1) !important;
 }
-.game-page .rounds-container .center {
-    max-width:100% !important;
+.game-page .rounds-container {
+    border-bottom:3px solid #31251c !important;
 }
+.game-page .rounds-container .center .hole-label {
+    box-shadow:0px 0px 10px #000 !important;
+    border-right:1px solid #000 !important;
+    color: #ffd942 !important;
+}
+.game-page .game-body .player {
+    border-top:3px solid #31251c !important;
+}
+.game-page .rounds-container .hole-items .hole-item {
+    color: #ffca67 !important;
+    font-size: 2.0rem !important;
+}
+.game-page .player-container .player .ball-color {
+    transform: rotate(45deg) !important;
+} */

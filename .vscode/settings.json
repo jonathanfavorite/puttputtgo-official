@@ -8,6 +8,8 @@
     "build": true,
     "node_modules": true,
     "package.json": true,
-    "tsconfig.json": true
+    "tsconfig.json": true,
+    ".env.development": true,
+    ".env.production": true
   }
 }
