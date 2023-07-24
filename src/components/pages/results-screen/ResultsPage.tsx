@@ -380,6 +380,9 @@ function ResultsPage() {
 
                         <div className='hole-in-one-wrapper'>
                             <div className='title'>Hole in Ones</div>
+                            {
+                                getHoleInOnes().holeInOnes.length === 0 ? <div className='no-hole-in-ones'>no hole in ones!</div> :
+                          
                             <div className='hole-table'>
 
                             {
@@ -410,6 +413,7 @@ function ResultsPage() {
                                 
 
                             </div>
+}
                         </div>
 }
 
