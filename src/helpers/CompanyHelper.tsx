@@ -1,7 +1,7 @@
 export default class CompanyHelper {
     static ListOfBusinesses = [
         "ppg",
-        "castle-golf1122",
+        "castle-golf",
         "bonanza-golf"
     ];
     static DoesCompanyExist(companyName: string): boolean {

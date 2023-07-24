@@ -21,6 +21,8 @@ const formatCompanyNameForDirectory = (companyName : string) => {
 
 function DataAssuranceHOC(props : IProps) {
 
+  const functionalityOff = true;
+
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const gameID = queryParams.get('gameID');
@@ -141,7 +143,7 @@ function DataAssuranceHOC(props : IProps) {
     Course Info: {_courseContext.getCurrentCourse() ? 'Has Current Course': 'Does not have'}<br /> */}
     Current Hole #: {_courseContext.getCurrentHole().number}<br />
   </div>
-  {props.children}
+  {!functionalityOff ? props.children : 'Currently Offline'}
   </>
 }
 
