@@ -216,6 +216,15 @@
             }
         }
     }
+    .game-details {
+        background: rgba($color: #31251c, $alpha: 0.8);
+        color:#f2fdb3;
+        display: flex;
+        justify-content: center;
+        padding-top:0.5vh;
+        border-top:2px solid #241b14;
+        align-items: center;
+    }
     .footer {
         background: #b8a674;
         display: flex;

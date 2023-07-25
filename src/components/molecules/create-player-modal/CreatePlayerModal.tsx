@@ -41,12 +41,12 @@ function CreatePlayerModal(props: IProps) {
 
       const handleConfirmPlayerButton = () => {
 
-        if(selectedColor.name == "unknown")
+        if(selectedColor.name === "unknown")
         {
             alert("Please select a color for the player");
             return;
         }
-        if(newName.length == 0)
+        if(newName.length === 0)
         {
             alert("Please enter a name for the player");
             return;
@@ -85,7 +85,7 @@ function CreatePlayerModal(props: IProps) {
 
               <div className="color-picker">
                 {preDefinedColors.map((color, index) => {
-                  return <div className={`color ${selectedColor.name == color.name ? 'active-color' : ''}`} key={index} onClick={() => handleColorPicker(color)} style={{
+                  return <div className={`color ${selectedColor.name === color.name ? 'active-color' : ''}`} key={index} onClick={() => handleColorPicker(color)} style={{
                     
                         backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
                         backgroundColor: formatRGBToCSS(color, 1)

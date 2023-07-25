@@ -1,4 +1,4 @@
-import React, { createRef, useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./GamePage.scss";
 import { GameContext } from "../../../contexts/GameContext";
 import DataAssuranceHOC from "../../hocs/DataAssuranceHOC";
@@ -8,9 +8,8 @@ import TextBasedHeader from "../../organisms/gameplay/header/TextBasedHeader";
 import RoundsContainer from "../../organisms/gameplay/rounds-container/RoundsContainer";
 import PlayersContainer from "../../organisms/gameplay/players-container/PlayersContainer";
 import GamePlayFooter from "../../organisms/gameplay/footer/GamePlayFooter";
-import { TransitionContext, TransitionContextProvider } from "../../../contexts/TransitionContext";
+import { TransitionContextProvider } from "../../../contexts/TransitionContext";
 import Transition from "../../molecules/transition/Transition";
-import PlayerRecordHOC from "../../hocs/PlayerRecordHOC";
 import { PlayerContext } from "../../../contexts/PlayerContext";
 import { CourseContext } from "../../../contexts/CourseContext";
 import FinishGame from "../../molecules/finish-game/FinishGame";
@@ -22,16 +21,15 @@ function GamePage() {
   const _courseContext = useContext(CourseContext);
   const _scoreContext = useContext(ScoreContext);
   const _playerContext = useContext(PlayerContext);
-  const _transitionContext = useContext(TransitionContext);
   const { business_name } = useParams();
   const navigate = useNavigate();
 
-  const gamePageAssets = {
-    playerBackground: _gameContext.getAssetByID("gameplay-player-background"),
-    playerBallFrame: _gameContext.getAssetByID("gameplay-player-ball-frame"),
-    scoreButton: _gameContext.getAssetByID("gameplay-score-button"),
-    nextHoleButton: _gameContext.getAssetByID("gameplay-next-hole-button"),
-  };
+  // const gamePageAssets = {
+  //   playerBackground: _gameContext.getAssetByID("gameplay-player-background"),
+  //   playerBallFrame: _gameContext.getAssetByID("gameplay-player-ball-frame"),
+  //   scoreButton: _gameContext.getAssetByID("gameplay-score-button"),
+  //   nextHoleButton: _gameContext.getAssetByID("gameplay-next-hole-button"),
+  // };
 
 
   const [viewPortHeight, setViewPortHeight] = useState(0);
@@ -72,6 +70,9 @@ function GamePage() {
 
         <div className="game-body">
           <PlayersContainer />
+        </div>
+        <div className="game-details">
+          hole #{_courseContext.getCurrentHole().number} {_courseContext.getCurrentHole().name && ` - ${_courseContext.getCurrentHole().name}`}
         </div>
         <div className="footer">
           <GamePlayFooter />

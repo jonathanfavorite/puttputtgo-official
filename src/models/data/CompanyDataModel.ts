@@ -33,6 +33,7 @@ interface CompanyDataHoleData {
     courseID: number,
     number: number,
     par: number,
+    name: string,
     optional: boolean
 }
 
