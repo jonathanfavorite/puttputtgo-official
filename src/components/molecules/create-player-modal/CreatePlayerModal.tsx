@@ -52,7 +52,7 @@ function CreatePlayerModal(props: IProps) {
             return;
         }
         const newPlayer: PlayerModel = {
-            id: _playerContext.getAllPlayers().length,
+            id: Math.floor(Math.random() * 100000),
             name: newName,
             color: selectedColor
           }

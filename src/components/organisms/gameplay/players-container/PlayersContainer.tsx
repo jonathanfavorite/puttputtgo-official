@@ -21,14 +21,14 @@ function PlayersContainer() {
         <div className='player-container'>
             {
             _playerContext.getAllPlayers().sort().map((player, index) => {
-                let active = index === _playerContext.getCurrentPlayer().id ? 'active-player' : '';
+                let active = player.id === _playerContext.getCurrentPlayer().id ? 'active-player' : '';
                 let isLast = index === _playerContext.getAllPlayers().length - 1 ? true : false;
                 let isFirst = index === 0 ? true : false;
                 return (
                     <div className={
                             `player ${active} onfire`
                         }
-                        data-id={index}
+                        data-id={player.id}
                         onClick={() => handlePlayerClick(player.id)}
                         key={index}
                         style={
