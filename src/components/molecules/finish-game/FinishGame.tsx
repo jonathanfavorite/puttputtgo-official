@@ -51,9 +51,9 @@ function FinishGame() {
         console.log("SNAPSHOT", snapshotPayload);
         // console.log(JSON.stringify(savePayLoad));
 
-        console.log("TEST", process.env.REACT_APP_IMAGEGEN_URL);
+        //console.log("TEST", process.env.REACT_APP_IMAGEGEN_URL);
 
-        let response = fetch(`${process.env.REACT_APP_IMAGEGEN_URL}/`, {
+        let response = fetch(`${process.env.REACT_APP_IMAGEGEN_URL}/shareable`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,6 +80,26 @@ function FinishGame() {
         }).catch(err => {
             console.log(err);
         });
+
+        let smsPayload = {
+            customerKey: _gameContext.companyData.customerID,
+            gameID: _gameContext.gameID
+        }
+        fetch(`${process.env.REACT_APP_IMAGEGEN_URL}/admin/actions/game_ended_sms.php`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(smsPayload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
 
 
         _gameContext.updateGameStatus(GameStatus.Finished);
