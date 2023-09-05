@@ -9,8 +9,11 @@ import {TransitionContext} from '../../../../contexts/TransitionContext';
 import HoleModel from '../../../../models/hole/HoleModel';
 import {GameSubmissionReport} from '../../../../models/game/GameSubmissionReportModel';
 import PlayerModel from '../../../../models/player/PlayerModel';
+import { Icons } from '../../../atoms/Icons';
+import { useNavigate } from 'react-router-dom';
 
 function GamePlayFooter() {
+    const navigate = useNavigate();
     const _gameContext = useContext(GameContext);
     const _playerContext = useContext(PlayerContext);
     const _scoreContext = useContext(ScoreContext);
@@ -38,7 +41,7 @@ function GamePlayFooter() {
     const [nextHoleButtonText, setNextHoleButtonText] = React.useState < string > (_gameContext.getPlainTextByID("gameplay:clear"));
     const [nextHoleButtonBackgroundColor, setNextHoleButtonBackgroundColor] = React.useState < string > ('green');
     const [showFinishGameButton, setShowFinishGameButton] = React.useState < boolean > (false);
-    const nextHoleButtonRef = useRef < HTMLButtonElement > (null);
+    const nextHoleButtonRef = useRef < HTMLDivElement > (null);
 
     const defaultHoleTextSize = '2.3rem';
     const smallTextHoleSize = '1.5rem';
@@ -103,22 +106,32 @@ function GamePlayFooter() {
         if (holesRemaining <= 1) { // last hole
             let lastHole = _courseContext.getCurrentCourse().holes[_courseContext.getCurrentCourse().holes.length - 1];
             if (_courseContext.getCurrentHole().number == lastHole.number) {
-                console.log("1");
+                console.log("this is the last hole");
                 let gameReport = GetGameSubmissionReport();
+                console.log(gameReport);
                 if (gameReport.invalidHoles.length > 0) {
-                    _scoreContext.addGameSubmissionReport(gameReport);
-                    setNextHoleButtonText(_gameContext.getPlainTextByID("gameplay:clear"));
-                    setShowFinishGameButton(false);
-                    console.log("2");
+                    if(showFinishGameButton)
+                    {
+                        _scoreContext.addGameSubmissionReport(gameReport);
+                        setNextHoleButtonText(_gameContext.getPlainTextByID("gameplay:clear"));
+                        setShowFinishGameButton(false);
+                        console.log("showing modal");
+                    }
+                    else
+                    {
+                        _scoreContext.removeScore(removeMe);
+                    console.log("removing score~", removeMe);
+                    }
+                   
 
                 } else {
 
                     _scoreContext.addGameSubmissionReport({invalidHoles: []});
                     _gameContext.toggleShowFinalGamePopup(true);
-                    console.log("3");
+                    console.log("showing final game popup");
                 }
             } else {
-                console.log("4");
+                console.log("not the last hole");
                 _scoreContext.removeScore(removeMe);
             }
         } else { // they are not on final hole
@@ -329,7 +342,33 @@ function GamePlayFooter() {
                     })
                 } </div>
             </div>
-            <button ref={nextHoleButtonRef}
+
+            <div className='options-group'>
+                <div className='clear-button' onClick={handleNextHoleClick} ref={nextHoleButtonRef} style={
+                    {
+                        fontSize: nextHoleTextSize,
+                        backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-next-hole-button')),
+                        backgroundColor: nextHoleButtonBackgroundColor
+                    }}><span>{nextHoleButtonText}</span></div>
+                    <div className='smaller-options'>
+                        <div className='option-indi' onClick={() => _gameContext.updateSnapPictureEnabled(true)} style={
+                    {
+                        fontSize: nextHoleTextSize,
+                        backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-next-hole-button')),
+                        backgroundColor: "#063306"
+                    }}><Icons.Camera /></div>
+                        <div className='option-indi'
+                        onClick={() => navigate("/" + _gameContext.companyData.customerID + "/settings") }
+                        style={
+                    {
+                        fontSize: nextHoleTextSize,
+                        backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-next-hole-button')),
+                        backgroundColor: "#1e1c1c"
+                    }}><Icons.Settings /></div>
+                    </div>
+            </div>
+
+            {/* <button ref={nextHoleButtonRef}
                 onClick={handleNextHoleClick}
                 className='next-hole'
                 style={
@@ -340,7 +379,7 @@ function GamePlayFooter() {
                     }
             }>
                 <span>{nextHoleButtonText}<br/></span>
-            </button>
+            </button> */}
         </div>
     )
 }

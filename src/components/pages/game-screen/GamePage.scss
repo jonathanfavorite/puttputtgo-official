@@ -83,7 +83,7 @@
                     font-size: 2rem;
                     position: relative;
                     height: 6vh;
-                    width:6vh;
+                    width: 6vh;
                     flex: 1;
                     aspect-ratio: 1/1;
                     //background: temp-url("round-button.png");
@@ -104,7 +104,6 @@
                     &.active-hole {
                         z-index: 120;
                         color: #fff !important;
-                         
                     }
                     &:first-child {
                         margin-left: 20px;
@@ -218,11 +217,11 @@
     }
     .game-details {
         background: rgba($color: #31251c, $alpha: 0.8);
-        color:#f2fdb3;
+        color: #f2fdb3;
         display: flex;
         justify-content: center;
-        padding-top:0.5vh;
-        border-top:2px solid #241b14;
+        padding-top: 0.5vh;
+        border-top: 2px solid #241b14;
         align-items: center;
     }
     .footer {
@@ -267,8 +266,13 @@
                     }
                 }
             }
-            .next-hole {
+            .options-group {
                 width: 35%;
+                display: flex;
+                flex-direction: column;
+            }
+            .clear-button {
+                flex: 1;
                 //background-image: temp-url('next-hole-button.jpg');
                 background-size: 100% 100%;
                 display: flex;
@@ -286,13 +290,34 @@
                     opacity: 0.5;
                 }
 
-                
                 span {
                     font-weight: bold;
                     text-shadow: 0px 0px 10px #4a330d;
                 }
                 &:hover {
                     //opacity: 0.6;
+                }
+            }
+            .smaller-options {
+                display: flex;
+                .option-indi {
+                    flex: 1;
+                    aspect-ratio: 1/1;
+                    width: 50%;
+                    background-size: 100% 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    $iconAlpha: 0.5;
+                    svg {
+                        width:50%;
+                        fill: rgba($color: #fff, $alpha: $iconAlpha);
+                        height:50%;
+                    }
+                    g {
+                        fill: rgba($color: #fff, $alpha: $iconAlpha);
+                    }
                 }
             }
         }
