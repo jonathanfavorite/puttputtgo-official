@@ -1,0 +1,28 @@
+.snap-gallery-wrap {
+    margin-bottom:10vh;
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size:2rem;
+    }
+    .snap-gallery {
+        padding:5vh 5vw;
+        columns: 2;
+        box-sizing: border-box;
+        gap: 2vw;
+      
+        .snap-picture {
+            width:100%;
+            border:5px solid black;
+            box-sizing: border-box;
+            background-size:cover;
+            margin-bottom:2vw;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background-position: center center;
+           
+        }
+    }
+}

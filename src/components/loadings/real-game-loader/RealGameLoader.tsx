@@ -37,8 +37,11 @@ function RealGameLoader() {
                     setError(false);
                     setStatusText('Found Game!');
                     let gameData = JSON.parse(data.gameData);
-                    console.log(gameData.players); 
-                    console.log(gameData.scores);
+                    console.log("PARSED", gameData);
+                   // console.log(gameData.players); 
+                   //console.log(gameData.scores);
+
+                   
 
                     if(gameData.selectedLanguage)
                     {
@@ -54,6 +57,18 @@ function RealGameLoader() {
                 
 
                     _scoreContext.addScores(gameData.scores);
+
+                    //console.log("MEEE", gameData);
+
+                    if(data.images)
+                   {
+                    for(let i = 0; i < data.images.length; i++)
+                    {
+                    console.log(data.images[i]);
+                        _gameContext.addPicture(data.images[i].filename);
+                    }
+                   }
+                   
 
                     cleanUp();
 

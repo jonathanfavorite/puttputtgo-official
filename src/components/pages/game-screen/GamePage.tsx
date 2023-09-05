@@ -16,6 +16,7 @@ import FinishGame from "../../molecules/finish-game/FinishGame";
 import GamePlayModalTemplate from "../../templates/gameplay-modal-template/GamePlayModalTemplate";
 import UnfinishedGame from "../../molecules/unfinished-game/UnfinishedGame";
 import { ScoreContext } from "../../../contexts/ScoreContext";
+import SnapPictureModal from "../../molecules/snap-picture-modal/SnapPictureModal";
 function GamePage() {
   const _gameContext = useContext(GameContext);
   const _courseContext = useContext(CourseContext);
@@ -23,14 +24,6 @@ function GamePage() {
   const _playerContext = useContext(PlayerContext);
   const { business_name } = useParams();
   const navigate = useNavigate();
-
-  // const gamePageAssets = {
-  //   playerBackground: _gameContext.getAssetByID("gameplay-player-background"),
-  //   playerBallFrame: _gameContext.getAssetByID("gameplay-player-ball-frame"),
-  //   scoreButton: _gameContext.getAssetByID("gameplay-score-button"),
-  //   nextHoleButton: _gameContext.getAssetByID("gameplay-next-hole-button"),
-  // };
-
 
   const [viewPortHeight, setViewPortHeight] = useState(0);
 
@@ -40,7 +33,6 @@ function GamePage() {
 
 
   useEffect(() => {
-    //_gameContext.updateactivePage("game");
     if(_playerContext.getAllPlayers().length <= 0)
     {
       navigate(`/${business_name}/create-game`);
@@ -81,6 +73,8 @@ function GamePage() {
       </TransitionContextProvider>
 
       {_gameContext.showFinalGamePopup && <FinishGame />}
+
+      {_gameContext.snapPictureEnabled && <SnapPictureModal />}
 
       {_scoreContext.gameSubmissionReport.invalidHoles.length > 0 && <GamePlayModalTemplate><UnfinishedGame /></GamePlayModalTemplate>}
 

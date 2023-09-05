@@ -24,6 +24,7 @@ import WinnerTie from '../../molecules/results/winner-tie/WinnerTie';
 import GroupComparison from '../../molecules/results/group-comparison/GroupComparison';
 import BestWorseHoles from '../../molecules/results/best-worse-holes/BestWorseHoles';
 import PerformanceChart from '../../molecules/results/performance-chart/PerformanceChart';
+import SnapGallery from '../../molecules/results/snap-gallery/SnapGallery';
 
 
 function ResultsPage() {
@@ -421,8 +422,7 @@ function ResultsPage() {
                         
                         <PerformanceChart flatPerformanceData={flatPerformanceData} playerColors={playerColors} />
 
-                        
-
+                        <SnapGallery />
 
 
 

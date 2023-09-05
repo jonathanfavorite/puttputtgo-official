@@ -896,6 +896,12 @@
       "assetID": "results-back-button-background",
       "assetName": "Results Page Back Button Background",
       "assetLocation": "/customers/castle-golf/images/results/back.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "camera-filter-1",
+      "assetName": "Camera Filter 1",
+      "assetLocation": "/customers/castle-golf/images/camera/overlay1.png"
     }
   ]
 }

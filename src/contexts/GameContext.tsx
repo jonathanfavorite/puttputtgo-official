@@ -68,7 +68,12 @@ interface GameContextProps {
     updateGameLoadingFromWeb: (bool: boolean) => void;
     allowGameLoadingFromWeb: boolean;
     updateAllowGameLoadingFromWeb: (bool: boolean) => void;
-
+    snapPictureEnabled: boolean;
+    updateSnapPictureEnabled: (bool: boolean) => void;
+    pictures: string[];
+    addPicture: (picture: string) => void;
+    removePicture: (picture: string) => void;
+    clearPictures: () => void;
 
 }
 
@@ -114,6 +119,29 @@ function GameContextProvider(props: any) {
     const [gameLoadingGameFromWeb, setGameLoadingGameFromWeb] = useState < boolean > (false);
 
     const [allowGameLoadingFromWeb, setAllowGameLoadingFromWeb] = useState < boolean > (true);
+
+    const [snapPictureEnabled, setSnapPictureEnabled] = useState < boolean > (false);
+
+    const [pictures, setPictures] = useState < string[] > ([]);
+
+    const addPicture = (picture : string) => {
+        setPictures((old) => [
+            ...old,
+            picture
+        ]);
+    }
+
+    const removePicture = (picture : string) => {
+        setPictures((old) => old.filter((item) => item !== picture));
+    }
+
+    const clearPictures = () => {
+        setPictures((old) => []);
+    }
+
+    const updateSnapPictureEnabled = (bool : boolean) => {
+        setSnapPictureEnabled((old) => bool);
+    }
 
     const updateGameLoadingFromWeb = (bool : boolean) => {
         setGameLoadingGameFromWeb((old) => bool);
@@ -531,6 +559,12 @@ function GameContextProvider(props: any) {
         updateGameLoadingFromWeb,
         allowGameLoadingFromWeb,
         updateAllowGameLoadingFromWeb,
+        snapPictureEnabled,
+        updateSnapPictureEnabled,
+        pictures,
+        addPicture,
+        removePicture,
+        clearPictures
     };
 
     return(< GameContext.Provider value = {

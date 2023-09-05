@@ -7,7 +7,6 @@
     ".vscode": true,
     "build": true,
     "node_modules": true,
-    "package.json": true,
     "tsconfig.json": true
   }
 }
