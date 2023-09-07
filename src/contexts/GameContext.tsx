@@ -73,8 +73,7 @@ interface GameContextProps {
     pictures: string[];
     addPicture: (picture: string) => void;
     removePicture: (picture: string) => void;
-    clearPictures: () => void;    snapPictureEnabled: boolean;
-    updateSnapPictureEnabled: (bool: boolean) => void;
+    clearPictures: () => void;
 
 }
 
@@ -139,12 +138,6 @@ function GameContextProvider(props: any) {
     const clearPictures = () => {
         setPictures((old) => []);
     }
-
-    const updateSnapPictureEnabled = (bool : boolean) => {
-        setSnapPictureEnabled((old) => bool);
-    }
-
-    const [snapPictureEnabled, setSnapPictureEnabled] = useState < boolean > (false);
 
     const updateSnapPictureEnabled = (bool : boolean) => {
         setSnapPictureEnabled((old) => bool);
@@ -572,8 +565,6 @@ function GameContextProvider(props: any) {
         addPicture,
         removePicture,
         clearPictures
-        snapPictureEnabled,
-        updateSnapPictureEnabled
     };
 
     return(< GameContext.Provider value = {
