@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import './SnapGallery.scss';
 import {GameContext} from '../../../../contexts/GameContext';
 import SnapGalleryItem from './SnapGalleryItem/SnapGalleryItem';
+import { Icons } from '../../../atoms/Icons';
 
 function SnapGallery() {
     const _gameContext = useContext(GameContext);
@@ -27,13 +28,16 @@ function SnapGallery() {
             <div className='snap-gallery'>
                 {
                     _gameContext.pictures.map((picture, index) => {
-                        let realPicLocationSmall = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/small/' + picture;
-                        let realPicLocationLarge = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/large/' + picture;
-                        return <div onClick={() => clickedImage(realPicLocationLarge)} className='snap-picture' key={index} style={{
-                            backgroundImage: `url(${realPicLocationSmall})`
-                        }}>
+                        let realPicLocationSmall = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/small/' + picture.filename;
+                        let realPicLocationLarge = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/large/' + picture.filename;
+                        
+                        return picture.processed ?
+                            <div onClick={() => clickedImage(realPicLocationLarge)} className='snap-picture' key={index} style={{
+                                backgroundImage: `url(${realPicLocationSmall})`
+                            }}></div> : <div onClick={() => clickedImage(realPicLocationLarge)} className='snap-picture processing' key={index}><div className='spinner'><Icons.Gallery_Spinner /></div></div>
+                        
                           
-                        </div>
+                        
                     })
                 }
             </div>

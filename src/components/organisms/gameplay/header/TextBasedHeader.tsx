@@ -3,6 +3,7 @@ import './TextBasedHeader.scss';
 import StyleHelper from '../../../../helpers/StyleHelper'
 import {GameContext} from '../../../../contexts/GameContext';
 import { useNavigate } from 'react-router-dom';
+import HeaderRightSide from './HeaderRightSide/HeaderRightSide';
 
 interface IProps {
     backButtonEvent?: () => void;
@@ -39,6 +40,7 @@ function TextBasedHeader(props : IProps) {
             </div>
             <div className='right'>
                 {_gameContext.isSavingToLocalStorage && <div className='saving-box'><span>Saving...</span></div>}
+                <HeaderRightSide />
             </div>
         </div>
 

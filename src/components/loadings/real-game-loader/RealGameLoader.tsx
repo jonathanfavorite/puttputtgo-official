@@ -4,6 +4,7 @@ import { GameContext } from '../../../contexts/GameContext';
 import { ScoreContext } from '../../../contexts/ScoreContext';
 import { PlayerContext } from '../../../contexts/PlayerContext';
 import { env } from 'process';
+import SnapHelper from '../../../helpers/SnapHelper';
 
 function RealGameLoader() {
 
@@ -64,8 +65,9 @@ function RealGameLoader() {
                    {
                     for(let i = 0; i < data.images.length; i++)
                     {
-                    console.log(data.images[i]);
-                        _gameContext.addPicture(data.images[i].filename);
+                    let newImage = SnapHelper.CreateNewPictureWithValues(i.toString(), data.images[i].filename, true);
+
+                        _gameContext.addPicture(newImage);
                     }
                    }
                    

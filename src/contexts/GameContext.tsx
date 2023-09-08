@@ -7,6 +7,7 @@ import {JsxFragment} from "typescript";
 import {CourseContext} from "./CourseContext";
 import ConsoleHelper from "../helpers/ConsoleHelper";
 import GameHelper from "../helpers/GameHelper";
+import SnapModel from "../models/snaps/SnapModel";
 
 const GameContext = createContext < GameContextProps > ({} as GameContextProps);
 
@@ -70,10 +71,12 @@ interface GameContextProps {
     updateAllowGameLoadingFromWeb: (bool: boolean) => void;
     snapPictureEnabled: boolean;
     updateSnapPictureEnabled: (bool: boolean) => void;
-    pictures: string[];
-    addPicture: (picture: string) => void;
-    removePicture: (picture: string) => void;
+    pictures: SnapModel[];
+    addPicture: (picture: SnapModel) => void;
+    removePicture: (pictureID: string) => void;
     clearPictures: () => void;
+    updatePictureProcessed: (pictureID : string, processed : boolean) => void;
+    updatePicture: (picture : SnapModel) => void;
 
 }
 
@@ -122,21 +125,39 @@ function GameContextProvider(props: any) {
 
     const [snapPictureEnabled, setSnapPictureEnabled] = useState < boolean > (false);
 
-    const [pictures, setPictures] = useState < string[] > ([]);
+    const [pictures, setPictures] = useState < SnapModel[] > ([]);
 
-    const addPicture = (picture : string) => {
+    const addPicture = (picture : SnapModel) => {
         setPictures((old) => [
             ...old,
             picture
         ]);
     }
 
-    const removePicture = (picture : string) => {
-        setPictures((old) => old.filter((item) => item !== picture));
+    const updatePicture = (picture : SnapModel) => {
+        setPictures((old) => old.map((item) => {
+            if (item.id === picture.id) {
+                item = picture;
+            }
+            return item;
+        }));
+    }
+
+    const removePicture = (pictureID : string) => {
+        setPictures((old) => old.filter((item) => item.id !== pictureID));
     }
 
     const clearPictures = () => {
         setPictures((old) => []);
+    }
+
+    const updatePictureProcessed = (pictureID : string, processed : boolean) => {
+        setPictures((old) => old.map((item) => {
+            if (item.id === pictureID) {
+                item.processed = processed;
+            }
+            return item;
+        }));
     }
 
     const updateSnapPictureEnabled = (bool : boolean) => {
@@ -564,7 +585,9 @@ function GameContextProvider(props: any) {
         pictures,
         addPicture,
         removePicture,
-        clearPictures
+        clearPictures,
+        updatePictureProcessed,
+        updatePicture
     };
 
     return(< GameContext.Provider value = {
