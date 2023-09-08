@@ -3,6 +3,7 @@ import './SnapPictureModal.scss'
 import { Icons } from '../../atoms/Icons'
 import { GameContext } from '../../../contexts/GameContext'
 import StyleHelper from '../../../helpers/StyleHelper'
+import SnapHelper from '../../../helpers/SnapHelper'
 
 function SnapPictureModal () {
   const _gameContext = useContext(GameContext)
@@ -117,8 +118,7 @@ function SnapPictureModal () {
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [facingMode, setFacingMode] = useState<'user' | 'environment'>('user')
-  const containerRef = useRef<HTMLDivElement>(null);
-
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const startVideo = async () => {
     try {
@@ -160,36 +160,91 @@ function SnapPictureModal () {
     setPicture('')
   }
 
-  const savePicture = () => {
+  const generateSmallThumb = (picture: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      // create a canvas element
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+      const image = new Image()
+      image.src = picture
+      image.onload = function () {
+        // Determine the aspect ratio
+        const aspectRatio = image.height / image.width
 
+        // Calculate new dimensions
+        const targetWidth = 40
+        const targetHeight = targetWidth * aspectRatio
+
+        // Set canvas dimensions
+        canvas.width = targetWidth
+        canvas.height = targetHeight
+
+        // Draw source image into the off-screen canvas:
+        ctx!.drawImage(image, 0, 0, targetWidth, targetHeight)
+
+        // Encode image to data-uri with base64 version of compressed image
+        let smallThumb = canvas.toDataURL('image/jpeg', 0.5)
+        resolve(smallThumb)
+      }
+      image.onerror = function () {
+        reject(new Error('Failed to load the image.'))
+      }
+    })
+  }
+
+  const savePicture = () => {
     const payload = {
       customerKey: _gameContext.companyData.customerID,
       gameID: _gameContext.gameID,
       imageData: picture
     }
-    console.log("firing");
-    let response = fetch(`${process.env.REACT_APP_IMAGEGEN_URL}/api/save-snaps.php`, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(response => response.json())
-    .then(data => {
-      //console.log(data);
-      if(data.filename)
-      {
-        console.log(data.filename);
-        _gameContext.addPicture(data.filename)
-      }
-      
-    })
-    .catch(err => {
-      //console.log(err);
-    });
 
-    _gameContext.updateSnapPictureEnabled(false);
+    let pictureID = SnapHelper.generateRandomString(10)
+    let newPicture = SnapHelper.CreateNewPicture()
+    newPicture.id = pictureID
+    newPicture.processed = false
+
+    if (picture != '') {
+      generateSmallThumb(picture)
+        .then(smallThumb => {
+          newPicture.tmp_thumb = smallThumb
+          _gameContext.addPicture(newPicture)
+          console.log('smallThumb', smallThumb)
+        })
+        .catch(err => {
+          return
+        })
+
+      console.log('firing')
+      let response = fetch(
+        `${process.env.REACT_APP_IMAGEGEN_URL}/api/save-snaps.php`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        }
+      )
+        .then(response => response.json())
+        .then(data => {
+          //console.log(data);
+          if (data.filename) {
+            console.log(data.filename)
+            //_gameContext.addPicture(data.filename)
+            newPicture.filename = data.filename
+            newPicture.processed = true
+            _gameContext.updatePicture(newPicture)
+          }
+        })
+        .catch(err => {
+          //console.log(err);
+          newPicture.failure = true
+          _gameContext.updatePicture(newPicture)
+        })
+    }
+
+    _gameContext.updateSnapPictureEnabled(false)
   }
 
   useEffect(() => {
@@ -199,9 +254,8 @@ function SnapPictureModal () {
         videoRef.current.srcObject = null
       }
     }
-  }, []);
+  }, [])
 
-  
   return (
     <div className='snap-picture-modal'>
       <div className='actual-camera-container'>

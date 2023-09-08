@@ -141,7 +141,14 @@ function DataAssuranceHOC(props : IProps) {
     {/* Current Hole #: {_courseContext.getCurrentHole().number}<br />
     preloadedLocalStorage: {_gameContext.preloadedLocalStorage ? "true" : "false"}<br />
     Course Info: {_courseContext.getCurrentCourse() ? 'Has Current Course': 'Does not have'}<br /> */}
-    Current Hole #: {_courseContext.getCurrentHole().number}<br />
+    Pictures:
+    <ul>
+      {_gameContext.pictures.map((picture, index) => {
+        return <li key={index} style={{
+          color: picture.processed ? 'green' : 'red'
+        }}>{picture.id} - {picture.processed ? 'Done' : 'Not Done'}</li>
+      })}
+    </ul>
   </div>
   {!functionalityOff ? props.children : 'Currently Offline'}
   </>
