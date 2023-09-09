@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './SnapGalleryItem.scss';
 import { Icons } from '../../../../atoms/Icons';
 
@@ -9,6 +9,7 @@ interface IProps {
 function SnapGalleryItem(props: IProps) {
 
     const [imageLoaded, setImageLoaded] = React.useState(false);
+    const wrapperRef = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
         var image = new Image();
@@ -18,8 +19,14 @@ function SnapGalleryItem(props: IProps) {
         }
     }, []);
 
+    const closeWrapperIfNotLoaded = () => {
+        if (!imageLoaded) {
+            props.onClose();
+        }
+    }
+
   return (
-    <div className='snap-gallery-item'>
+    <div className='snap-gallery-item' ref={wrapperRef} onClick={closeWrapperIfNotLoaded}>
         {!imageLoaded && <div className='snap-loader'><Icons.Gallery_Spinner /></div> }
         {imageLoaded && <div className='snap-picture'>
             <div className='pic'>

@@ -22,19 +22,19 @@ function SnapGallery() {
         <div className='snap-gallery-wrap'>
             {showModal && <SnapGalleryItem onClose={reset} picture={selectedPicture} /> }
             <div className='title'>gallery
-                {
-                //_gameContext.getPlainTextByID("results:performances")
-            }</div>
+                </div>
             <div className='snap-gallery'>
                 {
                     _gameContext.pictures.map((picture, index) => {
                         let realPicLocationSmall = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/small/' + picture.filename;
-                        let realPicLocationLarge = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/large/' + picture.filename;
+                        let realPicLocationLarge = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/slarge/' + picture.filename;
                         
                         return picture.processed ?
-                            <div onClick={() => clickedImage(realPicLocationLarge)} className='snap-picture' key={index} style={{
+                            <div className='snap-picture-wrapper'>
+                                <div className='spinner'><Icons.Gallery_Spinner /></div>
+                                <div onClick={() => clickedImage(realPicLocationLarge)} className='snap-picture' key={index} style={{
                                 backgroundImage: `url(${realPicLocationSmall})`
-                            }}></div> : <div onClick={() => clickedImage(realPicLocationLarge)} className='snap-picture processing' key={index}><div className='spinner'><Icons.Gallery_Spinner /></div></div>
+                            }}></div></div> : <div onClick={() => clickedImage(realPicLocationLarge)} className='snap-picture processing' key={index}><div className='spinner'><Icons.Gallery_Spinner /></div></div>
                         
                           
                         
