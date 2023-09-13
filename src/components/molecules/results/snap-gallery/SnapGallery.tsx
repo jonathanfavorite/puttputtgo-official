@@ -26,8 +26,8 @@ function SnapGallery() {
             <div className='snap-gallery'>
                 {
                     _gameContext.pictures.map((picture, index) => {
-                        let realPicLocationSmall = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/small/' + picture.filename;
-                        let realPicLocationLarge = process.env.REACT_APP_IMAGEGEN_URL + '/api/snaps/large/' + picture.filename;
+                        let realPicLocationSmall = process.env.REACT_APP_STORAGE_ACCOUNT_URL + '/snaps/' + picture.filename;
+                        let realPicLocationLarge = process.env.REACT_APP_STORAGE_ACCOUNT_URL + '/snaps/' + picture.filename;
                         
                         return picture.processed ?
                             <div className='snap-picture-wrapper'>

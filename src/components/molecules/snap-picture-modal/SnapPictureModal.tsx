@@ -193,54 +193,50 @@ function SnapPictureModal () {
   }
 
   const savePicture = () => {
-    const payload = {
-      customerKey: _gameContext.companyData.customerID,
-      gameID: _gameContext.gameID,
-      imageData: picture
-    }
 
+    let payloadFormData = new FormData()
+    payloadFormData.append('CustomerKey', _gameContext.companyData.customerID)
+    payloadFormData.append('GameID', _gameContext.gameID)
+    payloadFormData.append('Filename', 'asd')
+    payloadFormData.append('Image', SnapHelper.dataURLToBlob(picture))
+    
     let pictureID = SnapHelper.generateRandomString(10)
     let newPicture = SnapHelper.CreateNewPicture()
     newPicture.id = pictureID
     newPicture.processed = false
 
     if (picture != '') {
-      generateSmallThumb(picture)
+        generateSmallThumb(picture)
         .then(smallThumb => {
-          newPicture.tmp_thumb = smallThumb
-          _gameContext.addPicture(newPicture)
-          console.log('smallThumb', smallThumb)
+            newPicture.tmp_thumb = smallThumb
+            _gameContext.addPicture(newPicture)
+            console.log('smallThumb', smallThumb)
         })
         .catch(err => {
-          return
-        })
+            return
+        });
 
-      console.log('firing')
-      let response = fetch(
-        `${process.env.REACT_APP_IMAGEGEN_URL}/api/save-snaps.php`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        }
-      )
+        console.log('firing')
+        let response = fetch(
+            `${process.env.REACT_APP_API_URL}/Image/SaveImage`,
+            {
+                method: 'POST',
+                body: payloadFormData
+            }
+        )
         .then(response => response.json())
         .then(data => {
-          //console.log(data);
-          if (data.filename) {
+          if (data.success) {
             console.log(data.filename)
-            //_gameContext.addPicture(data.filename)
             newPicture.filename = data.filename
             newPicture.processed = true
             _gameContext.updatePicture(newPicture)
           }
         })
         .catch(err => {
-          //console.log(err);
           newPicture.failure = true
-          _gameContext.updatePicture(newPicture)
+          _gameContext.updatePicture(newPicture);
+          console.log("error", err)
         })
     }
 
