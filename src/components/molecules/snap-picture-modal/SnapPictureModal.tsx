@@ -5,7 +5,7 @@ import { GameContext } from '../../../contexts/GameContext'
 import StyleHelper from '../../../helpers/StyleHelper'
 import SnapHelper from '../../../helpers/SnapHelper'
 
-function SnapPictureModal () {
+function SnapPictureModal() {
   const _gameContext = useContext(GameContext)
   const [pictureSnapped, setPictureSnapped] = React.useState(false)
   const [picture, setPicture] = React.useState('')
@@ -81,36 +81,43 @@ function SnapPictureModal () {
         elementHeight
       )
 
-      let overLayLocation = `${
-        _gameContext.getAssetByID('camera-filter-1')?.assetLocation
-      }`
 
       if (facingMode == 'user') {
         ctx!.scale(-1, 1) // This will 'unflip' the canvas back
       }
 
-      let overLayImage = new Image()
-      overLayImage.src = overLayLocation
-      overLayImage.onload = function () {
-        console.log('GO')
-        ctx!.drawImage(
-          overLayImage,
-          0,
-          0,
-          window.innerWidth,
-          window.innerHeight
-        )
-        // Convert canvas to data URL
-        const dataURL = canvas.toDataURL('image/png')
-        //console.log(dataURL);
-        setPicture(old => dataURL)
+      if (selectedFilter) {
+
+        let overLayImage = new Image()
+        overLayImage.src = selectedFilter as string
+        overLayImage.onload = function () {
+          console.log('GO')
+          ctx!.drawImage(
+            overLayImage,
+            0,
+            0,
+            window.innerWidth,
+            window.innerHeight
+          )
+          // Convert canvas to data URL
+          const dataURL = canvas.toDataURL('image/png')
+          //console.log(dataURL);
+          setPicture(old => dataURL)
+        }
+        overLayImage.onerror = function () {
+          console.log('NO GO')
+          // Convert canvas to data URL
+          const dataURL = canvas.toDataURL('image/png')
+          //console.log(dataURL);
+          setPicture(old => dataURL)
+        }
       }
-      overLayImage.onerror = function () {
-        console.log('NO GO')
-        // Convert canvas to data URL
-        const dataURL = canvas.toDataURL('image/png')
-        //console.log(dataURL);
-        setPicture(old => dataURL)
+      else
+      {
+          // Convert canvas to data URL
+          const dataURL = canvas.toDataURL('image/png')
+          //console.log(dataURL);
+          setPicture(old => dataURL)
       }
     }
   }
@@ -160,37 +167,7 @@ function SnapPictureModal () {
     setPicture('')
   }
 
-  const generateSmallThumb = (picture: string): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      // create a canvas element
-      const canvas = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-      const image = new Image()
-      image.src = picture
-      image.onload = function () {
-        // Determine the aspect ratio
-        const aspectRatio = image.height / image.width
 
-        // Calculate new dimensions
-        const targetWidth = 40
-        const targetHeight = targetWidth * aspectRatio
-
-        // Set canvas dimensions
-        canvas.width = targetWidth
-        canvas.height = targetHeight
-
-        // Draw source image into the off-screen canvas:
-        ctx!.drawImage(image, 0, 0, targetWidth, targetHeight)
-
-        // Encode image to data-uri with base64 version of compressed image
-        let smallThumb = canvas.toDataURL('image/jpeg', 0.5)
-        resolve(smallThumb)
-      }
-      image.onerror = function () {
-        reject(new Error('Failed to load the image.'))
-      }
-    })
-  }
 
   const savePicture = () => {
 
@@ -199,31 +176,31 @@ function SnapPictureModal () {
     payloadFormData.append('GameID', _gameContext.gameID)
     payloadFormData.append('Filename', 'asd')
     payloadFormData.append('Image', SnapHelper.dataURLToBlob(picture))
-    
+
     let pictureID = SnapHelper.generateRandomString(10)
     let newPicture = SnapHelper.CreateNewPicture()
     newPicture.id = pictureID
     newPicture.processed = false
 
     if (picture != '') {
-        generateSmallThumb(picture)
+      SnapHelper.generateSmallThumb(picture)
         .then(smallThumb => {
-            newPicture.tmp_thumb = smallThumb
-            _gameContext.addPicture(newPicture)
-            console.log('smallThumb', smallThumb)
+          newPicture.tmp_thumb = smallThumb
+          _gameContext.addPicture(newPicture)
+          console.log('smallThumb', smallThumb)
         })
         .catch(err => {
-            return
+          return
         });
 
-        console.log('firing')
-        let response = fetch(
-            `${process.env.REACT_APP_API_URL}/Image/SaveImage`,
-            {
-                method: 'POST',
-                body: payloadFormData
-            }
-        )
+      console.log('firing')
+      let response = fetch(
+        `${process.env.REACT_APP_API_URL}/Image/SaveImage`,
+        {
+          method: 'POST',
+          body: payloadFormData
+        }
+      )
         .then(response => response.json())
         .then(data => {
           if (data.success) {
@@ -250,7 +227,21 @@ function SnapPictureModal () {
         videoRef.current.srcObject = null
       }
     }
-  }, [])
+  }, []);
+
+  const [selectedFilter, setSelectedFilter] = React.useState<String | null>(null);
+
+  const selectPrimaryFilter = () => {
+    let primary = _gameContext.getAssetByID('camera-filter-1');
+    if (primary) {
+      if (selectedFilter) {
+        setSelectedFilter(null);
+      }
+      else {
+        setSelectedFilter(primary.assetLocation);
+      }
+    }
+  }
 
   return (
     <div className='snap-picture-modal'>
@@ -266,9 +257,8 @@ function SnapPictureModal () {
         <div
           className='camera-overlay'
           style={{
-            backgroundImage: StyleHelper.format_css_url(
-              _gameContext.getAssetByID('camera-filter-1')
-            )
+            backgroundImage: selectedFilter ? StyleHelper.format_css_url(
+              _gameContext.getAssetByID('camera-filter-1')) : undefined
           }}
         ></div>
       </div>
@@ -319,7 +309,15 @@ function SnapPictureModal () {
         </div>
         <div className='_middle'></div>
         <div className='_bottom'>
-          <div className='_bottom-left'></div>
+          <div className='_bottom-left'>
+            <div className='camera-filter-button'>
+              {!pictureSnapped && (
+                <div className='camera-switch' onClick={selectPrimaryFilter}>
+                  <Icons.Camera_Filter />
+                </div>
+              )}
+            </div>
+          </div>
           <div className='_bottom-center'>
             {!pictureSnapped && (
               <div className='picture-button' onClick={snappedPicture}></div>

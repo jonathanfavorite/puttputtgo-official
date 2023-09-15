@@ -1,0 +1,907 @@
+{
+  "directoryLocation": "/customers/smugglers-cove/",
+  "customerID": "smugglers-cove",
+  "customerName": "Smugglers Cove",
+  "customerDescription": "Castle Golf is a golf course management company that operates 18 golf courses in Florida. Castle Golf is a subsidiary of the Castle Group, a privately held company that owns and operates golf courses, hotels, and resorts in the United States and the Caribbean.",
+  "courses": [
+    {
+      "ID": 1,
+      "name": "Castle Golf",
+      "description": "",
+      "image": "",
+      "stats": {
+        "averageGroupScore": 51,
+        "gamesPlayed": 273
+      },
+      "holes": [
+        { "courseID": 1, "number": 1, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 2, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 3, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 4, "par": 3, "name": null, "optional": false },
+        { "courseID": 1, "number": 5, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 6, "par": 2, "name": "take a selfie!", "optional": false },
+        { "courseID": 1, "number": 7, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 8, "par": 3, "name": null, "optional": false },
+        { "courseID": 1, "number": 9, "par": 3, "name": null, "optional": false },
+        { "courseID": 1, "number": 10, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 11, "par": 4, "name": null, "optional": false },
+        { "courseID": 1, "number": 12, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 13, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 14, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 15, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 16, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 17, "par": 2, "name": null, "optional": false },
+        { "courseID": 1, "number": 18, "par": 3, "name": null, "optional": false }
+      ]
+    }
+  ],
+  "texts": [
+    {
+      "textID": "welcome:continue-game",
+      "locals": [
+        { "locale": "en", "text": "Continue Game" },
+        { "locale": "es", "text": "Continua el juego" },
+        { "locale": "fr", "text": "Continuer le jeu" },
+        { "locale": "de", "text": "Weiterspielen" },
+        { "locale": "it", "text": "Continua il gioco" },
+        { "locale": "pt", "text": "Continuar jogo" },
+        { "locale": "ru", "text": "Продолжить игру" },
+        { "locale": "zh", "text": "继续游戏" },
+        { "locale": "ja", "text": "ゲームを続ける" }
+      ]
+    },
+    {
+      "textID": "welcome:view-results",
+      "locals": [
+        { "locale": "en", "text": "View Results" },
+        { "locale": "es", "text": "Ver resultados" },
+        { "locale": "fr", "text": "Voir les résultats" },
+        { "locale": "de", "text": "Ergebnisse anzeigen" },
+        { "locale": "it", "text": "vedi i risultati" },
+        { "locale": "pt", "text": "Ver resultados" },
+        { "locale": "ru", "text": "Посмотреть Результаты" },
+        { "locale": "zh", "text": "查看结果" },
+        { "locale": "ja", "text": "結果を見る" }
+      ]
+    },
+    {
+      "textID": "welcome:new-game",
+      "locals": [
+        { "locale": "en", "text": "New Game" },
+        { "locale": "es", "text": "Nuevo juego" },
+        { "locale": "fr", "text": "Nouveau jeu" },
+        { "locale": "de", "text": "Neues Spiel" },
+        { "locale": "it", "text": "Nuovo gioco" },
+        { "locale": "pt", "text": "Novo jogo" },
+        { "locale": "ru", "text": "Новая игра" },
+        { "locale": "zh", "text": "新游戏" },
+        { "locale": "ja", "text": "新しいゲーム" }
+      ]
+    },
+    {
+      "textID": "welcome:rules",
+      "locals": [
+        { "locale": "en", "text": "Rules" },
+        { "locale": "es", "text": "Normas" },
+        { "locale": "fr", "text": "Règles" },
+        { "locale": "de", "text": "Regeln" },
+        { "locale": "it", "text": "Regole" },
+        { "locale": "pt", "text": "Regras" },
+        { "locale": "ru", "text": "Правила" },
+        { "locale": "zh", "text": "规则" },
+        { "locale": "ja", "text": "ルール" }
+      ]
+    },
+    {
+      "textID": "welcome:settings",
+      "locals": [
+        { "locale": "en", "text": "Settings" },
+        { "locale": "es", "text": "Ajustes" },
+        { "locale": "fr", "text": "Paramètres" },
+        { "locale": "de", "text": "Einstellungen" },
+        { "locale": "it", "text": "Impostazioni" },
+        { "locale": "pt", "text": "Configurações" },
+        { "locale": "ru", "text": "Настройки" },
+        { "locale": "zh", "text": "设置" },
+        { "locale": "ja", "text": "設定" }
+      ]
+    },
+    {
+      "textID": "start-game:choose-players-heading",
+      "locals": [
+        { "locale": "en", "text": "Choose||Your Heros" },
+        { "locale": "es", "text": "Elige a tus Héroes" },
+        { "locale": "fr", "text": "Choisissez vos héros" },
+        { "locale": "de", "text": "Wählen Sie Ihre Helden" },
+        { "locale": "it", "text": "Scegli i tuoi eroi" },
+        { "locale": "pt", "text": "Escolha seus heróis" },
+        { "locale": "ru", "text": "Выберите своих героев" },
+        { "locale": "zh", "text": "选择你的英雄" },
+        { "locale": "ja", "text": "あなたのヒーローを選んでください" }
+      ]
+    },
+    {
+      "textID": "start-game:add-player",
+      "locals": [
+        { "locale": "en", "text": "Add Player" },
+        { "locale": "es", "text": "Agregar jugador" },
+        { "locale": "fr", "text": "Ajouter un joueur" },
+        { "locale": "de", "text": "Spieler hinzufügen" },
+        { "locale": "it", "text": "Aggiungi giocatore" },
+        { "locale": "pt", "text": "Adicionar jogador" },
+        { "locale": "ru", "text": "Добавить игрока" },
+        { "locale": "zh", "text": "添加玩家" },
+        { "locale": "ja", "text": "プレーヤーを追加" }
+      ]
+    },
+    {
+      "textID": "start-game:start-game",
+      "locals": [
+        { "locale": "en", "text": "Start Game" },
+        { "locale": "es", "text": "Empezar juego" },
+        { "locale": "fr", "text": "Démarrer jeu" },
+        { "locale": "de", "text": "Spiel beginnen" },
+        { "locale": "it", "text": "Inizia il gioco" },
+        { "locale": "pt", "text": "Começar o jogo" },
+        { "locale": "ru", "text": "Начать игру" },
+        { "locale": "zh", "text": "开始游戏" },
+        { "locale": "ja", "text": "ゲームをスタート" }
+      ]
+    },
+    {
+      "textID": "game-in-progress:game-in-progress",
+      "locals": [
+        { "locale": "en", "text": "Game In Progress" },
+        { "locale": "es", "text": "Juego en progreso" },
+        { "locale": "fr", "text": "Jeu en cours" },
+        { "locale": "de", "text": "Gerade stattfindendes Spiel" },
+        { "locale": "it", "text": "Partita in corso" },
+        { "locale": "pt", "text": "Jogo em progresso" },
+        { "locale": "ru", "text": "Игра в процессе" },
+        { "locale": "zh", "text": "游戏进行中" },
+        { "locale": "ja", "text": "ゲーム進行中" }
+      ]
+    },
+    {
+      "textID": "game-in-progress:continue-where-left-off",
+      "locals": [
+        {
+          "locale": "en",
+          "text": "Would you like to continue where you left off?"
+        },
+        { "locale": "es", "text": "¿Te gustaría continuar donde lo dejaste?" },
+        {
+          "locale": "fr",
+          "text": "Souhaitez-vous continuer là où vous vous étiez arrêté ?"
+        },
+        {
+          "locale": "de",
+          "text": "Möchten Sie dort weitermachen, wo Sie aufgehört haben?"
+        },
+        { "locale": "it", "text": "Vorresti continuare da dove eri rimasto?" },
+        { "locale": "pt", "text": "Gostaria de continuar de onde parou?" },
+        {
+          "locale": "ru",
+          "text": "Хотите продолжить с того места, на котором остановились?"
+        },
+        { "locale": "zh", "text": "您想从上次中断的地方继续吗？" },
+        { "locale": "ja", "text": "中断したところから続行しますか?" }
+      ]
+    },
+    {
+      "textID": "game-in-progress:new-game",
+      "locals": [
+        { "locale": "en", "text": "New Game" },
+        { "locale": "es", "text": "Nuevo juego" },
+        { "locale": "fr", "text": "Nouveau jeu" },
+        { "locale": "de", "text": "Neues Spiel" },
+        { "locale": "it", "text": "Nuovo gioco" },
+        { "locale": "pt", "text": "Novo jogo" },
+        { "locale": "ru", "text": "Новая игра" },
+        { "locale": "zh", "text": "新游戏" },
+        { "locale": "ja", "text": "新しいゲーム" }
+      ]
+    },
+    {
+      "textID": "game-in-progress:continue",
+      "locals": [
+        { "locale": "en", "text": "Continue" },
+        { "locale": "es", "text": "Continuar" },
+        { "locale": "fr", "text": "Continuer" },
+        { "locale": "de", "text": "Weitermachen" },
+        { "locale": "it", "text": "Continua" },
+        { "locale": "pt", "text": "Continuar" },
+        { "locale": "ru", "text": "Продолжать" },
+        { "locale": "zh", "text": "继续" },
+        { "locale": "ja", "text": "続く" }
+      ]
+    },
+    {
+      "textID": "gameplay:hole",
+      "locals": [
+        { "locale": "en", "text": "Hole" },
+        { "locale": "es", "text": "Agujero" },
+        { "locale": "fr", "text": "Trou" },
+        { "locale": "de", "text": "Loch" },
+        { "locale": "it", "text": "Buco" },
+        { "locale": "pt", "text": "Buraco" },
+        { "locale": "ru", "text": "Дыра" },
+        { "locale": "zh", "text": "洞" },
+        { "locale": "ja", "text": "穴" }
+      ]
+    },
+    {
+      "textID": "gameplay:score",
+      "locals": [
+        { "locale": "en", "text": "Score" },
+        { "locale": "es", "text": "Puntaje" },
+        { "locale": "fr", "text": "Score" },
+        { "locale": "de", "text": "Punktzahl" },
+        { "locale": "it", "text": "Punto" },
+        { "locale": "pt", "text": "Pontuação" },
+        { "locale": "ru", "text": "Счет" },
+        { "locale": "zh", "text": "分数" },
+        { "locale": "ja", "text": "スコア" }
+      ]
+    },
+    {
+      "textID": "gameplay:next-player",
+      "locals": [
+        { "locale": "en", "text": "Next Player" },
+        { "locale": "es", "text": "siguiente jugador" },
+        { "locale": "fr", "text": "Joueur suivant" },
+        { "locale": "de", "text": "Nächster Spieler" },
+        { "locale": "it", "text": "Prossimo giocatore" },
+        { "locale": "pt", "text": "próximo jogador" },
+        { "locale": "ru", "text": "Следующий игрок" },
+        { "locale": "zh", "text": "下一个玩家" },
+        { "locale": "ja", "text": "次のプレイヤー" }
+      ]
+    },
+    {
+      "textID": "gameplay:clear",
+      "locals": [
+        { "locale": "en", "text": "clear" },
+        { "locale": "es", "text": "limpiar" },
+        { "locale": "fr", "text": "effacer" },
+        { "locale": "de", "text": "löschen" },
+        { "locale": "it", "text": "cancellare" },
+        { "locale": "pt", "text": "limpar" },
+        { "locale": "ru", "text": "очистить" },
+        { "locale": "zh", "text": "清除" },
+        { "locale": "ja", "text": "クリア" }
+    ]
+    },
+    {
+      "textID": "gameplay:game-starting",
+      "locals": [
+        { "locale": "en", "text": "Game Starting" },
+        { "locale": "es", "text": "Inicio del juego" },
+        { "locale": "fr", "text": "Début du jeu" },
+        { "locale": "de", "text": "Spiel beginnt" },
+        { "locale": "it", "text": "Inizio del gioco" },
+        { "locale": "pt", "text": "Início do jogo" },
+        { "locale": "ru", "text": "Начало игры" },
+        { "locale": "zh", "text": "游戏开始" },
+        { "locale": "ja", "text": "ゲーム開始" }
+      ]
+    },
+    {
+      "textID": "gameplay:good-luck",
+      "locals": [
+        { "locale": "en", "text": "Good Luck!" },
+        { "locale": "es", "text": "¡Buena suerte!" },
+        { "locale": "fr", "text": "Bonne chance!" },
+        { "locale": "de", "text": "Viel Glück!" },
+        { "locale": "it", "text": "Buona fortuna!" },
+        { "locale": "pt", "text": "Boa sorte!" },
+        { "locale": "ru", "text": "Удачи!" },
+        { "locale": "zh", "text": "祝你好运！" },
+        { "locale": "ja", "text": "幸運を！" }
+      ]
+    },
+    {
+      "textID": "gameplay:game-over",
+      "locals": [
+        { "locale": "en", "text": "Game Over" },
+        { "locale": "es", "text": "Juego terminado" },
+        { "locale": "fr", "text": "Jeu terminé" },
+        { "locale": "de", "text": "Spiel ist aus" },
+        { "locale": "it", "text": "Game Over" },
+        { "locale": "pt", "text": "Game Over" },
+        { "locale": "ru", "text": "Игра закончена" },
+        { "locale": "zh", "text": "游戏结束" },
+        { "locale": "ja", "text": "ゲームオーバー" }
+      ]
+    },
+    {
+      "textID": "gameplay:take-me-back",
+      "locals": [
+        { "locale": "en", "text": "Take me back" },
+        { "locale": "es", "text": "Llévame de vuelta" },
+        { "locale": "fr", "text": "Reprends moi" },
+        { "locale": "de", "text": "Nimm mich zurück" },
+        { "locale": "it", "text": "Portami indietro" },
+        { "locale": "pt", "text": "Me leve de volta" },
+        { "locale": "ru", "text": "Верни меня" },
+        { "locale": "zh", "text": "带我回去" },
+        { "locale": "ja", "text": "連れ帰ってください" }
+      ]
+    },
+    {
+      "textID": "gameplay:oops",
+      "locals": [
+        { "locale": "en", "text": "Oops!" },
+        { "locale": "es", "text": "¡Ups!" },
+        { "locale": "fr", "text": "Oops!" },
+        { "locale": "de", "text": "Hoppla!" },
+        { "locale": "it", "text": "Ops!" },
+        { "locale": "pt", "text": "Ops!" },
+        { "locale": "ru", "text": "Ой!" },
+        { "locale": "zh", "text": "哎呀！" },
+        { "locale": "ja", "text": "おっとっと！" }
+      ]
+    },
+    {
+      "textID": "gameplay:missing-scores",
+      "locals": [
+        {
+          "locale": "en",
+          "text": "Some players have missing scores. Please fix the scores for the following holes:"
+        },
+        {
+          "locale": "es",
+          "text": "A algunos jugadores les faltan puntuaciones. Corrija las puntuaciones de los siguientes hoyos:"
+        },
+        {
+          "locale": "fr",
+          "text": "Certains joueurs ont des scores manquants. Veuillez corriger les scores pour les trous suivants :"
+        },
+        {
+          "locale": "de",
+          "text": "Bei einigen Spielern fehlen Punkte. Bitte korrigieren Sie die Ergebnisse für die folgenden Löcher:"
+        },
+        {
+          "locale": "it",
+          "text": "Alcuni giocatori hanno punteggi mancanti. Si prega di correggere i punteggi per le seguenti buche:"
+        },
+        {
+          "locale": "pt",
+          "text": "Alguns jogadores têm pontuações perdidas. Corrija as pontuações para os seguintes buracos:"
+        },
+        {
+          "locale": "ru",
+          "text": "У некоторых игроков отсутствуют очки. Пожалуйста, исправьте оценки для следующих лунок:"
+        },
+        { "locale": "zh", "text": "有些玩家缺少分数。请修正以下洞的分数：" },
+        {
+          "locale": "ja",
+          "text": "スコアが抜けている選手もいます。次のホールのスコアを修正してください。"
+        }
+      ]
+    },
+    {
+      "textID": "gameplay:back",
+      "locals": [
+        { "locale": "en", "text": "Back" },
+        { "locale": "es", "text": "Atrás" },
+        { "locale": "fr", "text": "Dos" },
+        { "locale": "de", "text": "Zurück" },
+        { "locale": "it", "text": "Indietro" },
+        { "locale": "pt", "text": "Voltar" },
+        { "locale": "ru", "text": "Назад" },
+        { "locale": "zh", "text": "后退" },
+        { "locale": "ja", "text": "戻る" }
+      ]
+    },
+    {
+      "textID": "results:winner",
+      "locals": [
+        { "locale": "en", "text": "Winner" },
+        { "locale": "es", "text": "Ganador" },
+        { "locale": "fr", "text": "Gagnant" },
+        { "locale": "de", "text": "Gewinner" },
+        { "locale": "it", "text": "Vincitore" },
+        { "locale": "pt", "text": "Ganhador" },
+        { "locale": "ru", "text": "Победитель" },
+        { "locale": "zh", "text": "优胜者" },
+        { "locale": "ja", "text": "勝者" }
+    ]
+    },
+    {
+      "textID": "results:bravo-golfer",
+      "locals": [
+        { "locale": "en", "text": "Bravo, noble golfer!||You've conquered the treacherous Castle Golf realm and emerged victorious!" },
+        { "locale": "es", "text": "¡Bravo, noble golfista!||¡Has conquistado el traicionero reino de Castle Golf y has salido victorioso!" },
+        { "locale": "fr", "text": "Bravo, noble golfeur !||Vous avez conquis le royaume traître de Castle Golf et en êtes sorti vainqueur !" },
+        { "locale": "de", "text": "Bravo, edler Golfer!||Du hast das tückische Castle-Golf-Reich erobert und bist als Sieger hervorgegangen!" },
+        { "locale": "it", "text": "Bravo, nobile giocatore di golf!||Hai conquistato l&#39;infido reame di Castle Golf e ne sei uscito vittorioso!" },
+        { "locale": "pt", "text": "Bravo, nobre golfista!||Você conquistou o traiçoeiro reino do Castle Golf e saiu vitorioso!" },
+        { "locale": "ru", "text": "Браво, благородный игрок в гольф!||Ты покорил коварное царство Castle Golf и вышел победителем!" },
+        { "locale": "zh", "text": "太棒了，高贵的高尔夫球手！||您已经征服了危险的城堡高尔夫领域并取得了胜利！" },
+        { "locale": "ja", "text": "ブラボー、高貴なゴルファー!||あなたは危険なキャッスル ゴルフ領域を征服し、勝利を収めました!" }
+    ]
+    },
+    {
+      "textID": "results:results",
+      "locals": [
+        { "locale": "en", "text": "Results" },
+        { "locale": "es", "text": "Resultados" },
+        { "locale": "fr", "text": "Résultats" },
+        { "locale": "de", "text": "Ergebnisse" },
+        { "locale": "it", "text": "Risultati" },
+        { "locale": "pt", "text": "Resultados" },
+        { "locale": "ru", "text": "Полученные результаты" },
+        { "locale": "zh", "text": "结果" },
+        { "locale": "ja", "text": "結果" }
+    ]
+    },
+    {
+      "textID": "results:share",
+      "locals": [
+        { "locale": "en", "text": "share" },
+        { "locale": "es", "text": "compartir" },
+        { "locale": "fr", "text": "partager" },
+        { "locale": "de", "text": "teilen" },
+        { "locale": "it", "text": "condividere" },
+        { "locale": "pt", "text": "compartilhar" },
+        { "locale": "ru", "text": "делиться" },
+        { "locale": "zh", "text": "分享" },
+        { "locale": "ja", "text": "共有する" }
+    ]    
+    },
+    {
+      "textID": "results:better-than",
+      "locals": [
+        { "locale": "en", "text": "your team did||~NUMX better~ than other groups" },
+        { "locale": "es", "text": "tu equipo lo hizo||~NUMX mejor~ que otros grupos" },
+        { "locale": "fr", "text": "votre équipe a fait||~NUMX mieux~ que les autres groupes" },
+        { "locale": "de", "text": "Ihr Team hat||~NUMX besser~ abgeschnitten als andere Gruppen" },
+        { "locale": "it", "text": "la tua squadra ha fatto||~NUMX meglio~ di altri gruppi" },
+        { "locale": "pt", "text": "sua equipe se saiu||~NUMX melhor~ do que outros grupos" },
+        { "locale": "ru", "text": "ваша команда справилась||~в НАЧАЛО лучше~, чем другие группы" },
+        { "locale": "zh", "text": "你的团队比其他团队做得||~NUMX 好~" },
+        { "locale": "ja", "text": "あなたのチームは他のグループより||~NUMX が優れていました~" }
+    ]
+    },
+    {
+      "textID": "results:worse-than",
+      "locals": [
+        { "locale": "en", "text": "your team did||~NUMX worse~ than other groups" },
+        { "locale": "es", "text": "tu equipo lo hizo||~NUMX peor~ que otros grupos" },
+        { "locale": "fr", "text": "votre équipe a fait||~NUMX pire~ que les autres groupes" },
+        { "locale": "de", "text": "Ihr Team hat||~NUMX schlechter~ abgeschnitten als andere Gruppen" },
+        { "locale": "it", "text": "la tua squadra ha fatto||~NUMX peggio~ di altri gruppi" },
+        { "locale": "pt", "text": "sua equipe foi||~NUMX pior~ do que outros grupos" },
+        { "locale": "ru", "text": "ваша команда справилась||~ЧИСЛО хуже~, чем другие группы" },
+        { "locale": "zh", "text": "你的团队比其他团队做得||~NUMX差~" },
+        { "locale": "ja", "text": "あなたのチームは他のグループより||~NUMXが悪かった~" }
+    ]
+    },
+    {
+      "textID": "results:best-hole",
+      "locals": [
+        { "locale": "en", "text": "best||hole" },
+        { "locale": "es", "text": "mejor||agujero" },
+        { "locale": "fr", "text": "meilleur||trou" },
+        { "locale": "de", "text": "bestes||Loch" },
+        { "locale": "it", "text": "miglior||buco" },
+        { "locale": "pt", "text": "melhor||buraco" },
+        { "locale": "ru", "text": "лучшая||дырка" },
+        { "locale": "zh", "text": "最佳洞" },
+        { "locale": "ja", "text": "最高の穴" }
+    ]
+    },
+    {
+      "textID": "results:worst-hole",
+      "locals": [
+        { "locale": "en", "text": "worst||hole" },
+        { "locale": "es", "text": "peor||agujero" },
+        { "locale": "fr", "text": "pire||trou" },
+        { "locale": "de", "text": "schlimmstes||Loch" },
+        { "locale": "it", "text": "buco||peggiore" },
+        { "locale": "pt", "text": "pior||buraco" },
+        { "locale": "ru", "text": "худшая||дыра" },
+        { "locale": "zh", "text": "最糟糕的洞" },
+        { "locale": "ja", "text": "最悪の穴" }
+    ]
+    },
+    {
+      "textID": "results:group-average",
+      "locals":[
+        { "locale": "en", "text": "average" },
+        { "locale": "es", "text": "promedio" },
+        { "locale": "fr", "text": "moyenne" },
+        { "locale": "de", "text": "Durchschnitt" },
+        { "locale": "it", "text": "media" },
+        { "locale": "pt", "text": "média" },
+        { "locale": "ru", "text": "средний" },
+        { "locale": "zh", "text": "平均的" },
+        { "locale": "ja", "text": "平均" }
+    ]
+    },
+    {
+      "textID": "results:performances",
+      "locals": [
+        { "locale": "en", "text": "performances" },
+        { "locale": "es", "text": "actuaciones" },
+        { "locale": "fr", "text": "les performances" },
+        { "locale": "de", "text": "Aufführungen" },
+        { "locale": "it", "text": "spettacoli" },
+        { "locale": "pt", "text": "apresentações" },
+        { "locale": "ru", "text": "представления" },
+        { "locale": "zh", "text": "表演" },
+        { "locale": "ja", "text": "公演" }
+    ]
+    },
+    {
+      "textID": "results:performance-all",
+      "locals": [
+        { "locale": "en", "text": "overview" },
+        { "locale": "es", "text": "todo" },
+        { "locale": "fr", "text": "tous" },
+        { "locale": "de", "text": "alle" },
+        { "locale": "it", "text": "Tutto" },
+        { "locale": "pt", "text": "todos" },
+        { "locale": "ru", "text": "все" },
+        { "locale": "zh", "text": "全部" },
+        { "locale": "ja", "text": "全て" }
+    ]
+    },
+    {
+      "textID": "results:tie",
+      "locals": [
+        { "locale": "en", "text": "tie" },
+        { "locale": "es", "text": "empate" },
+        { "locale": "fr", "text": "tous" },
+        { "locale": "de", "text": "unentschieden" },
+        { "locale": "it", "text": "pareggio" },
+        { "locale": "pt", "text": "empate" },
+        { "locale": "ru", "text": "все" },
+        { "locale": "zh", "text": "平局" },
+        { "locale": "ja", "text": "引き分け" }
+    ]
+    },
+    {
+      "textID": "rules:body",
+      "locals": [
+        {
+          "locale": "en",
+          "text": "<p>NEVER shall ye stand behind the person putting. NEVER shall ye swing thy putter above thy Knee.</p>\n<p>Five shall be the largest number of players in any group... and that number shall be 5.</p>\n<p>Slower groups shall let others play through. Yet as well, groups shall be courteous in thy haste.</p>\n<p>Each player shall stroke their first putt and shall then advance together as a group. The player who hath then come closet to the cup shall FINISH that hole... and so it goes.</p>\n<p>Six strokes shall be the limit on any hole. Pick up thy ball and scribe seven. Seven shall be the number ye shall scribe... and that number shall be 7.</p>\n<p>A ball hit off the green or into the water shall place one clubhead length in at the point thy ball hath left the green. That player shall accept a penalty of one stoke... and 1 shall be the number of strokes that player shall accept as penalty.</p>\n<p>A ball that does lie against a rail or obstacle shall be moved one clubhead length. The player who hath moved the ball shall accept NO penalty for this action.</p>\n<p>One free game may be won this day. Yet this shall NOT be so if ye are playing, this day, a free game. At the end of thy game ONE player shall spin the Victory Wheel to see which players, in thy group, hath won a free game.</p>"
+        },
+        {
+          "locale": "es",
+          "text": "<p>Nunca se pare detrás de la persona que está pateando. Además, nunca balancee el putter por encima de la rodilla.</p><p>El mayor número de jugadores en un grupo debe ser cinco.</p><p>Si su grupo está jugando lentamente, permita que otros lo alcancen. Sin embargo, también asegúrese de ser cortés y consciente al hacerlo.</p><p>Cada jugador debe hacer su primer tiro y luego avanzar como grupo. El jugador que aterriza su bola más cerca del hoyo debe completar el hoyo primero.</p><p>La máxima cantidad de golpes permitidos por hoyo es seis. Si llega a este límite, recoja su bola y marque siete como su puntaje.</p><p>Si una pelota es golpeada fuera del green o al agua, debe colocarse a la longitud de la cabeza del palo desde donde salió del green. El jugador debe aceptar una penalización de un golpe por esto.</p><p>Si una pelota cae contra una barandilla o un obstáculo, puede moverse una longitud de cabeza de palo sin penalidad.</p><p>Tienes la oportunidad de ganar un juego gratis hoy. Sin embargo, esto no se aplica si ya estás jugando un juego gratuito. Al final del juego, un jugador debe girar la 'Rueda de la victoria' para determinar quién, en su grupo, gana un juego gratis.</p>"
+        },
+        {
+          "locale": "fr",
+          "text": "<p>Ne restez jamais derrière la personne qui met. Aussi, ne balancez jamais votre putter plus haut que votre genou.</p><p>Le plus grand nombre de joueurs dans un groupe devrait être de cinq.</p><p>Si votre groupe joue lentement, laissez les autres vous dépasser. Cependant, assurez-vous également d'être poli et attentif lors de cela.</p><p>Chaque joueur doit tirer son premier coup, puis avancer en groupe. Le joueur qui fait atterrir sa balle le plus près du trou doit terminer le trou en premier.</p><p>Le maximum de coups autorisés par trou est de six. Si vous atteignez cette limite, ramassez votre balle et notez sept comme score.</p><p>Si une balle est frappée hors du green ou dans l'eau, elle doit être placée à une longueur de tête de club à partir de l'endroit où elle a quitté le green. Le joueur doit accepter une pénalité d'un coup pour cela.</p><p>Si une balle atterrit contre une rampe ou un obstacle, elle peut être déplacée d'une longueur de tête de club sans aucune pénalité.</p><p>Vous avez une chance de gagner un jeu gratuit aujourd'hui. Cependant, cela ne s'applique pas si vous jouez déjà un jeu gratuit. À la fin du jeu, un joueur doit faire tourner la 'roue de la victoire' pour déterminer qui, dans votre groupe, remporte une partie gratuite.</p>"
+        },
+        {
+          "locale": "de",
+          "text": "<p>Stehen Sie niemals hinter der Person, die puttet. Schwingen Sie Ihren Putter außerdem niemals höher als Ihr Knie.</p><p>Die größte Anzahl von Spielern in einer Gruppe sollte fünf sein.</p><p>Wenn Ihre Gruppe langsam spielt, lassen Sie andere Sie überholen. Achten Sie jedoch auch darauf, dass Sie dabei höflich und aufmerksam sind.</p><p>Jeder Spieler sollte seinen ersten Schlag machen und dann als Gruppe vorrücken. Der Spieler, der seinen Ball am nächsten zum Loch landet, sollte das Loch zuerst beenden.</p><p>Die maximale Anzahl von Schlägen pro Loch ist sechs. Wenn Sie dieses Limit erreichen, nehmen Sie Ihren Ball und notieren Sie sieben als Score.</p><p>Wenn ein Ball vom Grün oder ins Wasser geschlagen wird, sollte er eine Schlägerkopflänge von der Stelle entfernt platziert werden, an der er das Grün verlassen hat. Der Spieler muss eine Strafe von einem Schlag dafür hinnehmen.</p><p>Wenn ein Ball gegen ein Geländer oder ein Hindernis trifft, kann er eine Schlägerkopflänge ohne Strafe bewegt werden.</p><p>Sie haben heute die Chance, ein kostenloses Spiel zu gewinnen. Dies gilt jedoch nicht, wenn Sie bereits ein kostenloses Spiel spielen. Am Ende des Spiels sollte ein Spieler das 'Siegesrad' drehen, um zu bestimmen, wer in Ihrer Gruppe ein Freispiel gewinnt.</p>"
+        },
+        {
+          "locale": "it",
+          "text": "<p>Non stare mai dietro la persona che sta mettendo. Inoltre, non far oscillare mai il putter più in alto del ginocchio.</p><p> Il maggior numero di giocatori in un gruppo dovrebbe essere cinque.</p><p> Se il tuo gruppo sta suonando lentamente, lascia che gli altri ti sorpassino. Tuttavia, assicurati anche di essere educato e attento quando lo fai.</p><p> Ogni giocatore dovrebbe fare il primo colpo e poi andare avanti come gruppo. Il giocatore che fa atterrare la palla più vicino alla buca dovrebbe completare la buca per primo.</p><p> Il numero massimo di colpi consentiti per buca è sei. Se raggiungi questo limite, raccogli la palla e segna sette come punteggio.</p><p> Se una palla viene colpita fuori dal green o nell&#39;acqua, dovrebbe essere posizionata alla lunghezza di una testa di bastone da dove ha lasciato il green. Il giocatore dovrebbe accettare una penalità di un colpo per questo.</p><p> Se una pallina cade contro una ringhiera o un ostacolo, può essere allontanata di una testa di bastone senza alcuna penalità.</p><p> Hai la possibilità di vincere una partita gratuita oggi. Tuttavia, questo non si applica se stai già giocando a un gioco gratuito. Alla fine del gioco, un giocatore dovrebbe girare la ruota della vittoria per determinare chi, nel tuo gruppo, vince una partita gratuita.</p> un giocatore dovrebbe girare la ruota della vittoria per determinare chi, nel tuo gruppo, vince una partita gratuita.</p> un giocatore dovrebbe girare la ruota della vittoria per determinare chi, nel tuo gruppo, vince una partita gratuita.</p>"
+        },
+        {
+          "locale": "pt",
+          "text": "<p>Nunca fique atrás da pessoa que está colocando. Além disso, nunca balance o taco acima do joelho.</p><p> O maior número de jogadores em um grupo deve ser cinco.</p><p> Se o seu grupo estiver jogando devagar, permita que outros o ultrapassem. No entanto, certifique-se também de ser educado e consciente ao fazê-lo.</p><p> Cada jogador deve dar seu primeiro tiro e depois seguir em frente como um grupo. O jogador que acertar a bola mais perto do buraco deve completar o buraco primeiro.</p><p> O número máximo de tacadas permitidas por buraco é seis. Se você atingir esse limite, pegue sua bola e marque sete como sua pontuação.</p><p> Se uma bola for rebatida para fora do green ou para a água, ela deve ser colocada a uma distância da cabeça do taco de onde saiu do green. O jogador deve aceitar uma penalidade de uma tacada por isso.</p><p> Se uma bola cair contra uma grade ou obstáculo, ela pode ser movida a uma distância da cabeça do taco sem qualquer penalidade.</p><p> Você tem a chance de ganhar um jogo grátis hoje. No entanto, isso não se aplica se você já estiver jogando um jogo gratuito. No final do jogo, um jogador deve girar a Roda da Vitória para determinar quem, em seu grupo, ganha um jogo grátis.</p> um jogador deve girar a Roda da Vitória para determinar quem, em seu grupo, ganha um jogo grátis.</p> um jogador deve girar a Roda da Vitória para determinar quem, em seu grupo, ganha um jogo grátis.</p>"
+        },
+        {
+          "locale": "ru",
+          "text": "<p>Никогда не стойте позади человека, который ставит. Кроме того, никогда не поднимайте клюшку выше колена.</p><p> Максимальное количество игроков в группе должно быть пять.</p><p> Если ваша группа играет медленно, позвольте другим обогнать вас. Тем не менее, также убедитесь, что вы вежливы и внимательны при этом.</p><p> Каждый игрок должен сделать свой первый выстрел, а затем двигаться вперед всей группой. Игрок, который приземлит свой мяч ближе всего к лунке, должен пройти лунку первым.</p><p> Максимальное количество ударов, разрешенных на лунку, равно шести. Если вы достигнете этого предела, возьмите мяч и запишите семь очков.</p><p> Если мяч попадает за пределы грина или в воду, он должен быть помещен на расстоянии одной длины головки клюшки от того места, где он покинул грин. За это игрок должен принять штраф в один удар.</p><p> Если мяч приземляется на перила или препятствие, он может быть перемещен на одну длину головки клюшки без какого-либо штрафа.</p><p> Сегодня у вас есть шанс выиграть одну бесплатную игру. Однако это не применяется, если вы уже играете в бесплатную игру. В конце игры один игрок должен повернуть Колесо Победы, чтобы определить, кто из вашей группы выиграет бесплатную игру.</p> один игрок должен вращать Колесо Победы, чтобы определить, кто из вашей группы выиграет бесплатную игру.</p> один игрок должен вращать Колесо Победы, чтобы определить, кто из вашей группы выиграет бесплатную игру.</p>"
+        },
+        {
+          "locale": "zh",
+          "text": "<p>切勿站在推杆人身后。另外，切勿将推杆挥至高于膝盖的位置。</p><p>一组中最多的玩家人数应为五人。</p><p>如果你的团队玩得很慢，让其他人超过你。但是，还要确保这样做时保持礼貌和细心。</p><p>每个球员都应该进行第一次射门，然后作为一个团队继续前进。球落到离球洞最近的球员应该首先完成该洞。</p><p>每个洞允许的最大击球次数为六次。如果达到此限制，请拿起球并记下 7 作为您的分数。</p><p>如果球被击出果岭或落入水中，则应将其放置在距果岭离开位置一杆头的位置。球员应该为此接受一杆处罚。</p><p>如果球撞到栏杆或障碍物上，它可以被移开一个杆头的长度而不会受到任何处罚。</p><p>今天您有机会赢得一场免费游戏。但是，如果您已经在玩免费游戏，则此规定不适用。游戏结束时，一名玩家应该旋转胜利轮来确定您所在组中的谁赢得免费游戏。</p>一名玩家应该旋转胜利轮来确定您所在组中的谁赢得免费游戏。</p>一名玩家应该旋转胜利轮来确定您所在组中的谁赢得免费游戏。</p>"
+        },
+        { "locale": "ja", "text": "<p>パッティングをしている人の後ろには決して立たないでください。また、パターを膝より高い位置でスイングしないでください。</p><p>グループ内の最大プレイヤー数は 5 人です。</p><p>あなたのグループがゆっくりとプレイしている場合は、他の人があなたを追い越すことを許可してください。ただし、その際には礼儀正しく、注意を払うようにしてください。</p><p>各プレーヤーは最初のショットを打ってから、グループとして前進する必要があります。ボールをホールに最も近い場所に着地させたプレーヤーが、最初にホールを完了する必要があります。</p><p>ホールごとに許可される最大ストローク数は 6 です。この制限に達した場合は、ボールを拾い、スコアとして 7 をマークします。</p><p>ボールがグリーンの外に打たれた場合、または水の中に落ちた場合は、グリーンを離れた場所からクラブヘッド 1 つ分の長さの位置にボールを置く必要があります。この場合、プレーヤーは 1 打ペナルティを受け入れる必要があります。</p><p>ボールがレールや障害物に当たってしまった場合、ペナルティなしでクラブヘッド 1 つ分だけ離れたところにボールを移動させることができます。</p><p>今日は無料ゲームを 1 つ獲得するチャンスがあります。ただし、すでに無料ゲームをプレイしている場合はこの限りではありません。ゲームの終了時に、1 人のプレイヤーが勝利ホイールを回転させて、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p> 1 人のプレイヤーが勝利ホイールを回して、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p> 1 人のプレイヤーが勝利ホイールを回して、グループ内の誰がフリー ゲームに勝つかを決定する必要があります。</p>" }
+      ]
+    },
+    {
+      "textID": "add-player:title",
+      "locals": [
+        { "locale": "en", "text": "add hero" },
+        { "locale": "es", "text": "añadir héroe" },
+        { "locale": "fr", "text": "ajouter un héros" },
+        { "locale": "de", "text": "Held hinzufügen" },
+        { "locale": "it", "text": "aggiungi eroe" },
+        { "locale": "pt", "text": "adicionar herói" },
+        { "locale": "ru", "text": "добавить героя" },
+        { "locale": "zh", "text": "添加英雄" },
+        { "locale": "ja", "text": "ヒーローを追加" }
+    ]
+    },
+    {
+      "textID": "add-player:input",
+      "locals": [
+        { "locale": "en", "text": "enter your name" },
+        { "locale": "es", "text": "introduzca su nombre" },
+        { "locale": "fr", "text": "entrez votre nom" },
+        { "locale": "de", "text": "gib deinen Namen ein" },
+        { "locale": "it", "text": "Inserisci il tuo nome" },
+        { "locale": "pt", "text": "digite seu nome" },
+        { "locale": "ru", "text": "введите ваше имя" },
+        { "locale": "zh", "text": "输入你的名字" },
+        { "locale": "ja", "text": "あなたの名前を入力してください" }
+    ]
+    },
+    {
+      "textID": "add-player:choose-color",
+      "locals": [
+        { "locale": "en", "text": "choose a color" },
+        { "locale": "es", "text": "elige un color" },
+        { "locale": "fr", "text": "choisir une couleur" },
+        { "locale": "de", "text": "wähle eine Farbe" },
+        { "locale": "it", "text": "scegli un colore" },
+        { "locale": "pt", "text": "escolha uma cor" },
+        { "locale": "ru", "text": "выбрать цвет" },
+        { "locale": "zh", "text": "选择一种颜色" },
+        { "locale": "ja", "text": "色を選ぶ" }
+    ]
+    },
+    {
+      "textID": "add-player:confirm",
+      "locals": [
+        { "locale": "en", "text": "confirm" },
+        { "locale": "es", "text": "confirmar" },
+        { "locale": "fr", "text": "confirmer" },
+        { "locale": "de", "text": "bestätigen" },
+        { "locale": "it", "text": "Confermare" },
+        { "locale": "pt", "text": "confirme" },
+        { "locale": "ru", "text": "подтверждать" },
+        { "locale": "zh", "text": "确认" },
+        { "locale": "ja", "text": "確認" }
+    ]
+    }
+  ],
+
+  "colors": [
+    {
+      "colorID": "next-player-button-background",
+      "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      }
+    }
+  ],
+  "assets": [
+    {
+      "assetType": "image",
+      "assetID": "logo",
+      "assetName": "Logo",
+      "assetLocation": "/customers/smugglers-cove/images/logo.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "welcome-background",
+      "assetName": "Welcome Background",
+      "assetLocation": "/customers/smugglers-cove/images/welcome-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "create-game-background",
+      "assetName": "Create Game Background",
+      "assetLocation": "/customers/smugglers-cove/images/create-game-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "create-game-button",
+      "assetName": "Create Game Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "continue-game-button",
+      "assetName": "Continue Game Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "rules-button",
+      "assetName": "Rules Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "settings-button",
+      "assetName": "Settings Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-header-background",
+      "assetName": "Header Background",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-header-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-game-background",
+      "assetName": "Game Background",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-game-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-background",
+      "assetName": "Round Background",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-round-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-left-cap",
+      "assetName": "Round Left Cap",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-round-left-cap.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-right-cap",
+      "assetName": "Round Right Cap",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-round-right-cap.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-button",
+      "assetName": "Round Button",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-round-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-round-active-button",
+      "assetName": "Round Active Button",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-round-active-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-player-background",
+      "assetName": "Player Background",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-player-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-player-ball-frame",
+      "assetName": "Player Ball Frame",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-player-ball-frame.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-player-score-background",
+      "assetName": "Player Ball Frame",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-player-score-background.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-score-button",
+      "assetName": "Score Button",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-score-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "gameplay-next-hole-button",
+      "assetName": "Next Hole Button",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/gameplay-next-hole-button-trans.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "start-new-game-button",
+      "assetName": "Start New Game Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game/start-game-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "add-player-button",
+      "assetName": "Add Player Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game/add-player-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "delete-player-button",
+      "assetName": "Delete Player Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game/delete-player-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "close-create-modal-button",
+      "assetName": "Close Player Create Modal Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game/close-create-modal-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "confirm-player-button",
+      "assetName": "Confirm Player Create Modal Button",
+      "assetLocation": "/customers/smugglers-cove/images/create-game/confirm-player-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "back-button-1",
+      "assetName": "Back Button",
+      "assetLocation": "/customers/smugglers-cove/images/back-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "red-button",
+      "assetName": "Red Button",
+      "assetLocation": "/customers/smugglers-cove/images/red-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "green-button",
+      "assetName": "Green Button",
+      "assetLocation": "/customers/smugglers-cove/images/green-button.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-background",
+      "assetName": "Results Background",
+      "assetLocation": "/customers/smugglers-cove/images/results/results-background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-gradient",
+      "assetName": "Results Gradient",
+      "assetLocation": "/customers/smugglers-cove/images/results/results-gradient.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "crown",
+      "assetName": "Crown",
+      "assetLocation": "/customers/smugglers-cove/images/results/crown.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-header",
+      "assetName": "Results Header Background",
+      "assetLocation": "/customers/smugglers-cove/images/results/results-header.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-player-background",
+      "assetName": "Results Player Background",
+      "assetLocation": "/customers/smugglers-cove/images/results/results-player-background.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "highlights-background",
+      "assetName": "Highlights Header Background",
+      "assetLocation": "/customers/smugglers-cove/images/results/highlights-header.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "completed-hole",
+      "assetName": "Completed Hole Icon",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/completed-hole.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "incomplete-hole",
+      "assetName": "Incompleted Hole Icon",
+      "assetLocation": "/customers/smugglers-cove/images/gameplay/incomplete-hole.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "group-comparison-background",
+      "assetName": "Group Comparison Background",
+      "assetLocation": "/customers/smugglers-cove/images/results/comparison.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "performance-caret",
+      "assetName": "Performance Caret",
+      "assetLocation": "/customers/smugglers-cove/images/results/performance-caret.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "results-back-button-background",
+      "assetName": "Results Page Back Button Background",
+      "assetLocation": "/customers/smugglers-cove/images/results/back.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "camera-filter-1",
+      "assetName": "Camera Filter 1",
+      "assetLocation": "/customers/smugglers-cove/images/camera/overlay1.png"
+    }
+  ]
+}
