@@ -74,12 +74,28 @@ function SettingsPage() {
             name: myName,
             color: rgb,
           });
+          let percentChanceForHoleInOne = 0.05;
           for (let x = 0; x < _courseContext.getCurrentCourse().holes.length - 1; x++) {
+            let score = 0;
+            let random = Math.random();
+            if (random < percentChanceForHoleInOne) {
+                score = 1;
+            } else if (random < 0.2) {
+                score = 2;
+            } else if (random < 0.4) {
+                score = 3;
+            } else if (random < 0.6) {
+                score = 4;
+            } else if (random < 0.8) {
+                score = 5;
+            } else {
+                score = 6;
+            }
             _scoreContext.addScore({
               courseID: _courseContext.getCurrentCourse().ID,
               holeID: _courseContext.getCurrentCourse().holes[x].number,
               playerID: i,
-              score: Math.floor(Math.random() * 4) + 1,
+              score: score,
             });
           }
         }
@@ -124,13 +140,13 @@ function SettingsPage() {
 <div className='button rules-button' style={{
     marginTop: '20px'
 }}>
-                        <div onClick={() => handleOtherThemeClick('/')}>PuttPuttGo</div>
+                        <div onClick={() => handleOtherThemeClick('/jungle-golf/')}>Jungle Golf</div>
                     </div><br />
                      <div className='button rules-button'>
                         <div onClick={() => handleOtherThemeClick('/castle-golf/')}>Castle Golf</div>
                     </div><br />
                     <div className='button rules-button'>
-                        <div onClick={() => handleOtherThemeClick('/bonanza-golf/')}>Bonanza Golf Golf</div><br />
+                        <div onClick={() => handleOtherThemeClick('/smugglers-cove/')}>Smugglers Cove</div>
                     </div>
 
                     </div>

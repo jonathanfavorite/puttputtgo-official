@@ -46,5 +46,36 @@ export default class SnapHelper {
     
         return new Blob(byteArrays, {type: parts[0].split(':')[1]});
     }
+    static generateSmallThumb = (picture: string): Promise<string> => {
+        return new Promise((resolve, reject) => {
+          // create a canvas element
+          const canvas = document.createElement('canvas')
+          const ctx = canvas.getContext('2d')
+          const image = new Image()
+          image.src = picture
+          image.onload = function () {
+            // Determine the aspect ratio
+            const aspectRatio = image.height / image.width
+    
+            // Calculate new dimensions
+            const targetWidth = 40
+            const targetHeight = targetWidth * aspectRatio
+    
+            // Set canvas dimensions
+            canvas.width = targetWidth
+            canvas.height = targetHeight
+    
+            // Draw source image into the off-screen canvas:
+            ctx!.drawImage(image, 0, 0, targetWidth, targetHeight)
+    
+            // Encode image to data-uri with base64 version of compressed image
+            let smallThumb = canvas.toDataURL('image/jpeg', 0.5)
+            resolve(smallThumb)
+          }
+          image.onerror = function () {
+            reject(new Error('Failed to load the image.'))
+          }
+        })
+      }
     
 }

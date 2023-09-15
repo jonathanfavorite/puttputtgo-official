@@ -1,0 +1,212 @@
+/* Here is where you custom override based on the details of the customers */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/customers/jungle-golf/JungleAdventurer.ttf');
+}
+body {
+    font-family: 'CustomFont', sans-serif;
+    background-color:#1f2a0d !important;
+}
+input, button, select, textarea {
+    font-family: 'CustomFont', sans-serif;
+}
+.app {
+    font-family: 'CustomFont', sans-serif;
+    background-color: #80503c !important;
+}
+.welcome-page {
+    flex:1;
+}
+.welcome-buttons .button span {
+   
+    text-shadow: none !important;
+    /* background: linear-gradient(200deg, rgba(255,201,0,1) 48%, rgba(255,230,0,1) 100%) !important;
+    background: -webkit-linear-gradient(200deg, rgba(255,201,0,1) 48%, rgba(255,230,0,1) 100%) !important; */
+    text-shadow: 0px 0px 10px #000 !important;
+  
+    color: #ffe600 !important;
+    -webkit-background-clip:text !important;
+}
+/* .welcome-buttons .create-game-button span {
+    color:red !important;
+} */
+.game-page .header .title {
+    color:#bf6b2e !important;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 1) !important;
+}
+.game-page .rounds-container {
+    border-bottom:3px solid #31251c !important;
+}
+.game-page .rounds-container .center .hole-label {
+    box-shadow:0px 0px 10px #000 !important;
+    border-right:1px solid #000 !important;
+    color: #ffd942 !important;
+}
+.game-page .game-body .player {
+    border-top:3px solid #31251c !important;
+}
+.game-page .rounds-container .hole-items .hole-item {
+    color: #ffca67 !important;
+    font-size: 2.0rem !important;
+}
+.game-page .player-container .player .ball-color {
+    transform: rotate(45deg) !important;
+}
+
+* {
+    font-size:1.2rem !important;
+    font-weight: 100 !important;
+}
+
+/* ############################################## */
+/* ############################################## */
+/* ############################################## */
+/* SPECIFIC TEXTS FOR WELCOME SCREEN */
+/* ############################################## */
+/* ############################################## */
+/* ############################################## */
+
+.welcome-buttons .button span {
+    font-size:1.8rem !important;
+    text-transform: lowercase;
+}
+
+/* ############################################## */
+/* ############################################## */
+/* SPECIFIC TEXTS FOR GAME SCREEN */
+/* ############################################## */
+/* ############################################## */
+
+.text-based-header .center .title {
+    font-size:0.8rem !important;
+}
+
+/* ROUNDS CONTAINER */
+.rounds-container .center .hole-label {
+    font-size:0.7rem !important;
+}
+.rounds-container .center .hole-items .hole-item span{
+    font-size:0.9rem !important;
+}
+.rounds-container .center .hole-items .hole-item .par{
+    font-size:0.5rem !important;
+}
+.rounds-container .center .hole-items .hole-item .par b{
+    font-size:0.5rem !important;
+}
+
+/* PLAYER CONTAINER */
+.player-container .player .player-details .name {
+    font-size:1rem !important;
+}
+.player-container .player .player-details .totalScore {
+    font-size:0.5rem !important;
+}
+.player-container .player .player-details .totalScore b {
+    font-size:0.5rem !important;
+}
+.player-container .player .player-round-score .round-score span {
+    font-size:1.1rem !important;
+}
+
+/* SCORE BUTTONS CONTAINER */
+.footer-content .numbers-wrap .numbers .score {
+    font-size:1.5rem !important;
+}
+
+.footer-content .next-hole span {
+    font-size:1.2rem !important;
+}
+
+
+/* RESULTS PAGE */
+.results-page {
+    background-color: #1f2a0d !important;
+}
+
+.winner-content .winner-left .ball-color-container .ball-color {
+    transform: none !important;
+    height:10vh;
+    border-radius: 3vw !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6) !important;
+    background-size:109% 109% !important;
+    background-position: center center !important;
+}
+.winner-content .winner-right .title span {
+    font-size:1.5rem !important;
+}
+.winner-content .winner-right .name {
+    font-size:2.5rem !important;
+}
+
+.results-page .body .content .content-header {
+    aspect-ratio: 326/101 !important;
+}
+.results-page .body .content .content-header .text {
+    padding-bottom:2vh;
+    color: #ffde00;
+    font-size:2.5rem !important;
+}
+.results-page .body .content .list-item .right .detail {
+    font-size:1.5rem !important;
+    color: #fff !important;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6) !important;
+}
+.results-page .body .content .list-item .right .detail small {
+    font-size:1rem !important;
+    color: #321605 !important;
+    margin-top:5px !important;
+    text-shadow: none !important;
+}
+.results-page .body .content .list-item .right .place {
+    font-size:1.5rem !important;
+    color: #321605 !important;
+}
+.results-page .body .content .list-item .right .place span {
+    font-size:1rem !important;
+    color: #321605 !important;
+}
+
+.results-page .body .content .list-item .left .ball-color-container .ball-color {
+    border-radius: 3vw !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6) !important;
+    background-size:109% 109% !important;
+    background-position: center center !important;
+}
+
+.group-comparison-wrap .left .box .percent {
+    padding:0 !important;
+    font-size: 1.5rem !important;
+}
+.group-comparison-wrap .left .box div .number {
+    letter-spacing: 0.0rem !important;
+    font-size:2.3rem !important;
+}
+
+.hole-in-one-wrapper .hole-table {
+    background: #212b11 !important;
+    border-top:2px solid #19200c !important;
+    border-bottom:2px solid #19200c !important;
+}
+
+.hole-in-one-wrapper .hole-table .hole-row .hole-number {
+    border-top:2px solid #19200c !important;
+    border-bottom:2px solid #19200c !important;
+    border-right: 2px solid #19200c !important;
+}
+
+.hole-in-one-wrapper .hole-table .hole-row .hole-players {
+    border-top:2px solid #19200c !important;
+    border-bottom:2px solid #19200c !important;
+}
+
+.hole-in-one-wrapper .title {
+    font-size:1.8rem !important;
+}
+
+.best-worst-hole-wrap .inside-content .best {
+    font-size:5rem !important;
+}
+.best-worst-hole-wrap .inside-content .worst {
+    font-size:5rem !important;
+}

@@ -119,6 +119,22 @@
             padding-bottom: 5vh;
             ._bottom-left {
                 width: 20%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+             
+                .camera-filter-button {
+                    padding-left: 5vw;
+                    svg {
+                        fill: #fff;
+                        width: 10vw;
+                        height: 10vw;
+                        filter: $buttons-shadow;
+                        path {
+                            fill: #fff;
+                        }
+                    }
+                }
             }
             ._bottom-center {
                 flex: 1;
