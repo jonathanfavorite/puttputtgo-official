@@ -238,16 +238,42 @@ function ResultsPage() {
     };
 
 
-    
+    const gameURL = `https://www.puttputtgo.net/${_gameContext.companyData.customerID}/results?gameID=${_gameContext.gameID}`;
+    const imageURL = `https://ppgstorageaccount.blob.core.windows.net/shareables/${_gameContext.companyData.customerID}-${_gameContext.gameID}.jpg`;
+    const title = "Game Finished!";
+    const description = "We just finished a game of Castle Golf! Check out our scores!";
+    const site = "@puttputtgo";
 
     let showHoldInOnes = true;
 
     return (
-        
+       
         <DataAssuranceHOC companyParam={
             business_name ! ? business_name : "default"
         }>
+             <Helmet>
+             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="description" content={description} />
+                <meta name="keywords" content="puttputtgo, game, golf, results" />
+                <meta name="author" content="[DATA]" />
 
+                {/* Open Graph Meta Tags */}
+                <meta property="fb:app_id" content="823028086097162" />
+                <meta property="og:url" content={gameURL} />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:image" content={imageURL} />
+                <meta property="og:image:width" content="700" />
+                <meta property="og:image:height" content="375" />
+
+                {/* Twitter Card Meta Tags */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content={site} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:image" content={imageURL} />
+            </Helmet>
             
 
             {!_gameContext.preloadedLocalStorage && !completelyLoaded ? <LocalStoragePreloader /> :
