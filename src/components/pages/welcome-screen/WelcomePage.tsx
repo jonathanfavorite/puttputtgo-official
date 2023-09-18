@@ -9,6 +9,7 @@ import {PlayerContext} from '../../../contexts/PlayerContext';
 import {CourseContext} from '../../../contexts/CourseContext';
 import ConsoleHelper from '../../../helpers/ConsoleHelper';
 import { browserName, browserVersion, deviceType, osName } from 'react-device-detect';
+import SignInRegisterTemplate from '../../templates/sign-in-register-template/SignInRegisterTemplate';
 
 function WelcomePage() {
     const _gameContext = useContext(GameContext);
@@ -185,6 +186,7 @@ function WelcomePage() {
                         {/*
                      */} </div>
                 </div>
+                
             </WelcomeTemplate>
         </DataAssuranceHOC>
     );

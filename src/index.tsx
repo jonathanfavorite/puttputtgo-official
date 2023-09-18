@@ -21,6 +21,8 @@ import SettingsPage from './components/pages/settings-screen/SettingsPage';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { hydrate, render } from 'react-dom';
 import HomeScreen from './components/pages/website/home/HomeScreen';
+import SignInRegisterScreen from './components/pages/sign-in-register-screen/SignInRegisterScreen';
+import { SignUpRegisterContextProvider } from './contexts/SignUpRegisterContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
@@ -30,12 +32,16 @@ root.render(
         <ScoreContextProvider>
             <GameContextProvider>
                 <UIContextProvider>
+                    <SignUpRegisterContextProvider>
 
                         <BrowserRouter>
                             <Routes>
                                 <Route path="/" element={<HomeScreen/>}/>
                                 <Route path="/demo/"
                                     element={<WelcomePage/>}/>
+
+                                <Route path="/signin/"
+                                    element={<SignInRegisterScreen/>}/>
 
                                 <Route path="/demo/game"
                                     element={<GamePage/>}/>
@@ -64,6 +70,8 @@ root.render(
                                     element={<CreateGamePage/>}/>
                                     <Route path="/:business_name/results"
                                     element={<ResultsPage />}/>
+                                    <Route path="/:business_name/signin"
+                                    element={<SignInRegisterScreen />}/>
                                 <Route path="/:business_name/admin"
                                     element={
                                         <h1>Admin</h1>
@@ -81,6 +89,7 @@ root.render(
                                 <Route path="*" element={<h1>Not Found</h1>}/>
                             </Routes>
                         </BrowserRouter>
+                        </SignUpRegisterContextProvider>
                 </UIContextProvider>
             </GameContextProvider>
         </ScoreContextProvider>

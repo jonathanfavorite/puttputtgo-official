@@ -1,0 +1,307 @@
+.sign-in-register-screen-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    .header {
+        height:100%;
+        max-height:60%;
+        background-size:cover;
+        background-position: center bottom;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        padding-bottom:5vh;
+        ._top-bar {
+            display: flex;
+            padding-top:5vh;
+            ._left {
+                flex:1;
+                .back {
+                   margin-left:5vw;
+                    svg {
+                        width:7vw;
+                        height:7vw;
+                        fill: #fff;
+                        filter: drop-shadow(0px 0px 10px rgb(0 0 0 / 0.4));
+                    }
+                }
+            }
+            ._middle {
+                width:30vw;
+                .logo {
+                    width:100%;
+                    svg {
+                        filter: drop-shadow(0px 0px 10px rgb(0 0 0 / 0.4));
+                    }
+                    rect {
+                        filter: drop-shadow(0px 0px 10px rgb(0 0 0 / 0.4));
+                    }
+                }
+            }
+            ._right {
+                flex:1;
+            }
+        }
+        .trans-bottom {
+            background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgba(0,0,0,1));
+            bottom:0;
+            width:100%;
+            height:5vh;
+            position: absolute;
+        }
+    }
+    .details {
+        padding:5vw;
+        
+        text-align: center;
+        h1 {
+            font-weight: 100;
+            font-size:1.5rem;
+        }
+        p {
+            font-size:1.0rem;
+        }
+    }
+    .buttons {
+        flex:1;
+        padding-bottom:10vh;
+        display: flex;
+        .buttons_wrap {
+            width: 50%;
+     
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding:0px 5vw;
+            span {
+                flex: 1;
+                padding:5vw 5vw;
+                text-align: center;
+                border: 2px solid #336cf1;
+                background:#222;
+                border-radius: 10px;
+                
+            }
+            &:first-child {
+                span {
+                    background:#336cf1;
+                    color:#Fff;
+                }
+                
+            }
+        }
+    }
+}
+
+.code-waiter-wrap {
+    text-align: center;
+
+    .hidden-tel {
+        position: absolute;
+        left:-2000px;
+    }
+    .code-waiter-buttons-wrap {
+        width:100%;
+        box-sizing: border-box;
+        display: flex;
+     
+        justify-content: center;
+        padding:2vh 0;
+        padding-bottom:2vh;
+        padding-top:5vh;
+        align-items: center;
+        .code-waiter-buttons {
+            padding:0 10vw;
+            display:flex;
+            width:100%;
+            gap: 5vw;
+            justify-content: space-between;
+            .code-waiter-button {
+                aspect-ratio: 1/1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size:3.2rem;
+                width:100%;
+                background:#333;
+                border:2px solid #444;
+                box-shadow:0px 0px 10px #000;
+                border-radius: 10px;
+                &:first-child {
+                    background:#336cf1;
+                    color:#fff;
+                    border-color: #336cf1;
+                }
+            }
+
+          
+            
+            .code-waiter-button-filled {
+                background:#336cf1;
+                border-color: #336cf1;
+                color:#fff;
+          
+            }
+        }
+    }
+    .code-waiter-description {
+        padding:0 5vw;
+    }
+}
+
+.sign-in-wrap {
+    display: flex;
+    height:100%;
+    flex-direction: column;
+    .top-content {
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        height:100%;
+    }
+    h1 {
+        text-align: center;
+        font-weight: 100;
+    }
+    .enter-number-wrap {
+        padding:0 5vw;
+        .country-picker-wrap {
+            .country-indi {
+                display: flex;
+                background:#222;
+                border-radius: 10px;
+                height:8vh;
+                .selected__country {
+                    display: flex;
+
+                    padding:5vw;
+                    border-right:2px solid #2323;
+      
+                    justify-content: center;
+                    align-items: center;
+                    .country-flag {
+                        
+                        img {
+                            width:5vw;
+                            display: block;
+                        }
+                        
+                    }
+                    .country-code {
+
+                    }
+                }
+                .selected__name {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex:1;
+                    padding-left:5vw;
+
+                }
+                .selected__arrow {
+                    width:15vw;
+                    background: #333;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    svg {
+                        width:5vw;
+                        height:5vw;
+                        fill: #fff;
+                        transform: rotate(-90deg);
+                    }
+                }
+            }
+        }
+        .number-input-wrap {
+            margin-top:2vh;
+            .number-input {
+                input {
+                    width:100%;
+                    padding:5vw;
+                    height:8vh;
+                    background: #333;
+                    border:2px solid #336cf1;
+                    border-radius: 10px;
+                    text-align: center;
+                    color: #fff;
+                    font-size:1.6rem;
+                    font-weight: 100;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+
+    .signin-errors {
+        padding:0 5vw;
+        padding-top:2vh;
+        padding-bottom:2vh;
+        text-align: center;
+        color: #fff;
+        .cant-find-account {
+            font-size:1rem;
+            span {
+                color: #336cf1;
+            }
+        }
+    }
+
+    .sign-in-button-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom:3vh;
+        box-sizing: border-box;
+        .sign-in-button {
+            margin:0 5vw;
+            background:#336cf1;
+            color:#fff;
+            font-size:1.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            text-align: center;
+            height:8vh;
+            flex:1;
+            .loading-spinner-wrap {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .loading-spinner {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    svg {
+                        width:5vh;
+                        height:5vh;
+                        fill: #fff;
+                        animation: rotate 2s linear infinite;
+                    }
+                }
+                .loading-text {
+                    padding-left:2vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                @keyframes rotate {
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -902,6 +902,18 @@
       "assetID": "camera-filter-1",
       "assetName": "Camera Filter 1",
       "assetLocation": "/customers/castle-golf/images/camera/overlay1.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "signin-background",
+      "assetName": "Signin Background",
+      "assetLocation": "/customers/castle-golf/images/signin/background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "ppg-logo",
+      "assetName": "PPG Logo",
+      "assetLocation": "/customers/default/images/logo.png"
     }
   ]
 }
