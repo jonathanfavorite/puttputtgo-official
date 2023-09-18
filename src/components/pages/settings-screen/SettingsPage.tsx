@@ -152,7 +152,7 @@ function SettingsPage() {
                     </div>
                 </div>
 
-                   
+                <div className='button rules-button' onClick={() => navigate(`/${business_name}/signin`)}>Sign In</div>
                     
                 </div>
                <div className='settings-footer'>
