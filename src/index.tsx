@@ -27,6 +27,7 @@ import { SignUpRegisterContextProvider } from './contexts/SignUpRegisterContext'
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
 root.render(
+    <HelmetProvider>
     <PlayerContextProvider>
     <CourseContextProvider>
         <ScoreContextProvider>
@@ -95,6 +96,7 @@ root.render(
         </ScoreContextProvider>
     </CourseContextProvider>
 </PlayerContextProvider>
+</HelmetProvider>
 );
 
 
