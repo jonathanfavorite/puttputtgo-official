@@ -1,0 +1,86 @@
+.enter-number-wrap {
+    padding:0 5vw;
+    .country-picker-wrap {
+        .country-indi {
+            display: flex;
+            background:#222;
+            border-radius: 10px;
+            height:8vh;
+            .selected__country {
+                display: flex;
+
+                padding:5vw;
+                border-right:2px solid #2323;
+  
+                justify-content: center;
+                align-items: center;
+                .country-flag {
+                    
+                    img {
+                        width:5vw;
+                        display: block;
+                    }
+                    
+                }
+                .country-code {
+
+                }
+            }
+            .selected__name {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex:1;
+                padding-left:5vw;
+
+            }
+            .selected__arrow {
+                width:15vw;
+                background: #333;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                svg {
+                    width:5vw;
+                    height:5vw;
+                    fill: #fff;
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+    }
+    .number-input-wrap {
+        margin-top:2vh;
+        .number-input {
+            input {
+                width:100%;
+                padding:5vw;
+                height:8vh;
+                background: #333;
+                border:2px solid #336cf1;
+                border-radius: 10px;
+                text-align: center;
+                color: #fff;
+                font-size:1.6rem;
+                font-weight: 100;
+                box-sizing: border-box;
+            }
+        }
+    }
+
+    .signin-errors {
+        padding:0 5vw;
+        padding-top:2vh;
+        padding-bottom:2vh;
+        text-align: center;
+        color: #fff;
+        .cant-find-account {
+            font-size:1rem;
+            span {
+                color: #336cf1;
+            }
+        }
+    }
+}

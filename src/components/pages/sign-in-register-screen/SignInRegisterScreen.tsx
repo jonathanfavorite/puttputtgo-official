@@ -37,8 +37,8 @@ function SignInRegisterScreen() {
             },
             {
                 title: "Register",
-                headerHeightPercentage: "20%",
-                headerBackgroundShow: false
+                headerHeightPercentage: "10%",
+                headerBackgroundShow: true
             },
             {
                 title: "CodeWaiter",
@@ -80,6 +80,7 @@ function SignInRegisterScreen() {
     }
    };
 
+   
   
     useEffect(() => {
         updatePageSettings(_signupContext.currentScreen);

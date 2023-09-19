@@ -7,6 +7,9 @@ function SwitchBoard() {
     const handleSigninClick = () => {
         _signupContext.updateCurrentScreen(SignInRegisterScreenPages.SignIn);
        }
+    const handleRegisterClick = () => {
+        _signupContext.updateCurrentScreen(SignInRegisterScreenPages.Register);
+         }  
 
 
   return (<>
@@ -19,7 +22,7 @@ function SwitchBoard() {
                 <span onClick={handleSigninClick}>Sign In</span>
             </div>
             <div className='buttons_wrap'>
-                <span>Register</span>
+                <span onClick={handleRegisterClick}>Register</span>
             </div>
         </div></>
   )
