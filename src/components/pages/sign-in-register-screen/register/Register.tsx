@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import {Icons} from '../../../atoms/Icons';
 import PhoneEntry from '../../../molecules/signin/phone-entry/PhoneEntry';
 import { SignInRegisterScreenPages, SignUpRegisterContext } from '../../../../contexts/SignUpRegisterContext';
+import PopupModal from '../../../molecules/signin/popup-modal/PopupModal';
 
 
 enum RegisterStates {
@@ -33,7 +34,9 @@ function Register() {
     const [registerState, setRegisterState] = React.useState < RegisterStates > (RegisterStates.Ready);
     const [registerText, setRegisterText] = React.useState < string > ('Next');
 
-    
+    const [showPopup, setShowPopup] = React.useState<boolean>(false);
+    const [popupMessage, setPopupMessage] = React.useState<string>('');
+
     const fullNameContainerRef = React.useRef <HTMLDivElement> (null);
     const usernameContainerRef = React.useRef <HTMLDivElement> (null);
     const legalContainerRef = React.useRef <HTMLDivElement> (null);
@@ -153,7 +156,9 @@ function Register() {
   
       if (registerState === RegisterStates.Ready) {
           if (!_signupContext.rawPhoneNumber || _signupContext.rawPhoneNumber.length < 10) {
-              alert('Please enter a valid phone number');
+            setPopupMessage('Please enter a valid phone number');
+              setShowPopup(true);
+              
               return;
           }
   
@@ -255,10 +260,14 @@ function Register() {
         setFormData(old => newFormData);
     }
 
-
+    const modelClosed = () => {
+      setShowPopup(false);
+  }
 
     return (
         <div className='register-wrap'>
+
+{showPopup && <PopupModal onClose={modelClosed}>{popupMessage}</PopupModal> }
 
           {showCreateAccountModal && <div className='creating-account-modal'>
             <div className='__content'>

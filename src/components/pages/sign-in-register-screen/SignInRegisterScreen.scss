@@ -446,3 +446,59 @@
         }
     }
 }
+
+
+.logging-in-wrap {
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index: 9;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .logging-in {
+        display: flex;
+     
+        flex-direction: column;
+        align-items: center;
+       box-sizing: border-box;
+       padding:0 5vw;
+       width:100%;
+       
+      
+        .text {
+            font-size:2.5rem;
+         
+        }
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+                width:10vh;
+                height:10vh;
+                fill: #336cf1;
+                animation: rotate 2s linear infinite;
+            }
+        }
+        .try-again-button {
+            margin-top:5vh;
+       
+            box-sizing: border-box;
+            background:#336cf1;
+            color:#fff;
+            font-size:1.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            text-align: center;
+            width:100%;
+            height:8vh;
+
+        }
+    }
+}
