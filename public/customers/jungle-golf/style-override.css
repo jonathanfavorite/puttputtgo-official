@@ -210,3 +210,32 @@ input, button, select, textarea {
 .best-worst-hole-wrap .inside-content .worst {
     font-size:5rem !important;
 }
+
+/* SIGN IN /*
+/*42a218*/
+.sign-in-register-screen-wrap .buttons .buttons_wrap span {
+ 
+    border-color: #296b0d !important;
+}
+.sign-in-register-screen-wrap .buttons .buttons_wrap:first-child span {
+    background: #42a218 !important;
+    border-color: #296b0d !important;
+}
+.sign-in-wrap .sign-in-button-wrap .sign-in-button {
+    background: #42a218 !important;
+
+}
+.enter-number-wrap .number-input-wrap .number-input input {
+
+    border-color: #296b0d !important;
+}
+.register-wrap .register-scrollable .register-scrollable-inside .ref-details-input input {
+    border-color: #296b0d !important;
+}
+.register-wrap .register-scrollable .register-scrollable-inside .ref-legal-wrap .checkboxes-wrap .checkbox label input {
+    background: #42a218 !important;
+    border-color: #296b0d !important;
+}
+.register-wrap .register-bottom .register-button {
+    background: #42a218 !important;
+}

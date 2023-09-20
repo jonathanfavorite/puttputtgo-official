@@ -902,6 +902,12 @@
       "assetID": "camera-filter-1",
       "assetName": "Camera Filter 1",
       "assetLocation": "/customers/jungle-golf/images/camera/overlay1.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "signin-background",
+      "assetName": "Signin Background",
+      "assetLocation": "/customers/jungle-golf/images/signin/background.jpg"
     }
   ]
 }
