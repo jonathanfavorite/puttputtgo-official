@@ -1,0 +1,80 @@
+.welcome-user-screen-wrap {
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    background-position: center center;
+    .header {
+        height:auto;
+        margin-bottom:5vh;
+    }
+    .welcome-content-wrap {
+        display: flex;
+        flex:1;
+        flex-direction: column;
+        
+        .welcome-content {
+            flex:1;
+            display: flex;
+            flex-direction: column;
+            .welcome-name-container {
+                display: flex;
+                flex-direction: column;
+                width:100%;
+                justify-content: center;
+                text-shadow: 0 0 10px rgba(0,0,0,.5);
+                align-items: center;
+                .welcome-text {
+                    font-size:2.1rem;
+                    color:#fff79e;
+                }
+                .welcome-name {
+                    font-size:4rem;
+                }
+            }
+            .welcome-large-text {
+                display: flex;
+                flex:1;
+                justify-content: center;
+                align-items: center;
+                text-shadow: 0 0 10px rgba(0,0,0,.5);
+                flex-direction: column;
+                font-size:2rem;
+            }
+        }
+        .welcome-footer {
+            padding-bottom:15vw;
+            .welcome-footer-text {
+                font-size:1.2rem;
+                color:#fff;
+                text-shadow: 0 0 10px rgba(0,0,0,.5);
+                padding:0 5vw;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding-bottom:2vh;
+
+            }
+            .welcome-button {
+                margin:0 5vw;
+                background:#336cf1;
+                color:#fff;
+                font-size:1.3rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 0 10px rgba(0,0,0,.5);
+                border-radius: 10px;
+                text-align: center;
+                height:8vh;
+                flex:1;
+            }
+        }
+    }
+}

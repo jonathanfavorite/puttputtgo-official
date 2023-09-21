@@ -1,10 +1,13 @@
 import React, { useContext } from 'react'
 import { SignInRegisterScreenPages, SignUpRegisterContext } from '../../../../contexts/SignUpRegisterContext';
+import { GameAudioContext } from '../../../../contexts/GameAudioContext';
 
 function SwitchBoard() {
 
+    const _audioContext = useContext(GameAudioContext);
     const _signupContext = useContext(SignUpRegisterContext);
     const handleSigninClick = () => {
+        _audioContext.play("game-over-audio");
         _signupContext.updateCurrentScreen(SignInRegisterScreenPages.SignIn);
        }
     const handleRegisterClick = () => {

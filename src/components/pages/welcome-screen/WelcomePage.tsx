@@ -10,6 +10,7 @@ import {CourseContext} from '../../../contexts/CourseContext';
 import ConsoleHelper from '../../../helpers/ConsoleHelper';
 import { browserName, browserVersion, deviceType, osName } from 'react-device-detect';
 import SignInRegisterTemplate from '../../templates/sign-in-register-template/SignInRegisterTemplate';
+import GameConfetti from '../game-screen/GameConfetti';
 
 function WelcomePage() {
     const _gameContext = useContext(GameContext);
@@ -126,6 +127,7 @@ function WelcomePage() {
         }>
             <WelcomeTemplate>
                 <div className='welcome-page'>
+                   
                     <div className="welcome-buttons">
 
                         {

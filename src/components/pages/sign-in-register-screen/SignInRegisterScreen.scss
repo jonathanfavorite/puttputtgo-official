@@ -321,32 +321,45 @@
                     display: flex;
                     flex-direction: column;
                     .checkbox {
-                        margin-bottom:2vh;
-                        
-                   
-                    label {
-                        display: flex;
-                        padding-left:5vw;
-                        input {
-                            scale: 2;
-                            outline: none;
-                            border:0.7vw solid #336cf1;
-                            margin-right:5vw;
-                            
-                            width:4vw;
-                            height:4vw;
-                            border-radius: 5px;
-                            -moz-appearance:none;
-                            -webkit-appearance:none;
-                            -o-appearance:none;
-
-                            background:#336cf1;
+                        margin-bottom: 2vh;
+                    
+                        label {
+                            display: flex;
+                            padding-left: 5vw;
+                    
+                            input[type="checkbox"] {
+                                scale: 2;
+                                outline: none;
+                                border: 0.7vw solid #336cf1;
+                                margin-right: 5vw;
+                                width: 4vw;
+                                height: 4vw;
+                                border-radius: 5px;
+                                -moz-appearance: none;
+                                -webkit-appearance: none;
+                                -o-appearance: none;
+                                position: relative;
+                                background: #336cf1;
                                 border-color: #244fb4;
-                            &:checked {
-                                background:#fff;
+                    
+                                &:checked {
+                                    background: #fff;
+                                    &::after {
+                                        content: "";
+                                        position: absolute;
+                                        width: 1.8vw;
+                                        height: 0.7vw;
+                                        border: solid #336cf1;
+                                        
+                                        border-width: 0 0.3vw 0.3vw 0;
+                                        top: 36%;
+                                        left: 33%;
+                                        transform: rotate(-45deg) translateY(-50%) scaleX(-1);
+                                    }
+                                }
                             }
                         }
-                    }
+                    
                 }
                 }
             }

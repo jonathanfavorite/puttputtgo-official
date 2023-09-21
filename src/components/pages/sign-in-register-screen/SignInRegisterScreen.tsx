@@ -10,6 +10,7 @@ import { Sign } from 'crypto';
 import Register from './register/Register';
 import SignIn from './sign-in/SignIn';
 import CodeWaiter from './code-waiter/CodeWaiter';
+import WelcomeUser from './welcome-user/WelcomeUser';
 
 
 interface PageSettings {
@@ -93,6 +94,8 @@ function SignInRegisterScreen() {
     }>
       
     <div className='sign-in-register-screen-wrap'>
+
+        {_signupContext.currentScreen != SignInRegisterScreenPages.WelcomeUser && 
         <div className='header' style={{
             height: pageSettings.headerHeightPercentage,
            backgroundImage: pageSettings.headerBackgroundShow ? `url(${
@@ -111,19 +114,22 @@ function SignInRegisterScreen() {
             <div className='_right'>
 
             </div>
+            
         </div>
+      
 
            
 
         <div className="trans-bottom"></div>
         </div>
-
+            }
        
         
         {_signupContext.currentScreen == SignInRegisterScreenPages.SwitchBoard && <SwitchBoard />}
         {_signupContext.currentScreen == SignInRegisterScreenPages.Register && <Register />}
         {_signupContext.currentScreen == SignInRegisterScreenPages.SignIn && <SignIn />}
         {_signupContext.currentScreen == SignInRegisterScreenPages.CodeWaiter && <CodeWaiter />}
+        {_signupContext.currentScreen == SignInRegisterScreenPages.WelcomeUser && <WelcomeUser />}
        
 
     </div>

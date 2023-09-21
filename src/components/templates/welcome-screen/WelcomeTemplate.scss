@@ -20,7 +20,8 @@
         align-items: center;
         padding:0 5vw;
         padding-bottom:5vh;
-        
+        position: relative;
+        z-index: 10;
         max-height:30vh;
         .logo {
   
@@ -38,7 +39,8 @@
     .middle-section {
         display: flex;
         width:100%;
-
+        position: relative;
+        z-index: 10;
         flex:1;
         align-items: center;
         flex-direction: column;
@@ -47,6 +49,8 @@
         flex:1;
         max-height:10vh;
         display:flex;
+        position: relative;
+        z-index: 10;
         width:100%;
         padding-bottom:5vh;
         align-items: end;
@@ -71,3 +75,4 @@
         }
     }
 }
+

@@ -5,7 +5,8 @@ export enum SignInRegisterScreenPages {
     SwitchBoard,
     SignIn,
     Register,
-    CodeWaiter
+    CodeWaiter,
+    WelcomeUser
 }
 
 interface SignUpRegisterContextData {

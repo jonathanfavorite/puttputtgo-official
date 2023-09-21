@@ -23,11 +23,14 @@ import { hydrate, render } from 'react-dom';
 import HomeScreen from './components/pages/website/home/HomeScreen';
 import SignInRegisterScreen from './components/pages/sign-in-register-screen/SignInRegisterScreen';
 import { SignUpRegisterContextProvider } from './contexts/SignUpRegisterContext';
+import { GameAudioContext, GameAudioContextProvider } from './contexts/GameAudioContext';
+import WelcomeUser from './components/pages/sign-in-register-screen/welcome-user/WelcomeUser';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
 root.render(
     <HelmetProvider>
+        <GameAudioContextProvider>
     <PlayerContextProvider>
     <CourseContextProvider>
         <ScoreContextProvider>
@@ -43,6 +46,9 @@ root.render(
 
                                 <Route path="/signin/"
                                     element={<SignInRegisterScreen/>}/>
+
+                                    <Route path="/signin/welcome/"
+                                    element={<WelcomeUser />}/>
 
                                 <Route path="/demo/game"
                                     element={<GamePage/>}/>
@@ -96,6 +102,7 @@ root.render(
         </ScoreContextProvider>
     </CourseContextProvider>
 </PlayerContextProvider>
+</GameAudioContextProvider>
 </HelmetProvider>
 );
 

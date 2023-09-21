@@ -785,6 +785,12 @@
     },
     {
       "assetType": "image",
+      "assetID": "gameplay-hole-in-one-background",
+      "assetName": "Gameplay hole in one background",
+      "assetLocation": "/customers/castle-golf/images/gameplay/hole-in-one-bg.jpg"
+    },
+    {
+      "assetType": "image",
       "assetID": "start-new-game-button",
       "assetName": "Start New Game Button",
       "assetLocation": "/customers/castle-golf/images/create-game/start-game-button.jpg"
@@ -911,9 +917,27 @@
     },
     {
       "assetType": "image",
+      "assetID": "signin-welcome-background",
+      "assetName": "Signin Welcome Background",
+      "assetLocation": "/customers/castle-golf/images/signin/signin-welcome.jpg"
+    },
+    {
+      "assetType": "image",
       "assetID": "ppg-logo",
       "assetName": "PPG Logo",
       "assetLocation": "/customers/default/images/logo.png"
+    },
+    {
+      "assetType": "audio",
+      "assetID": "game-over-audio",
+      "assetName": "Game Over Audio",
+      "assetLocation": "/customers/castle-golf/audio/game-over.mp3"
+    },
+    {
+      "assetType": "audio",
+      "assetID": "hole-in-one-audio",
+      "assetName": "Hole in One Audio",
+      "assetLocation": "/customers/castle-golf/audio/hole-in-one.mp3"
     }
   ]
 }

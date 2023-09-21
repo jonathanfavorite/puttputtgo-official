@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import './WelcomeTemplate.scss';
 import { GameContext } from '../../../contexts/GameContext';
+import GameConfetti from '../../pages/game-screen/GameConfetti';
 
 interface IWelcomeTemplateProps {
   specifiedClass?: string;
@@ -38,6 +39,9 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
     <div className={`welcome-template ${props.specifiedClass && props.specifiedClass}`} style={{
         backgroundImage: `url(${_gameContext.companyData.assets.find((asset) => asset.assetID === "welcome-background")?.assetLocation})`
     }}>
+       {/* <div className='game-confetti'>
+                        <GameConfetti />
+                    </div> */}
       <div className='top-section'>
         <img className='logo' src={_gameContext.getAssetByID("logo")?.assetLocation} />
       </div>

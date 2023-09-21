@@ -11,9 +11,12 @@ import {GameSubmissionReport} from '../../../../models/game/GameSubmissionReport
 import PlayerModel from '../../../../models/player/PlayerModel';
 import { Icons } from '../../../atoms/Icons';
 import { useNavigate } from 'react-router-dom';
+import { GameAudioContext } from '../../../../contexts/GameAudioContext';
+import HoleInOnePopup from '../../../molecules/hole-in-one-popup/HoleInOnePopup';
 
 function GamePlayFooter() {
     const navigate = useNavigate();
+    const _audioContext = useContext(GameAudioContext);
     const _gameContext = useContext(GameContext);
     const _playerContext = useContext(PlayerContext);
     const _scoreContext = useContext(ScoreContext);
@@ -258,8 +261,32 @@ function GamePlayFooter() {
             score: value
         }
 
-        _scoreContext.addScore(score);
-        setClickedAddScoreButton(score);
+        if(_gameContext.companyData.customerID == "jungle-golf")
+        {
+            if(score.score == 1)
+            {
+                _audioContext.play("hole-in-one-audio");
+                setHoleInOne(true);
+                setTimeout(() => {
+                    _scoreContext.addScore(score);
+                    setClickedAddScoreButton(score);
+                    setHoleInOne(false);
+                }, 4000);
+            }
+            else
+            {
+                _scoreContext.addScore(score);
+                setClickedAddScoreButton(score);
+            }
+        }
+        else
+        {
+            _scoreContext.addScore(score);
+            setClickedAddScoreButton(score);
+        }
+       
+
+        
     }
 
     useEffect(() => {
@@ -312,8 +339,13 @@ function GamePlayFooter() {
     useEffect(() => {
         scrollToActivePlayer();
     }, [_playerContext.getCurrentPlayer()]);
+
+    const [holeInOne, setHoleInOne] = React.useState < boolean > (false);
     return (
         <div className='footer-content'>
+
+            {holeInOne && <HoleInOnePopup /> }
+          
             <div className='numbers-wrap'>
                 <div className='numbers'>
                     {

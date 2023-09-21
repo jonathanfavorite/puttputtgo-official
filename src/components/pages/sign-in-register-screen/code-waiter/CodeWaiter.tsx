@@ -184,15 +184,15 @@ function CodeWaiter() {
         setHideSpinner(true);
         setLoggingInText("success!");
         setTimeout(() => {
-            _signupContext.updateCurrentScreen(SignInRegisterScreenPages.SwitchBoard);
+            _signupContext.updateCurrentScreen(SignInRegisterScreenPages.WelcomeUser);
             if(_gameContext.companyData.customerID == "default")
             {
                 
-                navigate(`/`);
+                //navigate(`/`);
             }
             else
             {
-                navigate(`/${_gameContext.companyData.customerID}/`);
+                //navigate(`/${_gameContext.companyData.customerID}/`);
             }
         }, 500);
     }

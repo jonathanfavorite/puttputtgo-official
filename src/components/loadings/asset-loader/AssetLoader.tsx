@@ -3,6 +3,7 @@ import './AssetLoader.scss';
 import { CompanyDataAssetModel } from '../../../models/data/CompanyDataModel';
 import { GameContext } from '../../../contexts/GameContext';
 import '../../../startup/registerServiceWorker';
+import { GameAudioContext } from '../../../contexts/GameAudioContext';
 
 interface IProps {}
 
@@ -28,6 +29,7 @@ async function fetchAndCacheGolfCourseAssets(customerID: string): Promise<void> 
 
 
 function AssetLoader(props: IProps) {
+  const _audioContext = useContext(GameAudioContext);
   const _gameContext = useContext(GameContext);
   const [currentText, setCurrentText] = useState<string>("");
   const [currentAssetIndex, setCurrentAssetIndex] = useState<number>(0);
@@ -40,6 +42,15 @@ function AssetLoader(props: IProps) {
   fetchAndCacheGolfCourseAssets('castle-golf');
 
   const preloadAsset = async (asset: CompanyDataAssetModel) => {
+  
+    if(asset.assetType === "audio") {
+      
+      return new Promise((resolve, reject) => {
+        _audioContext.preload(asset.assetID, asset.assetLocation);
+        resolve(null);
+      });
+    }
+    
     return new Promise((resolve, reject) => {
       const img = new Image();
       setCurrentText(asset.assetName);

@@ -239,3 +239,11 @@ input, button, select, textarea {
 .register-wrap .register-bottom .register-button {
     background: #42a218 !important;
 }
+.register-wrap .register-scrollable .register-scrollable-inside .ref-legal-wrap .checkboxes-wrap .checkbox label input[type=checkbox]:checked:after {
+    background: #42a218 !important;
+    border-color: #296b0d !important;
+}
+
+.signin-popup-modal-wrap .signin-popup-modal .modal-button button {
+    background: #42a218 !important;
+}
