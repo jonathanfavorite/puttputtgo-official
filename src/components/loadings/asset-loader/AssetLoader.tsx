@@ -43,6 +43,10 @@ function AssetLoader(props: IProps) {
 
   const preloadAsset = async (asset: CompanyDataAssetModel) => {
   
+
+    setCurrentText(asset.assetName);
+
+    
     if(asset.assetType === "audio") {
       
       return new Promise((resolve, reject) => {
@@ -53,7 +57,7 @@ function AssetLoader(props: IProps) {
     
     return new Promise((resolve, reject) => {
       const img = new Image();
-      setCurrentText(asset.assetName);
+      
       img.src = asset.assetLocation;
       img.onload = () => {
         
