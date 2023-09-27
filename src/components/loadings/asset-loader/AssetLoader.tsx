@@ -85,8 +85,8 @@ function AssetLoader(props: IProps) {
     await Promise.all(loadPromises);
   
     setTimeout(() => {
-      //_gameContext.toggleAssetsLoaded(true);
-      setShowReadyButton(true);
+      _gameContext.toggleAssetsLoaded(true);
+      //setShowReadyButton(true);
     }, 500);
   };
 
