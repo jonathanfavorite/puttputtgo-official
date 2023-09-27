@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './startup/index.scss';
 import './startup/App.scss';
@@ -25,8 +25,11 @@ import SignInRegisterScreen from './components/pages/sign-in-register-screen/Sig
 import { SignUpRegisterContextProvider } from './contexts/SignUpRegisterContext';
 import { GameAudioContext, GameAudioContextProvider } from './contexts/GameAudioContext';
 import WelcomeUser from './components/pages/sign-in-register-screen/welcome-user/WelcomeUser';
+import { handleTouchMove, handleTouchStart } from './hooks/use-swipe/useSwipe';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
+
+
 
 root.render(
     <HelmetProvider>

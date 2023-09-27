@@ -32,6 +32,7 @@ function ShareGames() {
             console.log('Share not supported on this browser, do it the old way.');
         }
     }
+    
     return (
 <>
 {showShareModal && <ShareModal gameID={realGameID} closeModal={handleCloseShareModal} />}

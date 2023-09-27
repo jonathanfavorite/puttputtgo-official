@@ -938,6 +938,12 @@
       "assetID": "hole-in-one-audio",
       "assetName": "Hole in One Audio",
       "assetLocation": "/customers/castle-golf/audio/hole-in-one.mp3"
+    },
+    {
+      "assetType": "audio",
+      "assetID": "welcome-screen-audio",
+      "assetName": "Welcome Screen Audio",
+      "assetLocation": "/customers/castle-golf/audio/welcome-screen-audio.mp3"
     }
   ]
 }

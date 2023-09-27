@@ -11,6 +11,7 @@ import ConsoleHelper from '../../../helpers/ConsoleHelper';
 import { browserName, browserVersion, deviceType, osName } from 'react-device-detect';
 import SignInRegisterTemplate from '../../templates/sign-in-register-template/SignInRegisterTemplate';
 import GameConfetti from '../game-screen/GameConfetti';
+import useSwipe, { handleTouchMove, handleTouchStart } from '../../../hooks/use-swipe/useSwipe';
 
 function WelcomePage() {
     const _gameContext = useContext(GameContext);
@@ -31,6 +32,24 @@ function WelcomePage() {
 
 
     }, []);
+
+    useEffect(() => {
+        document.addEventListener('touchstart', handleTouchStart, { passive: false });
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+      
+        return () => {
+          document.removeEventListener('touchstart', handleTouchStart);
+          document.removeEventListener('touchmove', handleTouchMove);
+        };
+      }, []);
+
+
+    useSwipe(() => {
+        //alert('swipe left');
+    }
+    , () => {
+        //alert('swipe right');
+    });
 
 
     const [hasSendScan, setHasSendScan] = useState(false);

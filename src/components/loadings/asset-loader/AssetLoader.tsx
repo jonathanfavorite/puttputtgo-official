@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './AssetLoader.scss';
 import { CompanyDataAssetModel } from '../../../models/data/CompanyDataModel';
 import { GameContext } from '../../../contexts/GameContext';
@@ -79,20 +79,79 @@ function AssetLoader(props: IProps) {
     await Promise.all(loadPromises);
   
     setTimeout(() => {
-      _gameContext.toggleAssetsLoaded(true);
+      //_gameContext.toggleAssetsLoaded(true);
     }, 500);
   };
+
+
   
   const getPercentage = (loadedAssets: number, totalAssets: number) => {
-    return Math.floor((loadedAssets / totalAssets) * 100);
+    return Math.ceil((loadedAssets / totalAssets) * 100);
   }
+
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const coolTexts = [
+    "PuttPuttGO", "Family", "Fun", "Adventure", "Golf",
+    "Mini Golf", "Putt Putt Golf", "Mini Golf", "Excitement"
+  ];
+  
+  const textObjects: any[] = [];
 
   useEffect(() => {
     preloadAssets();
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    console.log("passed");
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    console.log(ctx);
+
+    // Set up the canvas dimensions and scaling
+    canvas.width = window.innerWidth * window.devicePixelRatio;
+    canvas.height = window.innerHeight * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+
+    let amount = 150;
+    for(let i = 0; i < amount; i++) {
+      let word = coolTexts[Math.floor(Math.random() * coolTexts.length)];
+      textObjects.push({
+        value: word,
+        x: Math.random() * canvas.width,
+        y: 200 + Math.random() * canvas.height,
+        speed: 1 + Math.random() * 1  // Random speed between 1 and 3
+      });
+    }
+    
+
+    ctx.fillStyle = '#ffffff';
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      textObjects.forEach(textObj => {
+        // fill text with font size
+        ctx.font = 'bold 30px Arial';
+        ctx.fillText(textObj.value, textObj.x, textObj.y);
+        textObj.y -= textObj.speed;
+        ctx.fillStyle = '#333';
+        if (textObj.y < 0) {
+          textObj.y = canvas.height;
+          textObj.x = Math.random() * canvas.width;
+        }
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
   }, []);
 
   return (
     <div className="asset-loader">
+       <canvas className='cool-background-canvas' ref={canvasRef}></canvas>
       <div className="text">
         <div className="inner">
           <h1>
@@ -104,6 +163,7 @@ function AssetLoader(props: IProps) {
       <div className="progress-bar">
         <div className="inner" style={{ width: `${progress}%` }}></div>
       </div>
+      <div className="footer">PuttPuttGo.net | Copyright 2023</div>
     </div>
   );
 }

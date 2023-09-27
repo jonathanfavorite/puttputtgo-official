@@ -9,6 +9,7 @@ import { CourseContext } from '../../contexts/CourseContext';
 import LocalStoragePreloader from '../loadings/local-storage-preloader/LocalStoragePreloader';
 import { useLocation } from 'react-router-dom';
 import RealGameLoader from '../loadings/real-game-loader/RealGameLoader';
+import { GameAudioContext } from '../../contexts/GameAudioContext';
 
 interface IProps {
     children: any;
@@ -20,6 +21,8 @@ const formatCompanyNameForDirectory = (companyName : string) => {
 }
 
 function DataAssuranceHOC(props : IProps) {
+
+  const _audioContext = useContext(GameAudioContext);
 
   const functionalityOff = false;
 
@@ -39,6 +42,14 @@ function DataAssuranceHOC(props : IProps) {
 
     useEffect(() => {
       _gameContext.updateCompanyParam(props.companyParam);
+
+      if(_audioContext.welcomeScreenSong.element)
+      {
+        if(!_audioContext.welcomeScreenSong.playing)
+        {
+          _audioContext.welcomeScreenSong.element.play();
+        }
+      }
     }, []);
 
     
