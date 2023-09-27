@@ -43,13 +43,7 @@ function DataAssuranceHOC(props : IProps) {
     useEffect(() => {
       _gameContext.updateCompanyParam(props.companyParam);
 
-      if(_audioContext.welcomeScreenSong.element)
-      {
-        if(!_audioContext.welcomeScreenSong.playing)
-        {
-          _audioContext.welcomeScreenSong.element.play();
-        }
-      }
+   
     }, []);
 
     

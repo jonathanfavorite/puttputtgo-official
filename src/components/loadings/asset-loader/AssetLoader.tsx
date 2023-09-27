@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import './AssetLoader.scss';
 import { CompanyDataAssetModel } from '../../../models/data/CompanyDataModel';
 import { GameContext } from '../../../contexts/GameContext';
@@ -66,6 +66,8 @@ function AssetLoader(props: IProps) {
     });
   };
 
+  const [showReadyButton, setShowReadyButton] = useState<boolean>(false);
+
   const preloadAssets = async () => {
     const totalAssets = _gameContext.companyData.assets.length;
   
@@ -80,9 +82,21 @@ function AssetLoader(props: IProps) {
   
     setTimeout(() => {
       //_gameContext.toggleAssetsLoaded(true);
+      setShowReadyButton(true);
     }, 500);
   };
 
+  const readyButtonTapped = () => {
+    _gameContext.toggleAssetsLoaded(true);
+    if(_audioContext.welcomeScreenSong.element)
+    {
+        
+      if(!_audioContext.welcomeScreenSong.playing)
+      {
+        _audioContext.welcomeScreenSong.element.play();
+      }
+    }
+  }
 
   
   const getPercentage = (loadedAssets: number, totalAssets: number) => {
@@ -152,7 +166,15 @@ function AssetLoader(props: IProps) {
   return (
     <div className="asset-loader">
        <canvas className='cool-background-canvas' ref={canvasRef}></canvas>
-      <div className="text">
+       <div className='top-spot'></div>
+       <div className='middle-spot'>
+        {showReadyButton &&
+      <div className='start-button-wrap'>
+        <div className='start-button' onClick={readyButtonTapped}>ENTER</div>
+      </div>
+      }
+      {!showReadyButton && <Fragment>
+       <div className="text">
         <div className="inner">
           <h1>
             Loading assets: {getPercentage(loadedAssetsCount,_gameContext.companyData.assets.length)}%
@@ -161,9 +183,13 @@ function AssetLoader(props: IProps) {
         </div>
       </div>
       <div className="progress-bar">
-        <div className="inner" style={{ width: `${progress}%` }}></div>
+        <div className="inner" style={{ width: `${getPercentage(loadedAssetsCount,_gameContext.companyData.assets.length)}%` }}></div>
       </div>
-      <div className="footer">PuttPuttGo.net | Copyright 2023</div>
+      </Fragment>}
+       </div>
+     
+      
+      <div className="footer-spot">PuttPuttGo.net | Copyright 2023</div>
     </div>
   );
 }

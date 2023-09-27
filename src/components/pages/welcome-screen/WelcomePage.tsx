@@ -12,11 +12,13 @@ import { browserName, browserVersion, deviceType, osName } from 'react-device-de
 import SignInRegisterTemplate from '../../templates/sign-in-register-template/SignInRegisterTemplate';
 import GameConfetti from '../game-screen/GameConfetti';
 import useSwipe, { handleTouchMove, handleTouchStart } from '../../../hooks/use-swipe/useSwipe';
+import { GameAudioContext } from '../../../contexts/GameAudioContext';
 
 function WelcomePage() {
     const _gameContext = useContext(GameContext);
     const _playerContext = useContext(PlayerContext);
     const _courseContext = useContext(CourseContext);
+    const _audioContext = useContext(GameAudioContext);
     const {business_name} = useParams();
     const [isReady, setIsReady] = useState(false);
     const navigate = useNavigate();
@@ -29,7 +31,6 @@ function WelcomePage() {
         if (_gameContext.activePage != 'donotshow_existing_game') {
             _gameContext.updateactivePage("welcome");
         }
-
 
     }, []);
 

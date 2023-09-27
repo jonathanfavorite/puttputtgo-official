@@ -31,6 +31,7 @@ function GameAudioContextProvider(props: any) {
         const audioElement = new Audio(audioSrc);
         setAudios(old => ({ ...old, [audioName]: audioElement }));
         if(audioName === 'welcome-screen-audio') {
+            console.log("storing welcome song", audioElement);
             setWelcomeScreenSong({
                 id: audioName,
                 element: audioElement,
