@@ -46,7 +46,7 @@ function AssetLoader(props: IProps) {
 
     setCurrentText(asset.assetName);
 
-    
+
     if(asset.assetType === "audio") {
       
       return new Promise((resolve, reject) => {
@@ -108,10 +108,33 @@ function AssetLoader(props: IProps) {
   }
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const coolTexts = [
-    "PuttPuttGO", "Family", "Fun", "Adventure", "Golf",
-    "Mini Golf", "Putt Putt Golf", "Mini Golf", "Excitement"
-  ];
+const coolTexts = [
+    "Hello",       // English
+    "Hola",        // Spanish
+    "Bonjour",     // French
+    "Hallo",       // German
+    "Ciao",        // Italian
+    "Olá",         // Portuguese
+    "Привет",      // Russian
+    "你好",         // Chinese (Simplified)
+    "こんにちは",   // Japanese
+    "안녕하세요",    // Korean
+    "Hej",         // Swedish
+    "Hei",         // Norwegian
+    "Hej",         // Danish
+    "Tere",        // Estonian
+    "Γειά σας",    // Greek
+    "Merhaba",     // Turkish
+    "שָׁלוֹם",     // Hebrew
+    "مرحبا",       // Arabic
+    "नमस्ते",      // Hindi
+    "สวัสดี",      // Thai
+    "Xin chào",    // Vietnamese
+    "Selamat",     // Malay/Indonesian
+    "Kumusta",     // Filipino
+    "Dzien dobry", // Polish
+    "Ahoj"         // Czech
+];
   
   const textObjects: any[] = [];
 
