@@ -93,7 +93,7 @@ function WelcomePage() {
     }, [_gameContext.companyData.customerID]);
 
     const goTo = (route : string, relative : boolean = true) => {
-        console.log(_gameContext.companyData.customerID);
+        //console.log(_gameContext.companyData.customerID);
         if (!relative) {
             navigate(route);
             return;

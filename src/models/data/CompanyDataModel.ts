@@ -16,7 +16,14 @@ interface CompanyDataAssetModel {
     assetType: string,
     assetID: string,
     assetName: string,
-    assetLocation: string
+    assetLocation: string,
+    assetThumb?: string
+    attributes?: CompanyDataAssetAttributesModel[]
+}
+
+interface CompanyDataAssetAttributesModel {
+    attributeID: string,
+    attributeValue: string
 }
 
 interface CompanyDataTextsModel {
@@ -37,4 +44,4 @@ interface CompanyDataHoleData {
     optional: boolean
 }
 
-export type{ CompanyDataModel, CompanyDataAssetModel, CompanyDataHoleData, CompanyDataTextsLocaleModel }
+export type{ CompanyDataModel, CompanyDataAssetModel, CompanyDataAssetAttributesModel, CompanyDataHoleData, CompanyDataTextsLocaleModel }

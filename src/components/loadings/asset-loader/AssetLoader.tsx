@@ -4,6 +4,7 @@ import { CompanyDataAssetModel } from '../../../models/data/CompanyDataModel';
 import { GameContext } from '../../../contexts/GameContext';
 import '../../../startup/registerServiceWorker';
 import { GameAudioContext } from '../../../contexts/GameAudioContext';
+import { GlobalAssetsModel } from '../../../models/data/GlobalAssetsModel';
 
 interface IProps {}
 
@@ -44,7 +45,7 @@ function AssetLoader(props: IProps) {
   const preloadAsset = async (asset: CompanyDataAssetModel) => {
   
 
-    setCurrentText(asset.assetName);
+    
 
 
     if(asset.assetType === "audio") {
@@ -73,17 +74,32 @@ function AssetLoader(props: IProps) {
   const [showReadyButton, setShowReadyButton] = useState<boolean>(false);
 
   const preloadAssets = async () => {
-    const totalAssets = _gameContext.companyData.assets.length;
-  
+    const globalAssetsList: CompanyDataAssetModel[] = [
+      ..._gameContext.globalAssets.flags,
+      ..._gameContext.globalAssets.filters,
+    ];
+
+    const totalCompanyAssets = _gameContext.companyData.assets.length;
+    const totalAssets = totalCompanyAssets + globalAssetsList.length;
+
     const loadPromises = _gameContext.companyData.assets.map((asset, index) => {
       return preloadAsset(asset).then(() => {
+        setLoadedAssetsCount((prevCount) => prevCount + 1);
+        setCurrentText(old => asset.assetName);
+        setProgress(Math.floor(((index + 1) / totalAssets) * 100));
+      });
+    });
+
+    const loadGlobalAssetsPromises = globalAssetsList.map((asset, index) => {
+      return preloadAsset(asset).then(() => {
+        setCurrentText(old => asset.assetName);
         setLoadedAssetsCount((prevCount) => prevCount + 1);
         setProgress(Math.floor(((index + 1) / totalAssets) * 100));
       });
     });
-  
-    await Promise.all(loadPromises);
-  
+
+    await Promise.all([...loadPromises, ...loadGlobalAssetsPromises]);
+
     setTimeout(() => {
       _gameContext.toggleAssetsLoaded(true);
       //setShowReadyButton(true);
@@ -143,11 +159,8 @@ const coolTexts = [
 
     const canvas = canvasRef.current;
     if (!canvas) return;
-    console.log("passed");
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
-    console.log(ctx);
 
     // Set up the canvas dimensions and scaling
     canvas.width = window.innerWidth * window.devicePixelRatio;
