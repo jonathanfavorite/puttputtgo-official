@@ -1,0 +1,77 @@
+{
+    "flags": [
+
+    ],
+    "filters": [
+      {
+        "assetType": "filter",
+        "assetID": "camera-filter-default",
+        "assetName": "Camera Filter Default",
+        "assetLocation": "/global-assets/filters/thumb/normal.png",
+        "assetThumb": "/global-assets/filters/thumb/normal.png",
+        "attributes": [
+          {
+            "attributeID": "show-filter",
+            "attributeValue": "false"
+          }
+        ]
+      },
+      {
+        "assetType": "filter",
+        "assetID": "camera-filter-cotton-candy",
+        "assetName": "Camera Filter Cotton Candy",
+        "assetLocation": "/global-assets/filters/full/cotton-candy.jpg",
+        "assetThumb": "/global-assets/filters/thumb/cotton-candy.jpg",
+        "attributes": [
+          {
+            "attributeID": "blend-mode",
+            "attributeValue": "hard-light"
+          }
+        ]
+      },
+      {
+        "assetType": "filter-thumb",
+        "assetID": "camera-filter-cotton-candy-thumb",
+        "assetName": "Camera Filter Cotton Candy Thumbnail",
+        "assetLocation": "/global-assets/filters/thumb/cotton-candy.jpg"
+      },
+      {
+        "assetType": "filter",
+        "assetID": "camera-filter-strawberry",
+        "assetName": "Camera Filter Strawberry",
+        "assetLocation": "/global-assets/filters/full/strawberry.jpg",
+        "assetThumb": "/global-assets/filters/thumb/strawberry.jpg",
+        "attributes": [
+          {
+            "attributeID": "blend-mode",
+            "attributeValue": "hard-light"
+          }
+        ]
+      },
+      {
+        "assetType": "filter-thumb",
+        "assetID": "camera-filter-strawberry-thumb",
+        "assetName": "Camera Filter strawberry Thumbnail",
+        "assetLocation": "/global-assets/filters/thumb/strawberry.jpg"
+      },
+      {
+        "assetType": "filter",
+        "assetID": "camera-filter-sunset",
+        "assetName": "Camera Filter sunset",
+        "assetLocation": "/global-assets/filters/full/sunset.jpg",
+        "assetThumb": "/global-assets/filters/thumb/sunset.jpg",
+        "attributes": [
+          {
+            "attributeID": "blend-mode",
+            "attributeValue": "hard-light"
+          }
+        ]
+      },
+      {
+        "assetType": "filter-thumb",
+        "assetID": "camera-filter-sunset-thumb",
+        "assetName": "Camera Filter sunset Thumbnail",
+        "assetLocation": "/global-assets/filters/thumb/sunset.jpg"
+      }
+    ]
+}

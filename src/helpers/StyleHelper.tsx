@@ -5,6 +5,12 @@ export default class StyleHelper {
             asset.assetLocation
         }')`;
     }
+    static format_css_url_without_asset(url: any) {
+      if(url == null || url == undefined) return '';
+      return `url('${
+          url
+      }')`;
+  }
     static RGBToHSL = (r:number, g:number, b:number) => {
         r /= 255;
         g /= 255;

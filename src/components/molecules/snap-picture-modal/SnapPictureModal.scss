@@ -7,7 +7,7 @@
     z-index: 99999;
     background-color: #000;
     color: #fff;
-
+    touch-action: none;
     $buttons-shadow: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.4));
 
     .canvas-container {
@@ -113,60 +113,90 @@
         }
         ._middle {
             flex: 1;
+            pointer-events: none;
         }
         ._bottom {
-            display: flex;
-            padding-bottom: 5vh;
-            ._bottom-left {
-                width: 20%;
+         
+            .controls {
+                position: relative;
+                overflow: hidden;
+                z-index: 11111;
+               
+              
+                margin: 0 auto;
+            }
+            
+            .filter-icons {
                 display: flex;
-                justify-content: center;
-                align-items: center;
+                overflow-x: auto;
              
-                .camera-filter-button {
-                    padding-left: 5vw;
-                    svg {
-                        fill: #fff;
-                        width: 10vw;
-                        height: 10vw;
-                        filter: $buttons-shadow;
-                        path {
-                            fill: #fff;
-                        }
-                    }
-                }
+                white-space: nowrap;
+                align-items: center;
+                height:20vh;
+                
+                width: 100%;
+                padding-left:50vw;
+                padding-right:50vw;
+                scroll-snap-type: x mandatory;
+                box-sizing: border-box;
+                transition: all 0.2s ease-in-out;
             }
-            ._bottom-center {
-                flex: 1;
-                display: flex;
-                justify-content: center;
-                .picture-button {
-                    filter: $buttons-shadow;
-                    height: 10vh;
-                    aspect-ratio: 1/1;
-                    background-color: rgba($color: #000, $alpha: 0.3);
-                    border: 4px solid rgba($color: red, $alpha: 0.8);
-                    border-radius: 200px;
-                }
-            }
-            ._bottom-right {
-                width: 20%;
-                display: flex;
+            
+            .filter-icon {
+            
+              
+                display: inline-flex;
+                flex:1;
+                margin:0 5vw;
+                border-radius: 50%;
+                height:15vw;
+                width:15vw;
+                cursor: pointer;
+            
+                position: relative;
                 justify-content: center;
                 align-items: center;
-                .camera-switch {
-                    padding-right: 5vw;
-                    svg {
-                        fill: #fff;
-                        width: 10vw;
-                        height: 10vw;
-                        filter: $buttons-shadow;
-                        path {
-                            fill: #fff;
-                        }
-                    }
-                }
+                flex: 0 0 auto;
+                scroll-snap-align: center;
+               
             }
+            .empty-icon {
+                visibility: hidden;
+            }
+            .filter-image {
+                position: absolute;
+                width:100%;
+                height:100%;
+           
+                background-size: cover;
+                border-radius: 100%;
+                transition:  all 0.2s ease-in-out;
+            }
+            .snap-button {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left:calc(-6vh);
+                margin-top:-6vh;
+                height:12vh;
+                width:12vh;
+       
+                outline:none;
+                border:5px solid red;
+                background:transparent;
+            
+                border-radius: 50%;
+            }
+            
+            /* Hiding the scrollbar */
+             .filter-icons::-webkit-scrollbar {
+                display: none;
+            }
+            .filter-icons {
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+            
         }
 
         .hold-finder-wrap {

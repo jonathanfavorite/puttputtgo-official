@@ -3,14 +3,20 @@ import './SnapPictureModal.scss'
 import { Icons } from '../../atoms/Icons'
 import { GameContext } from '../../../contexts/GameContext'
 import StyleHelper from '../../../helpers/StyleHelper'
-import SnapHelper from '../../../helpers/SnapHelper'
+import SnapHelper, { BlendMode, GlobalCompositeOp } from '../../../helpers/SnapHelper'
+import { CompanyDataAssetAttributesModel } from '../../../models/data/CompanyDataModel'
 
 function SnapPictureModal() {
   const _gameContext = useContext(GameContext)
   const [pictureSnapped, setPictureSnapped] = React.useState(false)
-  const [picture, setPicture] = React.useState('')
+  const [picture, setPicture] = React.useState('');
+  const [blendMode, setBlendMode] = React.useState<BlendMode>('normal')
   const [forcePicture, setForcePicture] = React.useState(0)
   const closePictureModal = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      let tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+      tracks.forEach(track => track.stop());
+  }
     _gameContext.updateSnapPictureEnabled(false)
   }
   const snappedPicture = () => {
@@ -64,8 +70,8 @@ function SnapPictureModal() {
         console.log(' environment')
       }
 
-      ctx!.fillStyle = 'red'
-      ctx!.fillRect(0, 0, 100, 100)
+      // set the blending mode
+      ctx!.globalCompositeOperation = SnapHelper.blendModeToCompositeOp(blendMode);
 
       // Draw the image onto the canvas, but only copy the visible portion
       const destX = facingMode === 'user' ? -elementWidth : 0
@@ -99,6 +105,8 @@ function SnapPictureModal() {
             window.innerWidth,
             window.innerHeight
           )
+
+        
           // Convert canvas to data URL
           const dataURL = canvas.toDataURL('image/png')
           //console.log(dataURL);
@@ -124,17 +132,18 @@ function SnapPictureModal() {
 
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [facingMode, setFacingMode] = useState<'user' | 'environment'>('user')
+  const [facingMode, setFacingMode] = useState<'user' | 'environment'>('environment')
   const containerRef = useRef<HTMLDivElement>(null)
 
   const startVideo = async () => {
+    console.log("FACING MODE:", facingMode)
     try {
       const constraints = {
         video: {
           facingMode: facingMode,
-          width: { ideal: 1280 },
-          height: { ideal: 720 }
-        }
+          width: { min: 640, ideal: 1280, max: 1920 },
+          height: { min: 360, ideal: 720, max: 1080 }
+        } 
       }
 
       const stream = await navigator.mediaDevices.getUserMedia(constraints)
@@ -158,9 +167,58 @@ function SnapPictureModal() {
     )
   }
 
+
+  /*
+if (videoRef.current && videoRef.current.srcObject) {
+      let tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+      tracks.forEach(track => track.stop());
+  }
+  */
+
+
+  function stopVideoStream() {
+    if (videoRef.current && videoRef.current.srcObject) {
+      let tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+      tracks.forEach(track => track.stop());
+  }
+  }
+  
+  // useEffect(() => {
+
+  //   document.addEventListener("visibilitychange", function() {
+  //     if (videoRef.current) {
+  //       console.log("STOPPING");
+  //       stopVideoStream();
+  //     }
+  //     if (document.visibilityState === 'visible') {
+  //       console.log("SHOWING");
+  //       startVideo(); 
+  //     }
+  //   });
+
+  //   //startVideo()
+  // }, [])
+
   useEffect(() => {
     startVideo()
-  }, [facingMode])
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        stopVideoStream();
+        startVideo();
+      }
+    };
+  
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+  
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    stopVideoStream();
+        startVideo();
+  }, [facingMode]);
 
   const deletePicture = () => {
     setPictureSnapped(false)
@@ -217,17 +275,149 @@ function SnapPictureModal() {
         })
     }
 
+
+    if (videoRef.current && videoRef.current.srcObject) {
+      let tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+      tracks.forEach(track => track.stop());
+  }
     _gameContext.updateSnapPictureEnabled(false)
   }
 
+
+
+  // FILTER STUFF
+  const filterContainerRef = useRef<HTMLDivElement>(null);
+
+
   useEffect(() => {
-    // turn off camera on unmount
-    return () => {
-      if (videoRef.current) {
-        videoRef.current.srcObject = null
+
+      const filterContainer = filterContainerRef.current;
+      if (!filterContainer) return;
+
+      if(filterContainer.children.length >= 3)
+      {
+       centerOnElement(filterContainer.children[1] as HTMLDivElement);
       }
-    }
+      
+
+      const handleScroll = () => {
+          const children = Array.from(filterContainer.children) as HTMLDivElement[];
+          let closest: HTMLDivElement | null = null;
+          let closestDistance = Infinity;
+          const maxScroll = filterContainer.scrollWidth - filterContainer.clientWidth;
+          const currentScroll = filterContainer.scrollLeft;
+          const nearEnd = maxScroll - currentScroll < 200;
+
+          children.forEach((child) => {
+              const childCenter = child.offsetLeft + (child.offsetWidth / 2);
+              const containerCenter = filterContainer.scrollLeft + (filterContainer.offsetWidth / 2);
+              const distance = Math.abs(childCenter - containerCenter);
+
+              if (distance < closestDistance) {
+                  closestDistance = distance;
+                  closest = child;
+              }
+          });
+
+          if (closest) {
+            const closestElement = closest as HTMLDivElement;
+              const closestImg = closestElement.querySelector('.filter-image') as HTMLDivElement;
+              //setTestText(closestImg.dataset.id as string)
+              //console.log(closestImg);
+              if(closestImg.dataset.id == "")
+              {
+                //closestImg.style.backgroundImage = "";
+                setSelectedFilter(old => "");
+                closestImg.style.width = "0%";
+                closestImg.style.height = "0%";
+              }
+              else
+              {
+                setSelectedFilter(old => closestImg.dataset.id as string);
+                closestImg.style.width = "100%";
+                closestImg.style.height = "100%";
+              }
+
+
+
+              if(closestImg.dataset.blend)
+              {
+                setBlendMode(old => closestImg.dataset.blend as BlendMode);
+              }
+              else
+              {
+                setBlendMode(old => 'normal');
+              }
+             
+              children.forEach(child => {
+                  if (child !== closest) {
+                      const img = child.querySelector('.filter-image') as HTMLDivElement;
+                      img.style.width = "80%";
+                      img.style.height = "80%";
+                      
+                  }
+              });
+          }
+
+          if (nearEnd) {
+              // Your cloneFilters function here, if needed
+          }
+      };
+
+      filterContainer.addEventListener('scroll', handleScroll);
+    
+    // turn off camera on unmount
+
+    
+    return () => {
+      if (videoRef.current && videoRef.current.srcObject) {
+          let tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+          tracks.forEach(track => track.stop());
+      }
+  }
   }, []);
+
+  const centerOnElement = (el: HTMLDivElement) => {
+    const parent = el.parentElement;
+    if (parent?.classList.contains('empty-icon')) {
+        return;
+    }
+    const parentCenter = parent!.clientWidth / 2;
+    const elCenter = el.clientWidth / 2;
+    parent!.scrollLeft = el.offsetLeft - parentCenter + elCenter;
+};
+
+
+
+type ScrollElement = HTMLDivElement | null;
+
+function smoothScrollTo(element: ScrollElement, target: number, duration: number): void {
+    if (!element) return;
+
+    const start = element.scrollLeft;
+    const change = target - start;
+    let currentTime = 0;
+    const increment = 20; // This will check and update the scroll position every 20ms
+
+    const animateScroll = function() {
+        currentTime += increment;
+        const val = easeInOutQuad(currentTime, start, change, duration);
+        element.scrollLeft = val;
+        if (currentTime < duration) {
+            setTimeout(animateScroll, increment);
+        }
+    };
+
+    animateScroll();
+}
+
+function easeInOutQuad(t: number, b: number, c: number, d: number): number {
+  t /= d / 2;
+  if (t < 1) return c / 2 * t * t + b;
+  t--;
+  return -c / 2 * (t * (t - 2) - 1) + b;
+}
+
 
   const [selectedFilter, setSelectedFilter] = React.useState<String | null>(null);
 
@@ -243,6 +433,47 @@ function SnapPictureModal() {
     }
   }
 
+  const specificFilterTapped = (index: number) => {
+  //   // Reference to the filter container
+  //   const filterContainer = filterContainerRef.current;
+  //   if (!filterContainer) return;
+
+  //   // Get the specific filter that was tapped
+  //   const el = filterContainer.children[index] as HTMLDivElement;
+  //   if (!el) return;
+
+  //   // Calculate center of the parent (filter container) and the tapped filter
+  //   const parentCenter = filterContainer.clientWidth / 2;
+  //   const elCenter = el.clientWidth / 2;
+  //   const targetScroll = el.offsetLeft - parentCenter + elCenter;
+
+  //   // Smooth scroll
+  //  // smoothScrollTo(filterContainer, targetScroll, 500);
+    centerOnElement(filterContainerRef.current?.children[index] as HTMLDivElement);
+}
+
+  const [testText, setTestText] = React.useState('')
+
+  
+  const previewFilter = () => {
+
+  }
+
+  const [lastTap, setLastTap] = React.useState<number>(0);
+  const cameraOverlayRef = useRef<HTMLDivElement>(null);
+  const filterOverlayRef = useRef<HTMLDivElement>(null);
+  const delay = 300;
+  const handleDoubleTapEvent = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const now = Date.now();
+    if (now - lastTap < delay!) { // the "!" is used to assert that delay is not undefined, which we know because of the default value
+        switchCamera();
+        setLastTap(0); // Reset it so it doesn't interfere with further double taps
+    } else {
+        setLastTap(now);
+    }
+  }
+  
+
   return (
     <div className='snap-picture-modal'>
       <div className='actual-camera-container'>
@@ -256,9 +487,10 @@ function SnapPictureModal() {
         ></video>
         <div
           className='camera-overlay'
+          ref={cameraOverlayRef}
           style={{
-            backgroundImage: selectedFilter ? StyleHelper.format_css_url(
-              _gameContext.getAssetByID('camera-filter-1')) : undefined
+            backgroundImage: selectedFilter ? StyleHelper.format_css_url_without_asset(selectedFilter) : undefined,
+            mixBlendMode: blendMode
           }}
         ></div>
       </div>
@@ -272,7 +504,10 @@ function SnapPictureModal() {
           />
         </div>
       )}
-      <div className='picture-container'>
+      <div className='picture-container'
+        ref={filterOverlayRef}
+        onClick={handleDoubleTapEvent}
+        >
         {pictureSnapped && (
           <div className='hold-finder-wrap'>
             <div className='finger-icon'>
@@ -302,6 +537,7 @@ function SnapPictureModal() {
             )}
             {!pictureSnapped && (
               <div className='camera-close' onClick={closePictureModal}>
+                {testText}
                 <Icons.Camera_Close />
               </div>
             )}
@@ -309,28 +545,43 @@ function SnapPictureModal() {
         </div>
         <div className='_middle'></div>
         <div className='_bottom'>
-          <div className='_bottom-left'>
-            <div className='camera-filter-button'>
-              {!pictureSnapped && (
-                <div className='camera-switch' onClick={selectPrimaryFilter}>
-                  <Icons.Camera_Filter />
-                </div>
-              )}
+        <div className="controls">
+            <div className="filter-icons" id="filterContainer" ref={filterContainerRef}>
+              {
+
+                _gameContext.companyData.assets.filter(asset => asset.assetType == 'filter').concat(_gameContext.globalAssets.filters.filter(asset => asset.assetType == "filter")).map((asset, index) => { 
+                  let thumb = asset.assetThumb;
+                  let full = asset.assetLocation;
+                  let blendAttr = asset.attributes?.find((attr: CompanyDataAssetAttributesModel) => attr.attributeID === 'blend-mode');
+                  let blend = SnapHelper.toBlendMode(blendAttr?.attributeValue || '');
+                  let showFilter = asset.attributes?.find((attr: CompanyDataAssetAttributesModel) => attr.attributeID === 'show-filter');
+                  
+                  if(showFilter)
+                  {
+                    if(showFilter.attributeValue == 'false')
+                    {
+                      console.log("not showing");
+                      full = "";
+                    }
+                  }
+                  return <div className="filter-icon" key={index} onClick={() => specificFilterTapped(index)}>
+                    <div className="filter-image" data-blend={blend} data-id={full} style={{
+                      backgroundImage: StyleHelper.format_css_url_without_asset(thumb)
+                      }}></div>
+                    </div>
+                }
+                )
+              }
+              {/* {Array.from(Array(8).keys()).map((i) => {
+                return <div className="filter-icon" key={i}><div className="filter-image" data-id={i}></div></div>
+              })} */}
+              
+
+        
             </div>
-          </div>
-          <div className='_bottom-center'>
-            {!pictureSnapped && (
-              <div className='picture-button' onClick={snappedPicture}></div>
-            )}
-          </div>
-          <div className='_bottom-right'>
-            {!pictureSnapped && (
-              <div className='camera-switch' onClick={switchCamera}>
-                <Icons.Camera_Switch />
-              </div>
-            )}
-          </div>
+            <button className="snap-button" onClick={snappedPicture} id="snapButton"></button>
         </div>
+          </div>
       </div>
     </div>
   )

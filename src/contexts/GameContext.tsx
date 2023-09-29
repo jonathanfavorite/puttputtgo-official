@@ -8,6 +8,7 @@ import {CourseContext} from "./CourseContext";
 import ConsoleHelper from "../helpers/ConsoleHelper";
 import GameHelper from "../helpers/GameHelper";
 import SnapModel from "../models/snaps/SnapModel";
+import { GlobalAssetsModel } from "../models/data/GlobalAssetsModel";
 
 const GameContext = createContext < GameContextProps > ({} as GameContextProps);
 
@@ -32,6 +33,7 @@ interface GameContextProps {
     gameError: boolean;
     gameMessages: string[];
     companyData: CompanyDataModel;
+    globalAssets: GlobalAssetsModel;
     companyParam: string;
     updateCompanyParam: (param : string) => void;
     getAssetByID: (name : string) => CompanyDataAssetModel | null;
@@ -86,6 +88,7 @@ function GameContextProvider(props: any) {
     const _scoreContext = useContext(ScoreContext);
 
     const [companyData, setCompanyData] = useState < CompanyDataModel > ({} as CompanyDataModel);
+    const [globalAssets, setGlobalAssets] = useState < GlobalAssetsModel > ({} as GlobalAssetsModel);
 
     const [companyParam, setCompanyParam] = useState < string > ("");
     const [selectedCourceID, setSelectedCourceID] = useState < number > (1);
@@ -513,8 +516,16 @@ function GameContextProvider(props: any) {
             addGameErrorMessage("Could not load the game data.");
             return loadDefaultData();
         }). finally(() => {
-            setGameLoading(false);
+            fetch("/global-assets/global-assets.json").then((request) => request.json()).then((data) => {
+                let retrievedGlobalData: GlobalAssetsModel = data;
+                setGlobalAssets((old) => retrievedGlobalData);
+                console.log(retrievedGlobalData);
+            }).finally(() => {
+                setGameLoading(false);
+            });
         });
+
+        
 
 
     };
@@ -545,6 +556,7 @@ function GameContextProvider(props: any) {
         gameError,
         gameMessages,
         companyData,
+        globalAssets,
         companyParam,
         updateCompanyParam,
         getAssetByID,

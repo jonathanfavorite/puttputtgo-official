@@ -40,7 +40,7 @@ function CreateGamePage() {
     //_gameContext.updateSelectedLanguage("en");
     _gameContext.updateactivePage("create-game");
 
-    console.log("LOOOOOOODED");
+    //console.log("LOOOOOOODED");
     
     // handleCreateDummyData();
     const updateScrollableHeight = () => {
