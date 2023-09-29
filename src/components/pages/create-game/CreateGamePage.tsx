@@ -10,6 +10,7 @@ import RGBModel from "../../../models/color/RGBModel";
 import CreatePlayerModal from "../../molecules/create-player-modal/CreatePlayerModal";
 import { CourseContext } from "../../../contexts/CourseContext";
 import { ScoreContext } from "../../../contexts/ScoreContext";
+import ConfirmationModal from "../../molecules/confirmation-modal/ConfirmationModal";
 
 function CreateGamePage() {
   const { business_name } = useParams();
@@ -23,6 +24,9 @@ function CreateGamePage() {
   const topRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
   const scrollableRef = useRef<HTMLDivElement>(null);
+
+  const [showStartGameConfirmationModal, setShowStartGameConfirmationModal] = useState<boolean>(false);
+  const [showAddPlayerConfirmationModal, setShowAddPlayerConfirmationModal] = useState<boolean>(false);
 
   const handleCourseClick = (courseID: number) => {
     _gameContext.updateSelectedCourseID(courseID);
@@ -76,16 +80,23 @@ function CreateGamePage() {
 
   const handleStartGameButton = async () => {
     if (_playerContext.getAllPlayers().length > 0) {
-      _gameContext.startNewGameWithExistingPlayers();
-      _courseContext.updateCurrentHole(1);
-      _gameContext.updateGameStatus(GameStatus.Active);
-      _gameContext.didClickContinueGame();
-      _gameContext.saveToLocalStorageAsync();
-      navigate(`/${_gameContext.companyParam}/game`);
+      setShowStartGameConfirmationModal(true);
       
     } else {
-      alert("Please add at least one player to start the game");
+      //alert("Please add at least one player to start the game");
+      setShowAddPlayerConfirmationModal(true);
     }
+  };
+
+  
+  const handleConfirmStartGame = () => {
+    _gameContext.startNewGameWithExistingPlayers();
+    _courseContext.updateCurrentHole(1);
+    _gameContext.updateGameStatus(GameStatus.Active);
+    _gameContext.didClickContinueGame();
+    _gameContext.saveToLocalStorageAsync();
+    setShowStartGameConfirmationModal(false);
+    navigate(`/${_gameContext.companyParam}/game`);
   };
 
   const [showCreateModal, setShowCreateModal] = useState<boolean>(false);
@@ -97,7 +108,12 @@ function CreateGamePage() {
     setShowCreateModal(false);
   };
 
-  
+  const handleAddPlayerConfirmClick = () => {
+    setShowAddPlayerConfirmationModal(false);
+    setShowCreateModal(true);
+  }
+
+
 
   useEffect(() => {
     if(_gameContext.gameStatus === GameStatus.Finished) {
@@ -116,6 +132,17 @@ function CreateGamePage() {
           })`,
         }}
       >
+        {showStartGameConfirmationModal && <ConfirmationModal 
+                                            onConfirm={handleConfirmStartGame} 
+                                            confirmText="Start Game"
+                                            cancelText="Cancel"
+                                            onCancel={() => setShowStartGameConfirmationModal(false)}>are you ready to start the game?
+                                            </ConfirmationModal>
+                                          }
+        {showAddPlayerConfirmationModal && <ConfirmationModal 
+                                            confirmText="Add Players"
+                                            onConfirm={handleAddPlayerConfirmClick}>Please add at least one player to start the game.
+                                            </ConfirmationModal>}
         <div className="header" ref={headerRef}>
           <TextBasedHeader />
         </div>
