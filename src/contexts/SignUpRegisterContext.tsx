@@ -1,4 +1,5 @@
 import React, {createContext} from 'react'
+import UserModel from '../models/data/user/UserModel';
 
 
 export enum SignInRegisterScreenPages {
@@ -16,6 +17,8 @@ interface SignUpRegisterContextData {
     formattedPhoneNumber?: string;
     updateRawPhoneNumber: (raw: string) => void;
     updateFormattedPhoneNumber: (formatted: string) => void;
+    updateSignedInUser: (user: UserModel) => void;
+    signedInUser?: UserModel | null;
 }
 
 const SignUpRegisterContext = createContext<SignUpRegisterContextData>({} as SignUpRegisterContextData);
@@ -24,6 +27,12 @@ function SignUpRegisterContextProvider(props: any) {
     const [currentScreen, setCurrentScreen] = React.useState<SignInRegisterScreenPages>(SignInRegisterScreenPages.SwitchBoard);
     const [rawPhoneNumber, setRawPhoneNumber] = React.useState<string>('');
     const [formattedPhoneNumber, setFormattedPhoneNumber] = React.useState<string>('');
+
+    const [signedInUser, setSignedInUser] = React.useState<UserModel | null>(null);
+
+    const updateSignedInUser = (user: UserModel) => {
+        setSignedInUser((old) => user);
+    }
 
     const updateCurrentScreen = (currentlySelected: SignInRegisterScreenPages) =>
     {
@@ -43,7 +52,9 @@ function SignUpRegisterContextProvider(props: any) {
         rawPhoneNumber,
         formattedPhoneNumber,
         updateRawPhoneNumber,
-        updateFormattedPhoneNumber
+        updateFormattedPhoneNumber,
+        updateSignedInUser,
+        signedInUser
     }
     return <SignUpRegisterContext.Provider value={value}>
         {props.children}

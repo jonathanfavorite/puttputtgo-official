@@ -921,6 +921,21 @@
       "assetName": "PPG Logo",
       "assetLocation": "/customers/default/images/logo.png"
     },
+    
+    {
+      "assetType": "image",
+      "assetID": "welcome-language-button-background",
+      "assetName": "Language Button Background",
+      "assetLocation": "/customers/castle-golf/images/language-button.png"
+    },
+    {
+      "assetType": "image",
+      "assetID": "welcome-sign-in-button-background",
+      "assetName": "Sign In Button Background",
+      "assetLocation": "/customers/castle-golf/images/sign-in-button.png"
+    },
+
+
     {
       "assetType": "audio",
       "assetID": "game-over-audio",

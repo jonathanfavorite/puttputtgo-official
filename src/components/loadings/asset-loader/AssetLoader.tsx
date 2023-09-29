@@ -36,6 +36,7 @@ function AssetLoader(props: IProps) {
   const [currentAssetIndex, setCurrentAssetIndex] = useState<number>(0);
 
   const [loadedAssetsCount, setLoadedAssetsCount] = useState<number>(0);
+  const [combinedAssetCount, setCombinedAssetCount] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [progressArr, setProgressArr] = useState<number[]>([]);
 
@@ -81,6 +82,8 @@ function AssetLoader(props: IProps) {
 
     const totalCompanyAssets = _gameContext.companyData.assets.length;
     const totalAssets = totalCompanyAssets + globalAssetsList.length;
+
+    setCombinedAssetCount(totalAssets);
 
     const loadPromises = _gameContext.companyData.assets.map((asset, index) => {
       return preloadAsset(asset).then(() => {
@@ -217,13 +220,13 @@ const coolTexts = [
        <div className="text">
         <div className="inner">
           <h1>
-            Loading assets: {getPercentage(loadedAssetsCount,_gameContext.companyData.assets.length)}%
+            Loading assets: {getPercentage(loadedAssetsCount,combinedAssetCount)}%
           </h1>
           <div><small>{currentText}</small></div>
         </div>
       </div>
       <div className="progress-bar">
-        <div className="inner" style={{ width: `${getPercentage(loadedAssetsCount,_gameContext.companyData.assets.length)}%` }}></div>
+        <div className="inner" style={{ width: `${getPercentage(loadedAssetsCount,combinedAssetCount)}%` }}></div>
       </div>
       </Fragment>}
        </div>
