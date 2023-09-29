@@ -4,6 +4,10 @@ import { GameContext } from '../../../contexts/GameContext';
 import GameConfetti from '../../pages/game-screen/GameConfetti';
 import { CompanyDataAssetAttributesModel, CompanyDataTextsLocaleModel } from '../../../models/data/CompanyDataModel';
 import ConfirmationModal from '../../molecules/confirmation-modal/ConfirmationModal';
+import StyleHelper from '../../../helpers/StyleHelper';
+import { SignedInContext } from '../../../contexts/SignedInContext';
+import { SignUpRegisterContext } from '../../../contexts/SignUpRegisterContext';
+import { useNavigate } from 'react-router-dom';
 
 interface IWelcomeTemplateProps {
   specifiedClass?: string;
@@ -13,8 +17,9 @@ interface IWelcomeTemplateProps {
 
 
 function WelcomeTemplate(props: IWelcomeTemplateProps) {
+  const navigate = useNavigate();
   const _gameContext = useContext(GameContext);
-
+  const _signUpRegisterContext = useContext(SignUpRegisterContext);
   const pageRef  = useRef<HTMLDivElement>(null);
   const [viewPortHeight, setViewPortHeight] = React.useState(window.innerHeight);
 
@@ -44,6 +49,27 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
     setViewPortHeight(window.innerHeight);
   }
 
+  const [showFlags, setShowFlags] = React.useState(false);
+
+  const handlePrimaryLanguageClick = () => {
+    setShowFlags(true);
+  }
+  const handleNewFlagClick = (local: CompanyDataTextsLocaleModel) => {
+    _gameContext.updateSelectedLanguage(local.locale)
+    setShowFlags(false);
+  }
+
+  const getSelectedFlag = () => {
+
+    // Search for the flag with the matching attributeID, based on _gameContext.selectedLanguge
+    const selectedFlag = _gameContext.globalAssets.flags.find(f => 
+      f.attributes && f.attributes.some(attr => 
+        attr.attributeID === 'language' && attr.attributeValue === _gameContext.selectedLanguage
+      )
+    );
+        return selectedFlag;
+  }
+
   return (
     <div className={`welcome-template ${props.specifiedClass && props.specifiedClass}`} style={{
         backgroundImage: `url(${_gameContext.companyData.assets.find((asset) => asset.assetID === "welcome-background")?.assetLocation})`
@@ -62,7 +88,21 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
       {props.children}
       </div>
       <div className='bottom-section'>
-      <div className='flags'>
+     
+          <div className='bottom-navi'>
+                    <div className='bottom-navi-left'>
+                        <div className='language-button-wrap' style={{
+                             
+                            }}>
+                            <div className='language-button'>
+
+
+
+
+                              <div className='language-list-wrap' style={{
+                                display: showFlags ? 'flex' : 'none'
+                               }}>
+                               <div className='flags' >
                        
                   
 {
@@ -80,7 +120,7 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
         <div 
           className={`flag ${local.locale === _gameContext.selectedLanguage ? 'active-flag' : ''}`} 
           key={index} 
-          onClick={() => _gameContext.updateSelectedLanguage(local.locale)}
+          onClick={() => handleNewFlagClick(local)}
         >
           <img src={flag.assetLocation} alt={flag.assetName} />
         </div>
@@ -92,6 +132,38 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
 }
 
                    </div>
+                              </div>
+                              
+
+
+
+
+
+                                <div className='current-language-flag' onClick={handlePrimaryLanguageClick}>
+                                    <img src={getSelectedFlag()?.assetLocation} />
+                                </div>
+                                <span onClick={handlePrimaryLanguageClick}>language</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='bottom-navi-center'>
+                       <div className='powered-by-text'>
+                        <span>powered by</span>
+                        <span>puttputtgo</span>
+                       </div>
+                      </div>
+                    <div className='bottom-navi-right'>
+                    <div className='sign-in-button-wrap' style={{
+                              backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("welcome-sign-in-button-background"))
+                            }}>
+                            <div className='sign-in-button' onClick={() => navigate(`/${_gameContext.companyParam}/signin`)}>
+                                <span>{_signUpRegisterContext.signedInUser ? _signUpRegisterContext.signedInUser.Username : 'sign in'}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+          </div>
+     
       </div>
         
     </div>

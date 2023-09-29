@@ -119,6 +119,8 @@ function CodeWaiter() {
                         Phone: response.user.phone,
                         CreatedDate: response.user.createdDate
                     }
+                    _signupContext.updateSignedInUser(user);
+
                     console.log("USER FOUND", user);
                 }
                
