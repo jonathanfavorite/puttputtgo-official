@@ -1,5 +1,117 @@
 {
     "flags": [
+      {
+        "assetType": "image",
+        "assetID": "en-flag",
+        "assetName": "English Flag",
+        "assetLocation": "/global-assets/flags/en.jpg",
+        "attributes": [
+          {
+            "attributeID": "default",
+            "attributeValue": "true"
+          },
+          {
+            "attributeID": "language",
+            "attributeValue": "en"
+          }
+        ]
+      },
+      {
+        "assetType": "image",
+        "assetID": "es-flag",
+        "assetName": "Spanish Flag",
+        "assetLocation": "/global-assets/flags/es.jpg",
+        "attributes": [
+          {
+            "attributeID": "language",
+            "attributeValue": "es"
+          }
+        ]
+      },
+      {
+        "assetType": "image",
+        "assetID": "fr-flag",
+        "assetName": "French Flag",
+        "assetLocation": "/global-assets/flags/fr.jpg",
+        "attributes": [
+          {
+            "attributeID": "language",
+            "attributeValue": "fr"
+          }
+        ]
+      },
+      {
+        "assetType": "image",
+        "assetID": "de-flag",
+        "assetName": "German Flag",
+        "assetLocation": "/global-assets/flags/de.jpg",
+        "attributes": [
+          {
+            "attributeID": "language",
+            "attributeValue": "de"
+          }
+        ]
+      },
+      {
+        "assetType": "image",
+        "assetID": "it-flag",
+        "assetName": "Italian Flag",
+        "assetLocation": "/global-assets/flags/it.jpg",
+        "attributes": [
+          {
+            "attributeID": "language",
+            "attributeValue": "it"
+          }
+        ]
+      },
+      {
+        "assetType": "image",
+        "assetID": "pt-flag",
+        "assetName": "Portugese Flag",
+        "assetLocation": "/global-assets/flags/pt.jpg",
+        "attributes": [
+          {
+            "attributeID": "language",
+            "attributeValue": "pt"
+          }
+        ]
+      },
+      {
+        "assetType": "image",
+        "assetID": "ru-flag",
+        "assetName": "Russian Flag",
+        "assetLocation": "/global-assets/flags/ru.jpg",
+        "attributes": [
+          {
+            "attributeID": "language",
+            "attributeValue": "ru"
+          }
+        ]
+      },
+      {
+        "assetType": "image",
+        "assetID": "zh-flag",
+        "assetName": "Chinese Flag",
+        "assetLocation": "/global-assets/flags/zh.jpg",
+        "attributes": [
+          {
+            "attributeID": "language",
+            "attributeValue": "zh"
+          }
+        ]
+      },
+      {
+        "assetType": "image",
+        "assetID": "ja-flag",
+        "assetName": "Japanese Flag",
+        "assetLocation": "/global-assets/flags/ja.jpg",
+        "attributes": [
+          {
+            "attributeID": "language",
+            "attributeValue": "ja"
+          }
+        ]
+      }
 
     ],
     "filters": [

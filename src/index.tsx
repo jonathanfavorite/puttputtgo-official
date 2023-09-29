@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './startup/index.scss';
 import './startup/App.scss';
 import {GameContextProvider} from './contexts/GameContext';
 import {PlayerContextProvider} from './contexts/PlayerContext';
 import {ScoreContextProvider} from './contexts/ScoreContext';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, NavigationType, Route, Routes, UNSAFE_NavigationContext, useLocation, useNavigationType} from 'react-router-dom';
 import WelcomePage from './components/pages/welcome-screen/WelcomePage';
 import WelcomeTemplate from './components/templates/welcome-screen/WelcomeTemplate';
 import RulesPage from './components/pages/rules-screen/RulesPage';
@@ -26,10 +26,52 @@ import { SignUpRegisterContextProvider } from './contexts/SignUpRegisterContext'
 import { GameAudioContext, GameAudioContextProvider } from './contexts/GameAudioContext';
 import WelcomeUser from './components/pages/sign-in-register-screen/welcome-user/WelcomeUser';
 import { handleTouchMove, handleTouchStart } from './hooks/use-swipe/useSwipe';
+import ConfirmationModal from './components/molecules/confirmation-modal/ConfirmationModal';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
 
+const useBackListener = (callback:(...args: any) => void) => {
+    // Ref is used to handle any React.StrictMode double-mounting
+    const initialRender = React.useRef(true);
+  
+    const location = useLocation();
+    const navigationType = useNavigationType();
+  
+    useEffect(() => {
+      if (!initialRender.current && navigationType === NavigationType.Pop) {
+        console.log(":yes");
+        initialRender.current = false;
+        callback({ location });
+      }
+  
+    }, [callback, location, navigationType]);
+  };
+  
+const ApplicationWrapper = (props: any) => {
+    const [showBackButtonPressedPopup, setShowBackButtonPressedPopup] = React.useState(false);
+    const [lastLocation, setLastLocation] = useState<any>(null);
+    useEffect(() => {
+        const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+            const message = 'Are you sure you want to leave?';
+            e.returnValue = message;
+            return message;
+        };
+    
+        window.addEventListener('beforeunload', handleBeforeUnload);
+    
+        // Cleanup the event listener when component unmounts
+        return () => {
+          window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
+    
+    return (
+        <div id='application-wrapper'>
+            {props.children}
+        </div>
+    );
+}
 
 root.render(
     <HelmetProvider>
@@ -42,6 +84,7 @@ root.render(
                     <SignUpRegisterContextProvider>
 
                         <BrowserRouter>
+                        <ApplicationWrapper>
                             <Routes>
                                 <Route path="/" element={<HomeScreen/>}/>
                                 <Route path="/demo/"
@@ -98,6 +141,7 @@ root.render(
                                     element={<FlexTest/>}/>
                                 <Route path="*" element={<h1>Not Found</h1>}/>
                             </Routes>
+                            </ApplicationWrapper>
                         </BrowserRouter>
                         </SignUpRegisterContextProvider>
                 </UIContextProvider>
