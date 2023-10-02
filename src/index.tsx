@@ -30,27 +30,8 @@ import ConfirmationModal from './components/molecules/confirmation-modal/Confirm
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
-
-const useBackListener = (callback:(...args: any) => void) => {
-    // Ref is used to handle any React.StrictMode double-mounting
-    const initialRender = React.useRef(true);
-  
-    const location = useLocation();
-    const navigationType = useNavigationType();
-  
-    useEffect(() => {
-      if (!initialRender.current && navigationType === NavigationType.Pop) {
-        console.log(":yes");
-        initialRender.current = false;
-        callback({ location });
-      }
-  
-    }, [callback, location, navigationType]);
-  };
   
 const ApplicationWrapper = (props: any) => {
-    const [showBackButtonPressedPopup, setShowBackButtonPressedPopup] = React.useState(false);
-    const [lastLocation, setLastLocation] = useState<any>(null);
     useEffect(() => {
         const handleBeforeUnload = (e: BeforeUnloadEvent) => {
             const message = 'Are you sure you want to leave?';
@@ -59,11 +40,6 @@ const ApplicationWrapper = (props: any) => {
         };
     
         window.addEventListener('beforeunload', handleBeforeUnload);
-    
-        // Cleanup the event listener when component unmounts
-        return () => {
-          window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
     }, []);
     
     return (

@@ -79,6 +79,8 @@ interface GameContextProps {
     clearPictures: () => void;
     updatePictureProcessed: (pictureID : string, processed : boolean) => void;
     updatePicture: (picture : SnapModel) => void;
+    inMemoryAssets: { [key: string]: string };
+    setAllInMemoryAssetItems: (items: { [key: string]: string }) => void;
 
 }
 
@@ -130,11 +132,31 @@ function GameContextProvider(props: any) {
 
     const [pictures, setPictures] = useState < SnapModel[] > ([]);
 
+    const [inMemoryAssets, setInMemoryAssets] = useState<{ [key: string]: string }>({});
+
     const addPicture = (picture : SnapModel) => {
         setPictures((old) => [
             ...old,
             picture
         ]);
+    }
+
+    const setInMemoryAssetItem = (key: string, value: string) => {
+        setInMemoryAssets((old) => {
+            return {
+                ...old,
+                [key]: value
+            }
+        });
+    }
+
+    const setAllInMemoryAssetItems = (items: { [key: string]: string }) => {
+       // clear the inMemoryAssets and replace with the new items
+         setInMemoryAssets((old) => {
+              return {
+                ...items
+              }
+         });
     }
 
     const updatePicture = (picture : SnapModel) => {
@@ -421,11 +443,14 @@ function GameContextProvider(props: any) {
         if (!companyData.assets) {
             return null;
         }
+        
         let asset = companyData.assets.find((asset) => asset.assetID === name);
-        if (asset) {
-            return asset;
+        
+        if (asset && inMemoryAssets[name]) {
+            asset = { ...asset, assetLocation: inMemoryAssets[name] };
         }
-        return null;
+        
+        return asset || null;
     }
 
     const getTextByID = (textID : string) => {
@@ -599,7 +624,9 @@ function GameContextProvider(props: any) {
         removePicture,
         clearPictures,
         updatePictureProcessed,
-        updatePicture
+        updatePicture,
+        inMemoryAssets,
+        setAllInMemoryAssetItems,
     };
 
     return(< GameContext.Provider value = {

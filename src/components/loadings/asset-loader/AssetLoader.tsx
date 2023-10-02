@@ -39,6 +39,7 @@ function AssetLoader(props: IProps) {
   const [combinedAssetCount, setCombinedAssetCount] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [progressArr, setProgressArr] = useState<number[]>([]);
+  const tmpInMemoryAssetsRef = useRef<{ [key: string]: string }>({});
 
 
   fetchAndCacheGolfCourseAssets('castle-golf');
@@ -58,18 +59,28 @@ function AssetLoader(props: IProps) {
     }
     
     return new Promise((resolve, reject) => {
-      const img = new Image();
-      
-      img.src = asset.assetLocation;
-      img.onload = () => {
-        
-        resolve(null);
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', asset.assetLocation, true);
+      xhr.responseType = 'blob';
+      xhr.onload = function() {
+          const reader = new FileReader();
+          reader.readAsDataURL(xhr.response);
+          reader.onloadend = function() {
+              const base64data = reader.result as string;
+              // add to tmp in memory assets
+              tmpInMemoryAssetsRef.current[asset.assetID] = base64data;
+
+             // console.log("tmpInMemoryAssets", tmpInMemoryAssets);
+              //inMemoryAssets[asset.assetID] = base64data;
+              resolve(null);
+          }
       };
-      img.onerror = () => {
-        console.warn(`[WARNING] Asset does not exist: ${asset.assetLocation}`);
-        resolve(null);
+      xhr.onerror = () => {
+          console.warn(`[WARNING] Asset does not exist: ${asset.assetLocation}`);
+          resolve(null);
       };
-    });
+      xhr.send();
+  });
   };
 
   const [showReadyButton, setShowReadyButton] = useState<boolean>(false);
@@ -101,7 +112,9 @@ function AssetLoader(props: IProps) {
       });
     });
 
-    await Promise.all([...loadPromises, ...loadGlobalAssetsPromises]);
+    await Promise.all([...loadPromises, ...loadGlobalAssetsPromises]).then(handleSetInMemoryAssets);
+
+   
 
     setTimeout(() => {
       _gameContext.toggleAssetsLoaded(true);
@@ -120,6 +133,12 @@ function AssetLoader(props: IProps) {
       }
     }
   }
+
+  const handleSetInMemoryAssets = () => {
+    _gameContext.setAllInMemoryAssetItems(tmpInMemoryAssetsRef.current);
+
+  }
+
 
   
   const getPercentage = (loadedAssets: number, totalAssets: number) => {
