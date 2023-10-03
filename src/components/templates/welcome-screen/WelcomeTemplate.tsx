@@ -52,7 +52,7 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
   const [showFlags, setShowFlags] = React.useState(false);
 
   const handlePrimaryLanguageClick = () => {
-    setShowFlags(true);
+    setShowFlags((old) => !old);
   }
   const handleNewFlagClick = (local: CompanyDataTextsLocaleModel) => {
     _gameContext.updateSelectedLanguage(local.locale)
@@ -94,8 +94,12 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
                         <div className='language-button-wrap' style={{
                              
                             }}>
+                                   <div className='current-flag' style={{
+                                        backgroundImage: StyleHelper.format_css_url_without_asset(getSelectedFlag()?.assetLocation)
+                                    }}></div>
                             <div className='language-button'>
 
+                       
 
 
 
@@ -140,7 +144,7 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
 
 
                                 <div className='current-language-flag' onClick={handlePrimaryLanguageClick}>
-                                    <img src={getSelectedFlag()?.assetLocation} />
+                                   
                                 </div>
                                 <span onClick={handlePrimaryLanguageClick}>language</span>
                             </div>

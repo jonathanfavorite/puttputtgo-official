@@ -4,4 +4,5 @@ export default interface SnapModel {
     processed: boolean;
     tmp_thumb?: string;
     failure: boolean;
+    type?: number;
 }

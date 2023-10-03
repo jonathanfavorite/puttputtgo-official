@@ -9,8 +9,8 @@ export default class SnapHelper {
     static CreateNewPicture(): SnapModel {
         return {id: '', filename: '', processed: false, failure: false}
     }
-    static CreateNewPictureWithValues(id : string, filename : string, processed : boolean): SnapModel {
-        return {id: id, filename: filename, processed: processed, failure: false}
+    static CreateNewPictureWithValues(id : string, filename : string, processed : boolean, type?: number): SnapModel {
+        return {id: id, filename: filename, processed: processed, failure: false, type: type}
     }
     static generateRandomString(length : number): string {
         let allowedChars = 'abcdefghijklmnopqrstuvwxyz0123456789';

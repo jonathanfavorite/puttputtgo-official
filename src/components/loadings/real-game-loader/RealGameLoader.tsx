@@ -65,7 +65,7 @@ function RealGameLoader() {
                    {
                     for(let i = 0; i < data.images.length; i++)
                     {
-                    let newImage = SnapHelper.CreateNewPictureWithValues(i.toString(), data.images[i].filename, true);
+                    let newImage = SnapHelper.CreateNewPictureWithValues(i.toString(), data.images[i].filename, true, data.images[i].type);
 
                         _gameContext.addPicture(newImage);
                     }
