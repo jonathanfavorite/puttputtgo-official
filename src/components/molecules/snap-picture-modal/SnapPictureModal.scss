@@ -60,6 +60,7 @@
         height:100%;
         display: flex;
         flex-direction: column;
+        
         ._top {
             display: flex;
             padding-top: 2vh;
@@ -68,6 +69,7 @@
             }
             ._top-center {
                 flex: 1;
+                pointer-events: none;
             }
             ._top-right {
                 display: flex;
@@ -114,6 +116,7 @@
         ._middle {
             flex: 1;
             pointer-events: none;
+            display: block;
         }
         ._bottom {
          

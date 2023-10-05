@@ -37,6 +37,8 @@ interface GameContextProps {
     companyParam: string;
     updateCompanyParam: (param : string) => void;
     getAssetByID: (name : string) => CompanyDataAssetModel | null;
+    getFlagAssetByID: (name : string) => CompanyDataAssetModel | null;
+    getFilterAssetByID: (name : string) => CompanyDataAssetModel | null;
     getTextByID: (textID : string) => {
         __html : string
     };
@@ -445,11 +447,33 @@ function GameContextProvider(props: any) {
         }
         
         let asset = companyData.assets.find((asset) => asset.assetID === name);
-        
+
         if (asset && inMemoryAssets[name]) {
             asset = { ...asset, assetLocation: inMemoryAssets[name] };
         }
         
+        return asset || null;
+    }
+
+    const getFlagAssetByID = (name : string) => {
+        if (!globalAssets.flags) {
+            return null;
+        }
+        let asset = globalAssets.flags.find((asset) => asset.assetID === name);
+        if (asset && inMemoryAssets[name]) {
+            asset = { ...asset, assetLocation: inMemoryAssets[name] };
+        }
+        return asset || null;
+    }
+
+    const getFilterAssetByID = (name : string) => {
+        if (!globalAssets.filters) {
+            return null;
+        }
+        let asset = globalAssets.filters.find((asset) => asset.assetID === name);
+        if (asset && inMemoryAssets[name]) {
+            asset = { ...asset, assetLocation: inMemoryAssets[name] };
+        }
         return asset || null;
     }
 
@@ -585,6 +609,8 @@ function GameContextProvider(props: any) {
         companyParam,
         updateCompanyParam,
         getAssetByID,
+        getFlagAssetByID,
+        getFilterAssetByID,
         getTextByID,
         getPlainTextByID,
         getLocalsByID,

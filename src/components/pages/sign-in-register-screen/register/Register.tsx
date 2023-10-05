@@ -278,7 +278,7 @@ function Register() {
 
             <div className='register-top'>
             
-                <div className='register-scrollable'>
+                <div className='register-scrollable allow-scroll'>
                     <div className='register-scrollable-inside' ref={scrollAbleContainerRef}>
                     <div className='register-welcome'>
                     <h1>register</h1>

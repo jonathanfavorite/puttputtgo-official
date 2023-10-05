@@ -5,6 +5,7 @@ import { GameContext } from '../../../contexts/GameContext'
 import StyleHelper from '../../../helpers/StyleHelper'
 import SnapHelper, { BlendMode, GlobalCompositeOp } from '../../../helpers/SnapHelper'
 import { CompanyDataAssetAttributesModel } from '../../../models/data/CompanyDataModel'
+import SnappedPictureSave from './snapped-picture-save/SnappedPictureSave'
 
 function SnapPictureModal() {
   const _gameContext = useContext(GameContext)
@@ -12,6 +13,7 @@ function SnapPictureModal() {
   const [picture, setPicture] = React.useState('');
   const [blendMode, setBlendMode] = React.useState<BlendMode>('normal')
   const [forcePicture, setForcePicture] = React.useState(0)
+
   const closePictureModal = () => {
     if (videoRef.current && videoRef.current.srcObject) {
       let tracks = (videoRef.current.srcObject as MediaStream).getTracks();
@@ -504,22 +506,10 @@ function easeInOutQuad(t: number, b: number, c: number, d: number): number {
           />
         </div>
       )}
-      <div className='picture-container'
+      <div className='picture-container' 
         ref={filterOverlayRef}
         onClick={handleDoubleTapEvent}
         >
-        {pictureSnapped && (
-          <div className='hold-finder-wrap'>
-            <div className='finger-icon'>
-              <Icons.Camera_Press />
-            </div>
-            <div className='finger-text'>
-              Press and hold
-              <br />
-              to save
-            </div>
-          </div>
-        )}
 
         <div className='_top'>
           <div className='_top-left'></div>
@@ -543,10 +533,17 @@ function easeInOutQuad(t: number, b: number, c: number, d: number): number {
             )}
           </div>
         </div>
-        <div className='_middle'></div>
-        <div className='_bottom'>
-        <div className="controls">
-            <div className="filter-icons" id="filterContainer" ref={filterContainerRef}>
+        <div className='_middle' style={{
+  
+      }}></div>
+        <div className='_bottom' style={{
+          pointerEvents: pictureSnapped ? 'none' : 'auto'
+        }}>
+   
+        <div className="controls" style={{
+          display: pictureSnapped ? 'none' : 'flex'
+        }}>
+            <div className="filter-icons allow-scroll" id="filterContainer" ref={filterContainerRef}>
               {
 
                 _gameContext.companyData.assets.filter(asset => asset.assetType == 'filter').concat(_gameContext.globalAssets.filters.filter(asset => asset.assetType == "filter")).map((asset, index) => { 
@@ -572,16 +569,13 @@ function easeInOutQuad(t: number, b: number, c: number, d: number): number {
                 }
                 )
               }
-              {/* {Array.from(Array(8).keys()).map((i) => {
-                return <div className="filter-icon" key={i}><div className="filter-image" data-id={i}></div></div>
-              })} */}
-              
-
         
             </div>
             <button className="snap-button" onClick={snappedPicture} id="snapButton"></button>
         </div>
+        {pictureSnapped && <SnappedPictureSave />}
           </div>
+          
       </div>
     </div>
   )

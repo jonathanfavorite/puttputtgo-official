@@ -38,7 +38,34 @@ const ApplicationWrapper = (props: any) => {
             e.returnValue = message;
             return message;
         };
-    
+let startY : number;
+
+        // document.addEventListener('touchstart', function(e) {
+        //     if (e.touches.length) {
+        //         startY = e.touches[0].clientY;  // Store the starting Y position
+        //     }
+        // });
+
+        
+        // document.addEventListener('touchmove', function(e) {
+        //     if (!e.touches.length) return;
+        
+        //     const deltaY = e.touches[0].clientY - startY;  // Calculate the change in Y position
+        //     const isVerticalScroll = Math.abs(deltaY) > 10;  // Check if vertical movement is significant
+        
+        //     if (e.target instanceof HTMLElement) {
+        //         if (e.target.classList.contains('allow-scroll') || e.target.closest('.allow-scroll')) {
+        //             console.log("scrolling");
+        //             return;  // Allow the default behavior (i.e., scrolling)
+        //         }
+        //     }
+            
+        //     if (isVerticalScroll && e.cancelable) {
+        //         e.preventDefault();  // Prevent vertical scrolling
+        //     }
+        // }, { passive: false });
+
+     
         window.addEventListener('beforeunload', handleBeforeUnload);
     }, []);
     

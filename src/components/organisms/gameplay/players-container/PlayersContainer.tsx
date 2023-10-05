@@ -18,7 +18,7 @@ function PlayersContainer() {
     }
 
     return (
-        <div className='player-container'>
+        <div className='player-container allow-scroll'>
             {
             _playerContext.getAllPlayers().sort().map((player, index) => {
                 let active = player.id === _playerContext.getCurrentPlayer().id ? 'active-player' : '';

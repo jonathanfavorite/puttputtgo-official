@@ -61,13 +61,10 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
 
   const getSelectedFlag = () => {
 
-    // Search for the flag with the matching attributeID, based on _gameContext.selectedLanguge
-    const selectedFlag = _gameContext.globalAssets.flags.find(f => 
-      f.attributes && f.attributes.some(attr => 
-        attr.attributeID === 'language' && attr.attributeValue === _gameContext.selectedLanguage
-      )
-    );
-        return selectedFlag;
+    let trueFlagID = _gameContext.selectedLanguage + "-flag";
+    let selectedFlag = _gameContext.getFlagAssetByID(trueFlagID);
+
+    return selectedFlag;
   }
 
   return (
@@ -112,11 +109,7 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
 {
   welcomeTextLocals.map((local, index) => {
     // Search for the flag with the matching attributeID.
-    const flag = _gameContext.globalAssets.flags.find(f => 
-      f.attributes && f.attributes.some(attr => 
-        attr.attributeID === 'language' && attr.attributeValue === local.locale
-      )
-    );
+    const flag = _gameContext.getFlagAssetByID(local.locale + "-flag");
 
     // If a flag is found, display it.
     if (flag) {

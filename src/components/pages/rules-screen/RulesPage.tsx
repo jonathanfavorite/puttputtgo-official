@@ -48,7 +48,7 @@ function RulesPage() {
        
        <div ref={pageRef} className='rules-page'>
         <div ref={rulesBodyRef} className='rules-body-wrap'>
-               <div className='rules-body' dangerouslySetInnerHTML={_gameContext.getTextByID("rules:body")}>
+               <div className='rules-body allow-scroll' dangerouslySetInnerHTML={_gameContext.getTextByID("rules:body")}>
 
                 </div>
                 </div>

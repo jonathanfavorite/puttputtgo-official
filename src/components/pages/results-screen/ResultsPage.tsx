@@ -277,7 +277,7 @@ function ResultsPage() {
             
 
             {!_gameContext.preloadedLocalStorage && !completelyLoaded ? <LocalStoragePreloader /> :
-            <div className='results-page'>
+            <div className='results-page allow-scroll'>
 
                 <div className='header'>
                     <div className='left'

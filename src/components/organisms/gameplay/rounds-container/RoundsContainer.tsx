@@ -99,7 +99,7 @@ function RoundsContainer(props: IProps) {
             }></div>
             <div className='center'>
                 <div className='hole-label'>{_gameContext.getPlainTextByID("gameplay:hole")}</div>
-                <div className='hole-items' ref={listRef}>
+                <div className='hole-items'  ref={listRef}>
                     {
                         _courseContext.getCurrentCourse().holes.map((hole, index) => {
                             let isActive = _courseContext.getCurrentHole().number === hole.number;
@@ -141,6 +141,7 @@ function RoundsContainer(props: IProps) {
                                 <div
                                 ref={itemRef}
                                 data-id={index}
+                              
                                 className={`hole-item ${_courseContext.getCurrentHole().number === hole.number ? 'active-hole' : ''}`}
                                     key={index}
                                     onClick={() => handleHoleClickEvent(hole.number)}

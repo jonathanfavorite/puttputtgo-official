@@ -4,14 +4,17 @@ body {
     background:#efefef;
     position: fixed;
     left:0;
+
     top:0;
     height:100svh;
     max-height:-webkit-fill-available;
+   
     width:100vw;
 }
 img {
     max-width: 100%;
 }
 html, body {
-
+    overflow: hidden;
+    overscroll-behavior-y: contain !important;
 }

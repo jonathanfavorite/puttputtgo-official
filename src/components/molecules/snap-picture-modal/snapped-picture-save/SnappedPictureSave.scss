@@ -1,0 +1,35 @@
+.snapped-picture-save {
+    background:#333;
+    padding:5vw 5vw;
+    display: block;
+    padding-top:5vw;
+    border-top-left-radius: 10px;
+    background: rgba($color: #000000, $alpha: 0.7);
+    border-top-right-radius: 10px;
+    pointer-events: none;
+    .snapped-save-button-wrap {
+        padding:5vw;
+        
+        background:#336cf1;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        position: relative;
+        .snapped-save-slider {
+            position: absolute;
+            left:0;
+            top:0;
+            width:50%;
+            height:100%;
+            pointer-events: none;
+        }
+        .snapped-save-text {
+            position:relative;
+            z-index: 19;
+            font-size:1.5rem;
+            pointer-events: none;
+        }
+    }
+}

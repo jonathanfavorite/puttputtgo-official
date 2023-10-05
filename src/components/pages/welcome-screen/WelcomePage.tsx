@@ -35,22 +35,17 @@ function WelcomePage() {
     }, []);
 
     useEffect(() => {
-        document.addEventListener('touchstart', handleTouchStart, { passive: false });
-        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+       // document.addEventListener('touchstart', handleTouchStart, { passive: false });
+       // document.addEventListener('touchmove', handleTouchMove, { passive: false });
       
         return () => {
-          document.removeEventListener('touchstart', handleTouchStart);
-          document.removeEventListener('touchmove', handleTouchMove);
+         // document.removeEventListener('touchstart', handleTouchStart);
+          //document.removeEventListener('touchmove', handleTouchMove);
         };
       }, []);
 
 
-    useSwipe(() => {
-        //alert('swipe left');
-    }
-    , () => {
-        //alert('swipe right');
-    });
+
 
 
     const [hasSendScan, setHasSendScan] = useState(false);

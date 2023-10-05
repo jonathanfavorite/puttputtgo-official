@@ -33,6 +33,7 @@ function GamePage() {
 
 
   useEffect(() => {
+
     if(_playerContext.getAllPlayers().length <= 0)
     {
       navigate(`/${business_name}/create-game`);
@@ -45,7 +46,7 @@ function GamePage() {
         <TransitionContextProvider>
           
       <div
-        className="game-page"
+        className="game-page disable-scroll"
         style={{
           height: viewPortHeight + 'px',
           backgroundImage: StyleHelper.format_css_url(
