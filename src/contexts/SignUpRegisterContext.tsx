@@ -1,5 +1,6 @@
 import React, {createContext} from 'react'
 import UserModel from '../models/data/user/UserModel';
+import { SignedInUserModel } from '../models/data/user/SignedInUserModel';
 
 
 export enum SignInRegisterScreenPages {
@@ -10,6 +11,11 @@ export enum SignInRegisterScreenPages {
     WelcomeUser
 }
 
+export enum SignedInTypes {
+    NewUser,
+    Normal
+}
+
 interface SignUpRegisterContextData {
     currentScreen: SignInRegisterScreenPages;
     updateCurrentScreen: (currentlySelected: SignInRegisterScreenPages) => void;
@@ -17,8 +23,11 @@ interface SignUpRegisterContextData {
     formattedPhoneNumber?: string;
     updateRawPhoneNumber: (raw: string) => void;
     updateFormattedPhoneNumber: (formatted: string) => void;
-    updateSignedInUser: (user: UserModel) => void;
-    signedInUser?: UserModel | null;
+    updateSignedInUser: (signedInUser: SignedInUserModel) => void;
+    signedInUser?: SignedInUserModel | null;
+    loadSignedInUser: () => void;
+    signedInType: SignedInTypes;
+    updateSignedInType: (signedInType: SignedInTypes) => void;
 }
 
 const SignUpRegisterContext = createContext<SignUpRegisterContextData>({} as SignUpRegisterContextData);
@@ -28,12 +37,17 @@ function SignUpRegisterContextProvider(props: any) {
     const [rawPhoneNumber, setRawPhoneNumber] = React.useState<string>('');
     const [formattedPhoneNumber, setFormattedPhoneNumber] = React.useState<string>('');
 
-    const [signedInUser, setSignedInUser] = React.useState<UserModel | null>(null);
+    const [signedInUser, setSignedInUser] = React.useState<SignedInUserModel | null>(null);
+    const [signedInType, setSignedInType] = React.useState<SignedInTypes>(SignedInTypes.Normal);
 
-    const updateSignedInUser = (user: UserModel) => {
-        setSignedInUser((old) => user);
+    const updateSignedInUser = (signedInUser: SignedInUserModel) => {
+        setSignedInUser((old) => signedInUser);
+        localStorage.setItem('ppg-user', JSON.stringify(signedInUser));
     }
 
+    const updateSignedInType = (signedInType: SignedInTypes) => {
+        setSignedInType((old) => signedInType);
+    }
     const updateCurrentScreen = (currentlySelected: SignInRegisterScreenPages) =>
     {
         setCurrentScreen(currentlySelected);
@@ -46,6 +60,14 @@ function SignUpRegisterContextProvider(props: any) {
     {
         setFormattedPhoneNumber(formatted);
     }
+    const loadSignedInUser = () => {
+        let user = localStorage.getItem('ppg-user');
+        if(user)
+        {
+            let userObj = JSON.parse(user);
+            setSignedInUser((old) => userObj);
+        }
+    }
     let value : SignUpRegisterContextData = {
         currentScreen,
         updateCurrentScreen,
@@ -54,7 +76,10 @@ function SignUpRegisterContextProvider(props: any) {
         updateRawPhoneNumber,
         updateFormattedPhoneNumber,
         updateSignedInUser,
-        signedInUser
+        signedInUser,
+        loadSignedInUser,
+        signedInType,
+        updateSignedInType
     }
     return <SignUpRegisterContext.Provider value={value}>
         {props.children}

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './startup/index.scss';
 import './startup/App.scss';
-import {GameContextProvider} from './contexts/GameContext';
+import {GameContext, GameContextProvider} from './contexts/GameContext';
 import {PlayerContextProvider} from './contexts/PlayerContext';
 import {ScoreContextProvider} from './contexts/ScoreContext';
 import {BrowserRouter, NavigationType, Route, Routes, UNSAFE_NavigationContext, useLocation, useNavigationType} from 'react-router-dom';
@@ -27,50 +27,72 @@ import { GameAudioContext, GameAudioContextProvider } from './contexts/GameAudio
 import WelcomeUser from './components/pages/sign-in-register-screen/welcome-user/WelcomeUser';
 import { handleTouchMove, handleTouchStart } from './hooks/use-swipe/useSwipe';
 import ConfirmationModal from './components/molecules/confirmation-modal/ConfirmationModal';
+import StyleHelper from './helpers/StyleHelper';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
   
 const ApplicationWrapper = (props: any) => {
+
+    const _gameContext = useContext(GameContext);
+    const globalMessageRef = useRef<HTMLDivElement>(null);
+    const [globalMessageAlreadyShown, setGlobalMessageAlreadyShown] = useState(false);
     useEffect(() => {
         const handleBeforeUnload = (e: BeforeUnloadEvent) => {
             const message = 'Are you sure you want to leave?';
             e.returnValue = message;
             return message;
         };
-let startY : number;
-
-        // document.addEventListener('touchstart', function(e) {
-        //     if (e.touches.length) {
-        //         startY = e.touches[0].clientY;  // Store the starting Y position
-        //     }
-        // });
 
         
-        // document.addEventListener('touchmove', function(e) {
-        //     if (!e.touches.length) return;
-        
-        //     const deltaY = e.touches[0].clientY - startY;  // Calculate the change in Y position
-        //     const isVerticalScroll = Math.abs(deltaY) > 10;  // Check if vertical movement is significant
-        
-        //     if (e.target instanceof HTMLElement) {
-        //         if (e.target.classList.contains('allow-scroll') || e.target.closest('.allow-scroll')) {
-        //             console.log("scrolling");
-        //             return;  // Allow the default behavior (i.e., scrolling)
-        //         }
-        //     }
-            
-        //     if (isVerticalScroll && e.cancelable) {
-        //         e.preventDefault();  // Prevent vertical scrolling
-        //     }
-        // }, { passive: false });
 
-     
         window.addEventListener('beforeunload', handleBeforeUnload);
     }, []);
+
+    useEffect(() => {
+        if(_gameContext.globalMessage != "")
+        {
+            toggleGlobalMessage(_gameContext.globalMessage);
+        }
+        else
+        {
+            if (globalMessageRef.current) {
+                globalMessageRef.current.style.top = '-50vw';
+                setGlobalMessageAlreadyShown(false);
+                
+            }
+        }
+    }, [_gameContext.globalMessage]);
+
+
+    const toggleGlobalMessage = (children: any) => {
+        
+        if (globalMessageRef.current) {
+            
+            globalMessageRef.current.style.top = '2vw';
+            setTimeout(() => {
+                if (globalMessageRef.current) {
+                    globalMessageRef.current.style.top = '-50vw';
+                    setGlobalMessageAlreadyShown(false);
+                    _gameContext.updateGlobalMessage("");
+                }
+            }, 3000);
+        }
+       
+    }
     
     return (
         <div id='application-wrapper'>
+
+
+        <div className='global-message-wrap' ref={globalMessageRef} style={{
+            backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("gameplay-player-ball-frame"))
+        }}>
+            <div className='global-message'>
+                {_gameContext.globalMessage}
+            </div>
+        </div>
+        
             {props.children}
         </div>
     );

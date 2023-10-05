@@ -134,6 +134,7 @@ function WelcomePage() {
     }
 
     const handleSettingsClick = () => {
+        
         goTo('/settings');
     }
     return (

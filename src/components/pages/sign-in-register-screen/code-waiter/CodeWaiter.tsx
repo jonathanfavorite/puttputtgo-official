@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react'
-import { SignInRegisterScreenPages, SignUpRegisterContext } from '../../../../contexts/SignUpRegisterContext';
+import { SignInRegisterScreenPages, SignUpRegisterContext, SignedInTypes } from '../../../../contexts/SignUpRegisterContext';
 import { Icons } from '../../../atoms/Icons';
 import UserModel from '../../../../models/data/user/UserModel';
 import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../../../../contexts/GameContext';
 import PopupModal from '../../../molecules/signin/popup-modal/PopupModal';
+import { SignedInUserModel } from '../../../../models/data/user/SignedInUserModel';
 
 
 enum CodeWaiterStates {
@@ -108,8 +109,10 @@ function CodeWaiter() {
         {
             if(response.responseType == LoginCodeResponseTypes.Success)
             {
+                console.log("RESPONSE", response)
                 if(response.user)
                 {
+                    
                     let user : UserModel = {
                         ID: response.user.id,
                         UserKey: response.user.userKey,
@@ -119,7 +122,15 @@ function CodeWaiter() {
                         Phone: response.user.phone,
                         CreatedDate: response.user.createdDate
                     }
-                    _signupContext.updateSignedInUser(user);
+
+                    let signedInUserModel : SignedInUserModel = {
+                        accessToken: response.JWT.accessToken,
+                        refreshToken: response.JWT.refreshToken,
+                        user: user
+                    }
+
+
+                    _signupContext.updateSignedInUser(signedInUserModel);
 
                     console.log("USER FOUND", user);
                 }
@@ -164,7 +175,8 @@ function CodeWaiter() {
                 success: data.success, 
                 message: data.message,
                 responseType: data.responseType,
-                user: data.user
+                user: data.user,
+                JWT: data.jwt
             };
         } catch (error) {
             console.error('Error:', error);
@@ -186,15 +198,15 @@ function CodeWaiter() {
         setHideSpinner(true);
         setLoggingInText("success!");
         setTimeout(() => {
-            _signupContext.updateCurrentScreen(SignInRegisterScreenPages.WelcomeUser);
-            if(_gameContext.companyData.customerID == "default")
+            if(_signupContext.signedInType == SignedInTypes.NewUser)
             {
-                
-                //navigate(`/`);
+                _signupContext.updateCurrentScreen(SignInRegisterScreenPages.WelcomeUser);
             }
             else
             {
-                //navigate(`/${_gameContext.companyData.customerID}/`);
+                navigate(`/${_gameContext.companyData.customerID}/`);
+                _gameContext.updateGlobalMessage("Welcome back, " + _signupContext.signedInUser?.user.Username + "!");
+                _signupContext.updateCurrentScreen(SignInRegisterScreenPages.SwitchBoard);
             }
         }, 500);
     }

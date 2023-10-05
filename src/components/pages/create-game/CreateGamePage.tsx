@@ -11,6 +11,7 @@ import CreatePlayerModal from "../../molecules/create-player-modal/CreatePlayerM
 import { CourseContext } from "../../../contexts/CourseContext";
 import { ScoreContext } from "../../../contexts/ScoreContext";
 import ConfirmationModal from "../../molecules/confirmation-modal/ConfirmationModal";
+import { SignUpRegisterContext } from "../../../contexts/SignUpRegisterContext";
 
 function CreateGamePage() {
   const { business_name } = useParams();
@@ -18,6 +19,7 @@ function CreateGamePage() {
   const _playerContext = useContext(PlayerContext);
   const _courseContext = useContext(CourseContext);
   const _scoreContext = useContext(ScoreContext);
+  const _signUpRegisterContext = useContext(SignUpRegisterContext);
   const navigate = useNavigate();
 
   const headerRef = useRef<HTMLDivElement>(null);
@@ -38,6 +40,20 @@ function CreateGamePage() {
 
   useEffect(() => {
     setViewPortHeight(window.innerHeight);
+
+    if (_signUpRegisterContext.signedInUser && _playerContext.getAllPlayers().length == 0) {
+      const user = _signUpRegisterContext.signedInUser.user;
+      _playerContext.addPlayer({
+          id: 1,
+          userKey: user.UserKey,
+          name: user.Username,
+          color: {
+              r: 255,
+              g: 255,
+              b: 255
+          }
+      });
+  }
   }, []);
 
   useEffect(() => {

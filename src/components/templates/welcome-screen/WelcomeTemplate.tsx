@@ -154,7 +154,7 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
                               backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("welcome-sign-in-button-background"))
                             }}>
                             <div className='sign-in-button' onClick={() => navigate(`/${_gameContext.companyParam}/signin`)}>
-                                <span>{_signUpRegisterContext.signedInUser ? _signUpRegisterContext.signedInUser.Username : 'sign in'}</span>
+                                <span>{_signUpRegisterContext.signedInUser ? _signUpRegisterContext.signedInUser.user.Username : 'sign in'}</span>
                             </div>
                         </div>
                     </div>

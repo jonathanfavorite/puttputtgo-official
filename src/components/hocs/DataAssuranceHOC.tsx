@@ -10,6 +10,9 @@ import LocalStoragePreloader from '../loadings/local-storage-preloader/LocalStor
 import { useLocation } from 'react-router-dom';
 import RealGameLoader from '../loadings/real-game-loader/RealGameLoader';
 import { GameAudioContext } from '../../contexts/GameAudioContext';
+import { SignUpRegisterContext } from '../../contexts/SignUpRegisterContext';
+import { PlayerContext } from '../../contexts/PlayerContext';
+import { SignedInUserModel } from '../../models/data/user/SignedInUserModel';
 
 interface IProps {
     children: any;
@@ -39,6 +42,8 @@ function DataAssuranceHOC(props : IProps) {
 
     const _gameContext = useContext(GameContext);
     const _courseContext = useContext(CourseContext);
+    const _playerContext = useContext(PlayerContext);
+    const _signUpRegisterContext = useContext(SignUpRegisterContext);
 
     useEffect(() => {
       _gameContext.updateCompanyParam(props.companyParam);
@@ -75,7 +80,10 @@ function DataAssuranceHOC(props : IProps) {
             }
            
           }
-         
+
+          if (!_signUpRegisterContext.signedInUser) {
+            _signUpRegisterContext.loadSignedInUser();
+        }
         }
     }, [_gameContext.companyParam]);
 
@@ -155,6 +163,7 @@ function DataAssuranceHOC(props : IProps) {
       })}
     </ul>
   </div>
+ 
   {!functionalityOff ? props.children : 'Currently Offline'}
   </>
 }

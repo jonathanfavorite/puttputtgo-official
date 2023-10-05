@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import {Icons} from '../../../atoms/Icons';
 import PhoneEntry from '../../../molecules/signin/phone-entry/PhoneEntry';
-import { SignInRegisterScreenPages, SignUpRegisterContext } from '../../../../contexts/SignUpRegisterContext';
+import { SignInRegisterScreenPages, SignUpRegisterContext, SignedInTypes } from '../../../../contexts/SignUpRegisterContext';
 import PopupModal from '../../../molecules/signin/popup-modal/PopupModal';
 
 
@@ -263,6 +263,7 @@ function Register() {
       {
         if(responseType == ResponseTypes.Success)
         {
+          _signupContext.updateSignedInType(SignedInTypes.NewUser);
           _signupContext.updateCurrentScreen(SignInRegisterScreenPages.CodeWaiter);
         }
         else

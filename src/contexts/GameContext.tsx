@@ -83,6 +83,8 @@ interface GameContextProps {
     updatePicture: (picture : SnapModel) => void;
     inMemoryAssets: { [key: string]: string };
     setAllInMemoryAssetItems: (items: { [key: string]: string }) => void;
+    globalMessage: string;
+    updateGlobalMessage: (message: string) => void;
 
 }
 
@@ -136,11 +138,17 @@ function GameContextProvider(props: any) {
 
     const [inMemoryAssets, setInMemoryAssets] = useState<{ [key: string]: string }>({});
 
+    const [globalMessage, setGlobalMessage] = useState < string > ("");
+
     const addPicture = (picture : SnapModel) => {
         setPictures((old) => [
             ...old,
             picture
         ]);
+    }
+
+    const updateGlobalMessage = (message : string) => {
+        setGlobalMessage((old) => message);
     }
 
     const setInMemoryAssetItem = (key: string, value: string) => {
@@ -653,6 +661,8 @@ function GameContextProvider(props: any) {
         updatePicture,
         inMemoryAssets,
         setAllInMemoryAssetItems,
+        globalMessage,
+        updateGlobalMessage,
     };
 
     return(< GameContext.Provider value = {

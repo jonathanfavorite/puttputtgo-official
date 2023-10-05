@@ -18,8 +18,8 @@ function WelcomeUser() {
 
     let newPlayer : PlayerModel = {
       id: _playerContext.getAllPlayers().length + 1,
-      name: _signupContext.signedInUser?.Username || '',
-      userKey: _signupContext.signedInUser?.UserKey || '',
+      name: _signupContext.signedInUser?.user.Username || '',
+      userKey: _signupContext.signedInUser?.user.UserKey || '',
       color: {
         r: 255,
         g: 255,
@@ -67,7 +67,7 @@ function WelcomeUser() {
     
           <div className='welcome-name-container'>
             <div className='welcome-text'>welcome</div>
-            <div className='welcome-name'>{_signupContext.signedInUser?.Username}</div>
+            <div className='welcome-name'>{_signupContext.signedInUser?.user.Username}</div>
           </div>
 
           <div className='welcome-large-text'>
