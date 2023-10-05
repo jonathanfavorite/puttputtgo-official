@@ -7,6 +7,7 @@ import PopupModal from '../../../molecules/signin/popup-modal/PopupModal';
 
 enum RegisterStates {
     Phone = 0,
+    Email,
     ValidatingPhone,
     FullName,
     Username,
@@ -23,6 +24,7 @@ interface RegisterItems {
 }
 interface AllRegisterItems {
     Phone: RegisterItems;
+    Email: RegisterItems;
     FullName: RegisterItems;
     Username: RegisterItems;
     LegalTOS: RegisterItems;
@@ -39,6 +41,7 @@ function Register() {
 
     const fullNameContainerRef = React.useRef <HTMLDivElement> (null);
     const usernameContainerRef = React.useRef <HTMLDivElement> (null);
+    const emailContainerRef = React.useRef <HTMLDivElement> (null);
     const legalContainerRef = React.useRef <HTMLDivElement> (null);
     const scrollAbleContainerRef = React.useRef <HTMLDivElement> (null);
 
@@ -52,6 +55,12 @@ function Register() {
             RegisterState: RegisterStates.Phone,
             highlight: false
         },
+        Email: {
+          HasValue: false,
+          Value: '',
+          RegisterState: RegisterStates.Email,
+          highlight: false
+      },
         FullName: {
             HasValue: false,
             Value: '',
@@ -122,10 +131,35 @@ function Register() {
   setFormData(old => newFormData);
   }
 
+  const isEmailValid = (email: string) => {
+    // check if email is valid
+    // using regex
+    // return true or false
+
+    let emailRegex = /\S+@\S+\.\S+/;
+    return emailRegex.test(email);
+
+  }
+
   
   const handleRegisterClick = async () => {
 
-    if(!formData.FullName.HasValue)
+    
+    if(!formData.Email.HasValue)
+    {
+      showHightlight("Email");
+      scrollToRef(emailContainerRef);
+      return;
+    }
+    else if(!isEmailValid(formData.Email.Value))
+    {
+      showHightlight("Email");
+      scrollToRef(emailContainerRef);
+      setPopupMessage('Please enter a valid email');
+      setShowPopup(true);
+      return;
+    }
+    else if(!formData.FullName.HasValue)
     {
       showHightlight("FullName");
       scrollToRef(fullNameContainerRef);
@@ -143,15 +177,16 @@ function Register() {
       scrollToRef(legalContainerRef);
       return;
     }
-    else if(!formData.LegalSMS.HasValue)
+    else if(!formData.LegalSMS.Value)
     {
       showHightlight("LegalSMS");
       scrollToRef(legalContainerRef);
       return;
     }
+    
     else
     {
-      
+      console.log(formData.LegalSMS);
       if (registerState === RegisterStates.Loading || registerState == RegisterStates.ValidatingPhone) return;
   
       if (registerState === RegisterStates.Ready) {
@@ -177,7 +212,9 @@ function Register() {
               // Handle the next steps after phone validation here
           } else {
               setPhoneGood(false);
-              alert(isPhoneValid.message);
+              //alert(isPhoneValid.message);
+              setPopupMessage(isPhoneValid.message);
+              setShowPopup(true);
               setRegisterState(RegisterStates.Ready);
               setRegisterText("Next");
               setFormDisabled(false);
@@ -196,7 +233,8 @@ function Register() {
     let payload = {
       phoneNumber: _signupContext.rawPhoneNumber,
       name: formData.FullName.Value,
-      username: formData.Username.Value
+      username: formData.Username.Value,
+      emailAddress: formData.Email.Value,
     };
     
     try {
@@ -291,9 +329,17 @@ function Register() {
                         </PhoneEntry>
                      </div>
 
-                    <div className='ref-details-wrap refItem' ref={fullNameContainerRef} style={{
-                        
-                    }}>
+                     <div className='ref-details-wrap refItem' ref={emailContainerRef}>
+                        <div className='ref-details'>
+                          {/* <h2>what is your full name?</h2> */}
+                          <div className='ref-details-input'>
+                              <input type='email' placeholder='email' disabled={formDisabled} className={`${formData.Email.highlight ? 'validation-error' : ''}`} onChange={(e) => updateFormData("Email", e.target.value)} />
+                          </div>
+                        </div>
+                    </div>
+
+
+                    <div className='ref-details-wrap refItem' ref={fullNameContainerRef}>
                         <div className='ref-details'>
                           {/* <h2>what is your full name?</h2> */}
                           <div className='ref-details-input'>
