@@ -50,6 +50,7 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
   }
 
   const [showFlags, setShowFlags] = React.useState(false);
+  const [showSignedInOptions, setShowSignedInOptions] = React.useState(false);
 
   const handlePrimaryLanguageClick = () => {
     setShowFlags((old) => !old);
@@ -65,6 +66,17 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
     let selectedFlag = _gameContext.getFlagAssetByID(trueFlagID);
 
     return selectedFlag;
+  }
+
+  const signInButtonClick = () => {
+    if(!_signUpRegisterContext.signedInUser)
+    {
+      navigate(`/${_gameContext.companyParam}/signin`)
+    }
+    else
+    {
+      navigate(`/${_gameContext.companyParam}/profile/@${_signUpRegisterContext.signedInUser.user.Username}`)
+    }
   }
 
   return (
@@ -153,8 +165,9 @@ function WelcomeTemplate(props: IWelcomeTemplateProps) {
                     <div className='sign-in-button-wrap' style={{
                               backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("welcome-sign-in-button-background"))
                             }}>
-                            <div className='sign-in-button' onClick={() => navigate(`/${_gameContext.companyParam}/signin`)}>
-                                <span>{_signUpRegisterContext.signedInUser ? _signUpRegisterContext.signedInUser.user.Username : 'sign in'}</span>
+                            <div className='sign-in-button' onClick={signInButtonClick}>
+                               
+                                <span>{_signUpRegisterContext.signedInUser ? 'Account' : 'sign in'}</span>
                             </div>
                         </div>
                     </div>

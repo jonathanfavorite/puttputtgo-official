@@ -28,6 +28,7 @@ interface SignUpRegisterContextData {
     loadSignedInUser: () => void;
     signedInType: SignedInTypes;
     updateSignedInType: (signedInType: SignedInTypes) => void;
+    logout: () => void;
 }
 
 const SignUpRegisterContext = createContext<SignUpRegisterContextData>({} as SignUpRegisterContextData);
@@ -43,6 +44,11 @@ function SignUpRegisterContextProvider(props: any) {
     const updateSignedInUser = (signedInUser: SignedInUserModel) => {
         setSignedInUser((old) => signedInUser);
         localStorage.setItem('ppg-user', JSON.stringify(signedInUser));
+    }
+
+    const logout = () => {
+        setSignedInUser((old) => null);
+        localStorage.removeItem('ppg-user');
     }
 
     const updateSignedInType = (signedInType: SignedInTypes) => {
@@ -79,7 +85,8 @@ function SignUpRegisterContextProvider(props: any) {
         signedInUser,
         loadSignedInUser,
         signedInType,
-        updateSignedInType
+        updateSignedInType,
+        logout
     }
     return <SignUpRegisterContext.Provider value={value}>
         {props.children}

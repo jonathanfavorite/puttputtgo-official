@@ -960,6 +960,12 @@
       "assetID": "camera-filter-1-thumb",
       "assetName": "Camera Filter 2 Thumbnail",
       "assetLocation": "/customers/castle-golf/images/camera/filter-icons/overlay1.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "profile-background",
+      "assetName": "Profile Background",
+      "assetLocation": "/customers/castle-golf/images/profile/background.jpg"
     }
     
   ]

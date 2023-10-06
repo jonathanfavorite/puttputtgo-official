@@ -28,6 +28,7 @@ import WelcomeUser from './components/pages/sign-in-register-screen/welcome-user
 import { handleTouchMove, handleTouchStart } from './hooks/use-swipe/useSwipe';
 import ConfirmationModal from './components/molecules/confirmation-modal/ConfirmationModal';
 import StyleHelper from './helpers/StyleHelper';
+import ProfileScreen from './components/pages/profile-screen/ProfileScreen';
 
 const root = ReactDOM.createRoot(document.getElementById('root')as HTMLElement);
 
@@ -150,6 +151,8 @@ root.render(
                                     element={<ResultsPage />}/>
                                     <Route path="/:business_name/signin"
                                     element={<SignInRegisterScreen />}/>
+                                    <Route path="/:business_name/profile/:userkey"
+                                    element={<ProfileScreen />}/>
                                 <Route path="/:business_name/admin"
                                     element={
                                         <h1>Admin</h1>
