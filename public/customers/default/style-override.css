@@ -1,16 +1,20 @@
 /* Here is where you custom override based on the details of the customers */
-
+@font-face {
+    font-family: 'CustomFont';
+    src: url('font/RingBearer.TTF');
+}
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'CustomFont', sans-serif;
     background-color:#80503c !important;
 }
 input, button, select, textarea {
-    font-family: 'Arial', sans-serif;
+    font-family: 'CustomFont', sans-serif;
 }
 .app {
-    font-family: 'Arial', sans-serif;
+    font-family: 'CustomFont', sans-serif;
     background-color: #80503c !important;
 }
+
 
 
 

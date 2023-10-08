@@ -382,6 +382,8 @@ function GamePlayFooter() {
                         backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-next-hole-button')),
                         backgroundColor: nextHoleButtonBackgroundColor
                     }}><span>{nextHoleButtonText}</span></div>
+
+                    
                     <div className='smaller-options'>
                         <div className='option-indi' onClick={() => _gameContext.updateSnapPictureEnabled(true)} style={
                     {

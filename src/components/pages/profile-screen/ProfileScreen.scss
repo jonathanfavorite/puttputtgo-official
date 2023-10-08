@@ -65,7 +65,7 @@
         .profile-detail-structure-wrap {
             height:10vh;
             z-index: 999;
-          
+            
             position: relative;
             .profile-details-wrap {
                 position: absolute;
@@ -85,7 +85,7 @@
                     .profile-image {
                         flex:1;
                         display: flex;
-                        background:#336cf1;
+                        background:#333;
                         position: relative;
                         .upload-picture-button {
                             position: absolute;
@@ -126,6 +126,198 @@
                 }
             }
         }
+    }
+
+    .spacer {
+        height:8vh;
+    }
+    .reward-id-button-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:0 5vw;
+        background:#000;
+        margin-bottom:1vh;
+        .reward-id-button {
+            background: #336cf1;
+            color:#fff;
+            flex:1;
+            text-align: center;
+            padding:1vw 2vw;
+            text-shadow: 0px 0px 10px rgba($color: #000000, $alpha: 1.0);
+            flex: 1;
+            padding:5vw 5vw;
+            text-align: center;
+            background:#336cf1;
+            border-radius: 10px;
+        }
+    }
+
+    .content-main-container {
+      
+        flex:1;
+        width:100%;
+        height:100%;
+        position: relative;
+        .empty-top-space {
+           height:2vh;
+           position: relative;
+           z-index: 99;
+        }
+   
+        .top-trans {
+            height:5vh;
+            width:100%;
+            position: absolute;
+            z-index: 99;
+            left:0;
+            top:-1vh;
+            pointer-events: none;
+      
+            background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(0,0,0,1));
+            bottom:0;
+            width:100%;
+            
+            height:2vh;
+            position: absolute;
+        }
+
+        
+        .large-loader {
+            position: absolute;
+            left:0;
+            display: flex;
+            background-color: rgba($color: #000000, $alpha: 0.8);
+            z-index: 99;
+            justify-content: center;
+            width:100%;
+            height:100%;
+         
+            .spinner {
+                position: relative;
+                top:10vh;
+                svg {
+                    $size : 10vw;
+                    width:$size;
+                    height:$size;
+                    fill: white;
+                    scale:1;
+                    animation: spinner 2s linear infinite;
+                }
+            }
+            @keyframes spinner {
+                0% {
+                    transform: rotate(0deg);
+                }
+                50% {
+                    scale:1.2;
+                }
+                100% {
+                    scale:1;
+                    transform: rotate(360deg);
+                }
+
+            }
+        }
+
+        .content-main {
+            position: absolute;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;
+            box-sizing: border-box;
+            overflow-y: scroll;
+
+            .refresh-button {
+            
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                color:#999;
+                margin-bottom:2vh;
+            }
+   
+            .rewards-container-wrap {
+                padding:0 5vw;
+                .reward-indi {
+                    border-radius: 10px;
+            
+                    margin-bottom:5vh;
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                  
+                    .reward-trans {
+                        background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgba(0,0,0,1));
+                        height:5vh;
+                        bottom:-0.1vh;
+                        display: none;
+                        left:0;
+                        width:100%;
+                        position: absolute;
+                    }
+                    .reward-top {
+                        display: flex;
+                        
+                        height:15vh;
+                        background-size:cover;
+                        position: relative;
+                        .darker-overlay {
+                            position: absolute;
+                            left:0;
+                            top:0;
+                            width:100%;
+                            height:100%;
+                            background-color: rgba($color: #000000, $alpha: 0.2);
+                        }
+                        .reward-customer {
+                            
+                            justify-content: center;
+                            
+                            display: flex;
+                            position: relative;
+                            z-index: 2;
+                            
+                            padding-left:5vw;
+                            flex-direction: column;
+                            .customer-name {
+                                font-size:2rem;
+                            }
+                            .joined-on {
+                                font-size:0.8rem;
+                            }
+                        }
+                        .reward-points-container {
+                            display: flex;
+                            flex-direction: column;
+                            flex:1;
+                            position: relative;
+                            z-index: 2;
+                            justify-content: center;
+                           
+                            align-items: flex-end;
+                            padding-right:5vw;
+                           .reward-points {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                .points {
+                                    padding:1vw 5vw;
+                                    font-size:1.5rem;
+                                    background:rgba($color: #000000, $alpha: 0.4);
+                                    margin-bottom:0.5vh;
+                                }
+                           }
+                        }
+                    }
+                }
+            }
+            
+        }
+
+
     }
     
 }

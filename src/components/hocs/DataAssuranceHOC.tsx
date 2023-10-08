@@ -135,8 +135,9 @@ function DataAssuranceHOC(props : IProps) {
     return <GeneralLoadingTemplate><RealGameLoader /></GeneralLoadingTemplate>
   }
 
-  if(!_gameContext.preloadedLocalStorage) 
+  if(!_gameContext.preloadedLocalStorage && !_signUpRegisterContext.finishedLoadingUserFromLocalStorage) 
   {
+  
     return <GeneralLoadingTemplate><LocalStoragePreloader /></GeneralLoadingTemplate>
   }
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './ProfileScreen.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SignUpRegisterContext } from '../../../contexts/SignUpRegisterContext';
@@ -13,6 +13,7 @@ function ProfileScreen() {
     const {business_name} = useParams();
     const _signupContext = useContext(SignUpRegisterContext);
     const navigate = useNavigate();
+    const [completelyLoaded, setCompletelyLoaded] = React.useState(false);
 
     const handleBackButtonClick = () => {
         navigate(`/${business_name}`);
@@ -27,9 +28,21 @@ function ProfileScreen() {
         return `${month} ${year}`.toLowerCase();
     }
 
+    useEffect(() => {
+        if(_signupContext.finishedLoadingUserFromLocalStorage)
+        {
+      
+            setCompletelyLoaded(true);
+        }
+    }, [_signupContext.finishedLoadingUserFromLocalStorage]);
+
     const handleLogoutButton = () => {
         _signupContext.logout();
         navigate(`/${business_name}`);
+    }
+
+    const handleRefreshEvent = () => {
+        _signupContext.getRewards(_signupContext.signedInUser!.user.UserKey!);
     }
     
   return (
@@ -38,7 +51,7 @@ function ProfileScreen() {
     }>
 
         <div className='profile-screen-container'>
-
+        {!completelyLoaded ? "loading" : <>
         <div className='header' style={{
            
            backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("profile-background"))
@@ -68,20 +81,101 @@ function ProfileScreen() {
             <div className='profile-description-wrap'>
                 <div className='username'>{_signupContext.signedInUser?.user.Username}</div>
                 <div className='joined-at'>joined {formatDateYearAndMonth(_signupContext.signedInUser!.user.CreatedDate!.toString())}</div>
-                {/* <div className='rewards-points'>
-                    <div className='points'>go-points</div>
-                    <div className='points-count'>123</div>
-                </div>
-                <div className='games-played'>12 games played</div> */}
             </div>
         </div>
         </div>
-
-           
-
         <div className="trans-bottom"></div>
         </div>
 
+        <div className='spacer'>
+           
+        </div>
+
+        <div className='reward-id-button-wrap'>
+                <div className='reward-id-button'>reward id card</div>
+            </div>
+
+        <div className="content-main-container">
+            <div className='top-trans'></div>
+        <div className='large-loader' style={{
+            display: _signupContext.loadingRewards ? 'flex' : 'none'
+        }}
+        >
+            <div className='spinner'><Icons.Gallery_Spinner /></div>
+            </div>
+            <div className='content-main'>
+                <div className='empty-top-space'></div>
+                {/* {Array.from(Array(50).keys()).map((item, index) => {
+                    return <p>hey</p>
+                })} */}
+
+                <div className='refresh-button' onClick={handleRefreshEvent}>{_signupContext.loadingRewards ? 'loading' : 'refresh'}</div>
+                <div className='rewards-container-wrap'>
+
+                    {
+                        _signupContext.allUserRewards?.rewardsByCompany &&
+                        Object.entries(_signupContext.allUserRewards.rewardsByCompany).map(([companyKey, companyRewards], index) => {
+                            // return (
+                            //     <div key={index}>
+                            //         <h3>{companyKey}</h3>
+                            //         {companyRewards.rewards.map((reward, rIndex) => (
+                            //             <div key={rIndex}>
+                            //                 {reward.description} - {reward.amount}
+                            //             </div>
+                            //         ))}
+                            //     </div>
+                            // );
+                            return <>
+                            <div className='reward-indi'>
+                        <div className='reward-trans'></div>
+                        <div className='reward-top' style={{
+                        backgroundImage: StyleHelper.format_css_url_without_asset(`/global-assets/rewards/${companyKey}.jpg`)
+                    }}>
+                        <div className='darker-overlay'></div>
+                            <div className='reward-customer'>
+                                <div className='customer-name'>{companyKey}</div>
+                                <div className='joined-on'>since {formatDateYearAndMonth(_signupContext.signedInUser!.user.CreatedDate!.toString())}</div>
+                            </div>
+                            <div className='reward-points-container'>
+                                <div className='reward-points'>
+                                    <div className='points'>{companyRewards.availableBalance}</div>
+                                    <div className='points-label'>points</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='reward-bottom'></div>
+                    </div>
+                            </>
+                        })
+                    }
+{/* 
+                    <div className='reward-indi'>
+                        <div className='reward-trans'></div>
+                        <div className='reward-top' style={{
+                        backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("welcome-background"))
+                    }}>
+                        <div className='darker-overlay'></div>
+                            <div className='reward-customer'>
+                                <div className='customer-name'>castle golf</div>
+                                <div className='joined-on'>since {formatDateYearAndMonth(_signupContext.signedInUser!.user.CreatedDate!.toString())}</div>
+                            </div>
+                            <div className='reward-points-container'>
+                                <div className='reward-points'>
+                                    <div className='points'>100</div>
+                                    <div className='points-label'>points</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='reward-bottom'></div>
+                    </div> */}
+
+
+
+                </div>
+
+            </div>
+        </div>
+        </>}
         </div>
       
     </DataAssuranceHOC>
