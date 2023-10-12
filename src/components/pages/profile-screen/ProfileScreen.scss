@@ -321,3 +321,64 @@
     }
     
 }
+
+.profile-qr-scan-wrap {
+    position: fixed;
+    left:0;
+    top:0;
+    width: 100%;
+    height:100%;
+    background: rgba($color: #000000, $alpha: 0.9);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .profile-qr-scan-content {
+        transition: all 0.2s ease-in-out;
+        animation: BounceIn 0.5s ease-in-out;
+        .profile-qr-scan-box {
+        box-sizing: border-box;
+            padding:0 5vw;
+            svg {
+                box-sizing: border-box;
+                background:#fff;
+                padding:5vw;
+                width:100%;
+                
+            }
+        }
+        .qr-scan-text {
+            padding:5vw;
+            text-align: center;
+        }
+        .qr-scan-close {
+            .close-button {
+                background: #336cf1;
+                color:#fff;
+                flex:1;
+                text-align: center;
+                padding:1vw 2vw;
+                text-shadow: 0px 0px 10px rgba($color: #000000, $alpha: 1.0);
+                flex: 1;
+                padding:5vw 5vw;
+                text-align: center;
+                background:#336cf1;
+                border-radius: 10px;
+            }
+        }
+    }
+    @keyframes BounceIn {
+        0% {
+            transform: scale(0.1);
+            opacity: 0;
+        }
+        60% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+}

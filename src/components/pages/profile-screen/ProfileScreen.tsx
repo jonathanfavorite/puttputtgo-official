@@ -7,6 +7,7 @@ import DataAssuranceHOC from '../../hocs/DataAssuranceHOC';
 import StyleHelper from '../../../helpers/StyleHelper';
 import { Icons } from '../../atoms/Icons';
 import DateHelper from '../../../helpers/DateHelper';
+import QRCode from 'react-qr-code';
 
 function ProfileScreen() {
     const _gameContext = useContext(GameContext);
@@ -14,6 +15,7 @@ function ProfileScreen() {
     const _signupContext = useContext(SignUpRegisterContext);
     const navigate = useNavigate();
     const [completelyLoaded, setCompletelyLoaded] = React.useState(false);
+    const [showQRModal, setShowQRModal] = React.useState(false);
 
     const handleBackButtonClick = () => {
         navigate(`/${business_name}`);
@@ -44,6 +46,18 @@ function ProfileScreen() {
     const handleRefreshEvent = () => {
         _signupContext.getRewards(_signupContext.signedInUser!.user.UserKey!);
     }
+
+    const getRewardQRValue = () => {
+        let payload = {
+            name: _signupContext.signedInUser!.user.Name,
+            userKey: _signupContext.signedInUser!.user.UserKey,
+        }
+        return JSON.stringify(payload);
+    }
+
+    const handleCloseQRModal = () => {
+        setShowQRModal(false);
+    }
     
   return (
     <DataAssuranceHOC companyParam={
@@ -56,6 +70,19 @@ function ProfileScreen() {
            
            backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID("profile-background"))
         }}>
+
+       {showQRModal && <div className='profile-qr-scan-wrap'>
+            <div className='profile-qr-scan-content'>
+                <div className='profile-qr-scan-box'>
+                <QRCode value={getRewardQRValue()} />
+                </div>
+                <div className='qr-scan-text'>let {_gameContext.companyData.customerName} scan your id here</div>
+                <div className='qr-scan-close'>
+                    <div className='close-button' onClick={handleCloseQRModal}>Close</div>
+                </div>
+            </div>
+        </div>}
+
         <div className='_top-bar'>
             <div className='_left' onClick={handleBackButtonClick}>
                 <div className='back'><Icons.Back /></div>
@@ -92,7 +119,7 @@ function ProfileScreen() {
         </div>
 
         <div className='reward-id-button-wrap'>
-                <div className='reward-id-button'>reward id card</div>
+                <div className='reward-id-button' onClick={() => setShowQRModal(true)}>reward id card</div>
             </div>
 
         <div className="content-main-container">
