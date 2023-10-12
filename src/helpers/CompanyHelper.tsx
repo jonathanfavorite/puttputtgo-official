@@ -4,7 +4,8 @@ export default class CompanyHelper {
         "castle-golf",
         "bonanza-golf",
         "smugglers-cove",
-        "jungle-golf"
+        "jungle-golf",
+        "pink-paradise",
     ];
     static DoesCompanyExist(companyName: string): boolean {
         return this.ListOfBusinesses.includes(companyName);
