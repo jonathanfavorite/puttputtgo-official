@@ -85,8 +85,13 @@
                     .profile-image {
                         flex:1;
                         display: flex;
+                        overflow: hidden;
                         background:#333;
                         position: relative;
+                        input {
+                            display: none;
+
+                        }
                         .upload-picture-button {
                             position: absolute;
                             top:0;

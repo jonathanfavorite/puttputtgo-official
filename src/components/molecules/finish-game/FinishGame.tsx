@@ -31,7 +31,8 @@ function FinishGame() {
         let finalPayload = {
             CustomerKey: _gameContext.companyData.customerID,
             GameID: _gameContext.gameID,
-            GameData: JSON.stringify(savePayLoad)
+            GameData: JSON.stringify(savePayLoad),
+            PlayerTotal: _playerContext.getAllPlayers().length
         }
 
         let snapshotPlayers = _scoreContext.getAllPlayersScores().map((leaderboard) => {

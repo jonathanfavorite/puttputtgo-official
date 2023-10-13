@@ -1,0 +1,168 @@
+.profile-picture-modal-wrap {
+    position: fixed;
+    right:0%;
+    top:0;
+    width:100%;
+    height:100%;
+    background: rgba($color: #000000, $alpha: 1.0);
+    z-index: 1000;
+
+    overflow: hidden;
+    animation: SlideIn 0.5s ease-in-out forwards;
+   
+    .profile-picture-modal {
+        flex:1;
+        width:100%;
+        display: flex;
+        height:100%;
+        flex-direction: column;
+      
+        color:#fff;
+        background-color: #000;
+
+        .editor-wrap {
+            background-color: #222;
+          
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            display: flex;
+            
+           
+       
+        }
+
+        .editor-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          
+            width:100%;
+           
+            padding-top:3vh;
+            .zoomer {
+                margin-top:2vh;
+                input {
+                    width:100%;
+                    box-sizing: border-box;
+                    scale: 2.5;
+                }
+            }
+        }
+
+        .preview-wrap {
+
+            flex:1;
+         
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .preview-text {
+                display:none;
+            }
+            .preview-profile {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .profile-picture {
+                    height:10vh;
+                    width:10vh;
+                    img {
+                        width:100%;
+                        height:100%;
+                    }
+                }
+                .profile-name {
+                    color: #336cf1;
+                    padding-left:3vw;
+                    font-size:2rem;
+                }
+            }
+        }
+        .buttons-wrap {
+         
+        
+          
+            display: flex;
+   
+            align-items: flex-end;
+            padding-bottom:5vw;
+            padding-left:3vw;
+            .button-indi {
+                width:50%;
+                box-sizing: border-box;
+                padding-right:3vw;
+                .button {
+                    padding:3vw;
+                    background:#fff;
+                    color:#000;
+                    border-radius: 10px;
+                    font-size:1.3rem;
+                    text-align: center;
+                }
+                
+            }
+            .save {
+                .button {
+                    background:#336cf1;
+                    color:#fff;
+                }
+            }
+        }
+
+        .loading-wrap {
+            flex:1;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            .loading {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                box-sizing: border-box;
+                padding:5vw;
+                .loading-spinner {
+                    $size : 20vw;
+                    width:$size;
+                    svg {
+                        fill: #fff;
+                        width:$size;
+                        height:$size;
+                        animation: Spinner 2s linear infinite;
+                    }
+                   
+                }
+                @keyframes Spinner {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+
+                .loading-text {
+                    font-size:1.8rem;
+                
+                }
+                .loading-subtext {
+                    font-size:1.1rem;
+                   
+                }
+            }
+        }
+    }
+    @keyframes SlideIn {
+        0% {
+            right: -100%;
+        }
+        100% {
+            right: 0;
+        }
+    }
+}

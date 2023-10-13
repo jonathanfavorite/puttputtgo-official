@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { Fragment, useContext, useEffect } from 'react'
 import './ProfileScreen.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SignUpRegisterContext } from '../../../contexts/SignUpRegisterContext';
@@ -8,6 +8,7 @@ import StyleHelper from '../../../helpers/StyleHelper';
 import { Icons } from '../../atoms/Icons';
 import DateHelper from '../../../helpers/DateHelper';
 import QRCode from 'react-qr-code';
+import ProfilePictureModal from '../../molecules/profile-picture-modal/ProfilePictureModal';
 
 function ProfileScreen() {
     const _gameContext = useContext(GameContext);
@@ -16,6 +17,9 @@ function ProfileScreen() {
     const navigate = useNavigate();
     const [completelyLoaded, setCompletelyLoaded] = React.useState(false);
     const [showQRModal, setShowQRModal] = React.useState(false);
+    const [profileImageFile, setProfileImageFile] = React.useState<File | null>(null);
+    const fileUploadRef = React.useRef<HTMLInputElement>(null);
+    const [showProfilePictureModal, setShowProfilePictureModal] = React.useState(false);
 
     const handleBackButtonClick = () => {
         navigate(`/${business_name}`);
@@ -59,10 +63,31 @@ function ProfileScreen() {
         setShowQRModal(false);
     }
     
+    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files && e.target.files.length > 0)
+        {
+            setShowProfilePictureModal(true);
+            setProfileImageFile(e.target.files[0]);
+        }
+    }
+
+    const triggerFileUpload = () => {
+        if(fileUploadRef.current)
+        {
+            fileUploadRef.current.click();
+        }
+    }
+
+    const handleUploadPictureClose = () => {
+        setShowProfilePictureModal(false);
+        setProfileImageFile(null);
+    }
+
   return (
     <DataAssuranceHOC companyParam={
         business_name !
     }>
+{showProfilePictureModal && <ProfilePictureModal onClose={handleUploadPictureClose} pictureData={profileImageFile} />}
 
         <div className='profile-screen-container'>
         {!completelyLoaded ? "loading" : <>
@@ -83,6 +108,8 @@ function ProfileScreen() {
             </div>
         </div>}
 
+        
+
         <div className='_top-bar'>
             <div className='_left' onClick={handleBackButtonClick}>
                 <div className='back'><Icons.Back /></div>
@@ -102,7 +129,8 @@ function ProfileScreen() {
         <div className='profile-details-wrap'>
             <div className='profile-image-wrap'>
                 <div className='profile-image'>
-                    <div className='upload-picture-button'>upload<br />profile picture</div>
+                    <div className='upload-picture-button' onClick={triggerFileUpload}>upload<br />profile picture</div>
+                    <input type='file' ref={fileUploadRef} onChange={handleFileUpload} />
                 </div>
             </div>
             <div className='profile-description-wrap'>
@@ -152,7 +180,7 @@ function ProfileScreen() {
                             //         ))}
                             //     </div>
                             // );
-                            return <>
+                            return <Fragment key={index}>
                             <div className='reward-indi'>
                         <div className='reward-trans'></div>
                         <div className='reward-top' style={{
@@ -172,7 +200,7 @@ function ProfileScreen() {
                         </div>
                         <div className='reward-bottom'></div>
                     </div>
-                            </>
+                    </Fragment>
                         })
                     }
 {/* 
