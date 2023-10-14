@@ -165,13 +165,26 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    background-size:100% 100%;
+
+                    .ball-profile-container {
+                        margin-left: 20px;
+                        margin-right: 8vw;
+                        aspect-ratio: 1/1;
+                        height: 5vh;
+                        position: relative;
+                        background-size:100% 100%;
+                        overflow: hidden;
+                    }
+
                     .ball-color {
                         margin-left: 20px;
                         margin-right: 8vw;
                         aspect-ratio: 1/1;
                         height: 5vh;
+                        position: relative;
                         //background: temp-url('player-ball-frame.png');
-                        background-color: black;
+                      
                         background-size: 100% 100%;
                     }
                 }

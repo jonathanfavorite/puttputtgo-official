@@ -24,6 +24,7 @@ function PlayersContainer() {
                 let active = player.id === _playerContext.getCurrentPlayer().id ? 'active-player' : '';
                 let isLast = index === _playerContext.getAllPlayers().length - 1 ? true : false;
                 let isFirst = index === 0 ? true : false;
+                console.log(player);
                 return (
                     <div className={
                             `player ${active} onfire`
@@ -38,6 +39,29 @@ function PlayersContainer() {
                     }>
                          {active == 'active-player' && <OnFireEffect color={player.color} isFirst={isFirst} isLast={isLast} />}
                        
+                        {player.profileImage ?
+                        <div className='ball-color-container'>
+                            <div className='ball-profile-container'
+                                style={{
+
+                                    
+                                    backgroundImage: StyleHelper.format_css_url_without_asset(player.profileImage)
+                                
+                                }
+                            }>
+
+                                <div className='ball-profile-frame'
+                                
+                                style={
+                                    {
+                                        backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame')),
+                                       
+                                    }
+                                }></div>
+
+                            </div>
+                        </div>
+                        :
                         <div className='ball-color-container'>
                             <div className='ball-color'
                                 style={
@@ -47,6 +71,9 @@ function PlayersContainer() {
                                     }
                             }></div>
                         </div>
+                    }
+
+
                         <div className='player-details'
                             style={
                                 {

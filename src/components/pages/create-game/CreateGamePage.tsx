@@ -47,6 +47,7 @@ function CreateGamePage() {
           id: 1,
           userKey: user.UserKey,
           name: user.Username,
+          profileImage: `${process.env.REACT_APP_STORAGE_ACCOUNT_URL}/profile-pics/${user.ProfileImage}`,
           color: {
               r: 255,
               g: 255,
@@ -190,6 +191,27 @@ function CreateGamePage() {
                 return (
                   <div className="player" key={index}>
                     <div className="player-color">
+                     
+                     
+                     {player.profileImage ?  <div
+                        className="player-circle-profile">
+                        <div className="profile-image" style={{
+                          backgroundImage: `url(${player.profileImage})`
+                        }}></div>
+
+                        <div className="profile-overlay" style={{
+                          backgroundImage: StyleHelper.format_css_url(
+                            _gameContext.getAssetByID(
+                              "gameplay-player-ball-frame"
+                            )
+                          ),
+                        }}></div>
+                          
+                        
+                      </div> 
+                      
+                      : 
+                      
                       <div
                         className="player-circle"
                         style={{
@@ -200,7 +222,10 @@ function CreateGamePage() {
                           ),
                           backgroundColor: formatRGBToCSS(player.color!, 1),
                         }}
-                      ></div>
+                      >
+                      </div>}
+                     
+
                     </div>
                     <div className="player-name">{player.name}</div>
                     <div className="delete-wrap">

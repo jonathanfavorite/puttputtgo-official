@@ -6,6 +6,7 @@ interface UserModel {
     Phone: string,
     Email: string,
     CreatedDate: Date
+    ProfileImage?: string
 
 }
 

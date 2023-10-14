@@ -72,6 +72,7 @@ function ProfileScreen() {
     }
 
     const triggerFileUpload = () => {
+      
         if(fileUploadRef.current)
         {
             fileUploadRef.current.click();
@@ -82,6 +83,16 @@ function ProfileScreen() {
         setShowProfilePictureModal(false);
         setProfileImageFile(null);
     }
+
+
+
+    // const assetKey = `${_signupContext.signedInUser?.user.UserKey}-profile-pic`;
+
+    // useEffect(() => {
+    //     setTrueProfilePicture(getCachedProfileImage());
+    // }, [_gameContext.inMemoryAssets[assetKey]]);
+
+    // const [trueProfilePicture, setTrueProfilePicture] = React.useState<string | null>(null);
 
   return (
     <DataAssuranceHOC companyParam={
@@ -128,8 +139,20 @@ function ProfileScreen() {
         <div className='profile-detail-structure-wrap'>
         <div className='profile-details-wrap'>
             <div className='profile-image-wrap'>
-                <div className='profile-image'>
-                    <div className='upload-picture-button' onClick={triggerFileUpload}>upload<br />profile picture</div>
+                <div className='profile-image'  onClick={triggerFileUpload} >
+
+                    {_signupContext.signedInUser?.user.ProfileImage ?
+                    <div className='real-profile-picture'>
+                        <img src={
+                            _gameContext.getInMemoryAssetById(`${_signupContext.signedInUser.user.UserKey}-profile-pic`,
+                         `${process.env.REACT_APP_STORAGE_ACCOUNT_URL}/profile-pics/${_signupContext.signedInUser.user.ProfileImage}`)
+                         } />
+                    </div> : 
+                    <div className='upload-picture-button'>
+                        upload<br />profile picture
+                    </div>}
+
+
                     <input type='file' ref={fileUploadRef} onChange={handleFileUpload} />
                 </div>
             </div>

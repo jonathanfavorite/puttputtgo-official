@@ -35,6 +35,7 @@ interface SignUpRegisterContextData {
     loadingRewards: boolean;
     allUserRewards?: AllUserRewards | null;
     getRewards: (userKey: string) => void;
+    updateUserProfilePicture: (profilePicture: string) => void;
 
 }
 
@@ -84,6 +85,7 @@ function SignUpRegisterContextProvider(props: any) {
             let userObj = JSON.parse(user);
             console.log(userObj);
             setSignedInUser((old) => userObj);
+
             if(userObj.user.UserKey != null)
             {
                 getRewards(userObj.user.UserKey);
@@ -119,6 +121,16 @@ function SignUpRegisterContextProvider(props: any) {
             setLoadingRewards(false);
         });
     }
+
+    const updateUserProfilePicture = (profilePicture: string) => {
+        let oldUser = signedInUser;
+        if(oldUser)
+        {
+            oldUser.user.ProfileImage = profilePicture;
+            updateSignedInUser(oldUser);
+        }
+    }
+
     let value : SignUpRegisterContextData = {
         currentScreen,
         updateCurrentScreen,
@@ -135,7 +147,8 @@ function SignUpRegisterContextProvider(props: any) {
         finishedLoadingUserFromLocalStorage,
         loadingRewards,
         allUserRewards,
-        getRewards
+        getRewards,
+        updateUserProfilePicture
     }
     return <SignUpRegisterContext.Provider value={value}>
         {props.children}

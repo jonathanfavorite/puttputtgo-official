@@ -83,8 +83,10 @@ interface GameContextProps {
     updatePicture: (picture : SnapModel) => void;
     inMemoryAssets: { [key: string]: string };
     setAllInMemoryAssetItems: (items: { [key: string]: string }) => void;
+    setInMemoryAssetItem: (key: string, value: string) => void;
     globalMessage: string;
     updateGlobalMessage: (message: string) => void;
+    getInMemoryAssetById: (key: string, fallback: string) => string;
 
 }
 
@@ -139,6 +141,7 @@ function GameContextProvider(props: any) {
     const [inMemoryAssets, setInMemoryAssets] = useState<{ [key: string]: string }>({});
 
     const [globalMessage, setGlobalMessage] = useState < string > ("");
+    
 
     const addPicture = (picture : SnapModel) => {
         setPictures((old) => [
@@ -153,12 +156,15 @@ function GameContextProvider(props: any) {
 
     const setInMemoryAssetItem = (key: string, value: string) => {
         setInMemoryAssets((old) => {
-            return {
+            const updatedAssets = {
                 ...old,
                 [key]: value
-            }
+            };
+            console.log("Updated assets:", updatedAssets);
+            return updatedAssets;
         });
     }
+    
 
     const setAllInMemoryAssetItems = (items: { [key: string]: string }) => {
        // clear the inMemoryAssets and replace with the new items
@@ -449,16 +455,23 @@ function GameContextProvider(props: any) {
         ]);
     };
 
+    const getInMemoryAssetById = (key: string, fallback: string) => {
+        return inMemoryAssets[key] || fallback;
+    }
+
     const getAssetByID = (name : string) => {
         if (!companyData.assets) {
             return null;
         }
         
         let asset = companyData.assets.find((asset) => asset.assetID === name);
+       // console.log("Asset from companyData:", asset);
 
         if (asset && inMemoryAssets[name]) {
+
             asset = { ...asset, assetLocation: inMemoryAssets[name] };
         }
+       // console.log("Final asset returned:", asset);
         
         return asset || null;
     }
@@ -663,6 +676,8 @@ function GameContextProvider(props: any) {
         setAllInMemoryAssetItems,
         globalMessage,
         updateGlobalMessage,
+        setInMemoryAssetItem,
+        getInMemoryAssetById
     };
 
     return(< GameContext.Provider value = {

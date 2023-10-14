@@ -120,6 +120,7 @@ function CodeWaiter() {
                         Username: response.user.username,
                         Email: response.user.email,
                         Phone: response.user.phone,
+                        ProfileImage: response.user.profileImage,
                         CreatedDate: response.user.createdDate
                     }
 
@@ -133,10 +134,8 @@ function CodeWaiter() {
                     _signupContext.updateSignedInUser(signedInUserModel);
 
                     console.log("USER FOUND", user);
-                }
-               
-                console.log("USER NOT FOUND", response.user);
-                loginSuccessFull();
+                    loginSuccessFull(user.Username);
+                } 
             }
             else if(response.responseType == LoginCodeResponseTypes.InvalidCode)
             {
@@ -194,7 +193,7 @@ function CodeWaiter() {
             }
     }
 
-    const loginSuccessFull = () => {
+    const loginSuccessFull = (username: string) => {
         setHideSpinner(true);
         setLoggingInText("success!");
         setTimeout(() => {
@@ -205,7 +204,7 @@ function CodeWaiter() {
             else
             {
                 navigate(`/${_gameContext.companyData.customerID}/`);
-                _gameContext.updateGlobalMessage("Welcome back, " + _signupContext.signedInUser?.user.Username + "!");
+                _gameContext.updateGlobalMessage("Welcome back, " + username + "!");
                 _signupContext.updateCurrentScreen(SignInRegisterScreenPages.SwitchBoard);
             }
         }, 500);
