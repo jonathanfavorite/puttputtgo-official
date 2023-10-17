@@ -966,6 +966,12 @@
       "assetID": "profile-background",
       "assetName": "Profile Background",
       "assetLocation": "/customers/castle-golf/images/profile/background.jpg"
+    },
+    {
+      "assetType": "image",
+      "assetID": "avatar-sprites",
+      "assetName": "Avatar Sprites",
+      "assetLocation": "/customers/castle-golf/images/create-game/sprites.png"
     }
     
   ]

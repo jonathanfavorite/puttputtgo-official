@@ -82,7 +82,7 @@ function DataAssuranceHOC(props : IProps) {
           }
 
           if (!_signUpRegisterContext.signedInUser) {
-            _signUpRegisterContext.loadSignedInUser();
+            //_signUpRegisterContext.loadSignedInUser();
         }
         }
     }, [_gameContext.companyParam]);

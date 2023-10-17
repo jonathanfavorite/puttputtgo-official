@@ -17,6 +17,7 @@
     .header {
         min-height: 10vh;
     }
+   
     .body {
         flex: 1;
         display: flex;
@@ -43,6 +44,8 @@
                     padding: 0;
                 }
             }
+            
+            
             .add-player-button {
                 aspect-ratio: 25/4;
                 width: 80vw;
@@ -62,17 +65,42 @@
             //max-height: calc(100vh - 30vh); // Limit the maximum height
 
             overflow-y: scroll; // Add this line to make the area scrollable
-           
+           position: relative;
+           flex:1;
 
 
             .player-list {
+                position: absolute;
+                left:0;
+                top:0;
+                width:100%;
+                height:100%;
+
                 .player {
                     flex: 1;
                     display: flex;
                     align-items: center;
-                    padding: 20px 20px;
+                    padding: 10px 20px;
                     box-sizing: border-box;
                     width: 100%;
+
+                    .player-avatar-wrap {
+                        width:20vw;
+                        height:20vw;
+                        background:red;
+                        background-size:400% 200%;
+                        background-repeat: no-repeat;
+                        position: relative;
+                        .avatar-frame {
+                            position: absolute;
+                            left:0;
+                            top:0;
+                            width:100%;
+                            height:100%;
+                            background-size:100% 100%;
+                        }
+                    }
+
                     .player-color {
                         width: 13vw;
                         vertical-align: middle;
@@ -198,6 +226,199 @@
                 font-size: 1.5rem;
                 color:#ffd942;
             }
+            .choices-wrap {
+                display: flex;
+          
+                width:100%;
+                box-sizing: border-box;
+                padding-right:5vw;
+                align-items: center;
+                justify-content: center;
+                .choose-color-wrap {
+                    flex:1;
+                    display: flex;
+                  
+                 
+                    align-items: center;
+                    .choose-color-text {
+                        padding-right:2vw;
+                        font-size:1.3rem;
+                    }
+                    .choose-color-dropdown {
+                        width:15vw;
+                  
+                        
+                        position: relative;
+                        .selected-color-wrap {
+                            display: flex;
+                            
+                            background:#333;
+                            .selected-color {
+                                height:4vh;
+                                box-sizing: border-box;
+                                flex:1;
+                                position: relative;
+                                .selected-frame {
+                                    position: absolute;
+                                    left:0;
+                                    top:0;
+                                    width:100%;
+                                    height:100%;
+                                   
+                                    box-sizing: border-box;
+                                    background-size:100% 100%;
+                                }
+                            }
+                            .all-colors-dropdown-wrap {
+                                position: absolute;
+                                top:4vh;
+                                left:0;
+                                background:#111;
+                                width:25vw;
+                                height:27vh;
+                                padding:0.2vh;
+                                padding-top:1vh;
+                                z-index: 999;
+                                display: flex;
+                                // here
+                              
+                               
+                                flex-direction: column;
+                                .all-colors-inside-wrap {
+                                    padding:1vh;
+                                    flex:1;
+                                    overflow-y:scroll;
+                                  
+                                }
+                                .all-color-indi {
+                                    height:4vh;
+                                    margin-top:1vh;
+                                    &:first-child {
+                                        margin-top:-1vh;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            .gender-wrap {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top:20px;
+               .gender-text {
+                padding-right:2vw;
+                font-size:1.3rem;
+               }
+               .gender-switch {
+                display: flex;
+                width:100%;
+                .switch {
+                    flex:1;
+                    padding:2vw 2vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background:rgba($color: #000000, $alpha: 0.3);
+                    &.selected {
+                        background:rgba($color: #000000, $alpha: 1);
+                    }
+                    &:first-child{
+                        border-top-left-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                    }
+                    &:last-child {
+                        border-top-right-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                    }
+                }
+               }
+
+            }
+
+
+            .avatar-wrap {
+                height:25vh;
+                position: relative;
+                overflow: hidden;
+                margin-top:20px;
+                .avatar-container {
+                    height:100%;
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    width:100%;
+                    overflow-y: scroll;
+                    box-sizing: border-box;
+                    .avatar-indi {
+                        display: inline-block;
+                        width: 46%;
+                        aspect-ratio: 1/1;
+                        margin:2%;
+                        background-size:400%;
+                        
+                        position: relative;
+                        &.taken {
+                           
+                        }
+                        .avatar-frame {
+                            position: absolute;
+                            left:0;
+                            top:0;
+                            width:100%;
+                            height:100%;
+                            background-size:100% 100%;
+                        }
+                        .avatar-selected {
+                            position: absolute;
+                            left:0;
+                            top:0;
+                            width:100%;
+                            height:100%;
+                            background-size:100% 100%;
+                            border:10px solid rgba(42, 216, 42, $alpha: 0.5);
+                            box-sizing: border-box;
+                            .check {
+                                position: absolute;
+                                width:10vw;
+                                height:10vw;
+                                z-index: 99;
+                                top:0;
+                                right:0;
+                                svg {
+                                    width:100%;
+                                    height:100%;
+                                    fill: rgb(42, 216, 42);
+                                }
+                            }
+                        }
+                        .avatar-taken {
+                            position: absolute;
+                            left:0;
+                            top:0;
+                            width:100%;
+                            height:100%;
+                            background-size:100% 100%;
+                            box-sizing: border-box;
+                            background: rgba($color: #000000, $alpha: 0.5);
+                            display: flex;
+                            .taken {
+                           
+                                flex:1;
+                                display: flex;
+                                color:#fff;
+                                justify-content: center;
+                                opacity: 0.6;
+                                align-items: center;
+                            }
+                        }
+                    }
+                }
+            }
+
+
             .name-input {
                 margin-top:20px;
                 margin-bottom:20px;

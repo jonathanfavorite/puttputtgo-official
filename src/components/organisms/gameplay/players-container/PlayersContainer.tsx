@@ -24,6 +24,7 @@ function PlayersContainer() {
                 let active = player.id === _playerContext.getCurrentPlayer().id ? 'active-player' : '';
                 let isLast = index === _playerContext.getAllPlayers().length - 1 ? true : false;
                 let isFirst = index === 0 ? true : false;
+                const backgroundPosition = StyleHelper.getProfilePictureAtIndex(player.avatarIndex!);
                 console.log(player);
                 return (
                     <div className={
@@ -39,7 +40,7 @@ function PlayersContainer() {
                     }>
                          {active == 'active-player' && <OnFireEffect color={player.color} isFirst={isFirst} isLast={isLast} />}
                        
-                        {player.profileImage ?
+                        {/* {player.profileImage ?
                         <div className='ball-color-container'>
                             <div className='ball-profile-container'
                                 style={{
@@ -71,7 +72,21 @@ function PlayersContainer() {
                                     }
                             }></div>
                         </div>
-                    }
+                    } */}
+
+                        
+                        <div className='avatar-wrap'>
+                            <div className='avatar' style={{
+                                backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('avatar-sprites')),
+                                backgroundPosition: backgroundPosition,
+                                backgroundColor: formatRGBToCSS(player.color!, 1)
+                            }}>
+                                <div className='avatar-frame' style={{
+                                backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame'))
+                            }}></div>
+                            </div>
+                            
+                        </div>
 
 
                         <div className='player-details'

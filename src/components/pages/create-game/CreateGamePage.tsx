@@ -27,6 +27,14 @@ function CreateGamePage() {
   const footerRef = useRef<HTMLDivElement>(null);
   const scrollableRef = useRef<HTMLDivElement>(null);
 
+  const [alreadyChosenColors, setAlreadyChosenColors] = useState<RGBModel[]>([]);
+  const [alreadyChosenAvatarIndexes, setAlreadyChosenAvatarIndexes] = useState<number[]>([]);
+
+  const handleOnPlayerCreate = (player: any) => {
+    setAlreadyChosenColors(old => [...old, player.color]);
+    setAlreadyChosenAvatarIndexes(old => [...old, player.avatarIndex]);
+  };
+
   const [showStartGameConfirmationModal, setShowStartGameConfirmationModal] = useState<boolean>(false);
   const [showAddPlayerConfirmationModal, setShowAddPlayerConfirmationModal] = useState<boolean>(false);
 
@@ -86,6 +94,11 @@ function CreateGamePage() {
     updateScrollableHeight(); // Update on component mount
     window.addEventListener("resize", updateScrollableHeight); // Update on window resize
 
+    _playerContext.getAllPlayers().forEach((player) => {
+      setAlreadyChosenColors(old => [...old, player.color!]);
+      setAlreadyChosenAvatarIndexes(old => [...old, player.avatarIndex!]);
+    });
+
     return () => {
       window.removeEventListener("resize", updateScrollableHeight); // Cleanup on component unmount
     };
@@ -129,6 +142,18 @@ function CreateGamePage() {
     setShowAddPlayerConfirmationModal(false);
     setShowCreateModal(true);
   }
+
+  const handleRemovePlayerClicked = (playerID: number) => {
+   
+    //remove player from already chosen colors
+    const player = _playerContext.getAllPlayers().find(player => player.id === playerID);
+    if(player)
+    {
+      setAlreadyChosenColors(old => old.filter(color => color.r !== player.color?.r && color.g !== player.color?.g && color.b !== player.color?.b));
+      setAlreadyChosenAvatarIndexes(old => old.filter(index => index !== player.avatarIndex));
+    }
+    _playerContext.removePlayer(playerID);
+  };
 
 
 
@@ -188,9 +213,11 @@ function CreateGamePage() {
             
             <div className="player-list">
               {_playerContext.getAllPlayers().map((player, index) => {
+                const backgroundPosition = StyleHelper.getProfilePictureAtIndex(player.avatarIndex!);
                 return (
                   <div className="player" key={index}>
-                    <div className="player-color">
+                   
+                    {/* <div className="player-color">
                      
                      
                      {player.profileImage ?  <div
@@ -223,14 +250,26 @@ function CreateGamePage() {
                           backgroundColor: formatRGBToCSS(player.color!, 1),
                         }}
                       >
-                      </div>}
+                      </div>} 
                      
 
+                    </div>*/}
+
+                    <div className="player-avatar-wrap" style={{
+                      backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('avatar-sprites')),
+                      backgroundPosition: backgroundPosition,
+                      backgroundColor: formatRGBToCSS(player.color!, 1)
+                    }}>
+                      <div className="avatar-frame" style={{
+                        backgroundImage: StyleHelper.format_css_url(_gameContext.getAssetByID('gameplay-player-ball-frame'))
+                      
+                      }}></div>
                     </div>
+
                     <div className="player-name">{player.name}</div>
                     <div className="delete-wrap">
                       <div
-                        onClick={() => _playerContext.removePlayer(player.id)}
+                        onClick={() => handleRemovePlayerClicked(player.id)}
                         className="delete"
                         style={{
                           backgroundImage: StyleHelper.format_css_url(
@@ -262,7 +301,11 @@ function CreateGamePage() {
       </div>
 
       {showCreateModal && (
-        <CreatePlayerModal closeModal={handleHideCreateModal} />
+        <CreatePlayerModal
+        chosenColors={alreadyChosenColors}
+        chosenAvatarIndexs={alreadyChosenAvatarIndexes}
+        onCreatedPlayer={handleOnPlayerCreate}
+        closeModal={handleHideCreateModal} />
       )}
     </DataAssuranceHOC>
   );

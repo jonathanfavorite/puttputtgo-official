@@ -5,5 +5,6 @@ export default interface PlayerModel {
     name: string;
     userKey?: string;
     profileImage?: string;
+    avatarIndex?: number;
     color?: RGBModel;
 }
