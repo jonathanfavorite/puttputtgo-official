@@ -101,7 +101,6 @@ exports.handler = async function(event, context) {
       };
     }
   }
-  }
 };
 
 const fetchGameData = async (gameID) => {
