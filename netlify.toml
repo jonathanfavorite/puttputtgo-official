@@ -12,7 +12,60 @@
 
 
 [[redirects]]
-  from = "/:customer/*"
+  from = "/*"
   to = "/.netlify/functions/meta-server-function"
   status = 200
   force = true
+  conditions = {UserAgent = [
+    # Common Search Engine Crawlers
+    "googlebot",  # Googlebot
+    "bingbot",    # Bingbot
+    "duckduckbot", # DuckDuckGo
+    "yandexbot",  # Yandex
+    "baiduspider", # Baidu
+
+    # Social Media Crawlers
+    "twitterbot",  # Twitter
+    "facebookexternalhit", # Facebook
+    "linkedinbot", # LinkedIn
+    "pinterestbot", # Pinterest
+
+    # Others (wildcards and specific)
+    "*bot",       # Matches any bot with "bot" in user agent (broad match)
+    "*crawler*",  # Matches any bot with "crawler" in user agent (broad match)
+    "*spider*",   # Common identifier for many smaller search engines
+
+    # Specific Bots
+    "applebot",   # Apple
+    "slackbot",   # Slack
+    "telegrambot", # Telegram
+    "whatsapp",   # WhatsApp
+    "flipboard",  # Flipboard
+    "tumblr",     # Tumblr
+
+    # Miscellaneous and less common bots
+    "ia_archiver", # Internet Archive
+    "archive.org_bot", # Also Internet Archive
+    "adsbot-google", # Google AdWords
+    "msnbot",        # Old Microsoft bot (if it appears)
+    "yandeximages",  # Yandex Images
+    "yandexvideo",   # Yandex Video
+    "yandexmedia",   # Yandex Media
+    "yandexblogs",   # Yandex Blogs
+    "yandexaddurl",  # Yandex Add URL
+    "yandexfavicon", # Yandex Favicon
+    "yandexdirect",  # Yandex Direct
+    "yandexmetrika", # Yandex Metrika
+    "yandexnews",    # Yandex News
+    "yandexcatalog", # Yandex Catalog
+    "aport",         # Aport
+    "yahoo",         # Yahoo
+    "mozillacompatible", # Various crawlers use this identifier
+    "seznam",        # Seznam
+    "sogou",         # Sogou
+    "exabot",        # Exabot
+    "alexabot",      # Alexa
+    "ahrefsbot",     # Ahrefs
+    "semrushbot",    # SEMRush
+    "panscient.com", # Generic web crawler
+  ]}
