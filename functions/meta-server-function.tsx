@@ -76,26 +76,70 @@ exports.handler = async function(event, context) {
       body: htmlResponse,
     };
   } else {
-    try {
-      // Assuming your build outputs to a "build" folder
-      // Adjust the path according to your project structure
-      const filePath = path.join(process.cwd(), 'build', 'index.html');
+
+    const normalBody = `
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+      <!-- add meta og -->
+      <meta property="fb:app_id" content="823028086097162" />
+      <meta property="og:url" content="https://www.puttputtgo.net/" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="PuttPuttGo" />
+      <meta property="og:description" content="The official digital scorecard for golf." />
+      <meta property="og:image" content="/website/og.jpg" />
+      <meta property="og:image:width" content="700" />
+      <meta property="og:image:height" content="375" />
+
+      <!-- add meta twitter -->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="https://www.puttputtgo.net/">
+      <meta name="twitter:title" content="PuttPuttGo">
+      <meta name="twitter:description" content="The official digital scorecard for golf.">
+      <meta name="twitter:image" content="/website/og.jpg">
+
+      <title>PuttPuttGo | The Official Digital Scorecard for Golf</title>
+
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-  
+    <title>PuttPuttGo</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+    -->
+  </body>
+</html>
+
+    `;
+
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'text/html' },
-        body: fileContents,
+        body: normalBody,
       };
-    } catch (error) {
-      // handle file read error
-      console.error('Error reading index.html:', error);
-      return {
-        statusCode: 500,
-        body: 'Internal Server Error',
-      };
-    }
+    
   }
 };
 
