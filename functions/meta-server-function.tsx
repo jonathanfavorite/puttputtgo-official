@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
-
+const fs = require('fs');
+const path = require('path');
 const customerList = [
   "castle-golf"
 ];
@@ -75,11 +76,26 @@ exports.handler = async function(event, context) {
       body: htmlResponse,
     };
   } else {
-    // If not a crawler, redirect to the client-side rendered app
-    return {
-      statusCode: 301,
-      headers: { Location: '/' + customer },
-    };
+    try {
+      // Assuming your build outputs to a "build" folder
+      // Adjust the path according to your project structure
+      const filePath = path.join(process.cwd(), 'build', 'index.html');
+  
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+  
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'text/html' },
+        body: fileContents,
+      };
+    } catch (error) {
+      // handle file read error
+      console.error('Error reading index.html:', error);
+      return {
+        statusCode: 500,
+        body: 'Internal Server Error',
+      };
+    }
   }
 };
 
