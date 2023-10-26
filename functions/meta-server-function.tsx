@@ -31,14 +31,16 @@ exports.handler = async function(event, context) {
   const userAgent = event.headers['user-agent'].toLowerCase();
   const isCrawler = userAgent.includes('googlebot') || userAgent.includes('facebookexternalhit'); // ... other crawlers
 
+   // Fetch the related data for this game (e.g., from your database or an external API)
+
+   const pathParameters = event.path.split("/");
+   const customer = pathParameters[1]; // since it's usually the first segment after the initial /
+
   if (isCrawler) {
     // Extract gameID from query parameters
     const { gameID } = event.queryStringParameters;
-
-    // Fetch the related data for this game (e.g., from your database or an external API)
     const gameData = await fetchGameData(gameID);
-    const pathParameters = event.path.split("/");
-    const customer = pathParameters[1]; // since it's usually the first segment after the initial /
+   
 
 
     // Construct the dynamic meta tags with the game data
@@ -76,7 +78,7 @@ exports.handler = async function(event, context) {
     // If not a crawler, redirect to the client-side rendered app
     return {
       statusCode: 301,
-      headers: { Location: '/' },
+      headers: { Location: '/' + customer },
     };
   }
 };
