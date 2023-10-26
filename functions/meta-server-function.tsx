@@ -79,7 +79,7 @@ exports.handler = async function(event, context) {
     try {
       // Assuming your build outputs to a "build" folder
       // Adjust the path according to your project structure
-      const filePath = path.join(process.cwd(), 'build', 'index.html');
+      const filePath = path.join('', 'build', 'index.html');
   
       const fileContents = fs.readFileSync(filePath, 'utf8');
   
@@ -93,7 +93,7 @@ exports.handler = async function(event, context) {
       console.error('Error reading index.html:', error);
       return {
         statusCode: 500,
-        body: 'Internal Server Error',
+        body: 'Internal Server Error: ' + JSON.stringify(error),
       };
     }
   }
