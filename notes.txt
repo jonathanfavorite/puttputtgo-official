@@ -1,1 +1,2 @@
 set HTTPS=true&&react-scripts start --host 0.0.0.0
+/*    /index.html   200
