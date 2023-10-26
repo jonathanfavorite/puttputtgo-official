@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  functions = "functions"
+  publish = "build"
+
+[dev]
+  command = "npm start" # Command to start your server
+  targetPort = 3000 # The port for your local server
+  port = 8888 # The port that Netlify Dev will use
+  functionsPort = 34567 # Port for Netlify functions, if you're using them
+  autoLaunch = true # Automatically opens a browser window
+
+
+[[redirects]]
+  from = "/:customer/*"
+  to = "/.netlify/functions/meta-server-function"
+  status = 200
+  force = true
