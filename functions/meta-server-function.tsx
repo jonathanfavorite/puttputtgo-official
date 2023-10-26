@@ -32,10 +32,9 @@ exports.handler = async function(event, context) {
   const userAgent = event.headers['user-agent'].toLowerCase();
   const isCrawler = userAgent.includes('googlebot') || userAgent.includes('facebookexternalhit'); // ... other crawlers
 
-   // Fetch the related data for this game (e.g., from your database or an external API)
 
    const pathParameters = event.path.split("/");
-   const customer = pathParameters[1]; // since it's usually the first segment after the initial /
+   const customer = pathParameters[1]; 
 
   if (isCrawler) {
     // Extract gameID from query parameters
@@ -63,10 +62,10 @@ exports.handler = async function(event, context) {
         customer: customer,
       })}
         ${metaTags}
-        <!-- Other headers like CSS links, etc. -->
+     
       </head>
       <body>
-        <!-- Your usual app content -->
+       
       </body>
       </html>`;
 
@@ -77,34 +76,40 @@ exports.handler = async function(event, context) {
     };
   } else {
     try {
-      // Assuming your build outputs to a "build" folder
-      // Adjust the path according to your project structure
-      const filePath = path.join('', '', 'index.html');
-  
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-  
+      // Construct the file path. Since we're not sure of the exact structure, we'll use an environment variable.
+      // NETLIFY_BUILD_BASE is an environment variable provided by Netlify that gives the base path.
+      const basePath = process.env.NETLIFY_BUILD_BASE || '/var/task/';
+      const filePath = path.join(basePath, 'build', 'index.html');
+
+      // Attempt to read the file from this path
+      const indexHtml = fs.readFileSync(filePath, 'utf-8');
+
+      // Serve the file's contents
       return {
         statusCode: 200,
-        headers: { 'Content-Type': 'text/html' },
-        body: fileContents,
+        headers: {
+          'Content-Type': 'text/html',
+        },
+        body: indexHtml,
       };
     } catch (error) {
-      // handle file read error
-      console.error('Error reading index.html:', error);
+      console.error('Error serving index.html:', error);
+      // If there's an issue reading the file, log the error and return a 500 status code
       return {
         statusCode: 500,
-        body: 'Internal Server Error: ' + JSON.stringify(error),
+        body: 'Internal Server Error: Unable to serve page: ' + JSON.stringify(error),
       };
     }
+  }
   }
 };
 
 const fetchGameData = async (gameID) => {
-  // Replace this with your actual data fetching logic
+
   let data = {
-    title: 'Castle Golf',
+    title: 'Some Random Customer',
     description: 'A fun game for the whole family!',
-    imageUrl: 'https://your-website.com/images/castle-golf.png'
+    imageUrl: 'https://your-website.com/images/customer.png'
   };
   /*
 const response = await fetch(`https://your-api.com/games/${gameID}`);
