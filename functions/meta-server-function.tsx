@@ -79,7 +79,7 @@ exports.handler = async function(event, context) {
     try {
       // Assuming your build outputs to a "build" folder
       // Adjust the path according to your project structure
-      const filePath = path.join('', 'build', 'index.html');
+      const filePath = path.join('', '', 'index.html');
   
       const fileContents = fs.readFileSync(filePath, 'utf8');
   
