@@ -112,3 +112,17 @@ exports.handler = async function(event, context) {
     }; 
   }
 };
+const fetchGameData = async (gameID) => {
+
+  let data = {
+    title: 'Some Random Customer',
+    description: 'A fun game for the whole family!',
+    imageUrl: 'https://your-website.com/images/customer.png'
+  };
+  /*
+const response = await fetch(`https://your-api.com/games/${gameID}`);
+  const data = await response.json();
+  return data; // assuming this returns an object with { title, description, imageUrl }
+  */
+  return data;
+};
